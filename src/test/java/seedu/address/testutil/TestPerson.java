@@ -10,8 +10,8 @@ public class TestPerson implements ReadOnlyTask {
 
     private TaskName taskName;
     private Address address;
-    private Email email;
-    private Phone phone;
+    private Time time;
+    private Date date;
     private UniqueTagList tags;
 
     public TestPerson() {
@@ -26,12 +26,12 @@ public class TestPerson implements ReadOnlyTask {
         this.address = address;
     }
 
-    public void setEmail(Email email) {
-        this.email = email;
+    public void setEmail(Time time) {
+        this.time = time;
     }
 
-    public void setPhone(Phone phone) {
-        this.phone = phone;
+    public void setPhone(Date date) {
+        this.date = date;
     }
 
     @Override
@@ -40,13 +40,13 @@ public class TestPerson implements ReadOnlyTask {
     }
 
     @Override
-    public Phone getPhone() {
-        return phone;
+    public Date getDate() {
+        return date;
     }
 
     @Override
-    public Email getEmail() {
-        return email;
+    public Time getTime() {
+        return time;
     }
 
     @Override
@@ -67,8 +67,8 @@ public class TestPerson implements ReadOnlyTask {
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
         sb.append("add " + this.getName().fullName + " ");
-        sb.append("p/" + this.getPhone().value + " ");
-        sb.append("e/" + this.getEmail().value + " ");
+        sb.append("p/" + this.getDate().value + " ");
+        sb.append("e/" + this.getTime().value + " ");
         sb.append("a/" + this.getAddress().value + " ");
         this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
