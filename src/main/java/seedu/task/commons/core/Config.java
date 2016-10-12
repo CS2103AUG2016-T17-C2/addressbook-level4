@@ -13,7 +13,7 @@ public class Config {
     // Config values customizable through config file
     private String appTitle = "TaskBook App";
     private Level logLevel = Level.INFO;
-    private String userPrefsFilePath = "preferences.json";
+    private String userPrefsFilePath = "data/preferences.json";
     private String taskBookFilePath = "data/taskbook.xml";
     private String taskBookName = "MyTaskBook";
 
@@ -42,22 +42,22 @@ public class Config {
     }
 
     public void setUserPrefsFilePath(String userPrefsFilePath) {
-        this.userPrefsFilePath = userPrefsFilePath;
+         this.userPrefsFilePath = userPrefsFilePath;
     }
 
     public String getTaskBookFilePath() {
         return taskBookFilePath;
     }
 
-    public void setAddressBookFilePath(String addressBookFilePath) {
-        this.taskBookFilePath = addressBookFilePath;
+    public void setTaskBookFilePath(String taskBookFilePath) {
+        this.taskBookFilePath = taskBookFilePath;
     }
 
     public String getTaskBookName() {
         return taskBookName;
     }
 
-    public void setAddressBookName(String addressBookName) {
+    public void setTaskBookName(String addressBookName) {
         this.taskBookName = addressBookName;
     }
 

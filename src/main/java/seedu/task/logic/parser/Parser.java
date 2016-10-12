@@ -3,12 +3,16 @@ package seedu.task.logic.parser;
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.task.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.task.commons.core.LogsCenter;
+import seedu.task.commons.exceptions.DuplicateDataException;
 import seedu.task.commons.exceptions.IllegalValueException;
+import seedu.task.commons.util.FileUtil;
 import seedu.task.commons.util.StringUtil;
 import seedu.task.logic.commands.*;
 import seedu.task.model.ModelManager;
@@ -44,6 +48,7 @@ public class Parser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
+     * @throws IOException 
      */
     public Command parseCommand(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -54,6 +59,9 @@ public class Parser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+
+        case ChangeFilePathCommand.COMMAND_WORD:
+            return prepareChangeFilePathCommand(arguments);
 
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
@@ -99,6 +107,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses arguments in the context of the changefilepath command.
+     *
+     * @param args new filePath args string
+     * @return the prepared command 
+     * @throws IOException 
+     */
+    private Command prepareChangeFilePathCommand(String args) {
+                return new ChangeFilePathCommand(args);
+        }
     /**
      * Extracts the new task's tags from the add command's tag arguments string.
      * Merges duplicate tag strings.
