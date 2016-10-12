@@ -29,7 +29,7 @@ import seedu.task.model.task.Status;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.Venue;
 
-public class AddTaskParser {
+public class TaskParser {
 
 	public static final String SPLIT_STRING_BY_WHITESPACE = "\\s+";
 	public static final String PREFIX_HASHTAG = "#";
@@ -42,9 +42,13 @@ public class AddTaskParser {
 	private Task task;
 	private String input;
 
-	public AddTaskParser(String input) {
+	public TaskParser(String input) {
+		this(new Task(), input);
+	};
+	
+	public TaskParser(Task task, String input) {
 		this.input = input;
-		this.task = new Task();
+		this.task = task;
 	};
 
 	public Task parseInput() throws IllegalValueException {
@@ -58,30 +62,28 @@ public class AddTaskParser {
 		return task;
 	}
 
-	private String tagIdentification(String str) throws DuplicateTagException, IllegalValueException {
+	protected String tagIdentification(String str) throws DuplicateTagException, IllegalValueException {
 		String[] parts = str.split(SPLIT_STRING_BY_WHITESPACE);
 		String strWithNoTags = "";
 		for (String part : parts) {
 			if (part.startsWith(PREFIX_HASHTAG))
 				matchTag(part.substring(1).trim());
 			else if (part.startsWith(PREFIX_AT)) {
-				//task.setVenue(new Venue(String.join(" ", task.getVenue().toString(), part.substring(1))));
-				task.setVenue(new Venue(part.substring(1).trim()));
-				strWithNoTags = String.join(" ", strWithNoTags, WORD_AT + part.substring(1).trim());
+				task.setVenue(new Venue(String.join(" ", task.getVenue().toString(), part.substring(1))));
 			} else
 				strWithNoTags = String.join(" ", strWithNoTags, part.trim());
 		}
 		return strWithNoTags;
 	}
 
-	private void matchTag(String str) throws DuplicateTagException, IllegalValueException {
+	protected void matchTag(String str) throws DuplicateTagException, IllegalValueException {
 		if (EnumUtils.isValidEnum(Priority.class, str.toUpperCase()))
 			task.setPriority(Priority.valueOf(str.toUpperCase()));
 		else
 			task.addTag(new Tag(str));
 	}
 
-	private String processDateNLP(String str) throws IllegalValueException {
+	protected String processDateNLP(String str) throws IllegalValueException {
 		Parser parser = new Parser();
 		List<DateGroup> groups = new ArrayList<>();
 		List<Date> dates = new ArrayList<>();
@@ -91,7 +93,6 @@ public class AddTaskParser {
 			dates.addAll(group.getDates());
 			String matchingValue = group.getText();
 			str = removeDateWords(str.toUpperCase(), matchingValue.toUpperCase());
-			//str = str.replace(matchingValue, "");
 			logger.info(" Str: " + str + " dates " + Arrays.toString(dates.toArray()) + " matchingValue: " + matchingValue);
 		}
 
@@ -100,7 +101,7 @@ public class AddTaskParser {
 		return str;
 	}
 	
-	private String removeDateWords(String str, String matchingValue) {
+	protected String removeDateWords(String str, String matchingValue) {
 		str = str.replace(RESERVED_WORD_FROM + matchingValue, "");
 		str = str.replace(RESERVED_WORD_BY + matchingValue, "");
 		str = str.replace(matchingValue, "");
@@ -129,7 +130,7 @@ public class AddTaskParser {
 		return (ArrayList<Date>) dates;
 	}*/
 
-	private void setTaskDates(List<Date> dates) throws IllegalValueException {
+	protected void setTaskDates(List<Date> dates) throws IllegalValueException {
 		if (dates.size() == 1) {
 			task.setEndDate(new DateTime(dates.get(0)));
 		} else if (dates.size() >= 2) {
@@ -138,8 +139,7 @@ public class AddTaskParser {
 		}
 	}
 
-	private void processTaskName(String str) throws IllegalValueException {
-		// If have time, do some NLG
+	protected void processTaskName(String str) throws IllegalValueException {
 		task.setName(new Name(str));
 	}
 }

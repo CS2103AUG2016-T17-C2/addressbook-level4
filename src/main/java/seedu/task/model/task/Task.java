@@ -18,7 +18,7 @@ public class Task implements ReadOnlyTask {
     private DateTime endDate;
     private Venue venue;
     private Status status = Status.ACTIVE;
-    private Priority priority = Priority.LOW; //Default priority is low
+    private Priority priority = Priority.MEDIUM; //Default priority is medium
     //Repeating, pin task
     private UniqueTagList tags;
 
