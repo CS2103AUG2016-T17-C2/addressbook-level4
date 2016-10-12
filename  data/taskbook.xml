@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskbook>
+    <tasks>
+        <name>stay</name>
+        <startDate>Thu Oct 13 08:00:00 SGT 2016</startDate>
+        <endDate>Fri Oct 14 21:52:39 SGT 2016</endDate>
+        <venue> home</venue>
+        <priority>LOW</priority>
+        <status>ACTIVE</status>
+        <tagged>tired</tagged>
+    </tasks>
+    <tags>
+        <tagName>tired</tagName>
+    </tags>
+</taskbook>

@@ -22,13 +22,13 @@ public interface Storage extends TaskBookStorage, UserPrefsStorage {
     void saveUserPrefs(UserPrefs userPrefs) throws IOException;
 
     @Override
-    String getAddressBookFilePath();
+    String getTaskBookFilePath();
 
     @Override
     Optional<ReadOnlyTaskBook> readAddressBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyTaskBook addressBook) throws IOException;
+    void saveTaskBook(ReadOnlyTaskBook addressBook) throws IOException;
 
     /**
      * Saves the current version of the Address Book to the hard disk.

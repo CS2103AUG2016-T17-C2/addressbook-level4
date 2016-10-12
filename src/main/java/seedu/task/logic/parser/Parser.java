@@ -3,9 +3,13 @@ package seedu.task.logic.parser;
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.task.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.exceptions.IllegalValueException;
@@ -23,19 +27,15 @@ public class Parser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+	private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+	private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    private static final Pattern TASK_INDEX_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+    private static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>\\S+)(?<arguments>.*)");
 
     private static final Pattern KEYWORDS_ARGS_FORMAT =
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
-
-    private static final Pattern PERSON_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
-            Pattern.compile("(?<name>[^/]+)"
-                    + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
-                    + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
-                    + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
-                    + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
     public Parser() {}
 
@@ -44,6 +44,7 @@ public class Parser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
+     * @throws IOException 
      */
     public Command parseCommand(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -55,8 +56,14 @@ public class Parser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        case ChangeFilePathCommand.COMMAND_WORD:
+            return prepareChangeFilePathCommand(arguments);
+
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
+            
+        case UpdateCommand.COMMAND_WORD:
+        	return prepareUpdate(arguments);
 
         case SelectCommand.COMMAND_WORD:
             return prepareSelect(arguments);
@@ -91,14 +98,42 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareAdd(String args){
-        AddTaskParser addTaskParser = new AddTaskParser(args);
+        TaskParser taskParser = new TaskParser(args);
         try {
-        	return new AddCommand(addTaskParser.parseInput());
+        	return new AddCommand(taskParser.parseInput());
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
     }
 
+    /**
+
+     * Parses arguments in the context of the update task command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareUpdate(String args){
+    	logger.info("args: " + args);
+    	Pair<Optional<Integer>, Optional<String>> argsPair = parseIndexWithArgs(args);
+    	logger.info("left: " + argsPair.getLeft() + " right: " + argsPair.getRight());
+
+        if(!argsPair.getLeft().isPresent() || !argsPair.getRight().isPresent())
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
+        
+    	return new UpdateCommand(argsPair.getLeft().get(), argsPair.getRight().get());
+    }
+    
+    
+     /* Parses arguments in the context of the changefilepath command.
+     *
+     * @param args new filePath args string
+     * @return the prepared command 
+     * @throws IOException 
+     */
+    private Command prepareChangeFilePathCommand(String args) {
+                return new ChangeFilePathCommand(args);
+        }
     /**
      * Extracts the new task's tags from the add command's tag arguments string.
      * Merges duplicate tag strings.
@@ -151,7 +186,8 @@ public class Parser {
      *   Returns an {@code Optional.empty()} otherwise.
      */
     private Optional<Integer> parseIndex(String command) {
-        final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(command.trim());
+        final Matcher matcher = TASK_INDEX_FORMAT.matcher(command.trim());
+    	
         if (!matcher.matches()) {
             return Optional.empty();
         }
@@ -162,6 +198,27 @@ public class Parser {
         }
         return Optional.of(Integer.parseInt(index));
 
+    }
+    
+    /** Processes the command with an index followed by a series of arguments.
+     * Returns the specified index in the {@code command} and the arguments 
+     * IF a positive unsigned integer is given as the index and if arguments are present.
+     *   Returns an {@code Optional.empty()} otherwise
+     */
+    private Pair<Optional<Integer>, Optional<String>> parseIndexWithArgs(String command) {
+        final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(command.trim());
+    	//logger.info("left: " + argsPair.getLeft() + " right: " + argsPair.getRight());
+
+        if (!matcher.matches()) {
+            return new ImmutablePair<Optional<Integer>, Optional<String>>(Optional.empty(), Optional.empty());
+        }
+        
+        String index = matcher.group("targetIndex");
+        String args = matcher.group("arguments");
+        if(!StringUtil.isUnsignedInteger(index) || args.isEmpty()){
+            return new ImmutablePair<Optional<Integer>, Optional<String>>(Optional.empty(), Optional.empty());
+        }
+        return new ImmutablePair<Optional<Integer>, Optional<String>>(Optional.of(Integer.parseInt(index)), Optional.of(args));
     }
 
     /**
