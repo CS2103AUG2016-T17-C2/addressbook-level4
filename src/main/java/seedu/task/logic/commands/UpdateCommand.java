@@ -41,7 +41,7 @@ public class UpdateCommand extends Command{
     @Override
     public CommandResult execute() {
     	LogsCenter.getLogger(ModelManager.class).info("Task Index: " + taskIndex + " Args: " + updateArgs);
-        UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredPersonList();
+        UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
 
         if (lastShownList.size() < taskIndex) {
             indicateAttemptToExecuteIncorrectCommand();
@@ -52,7 +52,7 @@ public class UpdateCommand extends Command{
 
         try {
         	TaskParser updateTaskParser = new UpdateTaskParser((Task)lastShownList.get(taskIndex - 1), updateArgs);
-            model.deletePerson(lastShownList.get(taskIndex - 1));
+            model.deleteTask(lastShownList.get(taskIndex - 1));
         	model.addTask(updateTaskParser.parseInput());
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target person cannot be missing";
