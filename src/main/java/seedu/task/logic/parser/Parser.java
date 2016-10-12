@@ -3,6 +3,7 @@ package seedu.task.logic.parser;
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.task.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -43,6 +44,7 @@ public class Parser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
+     * @throws IOException 
      */
     public Command parseCommand(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -53,6 +55,9 @@ public class Parser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+
+        case ChangeFilePathCommand.COMMAND_WORD:
+            return prepareChangeFilePathCommand(arguments);
 
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
@@ -102,6 +107,7 @@ public class Parser {
     }
 
     /**
+
      * Parses arguments in the context of the update task command.
      *
      * @param args full command args string
@@ -119,6 +125,15 @@ public class Parser {
     }
     
     
+     /* Parses arguments in the context of the changefilepath command.
+     *
+     * @param args new filePath args string
+     * @return the prepared command 
+     * @throws IOException 
+     */
+    private Command prepareChangeFilePathCommand(String args) {
+                return new ChangeFilePathCommand(args);
+        }
     /**
      * Extracts the new task's tags from the add command's tag arguments string.
      * Merges duplicate tag strings.

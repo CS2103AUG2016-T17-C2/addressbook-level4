@@ -1,4 +1,4 @@
-package seedu.task.commons.util;
+ package seedu.task.commons.util;
 
 import seedu.task.commons.core.Config;
 import seedu.task.commons.core.LogsCenter;
