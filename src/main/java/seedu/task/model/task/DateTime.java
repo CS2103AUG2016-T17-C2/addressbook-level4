@@ -13,6 +13,7 @@ public class DateTime {
     public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be an upcoming date";
 
     public final String value;
+    
 
     /**
      * Validates given Date.
@@ -20,7 +21,6 @@ public class DateTime {
      * @throws IllegalValueException if given phone string is invalid.
      */
     public DateTime(Date date) throws IllegalValueException {
-        assert date != null;
         if (!isValidDate(date)) {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
         }

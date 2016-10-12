@@ -5,6 +5,7 @@ import seedu.task.model.TaskBook;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
+import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -19,7 +20,7 @@ public class AddressBookBuilder {
         this.taskBook = taskBook;
     }
 
-    public AddressBookBuilder withPerson(Task task) throws UniqueTaskList.DuplicateTaskException {
+    public AddressBookBuilder withPerson(Task task) throws UniqueTaskList.DuplicateTaskException, DateClashTaskException {
         taskBook.addTask(task);
         return this;
     }

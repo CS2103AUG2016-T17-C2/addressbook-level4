@@ -6,6 +6,7 @@ import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
+import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -75,8 +76,9 @@ public class TaskBook implements ReadOnlyTaskBook {
      * and updates the Tag objects in the task to point to those in {@link #tags}.
      *
      * @throws UniqueTaskList.DuplicateTaskException if an equivalent task already exists.
+     * @throws DateClashTaskException 
      */
-    public void addTask(Task p) throws UniqueTaskList.DuplicateTaskException {
+    public void addTask(Task p) throws UniqueTaskList.DuplicateTaskException, DateClashTaskException {
         syncTagsWithMasterList(p);
         tasks.add(p);
     }

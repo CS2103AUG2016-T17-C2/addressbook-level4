@@ -37,6 +37,9 @@ public class TaskParser {
 	public static final String WORD_AT = "at ";
 	public static final String RESERVED_WORD_FROM = "FROM ";
 	public static final String RESERVED_WORD_BY = "BY ";
+	
+    public static final String MESSAGE_DATE_SAME = "Start date and End date should not be same";
+
 
 	private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 	private Task task;
@@ -134,11 +137,13 @@ public class TaskParser {
 		if (dates.size() == 1) {
 			task.setEndDate(new DateTime(dates.get(0)));
 		} else if (dates.size() >= 2) {
+			if (dates.get(0).compareTo(dates.get(1)) == 0)
+				throw new IllegalValueException(MESSAGE_DATE_SAME);
 			task.setStartDate(new DateTime(dates.get(0)));
 			task.setEndDate(new DateTime(dates.get(1)));
 		}
 	}
-
+	
 	protected void processTaskName(String str) throws IllegalValueException {
 		task.setName(new Name(str));
 	}

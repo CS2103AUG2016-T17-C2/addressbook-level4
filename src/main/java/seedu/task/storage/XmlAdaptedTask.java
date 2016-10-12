@@ -24,7 +24,7 @@ public class XmlAdaptedTask {
     @XmlElement(required = true)
     private String venue;
     @XmlElement(required = true)
-    private String priority = Priority.LOW.toString();
+    private String priority;
     @XmlElement(required = true)
     private String status = Status.ACTIVE.toString();
 

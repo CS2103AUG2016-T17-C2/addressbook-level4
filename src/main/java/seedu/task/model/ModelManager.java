@@ -9,6 +9,7 @@ import seedu.task.commons.util.StringUtil;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
+import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
 import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 import java.util.Set;
@@ -71,7 +72,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public synchronized void addTask(Task task) throws UniqueTaskList.DuplicateTaskException {
+    public synchronized void addTask(Task task) throws UniqueTaskList.DuplicateTaskException, DateClashTaskException {
         taskBook.addTask(task);
         updateFilteredListToShowAll();
         indicateAddressBookChanged();

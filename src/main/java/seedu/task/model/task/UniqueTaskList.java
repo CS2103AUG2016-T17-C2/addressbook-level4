@@ -25,6 +25,15 @@ public class UniqueTaskList implements Iterable<Task> {
             super("Operation would result in duplicate tasks");
         }
     }
+    
+    /**
+     * Signals that the task would clash with another task.
+     */
+    public static class DateClashTaskException extends DuplicateDataException {
+        protected DateClashTaskException(String taskName) {
+            super("The Start Date and End date clashes with another task '" + taskName + "'");
+        }
+    }
 
     /**
      * Signals that an operation targeting a specified task in the list would fail because
@@ -47,16 +56,32 @@ public class UniqueTaskList implements Iterable<Task> {
         return internalList.contains(toCheck);
     }
 
+    public Task isDateClash(Task task) {
+    	if (!task.getStartDate().value.isEmpty() && !task.getStartDate().value.isEmpty()) {
+    		for (Task t : internalList) {
+    			if (task.checkDateClash(t))
+    				return t;
+    		}
+    	}
+    	return null;
+    }
+    
+    
     /**
      * Adds a task to the list.
      *
      * @throws DuplicateTaskException if the task to add is a duplicate of an existing task in the list.
+     * @throws DateClashTaskException if the task dates clashes with another existing task in the list
      */
-    public void add(Task toAdd) throws DuplicateTaskException {
+    public void add(Task toAdd) throws DuplicateTaskException, DateClashTaskException {
         assert toAdd != null;
         if (contains(toAdd)) {
             throw new DuplicateTaskException();
         }
+        Task dateClash = isDateClash(toAdd);
+        if (dateClash != null)
+        	throw new DateClashTaskException(dateClash.getName().toString());
+        	
         internalList.add(toAdd);
     }
 

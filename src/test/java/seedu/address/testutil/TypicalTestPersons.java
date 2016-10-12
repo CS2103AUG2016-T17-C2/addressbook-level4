@@ -46,6 +46,8 @@ public class TypicalTestPersons {
             ab.addTask(new Task(george));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             assert false : "not possible";
+        } catch (UniqueTaskList.DateClashTaskException e) {
+            assert false : "not possible";
         }
     }
 

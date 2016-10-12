@@ -4,6 +4,7 @@ import seedu.task.commons.core.UnmodifiableObservableList;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
+import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
 
 import java.util.Set;
 
@@ -20,8 +21,9 @@ public interface Model {
     /** Deletes the given person. */
     void deletePerson(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
 
-    /** Adds the given person */
-    void addTask(Task task) throws UniqueTaskList.DuplicateTaskException;
+    /** Adds the given person 
+     * @throws DateClashTaskException */
+    void addTask(Task task) throws UniqueTaskList.DuplicateTaskException, DateClashTaskException;
 
     /** Returns the filtered person list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredPersonList();
