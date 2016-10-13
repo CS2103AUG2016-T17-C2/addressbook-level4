@@ -128,6 +128,46 @@ public class ModelManager extends ComponentManager implements Model {
             }
         });
     }
+    
+    public void updateFilteredTaskListByActiveStatus() {
+        filteredTasks.setPredicate(task -> {
+            if(task.getStatus().toString().equals("ACTIVE")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+    public void updateFilteredTaskListByExpiredStatus() {
+        filteredTasks.setPredicate(task -> {
+            if(task.getStatus().toString().equals("EXPIRED")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+    public void updateFilteredTaskListByDoneStatus() {
+        filteredTasks.setPredicate(task -> {
+            if(task.getStatus().toString().equals("DONE")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+    public void updateFilteredTaskListByIgnoredStatus() {
+        filteredTasks.setPredicate(task -> {
+            if(task.getStatus().toString().equals("IGNORE")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
 
     //========== Inner classes/interfaces used for filtering ==================================================
 

@@ -43,4 +43,16 @@ public interface Model {
     /** Updates the filter of the filtered task list to show tasks with LOW priority*/
     void updateFilteredTaskListByLowPriority();
     
+    /** Updates the filter of the filtered task list to show ACTIVE tasks*/
+    void updateFilteredTaskListByActiveStatus();
+    
+    /** Updates the filter of the filtered task list to show EXPIRED tasks*/
+    void updateFilteredTaskListByExpiredStatus();
+    
+    /** Updates the filter of the filtered task list to show DONE tasks*/
+    void updateFilteredTaskListByDoneStatus();
+    
+    /** Updates the filter of the filtered task list to show IGNORED tasks*/
+    void updateFilteredTaskListByIgnoredStatus();
+    
 }
