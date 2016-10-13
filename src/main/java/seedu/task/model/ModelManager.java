@@ -108,6 +108,26 @@ public class ModelManager extends ComponentManager implements Model {
             }
         });
     }
+    
+    public void updateFilteredTaskListByMediumPriority() {
+        filteredTasks.setPredicate(task -> {
+            if(task.getPriority().toString().equals("MEDIUM")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+    public void updateFilteredTaskListByLowPriority() {
+        filteredTasks.setPredicate(task -> {
+            if(task.getPriority().toString().equals("LOW")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
 
     //========== Inner classes/interfaces used for filtering ==================================================
 

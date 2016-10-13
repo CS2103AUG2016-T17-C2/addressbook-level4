@@ -2,7 +2,7 @@ package seedu.task.logic.commands;
 
 
 /**
- * Lists all tasks with high priority in the task book to the user.
+ * Lists all tasks with HIGH priority in the task book to the user.
  */
 public class ListHighCommand extends Command {
 

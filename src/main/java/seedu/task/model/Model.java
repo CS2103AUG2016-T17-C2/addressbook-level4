@@ -36,4 +36,11 @@ public interface Model {
 
     /** Updates the filter of the filtered task list to show tasks with HIGH priority*/
     void updateFilteredTaskListByHighPriority();
+    
+    /** Updates the filter of the filtered task list to show tasks with MEDIUM priority*/
+    void updateFilteredTaskListByMediumPriority();
+    
+    /** Updates the filter of the filtered task list to show tasks with LOW priority*/
+    void updateFilteredTaskListByLowPriority();
+    
 }
