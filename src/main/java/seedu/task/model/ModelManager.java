@@ -91,12 +91,22 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void updateFilteredTaskList(Set<String> keywords){
+    public void updateFilteredTaskListByKeywords(Set<String> keywords){
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
 
     private void updateFilteredTaskList(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
+    }
+    
+    public void updateFilteredTaskListByHighPriority() {
+        filteredTasks.setPredicate(task -> {
+            if(task.getPriority().toString().equals("HIGH")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
     }
 
     //========== Inner classes/interfaces used for filtering ==================================================
