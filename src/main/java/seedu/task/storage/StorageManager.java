@@ -57,7 +57,7 @@ public class StorageManager extends ComponentManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyTaskBook> readAddressBook() throws DataConversionException, IOException {
+    public Optional<ReadOnlyTaskBook> readTaskBook() throws DataConversionException, IOException {
         return readTaskBook(taskBookStorage.getTaskBookFilePath());
     }
 
