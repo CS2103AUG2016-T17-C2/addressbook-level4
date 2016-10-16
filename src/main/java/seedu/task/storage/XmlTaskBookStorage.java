@@ -29,7 +29,7 @@ public class XmlTaskBookStorage implements TaskBookStorage {
     }
 
     /**
-     * Similar to {@link #readAddressBook()}
+     * Similar to {@link #readTaskBook()}
      * @param filePath location of the data. Cannot be null
      * @throws DataConversionException if the file is not in the correct format.
      */
@@ -62,7 +62,7 @@ public class XmlTaskBookStorage implements TaskBookStorage {
     }
 
     @Override
-    public Optional<ReadOnlyTaskBook> readAddressBook() throws DataConversionException, IOException {
+    public Optional<ReadOnlyTaskBook> readTaskBook() throws DataConversionException, IOException {
         return readTaskBook(filePath);
     }
 
