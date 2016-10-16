@@ -26,7 +26,7 @@ public interface Model {
     void addTask(Task task) throws UniqueTaskList.DuplicateTaskException, DateClashTaskException;
 
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
-    UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
+    UnmodifiableObservableList<ReadOnlyTask> getSortedTaskList();
 
     /** Updates the filter of the filtered task list to show all persons */
     void updateFilteredListToShowAll();
