@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.task.commons.exceptions.IllegalValueException;
+import seedu.task.logic.parser.TaskParser;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.*;
@@ -40,12 +41,12 @@ public class AddCommand extends Command {
         assert model != null;
         try {
             model.addTask(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             return new CommandResult(MESSAGE_DUPLICATE_TASK);
         } catch (UniqueTaskList.DateClashTaskException e) {
-            return new CommandResult(e.toString());
-        }
+            return new CommandResult(e.getMessage());
+        } 
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
 
     }
 

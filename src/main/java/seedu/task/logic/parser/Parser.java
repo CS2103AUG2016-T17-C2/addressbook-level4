@@ -12,10 +12,13 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import seedu.task.commons.core.LogsCenter;
+import seedu.task.commons.core.UnmodifiableObservableList;
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.commons.util.StringUtil;
+import seedu.task.logic.LogicManager;
 import seedu.task.logic.commands.*;
 import seedu.task.model.ModelManager;
+import seedu.task.model.task.ReadOnlyTask;
 
 import java.util.logging.Logger;
 
@@ -27,7 +30,7 @@ public class Parser {
     /**
      * Used for initial separation of command word and args.
      */
-	private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+	private static final Logger logger = LogsCenter.getLogger(Parser.class);
 
 	private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
@@ -121,7 +124,7 @@ public class Parser {
         if(!argsPair.getLeft().isPresent() || !argsPair.getRight().isPresent())
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
         
-    	return new UpdateCommand(argsPair.getLeft().get(), argsPair.getRight().get());
+        return new UpdateCommand(argsPair.getLeft().get(), argsPair.getRight().get());
     }
     
     

@@ -1,15 +1,12 @@
 package seedu.task.model.task;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Objects;
 
+import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.util.CollectionUtil;
+import seedu.task.model.ModelManager;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.tag.UniqueTagList.DuplicateTagException;
@@ -80,7 +77,7 @@ public class Task implements ReadOnlyTask {
 	}
 
 	public boolean checkDateClash(Task task) {
-		if (!task.getStartDate().value.isEmpty() && !task.getStartDate().value.isEmpty()) {
+		if (!task.getStartDate().value.isEmpty() && !task.getEndDate().value.isEmpty()) {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E MMM d HH:mm:ss zzz yyyy");
 
 			LocalDateTime startDate = LocalDateTime.parse(this.startDate.value, formatter);
@@ -88,9 +85,11 @@ public class Task implements ReadOnlyTask {
 			LocalDateTime taskStartDate = LocalDateTime.parse(task.startDate.value, formatter);
 			LocalDateTime taskEndDate = LocalDateTime.parse(task.endDate.value, formatter);
 
+	    	LogsCenter.getLogger(ModelManager.class).info("startDate: " + startDate +
+	    			", endDate: " + endDate + ", taskStartDate: " + taskStartDate + ", taskEndDate: " + taskEndDate);
+
 			if (startDate.compareTo(taskStartDate) >= 0 && endDate.compareTo(taskEndDate) <= 0)
 				return true;
-
 		}
 
 		return false;
@@ -179,6 +178,14 @@ public class Task implements ReadOnlyTask {
 
 	public void addTag(Tag tag) throws DuplicateTagException {
 		this.tags.add(tag);
+	}
+	
+	public void updateTag(Tag tag) {
+		try {
+			this.tags.add(tag);
+		} catch (DuplicateTagException e) {
+			this.tags.remove(tag);
+		}
 	}
 
 	public void setVenue(Venue venue) {

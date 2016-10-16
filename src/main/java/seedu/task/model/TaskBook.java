@@ -82,6 +82,18 @@ public class TaskBook implements ReadOnlyTaskBook {
         syncTagsWithMasterList(p);
         tasks.add(p);
     }
+    
+    /**
+     * Updates a task at the specified index to the task book.
+     * Also checks the updates task's tags and updates {@link #tags} with any new tags found,
+     * and updates the Tag objects in the task to point to those in {@link #tags}.
+     *
+     * @throws DateClashTaskException 
+     */
+    public void updateTask(int index, Task p) throws DateClashTaskException {
+        syncTagsWithMasterList(p);
+        tasks.update(index, p);
+    }
 
     /**
      * Ensures that every tag in this task:

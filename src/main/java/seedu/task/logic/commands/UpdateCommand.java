@@ -29,7 +29,7 @@ public class UpdateCommand extends Command{
 
     
     /**
-     * Parameter: Task Index
+     * Parameter: Task Index, Arguments to be updated
      *
      * 
      */
@@ -40,26 +40,22 @@ public class UpdateCommand extends Command{
 
     @Override
     public CommandResult execute() {
-    	LogsCenter.getLogger(ModelManager.class).info("Task Index: " + taskIndex + " Args: " + updateArgs);
         UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
 
         if (lastShownList.size() < taskIndex) {
             indicateAttemptToExecuteIncorrectCommand();
-            return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
     	
         assert model != null;
-
         try {
         	TaskParser updateTaskParser = new UpdateTaskParser((Task)lastShownList.get(taskIndex - 1), updateArgs);
-            model.deleteTask(lastShownList.get(taskIndex - 1));
-        	model.addTask(updateTaskParser.parseInput());
-        } catch (TaskNotFoundException pnfe) {
-            assert false : "The target person cannot be missing";
-        } catch (DuplicateTaskException e) {
-            return new CommandResult(MESSAGE_DUPLICATE_TASK);
+        	model.updateTask(taskIndex - 1, updateTaskParser.parseInput());
+        } catch (UniqueTaskList.DateClashTaskException e) {
+            return new CommandResult(e.getMessage());
 		} catch (IllegalValueException e) {
-			new IncorrectCommand(e.getMessage());
+	        indicateAttemptToExecuteIncorrectCommand();
+			return new CommandResult(e.getMessage());
 		}
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskIndex));

@@ -10,6 +10,7 @@ import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
 import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
+import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 import java.util.Set;
@@ -77,7 +78,15 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredListToShowAll();
         indicateAddressBookChanged();
     }
-
+    
+	@Override
+	public synchronized void updateTask(int index, Task task) throws DateClashTaskException {
+        taskBook.updateTask(index, task);
+        updateFilteredListToShowAll();
+        indicateAddressBookChanged();		
+	}
+	
+	
     //=========== Filtered Task List Accessors ===============================================================
 
     @Override
@@ -150,5 +159,4 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + String.join(", ", nameKeyWords);
         }
     }
-
 }

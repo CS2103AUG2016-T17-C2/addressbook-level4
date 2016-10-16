@@ -57,9 +57,9 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     public Task isDateClash(Task task) {
-    	if (!task.getStartDate().value.isEmpty() && !task.getStartDate().value.isEmpty()) {
+    	if (!task.getStartDate().value.isEmpty() && !task.getEndDate().value.isEmpty()) {
     		for (Task t : internalList) {
-    			if (task.checkDateClash(t))
+    			if ((t != task) && task.checkDateClash(t))
     				return t;
     		}
     	}
@@ -83,6 +83,19 @@ public class UniqueTaskList implements Iterable<Task> {
         	throw new DateClashTaskException(dateClash.getName().toString());
         	
         internalList.add(toAdd);
+    }
+    
+    /**
+     * Updates a task in the list.
+     *
+     * @throws DateClashTaskException if the task dates clashes with another existing task in the list
+     */
+    public void update(int index, Task toUpdate) throws DateClashTaskException {
+        assert toUpdate != null;
+        Task dateClash = isDateClash(toUpdate);
+        if (dateClash != null)
+        	throw new DateClashTaskException(dateClash.getName().toString());  
+        internalList.set(index, toUpdate);
     }
 
     /**

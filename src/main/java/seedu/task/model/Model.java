@@ -22,12 +22,17 @@ public interface Model {
     void deleteTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
 
     /** Adds the given task 
+     * @throws DuplicateTaskException
      * @throws DateClashTaskException */
     void addTask(Task task) throws UniqueTaskList.DuplicateTaskException, DateClashTaskException;
 
+    /** Updates the given task 
+     * @throws DateClashTaskException */
+    void updateTask(int index, Task task) throws DateClashTaskException;
+    
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
-
+    
     /** Updates the filter of the filtered task list to show all persons */
     void updateFilteredListToShowAll();
 
