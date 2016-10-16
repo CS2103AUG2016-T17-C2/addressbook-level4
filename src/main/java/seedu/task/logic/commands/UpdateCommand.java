@@ -40,7 +40,8 @@ public class UpdateCommand extends Command{
 
     @Override
     public CommandResult execute() {
-        UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
+    	LogsCenter.getLogger(ModelManager.class).info("Task Index: " + taskIndex + " Args: " + updateArgs);
+        UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getSortedTaskList();
 
         if (lastShownList.size() < taskIndex) {
             indicateAttemptToExecuteIncorrectCommand();

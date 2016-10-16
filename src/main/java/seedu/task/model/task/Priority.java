@@ -1,7 +1,7 @@
 package seedu.task.model.task;
 
 public enum Priority {
-	LOW("LOW"), MEDIUM("MEDIUM"), HIGH("HIGH");
+	HIGH("HIGH"), MEDIUM("MEDIUM"), LOW("LOW");
 
 	private final String text;
 
