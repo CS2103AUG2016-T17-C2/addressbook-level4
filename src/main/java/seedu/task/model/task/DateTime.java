@@ -11,7 +11,12 @@ import seedu.task.commons.exceptions.IllegalValueException;
 public class DateTime {
 
     public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be an upcoming date";
+    public static final String MESSAGE_DATE_SAME = "Start date and End date should not be same";
+    public static final String MESSAGE_MULTIPLE_START_DATE = "There are multiple start dates in your input. Please enter a valid task!";
+    public static final String MESSAGE_MULTIPLE_END_DATE = "There are multiple end dates in your input. Please enter a valid task!";
+    public static final String MESSAGE_INVALID_START_DATE = "Start Date should be before End Date!";
 
+    
     public final String value;
     
 
