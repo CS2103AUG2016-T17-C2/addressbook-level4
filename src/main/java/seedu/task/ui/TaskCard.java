@@ -57,7 +57,7 @@ public class TaskCard extends UiPart{
             dateTime.setText(task.getStartDate().value + " till " + task.getEndDate().value);        
         } else {
             if(task.getEndDate().value.isEmpty()){
-                dateTime.setVisible(false);
+                dateTime.setManaged(false); //remove field from layout if empty
             } else {
                 dateTime.setText("Due by: " + task.getEndDate().value); 
             }
@@ -66,7 +66,7 @@ public class TaskCard extends UiPart{
 
     private void setTextForVenue() {
         if(task.getVenue().value.isEmpty()){
-            venue.setVisible(false);
+            venue.setManaged(false); //remove field from layout if empty
         } else {
             venue.setText("Venue: " + task.getVenue().value);
         }
