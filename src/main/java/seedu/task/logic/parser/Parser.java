@@ -12,6 +12,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import seedu.task.commons.core.LogsCenter;
+import seedu.task.commons.core.ShortcutSetting;
 import seedu.task.commons.core.UnmodifiableObservableList;
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.commons.util.StringUtil;
@@ -33,15 +34,25 @@ public class Parser {
 	private static final Logger logger = LogsCenter.getLogger(Parser.class);
 
 	private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-
+	
+	
     private static final Pattern TASK_INDEX_FORMAT = Pattern.compile("(?<targetIndex>.+)");
     private static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>\\S+)(?<arguments>.*)");
 
     private static final Pattern KEYWORDS_ARGS_FORMAT =
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
 
-    public Parser() {}
+    private static final Pattern FIELD_SHORTCUT_FORMAT = Pattern.compile("(?<field>\\S+)(?<keyword>.*)");
 
+    ShortcutSetting shortcutSetting;
+    
+    public Parser(ShortcutSetting shortcutSetting) {
+        this.shortcutSetting = shortcutSetting;
+    }
+    
+    public void setShortcutSetting (ShortcutSetting shortcutSetting){
+        this.shortcutSetting = shortcutSetting;
+    }
     /**
      * Parses user input into command for execution.
      *
@@ -54,11 +65,22 @@ public class Parser {
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
-
+        
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+        
+        if ( commandWord == shortcutSetting.getAdd()){
+            return prepareAdd (arguments);
+        }
+        if ( commandWord == shortcutSetting.getDelete()){
+            return prepareDelete (arguments);
+        }
+        if ( commandWord == shortcutSetting.getList()){
+            return new ListCommand();
+        }
+        
         switch (commandWord) {
-
+        
         case ChangeFilePathCommand.COMMAND_WORD:
             return prepareChangeFilePathCommand(arguments);
 
@@ -88,11 +110,15 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
+        
+        case ShortcutCommand.COMMAND_WORD:
+            return prepareShortcut(arguments);
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
     }
+    
+    
 
     /**
      * Parses arguments in the context of the add task command.
@@ -108,7 +134,27 @@ public class Parser {
             return new IncorrectCommand(ive.getMessage());
         }
     }
+    /**
+     * Parses arguments in the context of the changeShortcut task command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareShortcut(String args) {
+        final Matcher matcher = FIELD_SHORTCUT_FORMAT.matcher(args.trim());
+        String field = matcher.group("field");
+        String keyword = matcher.group("keyword");
+        /*logger.info("args: " + args);
+        Pair<Optional<String>, Optional<String>> argsPair = parseStringsWithArgs(args);
+        logger.info("left: " + argsPair.getLeft() + " right: " + argsPair.getRight());
 
+        if(!argsPair.getLeft().isPresent() || !argsPair.getRight().isPresent())
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShortcutCommand.MESSAGE_USAGE));
+        
+        return new ShortcutCommand(argsPair.getLeft().get(), argsPair.getRight().get());
+    */
+        return new ShortcutCommand(field, keyword);
+        }
     /**
 
      * Parses arguments in the context of the update task command.
@@ -222,6 +268,24 @@ public class Parser {
             return new ImmutablePair<Optional<Integer>, Optional<String>>(Optional.empty(), Optional.empty());
         }
         return new ImmutablePair<Optional<Integer>, Optional<String>>(Optional.of(Integer.parseInt(index)), Optional.of(args));
+    }
+    
+    /** Processes the command with two strings.
+     * Returns 2 strings 
+     * IF a positive unsigned integer is given as the index and if arguments are present.
+     *   Returns an {@code Optional.empty()} otherwise
+     */
+    private Pair<Optional<String>, Optional<String>> parseStringsWithArgs(String command) {
+        final Matcher matcher = FIELD_SHORTCUT_FORMAT.matcher(command.trim());
+        //logger.info("left: " + argsPair.getLeft() + " right: " + argsPair.getRight());
+
+        if (!matcher.matches()) {
+            return new ImmutablePair<Optional<String>, Optional<String>>(Optional.empty(), Optional.empty());
+        }
+        
+        String field = matcher.group("field");
+        String shortcut = matcher.group("shortcut");
+        return new ImmutablePair<Optional<String>, Optional<String>>(Optional.of(field), Optional.of(shortcut));
     }
 
     /**

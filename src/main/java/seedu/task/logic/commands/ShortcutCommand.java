@@ -3,8 +3,12 @@ package seedu.task.logic.commands;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.logging.Logger;
+
+import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.ShortcutSetting;
+import seedu.task.commons.events.model.ShortcutChangedEvent;
+import seedu.task.commons.events.model.StorageFilepathChangedEvent;
 import seedu.task.commons.exceptions.DataConversionException;
 import seedu.task.commons.util.ShortcutUtil;
 import seedu.task.commons.util.StringUtil;
@@ -15,7 +19,7 @@ import seedu.task.commons.util.StringUtil;
 
 public class ShortcutCommand extends Command {
 
-    public static final String COMMAND_WORD = "changeShortcut";
+    public static final String COMMAND_WORD = "cs";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the command name of commands. " + "Example: "
             + COMMAND_WORD;
@@ -27,7 +31,8 @@ public class ShortcutCommand extends Command {
     String shortcutField;
     String shortcutWord;
     Logger logger = LogsCenter.getLogger(ShortcutCommand.class);
-
+    ShortcutSetting shortcutSetting;
+    
     /**
      * Parameter: File Path Object
      * 
@@ -45,20 +50,16 @@ public class ShortcutCommand extends Command {
     }
 
     private void run() {
-        ShortcutSetting shortcutSetting;
-        String shortcutFilePathUsed;
-        shortcutFilePathUsed = ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH;
+        String shortcutFilePathUsed = ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH;
 
-        try {
+        // Update shortcut file in case it was missing to begin with or there
+       try {
             Optional<ShortcutSetting> shortcutOptional = ShortcutUtil.readShortcut(shortcutFilePathUsed);
             shortcutSetting = shortcutOptional.orElse(new ShortcutSetting());
         } catch (DataConversionException e) {
             shortcutSetting = new ShortcutSetting();
         }
 
-        // Update shortcut file in case it was missing to begin with or there
-        // are
-        // new/unused fields
         try {
             switch (this.shortcutField) {
 
@@ -75,7 +76,7 @@ public class ShortcutCommand extends Command {
                 // tell user that field does not exist
             }
 
-            ShortcutUtil.saveShortcut(shortcutSetting, shortcutFilePathUsed);
+            ShortcutUtil.saveShortcut(this.shortcutSetting, shortcutFilePathUsed);
         } catch (IOException e) {
             logger.warning("Failed to save shortcut change : " + StringUtil.getDetails(e));
         }
@@ -84,7 +85,7 @@ public class ShortcutCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        assert model != null;
+        EventsCenter.getInstance().post(new ShortcutChangedEvent(this.shortcutSetting));
         return new CommandResult(String.format(MESSAGE_SUCCESS, shortcutWord));
 
     }

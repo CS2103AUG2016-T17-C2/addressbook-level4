@@ -3,12 +3,12 @@ package seedu.task.commons.core;
 public class ShortcutSetting {
     public static final String DEFAULT_SHORTCUT_FILEPATH = "data/shortcut.json";
     
-    private String add = "add";
+    public String add = "add";
     private String delete = "delete";
     private String list = "list";
     
     public ShortcutSetting () {
-    }
+         }
 
     public String getAdd() {
         return add;
