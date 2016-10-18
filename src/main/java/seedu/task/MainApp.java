@@ -8,6 +8,7 @@ import seedu.task.commons.core.Config;
 import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.Version;
+import seedu.task.commons.events.model.StorageFilepathChangedEvent;
 import seedu.task.commons.events.ui.ExitAppRequestEvent;
 import seedu.task.commons.exceptions.DataConversionException;
 import seedu.task.commons.util.ConfigUtil;
@@ -92,7 +93,7 @@ public class MainApp extends Application {
     private void initLogging(Config config) {
         LogsCenter.init(config);
     }
-
+    
     protected Config initConfig(String configFilePath) {
         Config initializedConfig;
         String configFilePathUsed;
@@ -123,7 +124,7 @@ public class MainApp extends Application {
         }
         return initializedConfig;
     }
-
+    
     protected UserPrefs initPrefs(Config config) {
         assert config != null;
 
@@ -175,7 +176,16 @@ public class MainApp extends Application {
         Platform.exit();
         System.exit(0);
     }
+    
+    @Subscribe
+    public void handleChangeFilepathEvent(StorageFilepathChangedEvent event){
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        config = this.initConfig(event.newConfigFilepathString);
+        storage = new StorageManager(config.getTaskBookFilePath(), config.getUserPrefsFilePath());
 
+    }
+    
+    
     @Subscribe
     public void handleExitAppRequestEvent(ExitAppRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));

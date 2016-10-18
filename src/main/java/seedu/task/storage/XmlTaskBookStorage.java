@@ -27,7 +27,7 @@ public class XmlTaskBookStorage implements TaskBookStorage {
     public String getTaskBookFilePath(){
         return filePath;
     }
-
+    
     /**
      * Similar to {@link #readTaskBook()}
      * @param filePath location of the data. Cannot be null
@@ -70,4 +70,5 @@ public class XmlTaskBookStorage implements TaskBookStorage {
     public void saveTaskBook(ReadOnlyTaskBook taskBook) throws IOException {
         saveTaskBook(taskBook, filePath);
     }
+
 }
