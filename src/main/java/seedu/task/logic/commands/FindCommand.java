@@ -1,30 +1,97 @@
 package seedu.task.logic.commands;
 
+import java.util.Optional;
 import java.util.Set;
+
+import org.junit.Assert;
+
+import seedu.task.commons.exceptions.IllegalValueException;
+import seedu.task.model.tag.Tag;
+import seedu.task.model.task.Priority;
 
 /**
  * Finds and lists all tasks in task book whose name contains any of the argument keywords.
- * Keyword matching is case sensitive.
+ * Can also be used to find tasks with the associated priority or status level, or with the associated tagging, or tasks at a certain venue.
+ * Keyword matching is not case sensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
-            + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
+            + "the specified keywords (not case-sensitive) and displays them as a list with index numbers.\n"
+            + "When prefix hashtag (#) is used with the keyword, will find all tasks with the associated priority or level, or with the tag.\n"
+            + "When prefix at sign (@) is used, will find all tasks with the same venue.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " soccer dota basketball";
+            + "Example: " + COMMAND_WORD + " soccer dota basketball\n"
+            + "OR\n"
+            + "Parameters: #KEYWORD\n"
+            + "Examples: " + COMMAND_WORD + " #high" + " OR " + COMMAND_WORD + " #healthy\n"
+            + "OR\n"
+            + "Parameters: @KEYWORD\n"
+            + "Example: " + COMMAND_WORD + " @starbucks";
 
     private final Set<String> keywords;
+    
+    private final String venue;
+    
+    private final Tag tag;
+    
+    private final Priority priority;
 
     public FindCommand(Set<String> keywords) {
         this.keywords = keywords;
+        this.venue = null;
+        this.tag = null;
+        this.priority = null;
+    }
+
+    public FindCommand(String venue) {
+        this.keywords = null;
+        this.venue = venue;
+        this.tag = null;
+        this.priority = null;
+    }
+
+    public FindCommand(Tag tag) {
+        this.keywords = null;
+        this.venue = null;
+        this.tag = tag;
+        this.priority = null;
+    }
+
+    public FindCommand(Priority priority) {
+        this.keywords = null;
+        this.venue = null;
+        this.tag = null;
+        this.priority = priority;
     }
 
     @Override
     public CommandResult execute() {
-        model.updateFilteredTaskListByKeywords(keywords);
+        if(this.venue != null) {
+            model.updateFilteredTaskListByVenue(venue);
+        } else if(this.tag != null) {
+            model.updateFilteredTaskListByTag(tag);
+        } else if(this.priority != null) {
+            updateByPriorityLevel();
+        } else if(this.keywords != null) {
+            model.updateFilteredTaskListByKeywords(keywords);
+        } else {
+            Assert.fail("unable to execute FindCommand due to incorrect attributes");
+        }
         return new CommandResult(getMessageForTaskListShownSummary(model.getSortedTaskList().size()));
     }
+
+    private void updateByPriorityLevel() {
+        if(this.priority == Priority.HIGH) {
+            model.updateFilteredTaskListByHighPriority();
+        } else if(this.priority == Priority.MEDIUM) {
+            model.updateFilteredTaskListByMediumPriority();
+        } else if(this.priority == Priority.LOW) {
+            model.updateFilteredTaskListByLowPriority();
+        }
+    }
+
 
 }

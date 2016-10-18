@@ -262,8 +262,11 @@ Priority | As a ... | I want to ... | So that ...
 `* * *` | User | Delete tasks | I can remove the task from the memory
 `* * *` | User | Archive tasks as done | I can archive the task
 `* * *` | User | Edit tasks | I can correct the tasks that were entered wrongly
-`* * *` | User  | Search for tasks | I can find tasks quickly
+`* * *` | User  | Search for tasks by task name | I can find tasks quickly
 `* * *` | User | Choose where to store the file | I can sync it with dropbox
+`* *` | User  | Search for tasks by priority level | I can focus on the most important tasks
+`* *` | User  | Search for tasks by venue | I can view all tasks at a specific location
+`* *` | User  | Search for tasks by tags | I can view all tasks with specific tags or associations
 `* *` | User | Add shortcuts | I can do manage tasks productively
 `* *` | User | Sort the lists | I can find tasks quickly
 `* *` | User | See my upcoming tasks, expired tasks, high priority tasks easily  | I can manage my time effectively
@@ -272,6 +275,7 @@ Priority | As a ... | I want to ... | So that ...
 `* *` | User | See my free slots | I can do my tasks during the free time
 `* *` | User | Add repeating tasks | I don’t have to add them every time
 `* *` | User | Have auto-complete text | I don’t have to type in completely every time
+`* *` | User | View my tasks sorted by priority at startup | I can view my upcoming tasks based on importance
 `*` | User | Add tasks with auto-generated tags | I can save time on creating obvious tags for tasks
 `*` | User | View my schedule in a monthly calendar format | Viewing tasks is more efficient
 `*` | User | Sync my tasks with Google Calendar | I can view my tasks on both platforms

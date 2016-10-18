@@ -270,24 +270,6 @@ public class Parser {
         return new ImmutablePair<Optional<Integer>, Optional<String>>(Optional.of(Integer.parseInt(index)), Optional.of(args));
     }
     
-    /** Processes the command with two strings.
-     * Returns 2 strings 
-     * IF a positive unsigned integer is given as the index and if arguments are present.
-     *   Returns an {@code Optional.empty()} otherwise
-     */
-    private Pair<Optional<String>, Optional<String>> parseStringsWithArgs(String command) {
-        final Matcher matcher = FIELD_SHORTCUT_FORMAT.matcher(command.trim());
-        //logger.info("left: " + argsPair.getLeft() + " right: " + argsPair.getRight());
-
-        if (!matcher.matches()) {
-            return new ImmutablePair<Optional<String>, Optional<String>>(Optional.empty(), Optional.empty());
-        }
-        
-        String field = matcher.group("field");
-        String shortcut = matcher.group("shortcut");
-        return new ImmutablePair<Optional<String>, Optional<String>>(Optional.of(field), Optional.of(shortcut));
-    }
-
     /**
      * Parses arguments in the context of the find task command.
      *
