@@ -1,6 +1,8 @@
 package seedu.task.model;
 
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.collections.transformation.TransformationList;
 import seedu.task.commons.core.ComponentManager;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.UnmodifiableObservableList;
@@ -10,10 +12,15 @@ import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
 import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
+import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Set;
 import java.util.logging.Logger;
+
+import org.junit.Assert;
 
 /**
  * Represents the in-memory model of the task book data.
@@ -24,6 +31,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final TaskBook taskBook;
     private final FilteredList<Task> filteredTasks;
+    private SortedList<Task> sortedTasks;
 
     /**
      * Initializes a ModelManager with the given TaskBook
@@ -52,7 +60,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void resetData(ReadOnlyTaskBook newData) {
         taskBook.resetData(newData);
-        indicateAddressBookChanged();
+        indicateTaskBookChanged();
     }
 
     @Override
@@ -61,42 +69,133 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     /** Raises an event to indicate the model has changed */
-    private void indicateAddressBookChanged() {
+    private void indicateTaskBookChanged() {
         raise(new TaskBookChangedEvent(taskBook));
     }
 
     @Override
     public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
         taskBook.removeTask(target);
-        indicateAddressBookChanged();
+        indicateTaskBookChanged();
     }
 
     @Override
     public synchronized void addTask(Task task) throws UniqueTaskList.DuplicateTaskException, DateClashTaskException {
         taskBook.addTask(task);
         updateFilteredListToShowAll();
-        indicateAddressBookChanged();
+        indicateTaskBookChanged();
     }
-
+    
+	@Override
+	public synchronized void updateTask(int index, Task task) throws DateClashTaskException {
+        taskBook.updateTask(index, task);
+        updateFilteredListToShowAll();
+        indicateTaskBookChanged();		
+	}
+	
+	
     //=========== Filtered Task List Accessors ===============================================================
 
     @Override
-    public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
-        return new UnmodifiableObservableList<>(filteredTasks);
+    public UnmodifiableObservableList<ReadOnlyTask> getSortedTaskList() {
+        sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
+        Assert.assertNotNull("This object should not be null", sortedTasks);
+        return new UnmodifiableObservableList<>(sortedTasks);
     }
 
     @Override
     public void updateFilteredListToShowAll() {
         filteredTasks.setPredicate(null);
+        sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
     }
 
     @Override
-    public void updateFilteredTaskList(Set<String> keywords){
+    public void updateFilteredTaskListByKeywords(Set<String> keywords){
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
 
     private void updateFilteredTaskList(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
+    }
+    
+    public void updateFilteredTaskListByHighPriority() {
+        filteredTasks.setPredicate(task -> {
+            if(task.getPriority().toString().equals("HIGH")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+    public void updateFilteredTaskListByMediumPriority() {
+        filteredTasks.setPredicate(task -> {
+            if(task.getPriority().toString().equals("MEDIUM")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+    public void updateFilteredTaskListByLowPriority() {
+        filteredTasks.setPredicate(task -> {
+            if(task.getPriority().toString().equals("LOW")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+    public void updateFilteredTaskListByActiveStatus() {
+        filteredTasks.setPredicate(task -> {
+            if(task.getStatus().toString().equals("ACTIVE")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+    public void updateFilteredTaskListByExpiredStatus() {
+        filteredTasks.setPredicate(task -> {
+            if(task.getStatus().toString().equals("EXPIRED")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+    public void updateFilteredTaskListByDoneStatus() {
+        filteredTasks.setPredicate(task -> {
+            if(task.getStatus().toString().equals("DONE")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+    public void updateFilteredTaskListByIgnoredStatus() {
+        filteredTasks.setPredicate(task -> {
+            if(task.getStatus().toString().equals("IGNORE")) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    //========== Inner classes/interfaces used for sorting ==================================================
+    
+    static class TaskComparator implements Comparator<ReadOnlyTask>
+    {
+        public int compare(ReadOnlyTask task1, ReadOnlyTask task2)
+        {
+            int value = task1.getPriority().compareTo(task2.getPriority());
+            return value;
+        }
     }
 
     //========== Inner classes/interfaces used for filtering ==================================================
@@ -150,5 +249,4 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + String.join(", ", nameKeyWords);
         }
     }
-
 }

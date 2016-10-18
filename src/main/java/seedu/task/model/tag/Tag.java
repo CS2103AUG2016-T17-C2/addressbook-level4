@@ -11,6 +11,7 @@ public class Tag {
 
     public static final String MESSAGE_TAG_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_HASHTAG_NULL_CONSTRAINTS = "#null is a reserved tag name. Please user another tag name";
 
     public String tagName;
 
