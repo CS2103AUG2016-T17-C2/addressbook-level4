@@ -10,7 +10,6 @@ import seedu.task.commons.exceptions.DataConversionException;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.UserPrefs;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -32,8 +31,8 @@ public class StorageManager extends ComponentManager implements Storage {
         this.userPrefsStorage = userPrefsStorage;
     }
 
-    public StorageManager(String addressBookFilePath, String userPrefsFilePath) {
-        this(new XmlTaskBookStorage(addressBookFilePath), new JsonUserPrefsStorage(userPrefsFilePath));
+    public StorageManager(String taskBookFilePath, String userPrefsFilePath) {
+        this(new XmlTaskBookStorage(taskBookFilePath), new JsonUserPrefsStorage(userPrefsFilePath));
     }
 
     // ================ UserPrefs methods ==============================
@@ -76,7 +75,7 @@ public class StorageManager extends ComponentManager implements Storage {
     public void saveTaskBook(ReadOnlyTaskBook addressBook, String filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         taskBookStorage.saveTaskBook(addressBook, filePath);
-    }
+        }
 
 
     @Override
@@ -89,5 +88,7 @@ public class StorageManager extends ComponentManager implements Storage {
             raise(new DataSavingExceptionEvent(e));
         }
     }
+
+
 
 }
