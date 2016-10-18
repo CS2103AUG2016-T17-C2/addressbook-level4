@@ -23,9 +23,8 @@ public class ChangeFilePathCommand extends Command {
     public static final String COMMAND_WORD = "movefile";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the filepath of Taskbook. " +
-    "Example:" + COMMAND_WORD + "move file aaa " ;
-    // TODO: figure out how to type example
-
+    "Example:" + COMMAND_WORD + " aaa " ;
+    
     public static final String MESSAGE_SUCCESS = "File path changed to ";
     public static final String MESSAGE_DUPLICATE_FILENAME = "This file already exists in the taskBook";
 

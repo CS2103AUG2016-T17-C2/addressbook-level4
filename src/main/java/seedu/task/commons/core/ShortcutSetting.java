@@ -9,6 +9,7 @@ public class ShortcutSetting {
     
     public ShortcutSetting () {
          }
+    
 
     public String getAdd() {
         return add;

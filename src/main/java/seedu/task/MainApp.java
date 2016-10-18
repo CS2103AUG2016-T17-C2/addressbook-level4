@@ -159,13 +159,15 @@ public class MainApp extends Application {
 
         return initializedPrefs;
     }
+    
     protected ShortcutSetting initShortcut(Config config) {
         assert config != null;
 
         String shortcutFilePath = config.getShortcutFilePath();
-        logger.info("Using prefs file : " + shortcutFilePath);
+        logger.info("Using shortcut file : " + shortcutFilePath);
 
         ShortcutSetting initializedShortcut;
+        
         try {
             Optional<ShortcutSetting> ShortcutOptional = ShortcutUtil.readShortcut(shortcutFilePath);
             initializedShortcut = ShortcutOptional.orElse(new ShortcutSetting());
@@ -219,13 +221,14 @@ public class MainApp extends Application {
     @Subscribe
     public void handleChangeShortcutEvent(ShortcutChangedEvent event){
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        shortcutSetting = this.initShortcut(this.config);
+        shortcutSetting = event.shortcutSetting;
+        model = initModelManager(storage, userPrefs);
         logic = new LogicManager(model, storage, shortcutSetting);
 
     }
     
     
-   
+     
 
     @Subscribe
     public void handleExitAppRequestEvent(ExitAppRequestEvent event) {

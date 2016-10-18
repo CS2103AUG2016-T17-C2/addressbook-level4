@@ -1,5 +1,7 @@
 package seedu.task.logic.commands;
 
+import static seedu.task.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.io.IOException;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -19,13 +21,12 @@ import seedu.task.commons.util.StringUtil;
 
 public class ShortcutCommand extends Command {
 
-    public static final String COMMAND_WORD = "cs";
+    public static final String COMMAND_WORD = "shortcut";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the command name of commands. " + "Example: "
-            + COMMAND_WORD;
-    // TODO: figure out how to type example
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the keywords to invoke commands. " + "Example: "
+            + COMMAND_WORD + "add a";
 
-    public static final String MESSAGE_SUCCESS = "File path changed";
+    public static final String MESSAGE_SUCCESS = "Shortcut changed ";
     public static final String MESSAGE_DUPLICATE_FILENAME = "This file already exists in the taskBook";
 
     String shortcutField;
@@ -73,7 +74,7 @@ public class ShortcutCommand extends Command {
                 shortcutSetting.setList(this.shortcutWord);
 
             default:
-                // tell user that field does not exist
+                new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
             }
 
             ShortcutUtil.saveShortcut(this.shortcutSetting, shortcutFilePathUsed);
@@ -86,7 +87,7 @@ public class ShortcutCommand extends Command {
     @Override
     public CommandResult execute() {
         EventsCenter.getInstance().post(new ShortcutChangedEvent(this.shortcutSetting));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, shortcutWord));
+        return new CommandResult(String.format(MESSAGE_SUCCESS + shortcutField +" changed to "+ shortcutWord));
 
     }
 

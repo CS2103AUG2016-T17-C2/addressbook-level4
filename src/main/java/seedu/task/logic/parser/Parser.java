@@ -42,12 +42,12 @@ public class Parser {
     private static final Pattern KEYWORDS_ARGS_FORMAT =
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
 
-    private static final Pattern FIELD_SHORTCUT_FORMAT = Pattern.compile("(?<field>\\S+)(?<keyword>.*)");
-
+    
     ShortcutSetting shortcutSetting;
     
     public Parser(ShortcutSetting shortcutSetting) {
         this.shortcutSetting = shortcutSetting;
+        
     }
     
     public void setShortcutSetting (ShortcutSetting shortcutSetting){
@@ -66,18 +66,23 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
         
-        final String commandWord = matcher.group("commandWord");
+        String tempCommandWord = matcher.group("commandWord");
+        
+        
+        if ( tempCommandWord.equals(shortcutSetting.getAdd())){           
+            tempCommandWord = "add";
+        }
+        if ( tempCommandWord.equals(shortcutSetting.getDelete())){
+             tempCommandWord = "delete";
+        }
+        if ( tempCommandWord.equals(shortcutSetting.getList())){
+            tempCommandWord = "list";
+        }
+        
+        final String commandWord = tempCommandWord;
         final String arguments = matcher.group("arguments");
         
-        if ( commandWord == shortcutSetting.getAdd()){
-            return prepareAdd (arguments);
-        }
-        if ( commandWord == shortcutSetting.getDelete()){
-            return prepareDelete (arguments);
-        }
-        if ( commandWord == shortcutSetting.getList()){
-            return new ListCommand();
-        }
+        
         
         switch (commandWord) {
         
@@ -113,6 +118,7 @@ public class Parser {
         
         case ShortcutCommand.COMMAND_WORD:
             return prepareShortcut(arguments);
+        
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -141,19 +147,10 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareShortcut(String args) {
-        final Matcher matcher = FIELD_SHORTCUT_FORMAT.matcher(args.trim());
-        String field = matcher.group("field");
-        String keyword = matcher.group("keyword");
-        /*logger.info("args: " + args);
-        Pair<Optional<String>, Optional<String>> argsPair = parseStringsWithArgs(args);
-        logger.info("left: " + argsPair.getLeft() + " right: " + argsPair.getRight());
-
-        if(!argsPair.getLeft().isPresent() || !argsPair.getRight().isPresent())
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShortcutCommand.MESSAGE_USAGE));
-        
-        return new ShortcutCommand(argsPair.getLeft().get(), argsPair.getRight().get());
-    */
-        return new ShortcutCommand(field, keyword);
+        String elements[] = args.split("\\s+");
+        String field = elements[1].trim();
+        String keyword = elements[2].trim();
+                return new ShortcutCommand(field, keyword);
         }
     /**
 
