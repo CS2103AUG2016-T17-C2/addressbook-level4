@@ -7,7 +7,9 @@ import seedu.task.commons.core.ComponentManager;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.UnmodifiableObservableList;
 import seedu.task.commons.events.model.TaskBookChangedEvent;
+import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.commons.util.StringUtil;
+import seedu.task.model.tag.Tag;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
@@ -187,6 +189,28 @@ public class ModelManager extends ComponentManager implements Model {
             }
         });
     }
+    
+    public void updateFilteredTaskListByVenue(String venue) {
+        filteredTasks.setPredicate(task -> {
+            if(task.getVenue().toString().contains(venue)) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+    public void updateFilteredTaskListByTag(Tag tag){
+        filteredTasks.setPredicate(task -> {
+            if(task.getTags().contains(tag)) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+    
+        
     //========== Inner classes/interfaces used for sorting ==================================================
     
     static class TaskComparator implements Comparator<ReadOnlyTask>

@@ -1,6 +1,8 @@
 package seedu.task.model;
 
 import seedu.task.commons.core.UnmodifiableObservableList;
+import seedu.task.commons.exceptions.IllegalValueException;
+import seedu.task.model.tag.Tag;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
@@ -60,4 +62,10 @@ public interface Model {
     /** Updates the filter of the filtered task list to show IGNORED tasks*/
     void updateFilteredTaskListByIgnoredStatus();
     
+    /** Updates the filter of the filtered task list to show tasks at a given venue*/
+    void updateFilteredTaskListByVenue(String venue);
+    
+    /** Updates the filter of the filtered task list to show tasks at a given venue*/
+    void updateFilteredTaskListByTag(Tag tag);
+       
 }
