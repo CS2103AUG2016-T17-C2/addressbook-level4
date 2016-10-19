@@ -393,7 +393,7 @@ public class LogicManagerTest {
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Task(name, endDate, Priority.LOW, Status.ACTIVE, tags);
+            return new Task(new Name("Ida Mueller"), new DateTime("8482131"), new DateTime("8482131"), new Venue("chicago ave"), Priority.LOW, Status.ACTIVE, PinTask.PIN, new UniqueTagList());
         }
 
         /**
@@ -404,14 +404,7 @@ public class LogicManagerTest {
          * @param seed used to generate the person data field values
          */
         Task generateTask(int seed) throws Exception {
-            return new Task(
-                    new Name("Task " + seed),
-                    new DateTime("" + Math.abs(seed)),
-                    new Venue("House of " + seed),
-                    Priority.LOW, 
-                    Status.ACTIVE,
-                    new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
-            );
+            return new Task(new Name("Ida Mueller"), new DateTime("8482131"), new DateTime("8482131"), new Venue("chicago ave"), Priority.LOW, Status.ACTIVE, PinTask.PIN, new UniqueTagList());
         }
 
         /** Generates the correct add command based on the person given */
@@ -503,13 +496,7 @@ public class LogicManagerTest {
          * Generates a Task object with given name. Other fields will have some dummy values.
          */
         Task generatePersonWithName(String name) throws Exception {
-            return new Task(
-                    new Name(name),
-                    new DateTime("1"),
-                    new Venue("House of 1"),
-                    Priority.LOW, Status.ACTIVE,
-                    new UniqueTagList(new Tag("tag"))
-            );
+            return new Task(new Name("Ida Mueller"), new DateTime("8482131"), new DateTime("8482131"), new Venue("chicago ave"), Priority.LOW, Status.ACTIVE, PinTask.PIN, new UniqueTagList());
         }
     }
 }

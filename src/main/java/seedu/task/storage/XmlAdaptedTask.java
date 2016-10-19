@@ -26,8 +26,9 @@ public class XmlAdaptedTask {
     @XmlElement(required = true)
     private String priority;
     @XmlElement(required = true)
-    private String status = Status.ACTIVE.toString();
-
+    private String status;
+    @XmlElement(required = true)
+    private String pinTask;
     
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -50,6 +51,7 @@ public class XmlAdaptedTask {
         venue = source.getVenue().value;
         priority = source.getPriority().toString();
         status = source.getStatus().toString();
+        pinTask = source.getPinTask().toString();
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -72,7 +74,8 @@ public class XmlAdaptedTask {
         final Venue venue = new Venue(this.venue);
         final Priority priority = Priority.valueOf(this.priority.toUpperCase());
         final Status status = Status.valueOf(this.status.toUpperCase());
+        final PinTask pinTask = PinTask.valueOf(this.pinTask.toUpperCase());
         final UniqueTagList tags = new UniqueTagList(taskTags);
-        return new Task(name, startDate, endDate, venue, priority, status, tags);
+        return new Task(name, startDate, endDate, venue, priority, status, pinTask, tags);
     }
 }

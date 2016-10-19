@@ -22,14 +22,15 @@ public class Task implements ReadOnlyTask {
 	private DateTime endDate;
 	private Venue venue;
 	private Status status = Status.ACTIVE;
-	private Priority priority = Priority.MEDIUM; // Default priority is medium
-	// Repeating, pin task
+	private Priority priority = Priority.MEDIUM; //Default priority is medium
+	private PinTask pinTask = PinTask.UNPIN; //Default is unpin
+	// Repeating
 	private UniqueTagList tags;
 
 	/**
 	 * Only Name, Priority and Status Should not be null
 	 */
-	public Task(Name name, DateTime startDate, DateTime endDate, Venue venue, Priority priority, Status status,
+	public Task(Name name, DateTime startDate, DateTime endDate, Venue venue, Priority priority, Status status, PinTask pinTask, 
 	        UniqueTagList tags) {
 		assert !CollectionUtil.isAnyNull(name, priority, status);
 		this.name = name;
@@ -38,10 +39,10 @@ public class Task implements ReadOnlyTask {
 		this.setVenue(venue);
 		this.priority = priority;
 		this.status = status;
-		this.tags = new UniqueTagList(tags); // protect internal tags from
-		                                     // changes in the arg list
+		this.tags = new UniqueTagList(tags);
 	}
 
+	/*
 	public Task(Name name, DateTime endDate, Venue venue, Priority priority, Status status, UniqueTagList tags) {
 		this(name, new DateTime(""), endDate, venue, priority, status, tags);
 	}
@@ -57,13 +58,14 @@ public class Task implements ReadOnlyTask {
 	public Task(Name name, Priority priority, Status status) {
 		this(name, new DateTime(""), new DateTime(""), new Venue(""), priority, status, new UniqueTagList());
 	}
+	*/
 
 	/**
 	 * Copy constructor.
 	 */
 	public Task(ReadOnlyTask source) {
 		this(source.getName(), source.getStartDate(), source.getEndDate(), source.getVenue(), source.getPriority(),
-		        source.getStatus(), source.getTags());
+		        source.getStatus(), source.getPinTask(), source.getTags());
 	}
 
 	/**
@@ -107,6 +109,10 @@ public class Task implements ReadOnlyTask {
 	@Override
 	public Venue getVenue() {
 		return venue;
+	}
+	
+	public void setVenue(Venue venue) {
+		this.venue = venue;
 	}
 
 	@Override
@@ -175,6 +181,15 @@ public class Task implements ReadOnlyTask {
 	public void setPriority(Priority priority) {
 		this.priority = priority;
 	}
+	
+	@Override
+	public PinTask getPinTask() {
+		return pinTask;
+	}
+
+	public void setPinTask(PinTask pinTask) {
+		this.pinTask = pinTask;
+	}
 
 	public void addTag(Tag tag) throws DuplicateTagException {
 		this.tags.add(tag);
@@ -187,9 +202,4 @@ public class Task implements ReadOnlyTask {
 			this.tags.remove(tag);
 		}
 	}
-
-	public void setVenue(Venue venue) {
-		this.venue = venue;
-	}
-
 }

@@ -29,6 +29,7 @@ import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.task.model.task.DateTime;
 import seedu.task.model.task.Name;
+import seedu.task.model.task.PinTask;
 import seedu.task.model.task.Priority;
 import seedu.task.model.task.Status;
 import seedu.task.model.task.Task;
@@ -90,11 +91,13 @@ public class TaskParser {
 		return strWithNoTags;
 	}
 
-	protected String matchTag(String str, String tag) throws DuplicateTagException, IllegalValueException {
-		if (tag.equalsIgnoreCase(NULL)) {
+	protected String matchTag(String str, String tag) throws DuplicateTagException, IllegalValueException {	
+		if (tag.equalsIgnoreCase(NULL))
 			str = dateMatch(str);
-		} else if (EnumUtils.isValidEnum(Priority.class, tag.toUpperCase()))
+		else if (EnumUtils.isValidEnum(Priority.class, tag.toUpperCase()))
 			task.setPriority(Priority.valueOf(tag.toUpperCase()));
+		else if (EnumUtils.isValidEnum(PinTask.class, tag.toUpperCase()))
+			task.setPinTask(PinTask.valueOf(tag.toUpperCase()));
 		else
 			task.addTag(new Tag(tag));
 		return str;

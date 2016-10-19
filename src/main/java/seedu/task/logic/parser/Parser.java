@@ -122,8 +122,7 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-    
-    
+   
 
     /**
      * Parses arguments in the context of the add task command.

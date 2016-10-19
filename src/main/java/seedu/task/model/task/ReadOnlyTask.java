@@ -14,6 +14,7 @@ public interface ReadOnlyTask {
     Venue getVenue();
     Priority getPriority();
     Status getStatus();
+    PinTask getPinTask();
 
     /**
      * The returned TagList is a deep copy of the internal TagList,
@@ -48,7 +49,9 @@ public interface ReadOnlyTask {
                 .append(getPriority())
                 .append(" Status: ")
                 .append(getStatus())
-                .append(" Tags: ");
+                .append(" Tags: ")
+        		.append(" Pin: ")
+        		.append(getPinTask());
         getTags().forEach(builder::append);
         return builder.toString();
     }
