@@ -1,38 +1,30 @@
 package seedu.task.commons.core;
 
+import java.util.logging.Logger;
+
 public class ShortcutSetting {
     public static final String DEFAULT_SHORTCUT_FILEPATH = "data/shortcut.json";
-    
-    public String add = "add";
-    private String delete = "delete";
-    private String list = "list";
-    
-    public ShortcutSetting () {
-         }
-    
 
-    public String getAdd() {
-        return add;
+    public static String add = "add";
+    public static String delete = "delete";
+    public static String list = "list";
+
+    public ShortcutSetting() {
     }
 
-    public void setAdd(String add) {
-        this.add = add;
-    }
 
-    public String getDelete() {
-        return delete;
-    }
 
-    public void setDelete(String delete) {
-        this.delete = delete;
-    }
 
-    public String getList() {
-        return list;
+    public String convertShortcut(String tempCommandWord) {
+        if (tempCommandWord.equals(add)) {
+            tempCommandWord = "add";
+        }
+        if (tempCommandWord.equals(delete)) {
+            tempCommandWord = "delete";
+        }
+        if (tempCommandWord.equals(list)) {
+            tempCommandWord = "list";
+        }
+        return tempCommandWord;
     }
-
-    public void setList(String list) {
-        this.list = list;
-    }
-
 }

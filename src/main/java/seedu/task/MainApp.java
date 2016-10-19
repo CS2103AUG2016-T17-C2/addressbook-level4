@@ -64,7 +64,7 @@ public class MainApp extends Application {
         
         shortcutSetting = initShortcut(config);
         
-        logic = new LogicManager(model, storage, shortcutSetting);
+        logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic, config, userPrefs);
 
@@ -217,16 +217,7 @@ public class MainApp extends Application {
         storage = new StorageManager(config.getTaskBookFilePath(), config.getUserPrefsFilePath());
 
     }
-    
-    @Subscribe
-    public void handleChangeShortcutEvent(ShortcutChangedEvent event){
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        shortcutSetting = event.shortcutSetting;
-        model = initModelManager(storage, userPrefs);
-        logic = new LogicManager(model, storage, shortcutSetting);
 
-    }
-    
     
      
 

@@ -33,6 +33,7 @@ public class UndoCommand extends Command {
 				undo.setCommand(Undo.UndoCommand.DEFAULT);
 				return new CommandResult(MESSAGE_SUCCESS_UNDO_DELETE);
 			case UPDATE:
+				LogsCenter.getLogger(ModelManager.class).info("Task : " + undo.getTask().toString());
 				model.updateTask(undo.getTaskIndex(), undo.getTask());
 				undo.setCommand(Undo.UndoCommand.DEFAULT);
 				return new CommandResult(MESSAGE_SUCCESS_UNDO_UPDATE);

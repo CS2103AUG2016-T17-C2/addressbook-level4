@@ -52,9 +52,11 @@ public class UpdateCommand extends Command{
         assert model != null;
         try {
         	Task toUpdate = (Task)lastShownList.get(taskIndex - 1);
+        	LogsCenter.getLogger(ModelManager.class).info("toUpdate: " + toUpdate.toString());
         	TaskParser updateTaskParser = new UpdateTaskParser(toUpdate, updateArgs);
         	model.updateTask(taskIndex - 1, updateTaskParser.parseInput());
             Undo.getInstance().setUndo(taskIndex - 1, toUpdate, Undo.UndoCommand.UPDATE);
+
         } catch (UniqueTaskList.DateClashTaskException e) {
             return new CommandResult(e.getMessage());
 		} catch (IllegalValueException e) {

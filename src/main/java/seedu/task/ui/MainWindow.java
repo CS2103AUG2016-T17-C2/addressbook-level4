@@ -1,5 +1,6 @@
 package seedu.task.ui;
 
+import com.google.common.eventbus.Subscribe;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -9,7 +10,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.task.commons.core.Config;
+import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.GuiSettings;
+import seedu.task.commons.events.model.TaskBookChangedEvent;
 import seedu.task.commons.events.ui.ExitAppRequestEvent;
 import seedu.task.logic.Logic;
 import seedu.task.model.UserPrefs;
@@ -97,6 +100,8 @@ public class MainWindow extends UiPart {
         primaryStage.setScene(scene);
 
         setAccelerators();
+        
+        registerAsAnEventHandler(this);
     }
 
     private void setAccelerators() {
@@ -108,6 +113,10 @@ public class MainWindow extends UiPart {
         resultDisplay = ResultDisplay.load(primaryStage, getResultDisplayPlaceholder());
         statusBarFooter = StatusBarFooter.load(primaryStage, getStatusbarPlaceholder(), config.getTaskBookFilePath());
         commandBox = CommandBox.load(primaryStage, getCommandBoxPlaceholder(), resultDisplay, logic);
+    }
+    
+    protected void registerAsAnEventHandler(Object handler) {
+        EventsCenter.getInstance().registerHandler(handler);
     }
 
     private AnchorPane getCommandBoxPlaceholder() {
@@ -179,6 +188,11 @@ public class MainWindow extends UiPart {
 
     public TaskListPanel getTaskListPanel() {
         return this.taskListPanel;
+    }
+    
+    @Subscribe
+    public void handleAddressBookChangedEvent(TaskBookChangedEvent abce) {
+        taskListPanel.configure(logic.getSortedTaskList());
     }
 
 }
