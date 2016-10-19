@@ -14,6 +14,7 @@ import seedu.task.commons.events.model.StorageFilepathChangedEvent;
 import seedu.task.commons.exceptions.DataConversionException;
 import seedu.task.commons.util.ShortcutUtil;
 import seedu.task.commons.util.StringUtil;
+import seedu.task.logic.parser.Parser;
 
 /**
  * Changes the Command names of taskBook.
@@ -81,6 +82,7 @@ public class ShortcutCommand extends Command {
         } catch (IOException e) {
             logger.warning("Failed to save shortcut change : " + StringUtil.getDetails(e));
         }
+        Parser.shortcutSetting = this.shortcutSetting;
 
     }
 

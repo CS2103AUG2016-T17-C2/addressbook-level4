@@ -45,16 +45,13 @@ public class Parser {
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
 
     
-    ShortcutSetting shortcutSetting;
+    public static ShortcutSetting shortcutSetting;
     
     public Parser(ShortcutSetting shortcutSetting) {
         this.shortcutSetting = shortcutSetting;
         
     }
     
-    public void setShortcutSetting (ShortcutSetting shortcutSetting){
-        this.shortcutSetting = shortcutSetting;
-    }
     /**
      * Parses user input into command for execution.
      *
