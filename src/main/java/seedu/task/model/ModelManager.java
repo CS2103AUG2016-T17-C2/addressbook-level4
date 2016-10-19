@@ -1,9 +1,11 @@
 package seedu.task.model;
 
+import com.google.common.eventbus.Subscribe;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.collections.transformation.TransformationList;
 import seedu.task.commons.core.ComponentManager;
+import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.UnmodifiableObservableList;
 import seedu.task.commons.events.model.TaskBookChangedEvent;
@@ -21,6 +23,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.logging.Logger;
+import seedu.task.commons.events.model.TaskBookChangedEvent;
 
 import org.junit.Assert;
 
@@ -44,10 +47,11 @@ public class ModelManager extends ComponentManager implements Model {
         assert src != null;
         assert userPrefs != null;
 
-        logger.fine("Initializing with address book: " + src + " and user prefs " + userPrefs);
+        logger.fine("Initializing with task book: " + src + " and user prefs " + userPrefs);
 
         taskBook = new TaskBook(src);
         filteredTasks = new FilteredList<>(taskBook.getTasks());
+        registerAsAnEventHandler(this);
     }
 
     public ModelManager() {
@@ -57,6 +61,11 @@ public class ModelManager extends ComponentManager implements Model {
     public ModelManager(ReadOnlyTaskBook initialData, UserPrefs userPrefs) {
         taskBook = new TaskBook(initialData);
         filteredTasks = new FilteredList<>(taskBook.getTasks());
+        registerAsAnEventHandler(this);
+    }
+    
+    protected void registerAsAnEventHandler(Object handler) {
+        EventsCenter.getInstance().registerHandler(handler);
     }
 
     @Override
@@ -78,6 +87,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
         taskBook.removeTask(target);
+        sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
         indicateTaskBookChanged();
     }
 
@@ -85,6 +95,7 @@ public class ModelManager extends ComponentManager implements Model {
     public synchronized void addTask(Task task) throws UniqueTaskList.DuplicateTaskException, DateClashTaskException {
         taskBook.addTask(task);
         updateFilteredListToShowAll();
+        sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
         indicateTaskBookChanged();
     }
     
@@ -92,6 +103,7 @@ public class ModelManager extends ComponentManager implements Model {
 	public synchronized void updateTask(int index, Task task) throws DateClashTaskException {
         taskBook.updateTask(index, task);
         updateFilteredListToShowAll();
+        sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
         indicateTaskBookChanged();		
 	}
 	
@@ -106,8 +118,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     public Task getTaskByIndex(int index) {
-//        Task task = sortedTasks.get(index);
-        Task task = filteredTasks.get(sortedTasks.getSourceIndex(index));
+        Task task = sortedTasks.get(index);
         return task;
     }
 
@@ -277,5 +288,11 @@ public class ModelManager extends ComponentManager implements Model {
         public String toString() {
             return "name=" + String.join(", ", nameKeyWords);
         }
+    }
+
+    @Subscribe
+    public void handleAddressBookChangedEvent(TaskBookChangedEvent abce) {
+        sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
+        
     }
 }
