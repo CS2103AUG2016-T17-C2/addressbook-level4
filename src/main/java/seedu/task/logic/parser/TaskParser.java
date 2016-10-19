@@ -56,8 +56,8 @@ public class TaskParser {
 	};
 
 	public TaskParser(Task task, String input) {
-		this.input = input;
 		this.task = task;
+		this.input = input;
 	};
 
 	public Task parseInput() throws IllegalValueException {
