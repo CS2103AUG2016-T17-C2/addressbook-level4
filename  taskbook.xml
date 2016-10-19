@@ -1,27 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <taskbook>
     <tasks>
-        <name>432123</name>
+        <name>gfgdgdgdgf</name>
         <startDate></startDate>
         <endDate></endDate>
         <venue></venue>
-        <priority>MEDIUM</priority>
-        <status>ACTIVE</status>
-    </tasks>
-    <tasks>
-        <name>fdsfdsfds</name>
-        <startDate></startDate>
-        <endDate></endDate>
-        <venue></venue>
-        <priority>MEDIUM</priority>
-        <status>ACTIVE</status>
-    </tasks>
-    <tasks>
-        <name>fsdfds</name>
-        <startDate></startDate>
-        <endDate></endDate>
-        <venue></venue>
-        <priority>HIGH</priority>
+        <priority>LOW</priority>
         <status>ACTIVE</status>
     </tasks>
 </taskbook>

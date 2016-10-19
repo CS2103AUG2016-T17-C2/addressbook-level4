@@ -34,6 +34,9 @@ public interface Model {
     
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */    
     UnmodifiableObservableList<ReadOnlyTask> getSortedTaskList();
+    
+    /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */    
+    Task getTaskByIndex(int index);
 
     /** Updates the filter of the filtered task list to show all persons */
     void updateFilteredListToShowAll();

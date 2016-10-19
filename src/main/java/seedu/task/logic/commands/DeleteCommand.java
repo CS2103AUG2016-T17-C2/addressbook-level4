@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
             return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        ReadOnlyTask taskToDelete = lastShownList.get(targetIndex - 1);
+        ReadOnlyTask taskToDelete = model.getTaskByIndex(targetIndex-1);
 
         try {
             model.deleteTask(taskToDelete);

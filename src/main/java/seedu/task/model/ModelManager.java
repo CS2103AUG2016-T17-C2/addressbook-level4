@@ -33,6 +33,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final TaskBook taskBook;
     private final FilteredList<Task> filteredTasks;
+    private SortedList<Task> sortedTasks;
 
     /**
      * Initializes a ModelManager with the given TaskBook
@@ -99,9 +100,15 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public UnmodifiableObservableList<ReadOnlyTask> getSortedTaskList() {
-        SortedList<Task> sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
+        sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
         Assert.assertNotNull("This object should not be null", sortedTasks);
         return new UnmodifiableObservableList<>(sortedTasks);
+    }
+
+    public Task getTaskByIndex(int index) {
+//        Task task = sortedTasks.get(index);
+        Task task = filteredTasks.get(sortedTasks.getSourceIndex(index));
+        return task;
     }
 
     @Override
