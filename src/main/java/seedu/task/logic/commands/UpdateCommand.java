@@ -7,6 +7,7 @@ import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.logic.parser.TaskParser;
 import seedu.task.logic.parser.UpdateTaskParser;
 import seedu.task.model.ModelManager;
+import seedu.task.model.Undo;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
@@ -50,8 +51,10 @@ public class UpdateCommand extends Command{
     	
         assert model != null;
         try {
-        	TaskParser updateTaskParser = new UpdateTaskParser((Task)lastShownList.get(taskIndex - 1), updateArgs);
+        	Task toUpdate = (Task)lastShownList.get(taskIndex - 1);
+        	TaskParser updateTaskParser = new UpdateTaskParser(toUpdate, updateArgs);
         	model.updateTask(taskIndex - 1, updateTaskParser.parseInput());
+            Undo.getInstance().setUndo(taskIndex - 1, toUpdate, Undo.UndoCommand.UPDATE);
         } catch (UniqueTaskList.DateClashTaskException e) {
             return new CommandResult(e.getMessage());
 		} catch (IllegalValueException e) {

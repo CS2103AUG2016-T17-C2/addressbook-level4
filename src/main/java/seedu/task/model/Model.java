@@ -24,9 +24,10 @@ public interface Model {
     void deleteTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
 
     /** Adds the given task 
+     * @return position of the newly added task in the collection
      * @throws DuplicateTaskException
      * @throws DateClashTaskException */
-    void addTask(Task task) throws UniqueTaskList.DuplicateTaskException, DateClashTaskException;
+    int addTask(Task task) throws UniqueTaskList.DuplicateTaskException, DateClashTaskException;
 
     /** Updates the given task 
      * @throws DateClashTaskException */

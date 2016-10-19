@@ -2,7 +2,9 @@ package seedu.task.logic.commands;
 
 import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.UnmodifiableObservableList;
+import seedu.task.model.Undo;
 import seedu.task.model.task.ReadOnlyTask;
+import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 /**
@@ -40,8 +42,9 @@ public class DeleteCommand extends Command {
 
         try {
             model.deleteTask(personToDelete);
+            Undo.getInstance().setUndo(targetIndex - 1, (Task)personToDelete, Undo.UndoCommand.DELETE);
         } catch (TaskNotFoundException pnfe) {
-            assert false : "The target person cannot be missing";
+            assert false : "The target task cannot be missing";
         }
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
