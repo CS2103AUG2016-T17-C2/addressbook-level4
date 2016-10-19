@@ -54,7 +54,11 @@ public class TaskCard extends UiPart{
 
     private void setTextForDate() {
         if(!task.getStartDate().value.isEmpty()){
-            dateTime.setText(task.getStartDate().value + " till " + task.getEndDate().value);        
+            if(!task.getEndDate().value.isEmpty()) {
+                dateTime.setText(task.getStartDate().value + " till " + task.getEndDate().value);        
+            } else {
+                dateTime.setText("From: " + task.getStartDate().value);
+            }
         } else {
             if(task.getEndDate().value.isEmpty()){
                 dateTime.setManaged(false); //remove field from layout if empty
