@@ -19,6 +19,8 @@ import seedu.task.commons.util.StringUtil;
 import seedu.task.logic.LogicManager;
 import seedu.task.logic.commands.*;
 import seedu.task.model.ModelManager;
+import seedu.task.model.tag.Tag;
+import seedu.task.model.task.Priority;
 import seedu.task.model.task.ReadOnlyTask;
 
 import java.util.logging.Logger;
@@ -274,16 +276,46 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareFind(String args) {
-        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
-        if (!matcher.matches()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    FindCommand.MESSAGE_USAGE));
+        try {
+            final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+            if (!matcher.matches()) {
+                return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
+
+            // keywords delimited by whitespace
+            final String[] keywords = matcher.group("keywords").split("\\s+");
+
+            if (keywords[0].charAt(0) == '@') { // prefix @ used to denote find
+                                                // venue
+                if (keywords[0].substring(1).isEmpty()) {
+                    return new IncorrectCommand(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                }
+                return new FindCommand(keywords[0].substring(1));
+            }
+
+            if (keywords[0].charAt(0) == '#') { // prefix # used to denote find
+                                                // tag or priority
+                if (keywords[0].substring(1).isEmpty()) {
+                    return new IncorrectCommand(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                }
+                if (keywords[0].substring(1).equalsIgnoreCase("high")) {
+                    return new FindCommand(Priority.HIGH);
+                } else if (keywords[0].substring(1).equalsIgnoreCase("medium")) {
+                    return new FindCommand(Priority.MEDIUM);
+                } else if (keywords[0].substring(1).equalsIgnoreCase("low")) {
+                    return new FindCommand(Priority.LOW);
+                } else {
+                    Tag tag = new Tag(keywords[0].substring(1));
+                    return new FindCommand(tag);
+                }
+            }
+
+            final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
+            return new FindCommand(keywordSet);
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(ive.getMessage());
         }
-
-        // keywords delimited by whitespace
-        final String[] keywords = matcher.group("keywords").split("\\s+");
-        final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
-        return new FindCommand(keywordSet);
     }
-
 }
