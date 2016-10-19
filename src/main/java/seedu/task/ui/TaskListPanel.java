@@ -46,6 +46,12 @@ public class TaskListPanel extends UiPart {
     public void setPlaceholder(AnchorPane pane) {
         this.placeHolderPane = pane;
     }
+    
+    public void updateTaskList(ObservableList<ReadOnlyTask> taskList) {
+        taskListView.setItems(taskList);
+        taskListView.setCellFactory(listView -> new TaskListViewCell());
+        
+    }
 
     public static TaskListPanel load(Stage primaryStage, AnchorPane taskListPlaceholder,
                                        ObservableList<ReadOnlyTask> taskList) {
@@ -55,7 +61,7 @@ public class TaskListPanel extends UiPart {
         return taskListPanel;
     }
 
-    public void configure(ObservableList<ReadOnlyTask> taskList) {
+    private void configure(ObservableList<ReadOnlyTask> taskList) {
         setConnections(taskList);
         addToPlaceholder();
     }
