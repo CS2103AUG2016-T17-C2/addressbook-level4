@@ -3,6 +3,7 @@ package seedu.task.logic;
 import javafx.collections.ObservableList;
 import seedu.task.commons.core.ComponentManager;
 import seedu.task.commons.core.LogsCenter;
+import seedu.task.commons.core.ShortcutSetting;
 import seedu.task.logic.commands.Command;
 import seedu.task.logic.commands.CommandResult;
 import seedu.task.logic.parser.Parser;
@@ -20,11 +21,12 @@ public class LogicManager extends ComponentManager implements Logic {
 
     private final Model model;
     private final Parser parser;
+    
 
-    public LogicManager(Model model, Storage storage) {
+    public LogicManager(Model model, Storage storage, ShortcutSetting shortcutSetting) {
         this.model = model;
-        this.parser = new Parser();
-    }
+        this.parser = new Parser(shortcutSetting);
+        }
 
     @Override
     public CommandResult execute(String commandText) {

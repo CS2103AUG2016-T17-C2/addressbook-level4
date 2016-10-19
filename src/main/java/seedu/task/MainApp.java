@@ -7,11 +7,14 @@ import javafx.stage.Stage;
 import seedu.task.commons.core.Config;
 import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.LogsCenter;
+import seedu.task.commons.core.ShortcutSetting;
 import seedu.task.commons.core.Version;
+import seedu.task.commons.events.model.ShortcutChangedEvent;
 import seedu.task.commons.events.model.StorageFilepathChangedEvent;
 import seedu.task.commons.events.ui.ExitAppRequestEvent;
 import seedu.task.commons.exceptions.DataConversionException;
 import seedu.task.commons.util.ConfigUtil;
+import seedu.task.commons.util.ShortcutUtil;
 import seedu.task.commons.util.StringUtil;
 import seedu.task.logic.Logic;
 import seedu.task.logic.LogicManager;
@@ -41,6 +44,7 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
     protected UserPrefs userPrefs;
+    protected ShortcutSetting shortcutSetting;
 
     public MainApp() {}
 
@@ -57,8 +61,10 @@ public class MainApp extends Application {
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
-
-        logic = new LogicManager(model, storage);
+        
+        shortcutSetting = initShortcut(config);
+        
+        logic = new LogicManager(model, storage, shortcutSetting);
 
         ui = new UiManager(logic, config, userPrefs);
 
@@ -153,6 +159,33 @@ public class MainApp extends Application {
 
         return initializedPrefs;
     }
+    
+    protected ShortcutSetting initShortcut(Config config) {
+        assert config != null;
+
+        String shortcutFilePath = config.getShortcutFilePath();
+        logger.info("Using shortcut file : " + shortcutFilePath);
+
+        ShortcutSetting initializedShortcut;
+        
+        try {
+            Optional<ShortcutSetting> ShortcutOptional = ShortcutUtil.readShortcut(shortcutFilePath);
+            initializedShortcut = ShortcutOptional.orElse(new ShortcutSetting());
+        } catch (DataConversionException e) {
+            logger.warning("ShortcutSetting file at " + shortcutFilePath + " is not in the correct format. " +
+                    "Using default shortcut settings");
+            initializedShortcut = new ShortcutSetting();
+        }
+
+        //Update prefs file in case it was missing to begin with or there are new/unused fields
+        try {
+            ShortcutUtil.saveShortcut(initializedShortcut, shortcutFilePath);
+        } catch (IOException e) {
+            logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
+        }
+
+        return initializedShortcut;
+    }
 
     private void initEventsCenter() {
         EventsCenter.getInstance().registerHandler(this);
@@ -185,7 +218,18 @@ public class MainApp extends Application {
 
     }
     
+    @Subscribe
+    public void handleChangeShortcutEvent(ShortcutChangedEvent event){
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        shortcutSetting = event.shortcutSetting;
+        model = initModelManager(storage, userPrefs);
+        logic = new LogicManager(model, storage, shortcutSetting);
+
+    }
     
+    
+     
+
     @Subscribe
     public void handleExitAppRequestEvent(ExitAppRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));

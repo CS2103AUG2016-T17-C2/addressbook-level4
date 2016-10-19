@@ -77,6 +77,8 @@ public class FindCommand extends Command {
             updateByPriorityLevel();
         } else if(this.keywords != null) {
             model.updateFilteredTaskListByKeywords(keywords);
+        } else {
+            Assert.fail("unable to execute FindCommand due to incorrect attributes");
         }
         return new CommandResult(getMessageForTaskListShownSummary(model.getSortedTaskList().size()));
     }
