@@ -33,7 +33,6 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final TaskBook taskBook;
     private final FilteredList<Task> filteredTasks;
-    private SortedList<Task> sortedTasks;
 
     /**
      * Initializes a ModelManager with the given TaskBook
@@ -100,7 +99,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public UnmodifiableObservableList<ReadOnlyTask> getSortedTaskList() {
-        sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
+        SortedList<Task> sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
         Assert.assertNotNull("This object should not be null", sortedTasks);
         return new UnmodifiableObservableList<>(sortedTasks);
     }
@@ -108,7 +107,6 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void updateFilteredListToShowAll() {
         filteredTasks.setPredicate(null);
-        sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
     }
 
     @Override
