@@ -291,7 +291,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Subscribe
-    public void handleAddressBookChangedEvent(TaskBookChangedEvent abce) {
+    public void handleTaskBookChangedEvent(TaskBookChangedEvent abce) {
         sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
         
     }

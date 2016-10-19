@@ -277,6 +277,7 @@ public class Parser {
      */
     private Command prepareFind(String args) {
         try {
+            logger.info("find: " + args);
             final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
             if (!matcher.matches()) {
                 return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));

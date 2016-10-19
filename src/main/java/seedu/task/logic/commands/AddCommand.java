@@ -10,7 +10,7 @@ import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.*;
 
 /**
- * Adds a person to the taskBook.
+ * Adds a task to the taskBook.
  */
 public class AddCommand extends Command {
 
