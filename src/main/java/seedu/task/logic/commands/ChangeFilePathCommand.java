@@ -25,13 +25,14 @@ import seedu.task.storage.XmlTaskBookStorage;
  */
 public class ChangeFilePathCommand extends Command {
 
-    public static final String COMMAND_WORD = "movefile";
+    public static final String COMMAND_WORD = "file";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the filepath of Taskbook. " +
-    "Example:" + COMMAND_WORD + " aaa " ;
-    
-    public static final String MESSAGE_SUCCESS = "File path changed to ";
-    public static final String MESSAGE_DUPLICATE_FILENAME = "This file already exists in the taskBook";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Moves the file to a new location within the same directory. " + "Example:" + COMMAND_WORD + " aaa ";
+    public static final String MESSAGE_RENAME_TO_OLD_FILE = "New file name cannot be the same name as the current file name";
+    public static final String MESSAGE_SUCCESS = "File is moved/renamed to ";
+    public static final String MESSAGE_DUPLICATE_FILENAME = "This file already exists in the taskBook,"
+            + " file will be overwritten";
 
     String oldFilepathString;
     String newFilepathString;
@@ -54,9 +55,9 @@ public class ChangeFilePathCommand extends Command {
         assert newFilepathString != null;
         setConfig();
         this.oldFilepathString = initializedConfig.getTaskBookFilePath();
-        // String trimmedNewFilepathString = newFilepathString.trim();
-        this.newFilepathString = newFilepathString.concat(".xml");
-        // trimmedNewFilepathString.concat(".xml");
+        String trimmedNewFilepathString = newFilepathString.trim();
+        this.newFilepathString = trimmedNewFilepathString.concat(".xml");
+
         run();
     }
 
@@ -73,9 +74,15 @@ public class ChangeFilePathCommand extends Command {
     private void run() {
 
         this.oldFilepathString = initializedConfig.getTaskBookFilePath();
-        moveFileData();
-        updateFilePath();
-        deleteOldFile();
+
+        if (this.oldFilepathString.equals(this.newFilepathString)) {
+            new CommandResult(MESSAGE_RENAME_TO_OLD_FILE);
+            this.newFilepathString.concat("new");
+        } else {
+            moveFileData();
+            updateFilePath();
+            deleteOldFile();
+        }
 
     }
 
@@ -89,7 +96,6 @@ public class ChangeFilePathCommand extends Command {
                     .readTaskBook(initializedConfig.getTaskBookFilePath());
             this.readOnlyTaskBook = readOnlyTaskbookOptional.orElse(new TaskBook());
             taskbookStorage.saveTaskBook(readOnlyTaskBook, this.newFilepathString);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
