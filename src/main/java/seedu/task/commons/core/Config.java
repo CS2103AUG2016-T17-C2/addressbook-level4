@@ -15,6 +15,7 @@ public class Config {
     private Level logLevel = Level.INFO;
     private String userPrefsFilePath = "data/preferences.json";
     private String taskBookFilePath = "data/taskbook.xml";
+    private String shortcutFilePath ="data/shortcut.json";
     private String taskBookName = "MyTaskBook";
 
 
@@ -60,6 +61,14 @@ public class Config {
     public void setTaskBookName(String addressBookName) {
         this.taskBookName = addressBookName;
     }
+    
+    public String getShortcutFilePath() {
+        return shortcutFilePath;
+    }
+
+    public void setShortcutFilePath(String shortcutFilePath) {
+        this.shortcutFilePath = shortcutFilePath;
+    }
 
 
     @Override
@@ -95,5 +104,7 @@ public class Config {
         sb.append("\nAddressBook name : " + taskBookName);
         return sb.toString();
     }
+
+
 
 }
