@@ -72,6 +72,12 @@ public class TestPerson implements ReadOnlyTask {
 		// TODO Auto-generated method stub
 		return Status.EXPIRED;
 	}
+
+	@Override
+	public PinTask getPinTask() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();

@@ -10,22 +10,19 @@ import seedu.task.model.ModelManager;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
-import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
-import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
-public class UpdateCommand extends Command{
-    public static final String COMMAND_WORD = "update";
+public class SetCommand extends Command{
+    public static final String COMMAND_WORD = "set";
     
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Updates the task identified by the index number used in the last task listing.\n"
+            + ": set the task status to marked as done or ignore.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1 by Sunday";
+            + "Example: " + COMMAND_WORD + " 1 done";
 
-    public static final String MESSAGE_SUCCESS = "Updated task %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the taskBook";
+    public static final String MESSAGE_SUCCESS = "Updated the status of task %1$s";
 
     private final int taskIndex;
-    private final String updateArgs;
+    private final String setArg;
 
     
     /**
@@ -33,14 +30,14 @@ public class UpdateCommand extends Command{
      *
      * 
      */
-    public UpdateCommand(int taskIndex, String updateArgs) {
+    public SetCommand(int taskIndex, String setArg) {
     	this.taskIndex = taskIndex;
-    	this.updateArgs = updateArgs;
+    	this.setArg = setArg;
     }
 
     @Override
     public CommandResult execute() {
-    	LogsCenter.getLogger(ModelManager.class).info("Task Index: " + taskIndex + " Args: " + updateArgs);
+    	LogsCenter.getLogger(ModelManager.class).info("Task Index: " + taskIndex + " Args: " + setArg);
         UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getSortedTaskList();
 
         if (lastShownList.size() < taskIndex) {
@@ -50,10 +47,8 @@ public class UpdateCommand extends Command{
     	
         assert model != null;
         try {
-        	TaskParser updateTaskParser = new UpdateTaskParser((Task)lastShownList.get(taskIndex - 1), updateArgs);
-        	model.updateTask(taskIndex - 1, updateTaskParser.parseInput());
-        } catch (UniqueTaskList.DateClashTaskException e) {
-            return new CommandResult(e.getMessage());
+        	TaskParser updateTaskParser = new UpdateTaskParser((Task)lastShownList.get(taskIndex - 1), setArg);
+        	model.updateTask(taskIndex - 1, ((UpdateTaskParser) updateTaskParser).setTaskStatus());
 		} catch (IllegalValueException e) {
 	        indicateAttemptToExecuteIncorrectCommand();
 			return new CommandResult(e.getMessage());

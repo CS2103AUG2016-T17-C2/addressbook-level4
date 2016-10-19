@@ -33,69 +33,59 @@ public class Parser {
     /**
      * Used for initial separation of command word and args.
      */
-	private static final Logger logger = LogsCenter.getLogger(Parser.class);
+    private static final Logger logger = LogsCenter.getLogger(Parser.class);
 
-	private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-	
-	
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
     private static final Pattern TASK_INDEX_FORMAT = Pattern.compile("(?<targetIndex>.+)");
     private static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>\\S+)(?<arguments>.*)");
 
-    private static final Pattern KEYWORDS_ARGS_FORMAT =
-            Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+    private static final Pattern KEYWORDS_ARGS_FORMAT = Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one
+                                                                                                           // or
+                                                                                                           // more
+                                                                                                           // keywords
+                                                                                                           // separated
+                                                                                                           // by
+                                                                                                           // whitespace
 
-    
-    ShortcutSetting shortcutSetting;
-    
-    public Parser(ShortcutSetting shortcutSetting) {
-        this.shortcutSetting = shortcutSetting;
-        
+    // public static ShortcutSetting shortcutSetting;
+
+    public Parser() {
+
     }
-    
-    public void setShortcutSetting (ShortcutSetting shortcutSetting){
-        this.shortcutSetting = shortcutSetting;
-    }
+
     /**
      * Parses user input into command for execution.
      *
-     * @param userInput full user input string
+     * @param userInput
+     *            full user input string
      * @return the command based on the user input
-     * @throws IOException 
+     * @throws IOException
      */
     public Command parseCommand(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
-        
+        ShortcutSetting shortcutSetting = new ShortcutSetting();
         String tempCommandWord = matcher.group("commandWord");
-        
-        
-        if ( tempCommandWord.equals(shortcutSetting.getAdd())){           
-            tempCommandWord = "add";
-        }
-        if ( tempCommandWord.equals(shortcutSetting.getDelete())){
-             tempCommandWord = "delete";
-        }
-        if ( tempCommandWord.equals(shortcutSetting.getList())){
-            tempCommandWord = "list";
-        }
-        
-        final String commandWord = tempCommandWord;
+
+        final String commandWord = shortcutSetting.convertShortcut(tempCommandWord);
         final String arguments = matcher.group("arguments");
-        
-        
-        
+
         switch (commandWord) {
-        
+
         case ChangeFilePathCommand.COMMAND_WORD:
             return prepareChangeFilePathCommand(arguments);
 
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
-            
+
         case UpdateCommand.COMMAND_WORD:
-        	return prepareUpdate(arguments);
+            return prepareUpdate(arguments);
+
+        case SetCommand.COMMAND_WORD:
+            return prepareSet(arguments);
 
         case SelectCommand.COMMAND_WORD:
             return prepareSelect(arguments);
@@ -117,71 +107,98 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-        
+
         case ShortcutCommand.COMMAND_WORD:
             return prepareShortcut(arguments);
-        
+
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-    
-    
 
     /**
      * Parses arguments in the context of the add task command.
      *
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the prepared command
      */
-    private Command prepareAdd(String args){
+    private Command prepareAdd(String args) {
         TaskParser taskParser = new TaskParser(args);
         try {
-        	return new AddCommand(taskParser.parseInput());
+            return new AddCommand(taskParser.parseInput());
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
     }
+
     /**
      * Parses arguments in the context of the changeShortcut task command.
      *
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the prepared command
      */
     private Command prepareShortcut(String args) {
         String elements[] = args.split("\\s+");
         String field = elements[1].trim();
         String keyword = elements[2].trim();
-                return new ShortcutCommand(field, keyword);
+        try {
+            return new ShortcutCommand(field, keyword);
+        } catch (IllegalValueException e) {
+            return new IncorrectCommand(e.getMessage());
         }
-    /**
+    }
 
+    /**
+     * 
      * Parses arguments in the context of the update task command.
      *
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the prepared command
      */
-    private Command prepareUpdate(String args){
-    	logger.info("args: " + args);
-    	Pair<Optional<Integer>, Optional<String>> argsPair = parseIndexWithArgs(args);
-    	logger.info("left: " + argsPair.getLeft() + " right: " + argsPair.getRight());
+    private Command prepareUpdate(String args) {
+        Pair<Optional<Integer>, Optional<String>> argsPair = parseIndexWithArgs(args);
 
-        if(!argsPair.getLeft().isPresent() || !argsPair.getRight().isPresent())
+        if (!argsPair.getLeft().isPresent() || !argsPair.getRight().isPresent())
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
-        
+
         return new UpdateCommand(argsPair.getLeft().get(), argsPair.getRight().get());
     }
-    
-    
-     /* Parses arguments in the context of the changefilepath command.
+
+    /**
+     * 
+     * Parses arguments in the context of the set task command.
+     *
+     * @param args
+     *            full command args string
+     * @return the prepared command
+     */
+    private Command prepareSet(String args) {
+        logger.info("args: " + args);
+        Pair<Optional<Integer>, Optional<String>> argsPair = parseIndexWithArgs(args);
+        logger.info("left: " + argsPair.getLeft() + " right: " + argsPair.getRight());
+
+        if (!argsPair.getLeft().isPresent() || !argsPair.getRight().isPresent())
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetCommand.MESSAGE_USAGE));
+
+        return new SetCommand(argsPair.getLeft().get(), argsPair.getRight().get());
+    }
+
+    /*
+     * Parses arguments in the context of the changefilepath command.
      *
      * @param args new filePath args string
-     * @return the prepared command 
-     * @throws IOException 
+     * 
+     * @return the prepared command
+     * 
+     * @throws IOException
      */
     private Command prepareChangeFilePathCommand(String args) {
-                return new ChangeFilePathCommand(args);
-        }
+        return new ChangeFilePathCommand(args);
+    }
+
     /**
      * Extracts the new task's tags from the add command's tag arguments string.
      * Merges duplicate tag strings.
@@ -199,15 +216,15 @@ public class Parser {
     /**
      * Parses arguments in the context of the delete task command.
      *
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the prepared command
      */
     private Command prepareDelete(String args) {
 
         Optional<Integer> index = parseIndex(args);
-        if(!index.isPresent()){
-            return new IncorrectCommand(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        if (!index.isPresent()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         return new DeleteCommand(index.get());
@@ -216,63 +233,68 @@ public class Parser {
     /**
      * Parses arguments in the context of the select task command.
      *
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the prepared command
      */
     private Command prepareSelect(String args) {
         Optional<Integer> index = parseIndex(args);
-        if(!index.isPresent()){
-            return new IncorrectCommand(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
+        if (!index.isPresent()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
         }
 
         return new SelectCommand(index.get());
     }
 
     /**
-     * Returns the specified index in the {@code command} IF a positive unsigned integer is given as the index.
-     *   Returns an {@code Optional.empty()} otherwise.
+     * Returns the specified index in the {@code command} IF a positive unsigned
+     * integer is given as the index. Returns an {@code Optional.empty()}
+     * otherwise.
      */
     private Optional<Integer> parseIndex(String command) {
         final Matcher matcher = TASK_INDEX_FORMAT.matcher(command.trim());
-    	
+
         if (!matcher.matches()) {
             return Optional.empty();
         }
 
         String index = matcher.group("targetIndex");
-        if(!StringUtil.isUnsignedInteger(index)){
+        if (!StringUtil.isUnsignedInteger(index)) {
             return Optional.empty();
         }
         return Optional.of(Integer.parseInt(index));
 
     }
-    
-    /** Processes the command with an index followed by a series of arguments.
-     * Returns the specified index in the {@code command} and the arguments 
-     * IF a positive unsigned integer is given as the index and if arguments are present.
-     *   Returns an {@code Optional.empty()} otherwise
+
+    /**
+     * Processes the command with an index followed by a series of arguments.
+     * Returns the specified index in the {@code command} and the arguments IF a
+     * positive unsigned integer is given as the index and if arguments are
+     * present. Returns an {@code Optional.empty()} otherwise
      */
     private Pair<Optional<Integer>, Optional<String>> parseIndexWithArgs(String command) {
         final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(command.trim());
-    	//logger.info("left: " + argsPair.getLeft() + " right: " + argsPair.getRight());
+        // logger.info("left: " + argsPair.getLeft() + " right: " +
+        // argsPair.getRight());
 
         if (!matcher.matches()) {
             return new ImmutablePair<Optional<Integer>, Optional<String>>(Optional.empty(), Optional.empty());
         }
-        
+
         String index = matcher.group("targetIndex");
         String args = matcher.group("arguments");
-        if(!StringUtil.isUnsignedInteger(index) || args.isEmpty()){
+        if (!StringUtil.isUnsignedInteger(index) || args.isEmpty()) {
             return new ImmutablePair<Optional<Integer>, Optional<String>>(Optional.empty(), Optional.empty());
         }
-        return new ImmutablePair<Optional<Integer>, Optional<String>>(Optional.of(Integer.parseInt(index)), Optional.of(args));
+        return new ImmutablePair<Optional<Integer>, Optional<String>>(Optional.of(Integer.parseInt(index)),
+                Optional.of(args));
     }
-    
+
     /**
      * Parses arguments in the context of the find task command.
      *
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the prepared command
      */
     private Command prepareFind(String args) {

@@ -64,7 +64,7 @@ public class TestUtil {
 
     private static Task[] getSamplePersonData() {
         try {
-            return new Task[]{
+            /*return new Task[]{
                     new Task(new Name("Ali Muster"), new DateTime("9482424"), new Venue("4th street"), Priority.LOW, Status.ACTIVE, new UniqueTagList()),
                     new Task(new Name("Boris Mueller"), new DateTime("87249245"), new Venue("81th street"), Priority.LOW, Status.ACTIVE, new UniqueTagList()),
                     new Task(new Name("Carl Kurz"), new DateTime("95352563"), new Venue("wall street"), Priority.LOW, Status.ACTIVE, new UniqueTagList()),
@@ -74,7 +74,10 @@ public class TestUtil {
                     new Task(new Name("George Best"), new DateTime("9482442"), new Venue("4th street"), Priority.LOW, Status.ACTIVE, new UniqueTagList()),
                     new Task(new Name("Hoon Meier"), new DateTime("8482424"), new Venue("little india"), Priority.LOW, Status.ACTIVE, new UniqueTagList()),
                     new Task(new Name("Ida Mueller"), new DateTime("8482131"), new Venue("chicago ave"), Priority.LOW, Status.ACTIVE, new UniqueTagList())
+            
             };
+            */
+        	return new Task[]{new Task(new Name("Ida Mueller"), new DateTime("8482131"), new DateTime("8482131"), new Venue("chicago ave"), Priority.LOW, Status.ACTIVE, PinTask.PIN, new UniqueTagList())};
         } catch (IllegalValueException e) {
             assert false;
             //not possible

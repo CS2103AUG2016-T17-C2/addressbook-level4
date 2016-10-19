@@ -4,18 +4,23 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.EnumUtils;
+
+import seedu.task.commons.core.Messages;
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.task.model.task.DateTime;
 import seedu.task.model.task.Name;
+import seedu.task.model.task.PinTask;
 import seedu.task.model.task.Priority;
+import seedu.task.model.task.Status;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.Venue;
 
 public class UpdateTaskParser extends TaskParser{
 
 	private Task task;
+	private String input;
 	private boolean isVenueUpdated;
 	private boolean isStartDateUpdated;
 	private boolean isEndDateUpdated;
@@ -28,6 +33,7 @@ public class UpdateTaskParser extends TaskParser{
 	public UpdateTaskParser(Task task, String input) {
 		super(task, input);
 		this.task = task;
+		this.input = input;
 		isVenueUpdated = false;
 		isStartDateUpdated = false;
 		isEndDateUpdated = false;
@@ -56,10 +62,12 @@ public class UpdateTaskParser extends TaskParser{
 	}
 	
 	protected String matchTag(String str, String tag) throws DuplicateTagException, IllegalValueException {
-		if (tag.equalsIgnoreCase(NULL)) {
+		if (tag.equalsIgnoreCase(NULL))
 			str = dateMatch(str);
-		} else if (EnumUtils.isValidEnum(Priority.class, tag.toUpperCase()))
+		else if (EnumUtils.isValidEnum(Priority.class, tag.toUpperCase()))
 			task.setPriority(Priority.valueOf(tag.toUpperCase()));
+		else if (EnumUtils.isValidEnum(PinTask.class, tag.toUpperCase()))
+			task.setPinTask(PinTask.valueOf(tag.toUpperCase()));
 		else
 			task.updateTag(new Tag(tag));
 		return str;
@@ -93,5 +101,13 @@ public class UpdateTaskParser extends TaskParser{
 	protected void processTaskName(String str) throws IllegalValueException {
 		if (!str.trim().isEmpty())
 			task.setName(new Name(str));
+	}
+	
+	public Task setTaskStatus() throws IllegalValueException {
+		if (EnumUtils.isValidEnum(Status.class, input.trim().toUpperCase()))
+			task.setStatus(Status.valueOf(input.trim().toUpperCase()));
+		else
+			throw new IllegalValueException(Messages.MESSAGE_FAILURE_SET_COMMAND);
+		return task;
 	}
 }
