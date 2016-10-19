@@ -23,9 +23,9 @@ public class LogicManager extends ComponentManager implements Logic {
     private final Parser parser;
     
 
-    public LogicManager(Model model, Storage storage, ShortcutSetting shortcutSetting) {
+    public LogicManager(Model model, Storage storage) {
         this.model = model;
-        this.parser = new Parser(shortcutSetting);
+        this.parser = new Parser();
         }
 
     @Override
