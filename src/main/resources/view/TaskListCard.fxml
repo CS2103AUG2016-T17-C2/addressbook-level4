@@ -16,6 +16,7 @@
                     <stylesheets>
                         <URL value="@TaskCardTheme.css" />
                         <URL value="@Extensions.css" />
+                        <URL value="@Bootstrap3.css" />
                     </stylesheets>
                     <padding>
                         <Insets bottom="5" left="15" right="5" top="5" />
