@@ -13,15 +13,11 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.ShortcutSetting;
-import seedu.task.commons.core.UnmodifiableObservableList;
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.commons.util.StringUtil;
-import seedu.task.logic.LogicManager;
 import seedu.task.logic.commands.*;
-import seedu.task.model.ModelManager;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Priority;
-import seedu.task.model.task.ReadOnlyTask;
 
 import java.util.logging.Logger;
 
@@ -93,6 +89,9 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
 
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();    
+            
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
