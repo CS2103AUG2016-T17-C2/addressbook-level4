@@ -50,10 +50,19 @@ public class ShortcutCommand extends Command {
 
         this.shortcutField = shortcutField;
         this.shortkey = shortkey;
-        if (shortkey.equals(ShortcutSetting.add)|shortkey.equals(ShortcutSetting.delete)|shortkey.equals(ShortcutSetting.list)){
+        
+        try {
+            Optional<ShortcutSetting> shortcutOptional = ShortcutUtil.readShortcut(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
+            shortcutSetting = shortcutOptional.orElse(new ShortcutSetting());
+        } catch (DataConversionException e) {
+            shortcutSetting = new ShortcutSetting();
+        }
+        
+        
+        if (shortkey.equals(shortcutSetting.getAdd())|shortkey.equals(shortcutSetting.getDelete())|shortkey.equals(shortcutSetting.getList())){
             throw new IllegalValueException(MESSAGE_DUPLICATE_SHORTKEY);
         }
-        run();
+        run(); //matches and edits the shortkeys;
         try {
             ShortcutUtil.saveShortcut(this.shortcutSetting, ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
         } catch (IOException e) {
@@ -64,25 +73,19 @@ public class ShortcutCommand extends Command {
 
     private void run() {
 
-        // Update shortcut file in case it was missing to begin with or there
-       try {
-            Optional<ShortcutSetting> shortcutOptional = ShortcutUtil.readShortcut(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
-            shortcutSetting = shortcutOptional.orElse(new ShortcutSetting());
-        } catch (DataConversionException e) {
-            this.shortcutSetting = new ShortcutSetting();
-        }
+        
             switch (this.shortcutField) {
 
             case AddCommand.COMMAND_WORD:
-                ShortcutSetting.add = this.shortkey;
+                shortcutSetting.setAdd(this.shortkey);
                 return;
 
             case DeleteCommand.COMMAND_WORD:
-                ShortcutSetting.delete = this.shortkey;
+                shortcutSetting.setDelete(this.shortkey);
                 return;
 
             case ListCommand.COMMAND_WORD:
-                ShortcutSetting.list = this.shortkey;
+                shortcutSetting.setList(this.shortkey);
                 return;
 
             default:

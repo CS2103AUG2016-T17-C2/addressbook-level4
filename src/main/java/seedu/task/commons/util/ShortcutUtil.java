@@ -50,7 +50,6 @@ public class ShortcutUtil {
 
         return Optional.of(shortcut);
     }
-
     /**
      * Saves the Shortcut object to the specified file. Overwrites existing file
      * if it exists, creates a new file if it doesn't.

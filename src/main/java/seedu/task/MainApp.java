@@ -44,8 +44,7 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
     protected UserPrefs userPrefs;
-    protected ShortcutSetting shortcutSetting;
-
+   
     public MainApp() {}
 
     @Override
@@ -61,8 +60,6 @@ public class MainApp extends Application {
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
-        
-        shortcutSetting = initShortcut(config);
         
         logic = new LogicManager(model, storage);
 
@@ -159,33 +156,7 @@ public class MainApp extends Application {
 
         return initializedPrefs;
     }
-    
-    protected ShortcutSetting initShortcut(Config config) {
-        assert config != null;
 
-        String shortcutFilePath = config.getShortcutFilePath();
-        logger.info("Using shortcut file : " + shortcutFilePath);
-
-        ShortcutSetting initializedShortcut;
-        
-        try {
-            Optional<ShortcutSetting> ShortcutOptional = ShortcutUtil.readShortcut(shortcutFilePath);
-            initializedShortcut = ShortcutOptional.orElse(new ShortcutSetting());
-        } catch (DataConversionException e) {
-            logger.warning("ShortcutSetting file at " + shortcutFilePath + " is not in the correct format. " +
-                    "Using default shortcut settings");
-            initializedShortcut = new ShortcutSetting();
-        }
-
-        //Update prefs file in case it was missing to begin with or there are new/unused fields
-        try {
-            ShortcutUtil.saveShortcut(initializedShortcut, shortcutFilePath);
-        } catch (IOException e) {
-            logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
-        }
-
-        return initializedShortcut;
-    }
 
     private void initEventsCenter() {
         EventsCenter.getInstance().registerHandler(this);

@@ -13,7 +13,9 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.ShortcutSetting;
+import seedu.task.commons.exceptions.DataConversionException;
 import seedu.task.commons.exceptions.IllegalValueException;
+import seedu.task.commons.util.ShortcutUtil;
 import seedu.task.commons.util.StringUtil;
 import seedu.task.logic.commands.*;
 import seedu.task.model.tag.Tag;
@@ -44,8 +46,7 @@ public class Parser {
                                                                                                            // by
                                                                                                            // whitespace
 
-    // public static ShortcutSetting shortcutSetting;
-
+    
     public Parser() {
 
     }
@@ -59,11 +60,22 @@ public class Parser {
      * @throws IOException
      */
     public Command parseCommand(String userInput) {
+        
+        ShortcutSetting shortcutSetting;
+        
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
-        ShortcutSetting shortcutSetting = new ShortcutSetting();
+        
+        try {
+            Optional<ShortcutSetting> shortcutOptional = ShortcutUtil.readShortcut(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
+            shortcutSetting = shortcutOptional.orElse(new ShortcutSetting());
+        } catch (DataConversionException e) {
+            shortcutSetting = new ShortcutSetting();
+        }
+       
         String tempCommandWord = matcher.group("commandWord");
 
         final String commandWord = shortcutSetting.convertShortcut(tempCommandWord);
