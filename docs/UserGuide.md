@@ -6,17 +6,17 @@
 
 **Step 1:**
 
-Fill in your name and press “Enter”
+Fill in your name and press `Enter`
 
 This step will be required only for the first time you use the application. It is just to initialise the user’s name to make it more personalised.
 
 **Step 2:**
 
- Type in command and press “Enter”
+ Type in a command and press `Enter`
 
 **Step 2a: Adding tasks**
 
-To add a task, type " `add` taskname date time task_priority tagging venue recurrence pin”
+To add a task, type `add` taskname date time task_priority tagging venue recurrence pin
 
 * Eg, user can type `add` play soccer, date 120516, time 1212, high priority, #sport, @town green, repeat weekly, pin
 
@@ -47,7 +47,7 @@ They do not need to be added in order
 
 **Step 2b: Listing tasks**
 
-To `list` tasks, type “`list` [type of list] 
+To `list` tasks, type `list` [type of list] 
 taskBook contains the following lists: 
 
 `Active`: 
@@ -59,7 +59,7 @@ The tasks that are still active, sorted from the earliest to the latest
 `Expired`: 
 
 The tasks that have passed the deadline, sorted from the latest deadline to the earliest
-*Eg: Typing `list` `expired`
+*Eg: Typing `list expired`
 *Eg: Typing `list expired 120316` returns a list of expired tasks with deadlines on 12 March 2016.
 
 `Done`: 
@@ -131,15 +131,20 @@ Alternatively, to postpone the task to the next available free slot, by simply
 
 **Step 2g: editing tasks**
 
-To edit a task type `edit` (index of task in the list or name of task) (field) (changes)
-* Eg: Typing `edit 1 date 120316` will change the deadline of the first task to 12 March 2016
-* Eg: Typing `edit soccer @Casa` will change the venue of the soccer task to Casa.
-
-**Step 2h : Finding next available time**
-
-When you need to urgently make an appointment, you might need to find the next possible available timeslot. 
-* Type `free slots` to return the next available slot. Alternatively, 
-* Type `free slots 10` to return the next 10 available free slots.
+To edit a task type `update` (index of task in the list or name of task) (field) (changes)
+* Eg: Typing `update 1 date 120316` will change the deadline of the first task to 12 March 2016
+* Eg: Typing `update soccer @Casa` will change the venue of the soccer task to Casa.
 
 **Undo:**
-`Ctrl` + `Z` for windows or `Command` + `Z` for Macs
+To undo the latest change to taskbook, type `undo`.
+
+
+**Creating shortcuts**
+To change a shortkey for the command, type `shortcut` + `{the field you are changeing}` + `{shortkey you want to initialise}` eg: ``shortcut add a` changes the short key for `add` to `a`. The next time you want to execute `add` to add 'running' to your tasklist, simply type `a running`.
+
+This feature is only available for Add, Delete and List. 
+
+**Moving taskbook to another storage location** 
+To move taskbook, type `move` + the `new storage location` that you want to move taskbook to. 
+
+eg `move \dropbox\mytask` will keep taskbook in a folder called 'dropbox', which will be named 'mytask.xml'. 
