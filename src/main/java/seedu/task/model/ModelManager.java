@@ -235,9 +235,13 @@ public class ModelManager extends ComponentManager implements Model {
     {
         public int compare(ReadOnlyTask task1, ReadOnlyTask task2)
         {
-            int value = task1.getStatus().compareTo(task2.getStatus());
+            int value = task1.getPinTask().compareTo(task2.getPinTask());
             if(value == 0) {
-                value = task1.getPriority().compareTo(task2.getPriority());
+                value = task1.getStatus().compareTo(task2.getStatus());
+                if(value == 0) {
+                    value = task1.getPriority().compareTo(task2.getPriority());
+                    return value;
+                }
                 return value;
             }
             return value;
