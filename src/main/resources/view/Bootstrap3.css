@@ -2,6 +2,11 @@
 	-fx-body-color : #F5F5F5;
 	-fx-outer-border : #cecece;
 }
+.status-bar {
+	-fx-body-color : #E0E0E0;
+	-fx-outer-border : #E0E0E0;
+	-fx-alignment: left;
+}
 .button,.menu-button,.toggle-button,.split-menu-button {
 	-fx-font-size: 14;
 	-fx-background-radius: 4;

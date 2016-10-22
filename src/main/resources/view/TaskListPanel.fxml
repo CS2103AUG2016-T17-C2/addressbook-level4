@@ -7,6 +7,7 @@
     <stylesheets>
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
+        <URL value="@Bootstrap3.css" />
     </stylesheets>
     <children>
         <ListView fx:id="taskListView" VBox.vgrow="ALWAYS" />

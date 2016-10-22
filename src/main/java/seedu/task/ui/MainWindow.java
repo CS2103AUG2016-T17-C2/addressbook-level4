@@ -191,7 +191,7 @@ public class MainWindow extends UiPart {
     }
     
     @Subscribe
-    public void handleAddressBookChangedEvent(TaskBookChangedEvent abce) {
+    public void handleTaskBookChangedEvent(TaskBookChangedEvent tbce) {
         taskListPanel.updateTaskList(logic.getSortedTaskList());
     }
 
