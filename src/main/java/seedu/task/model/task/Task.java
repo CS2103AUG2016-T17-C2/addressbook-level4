@@ -15,7 +15,7 @@ import seedu.task.model.tag.UniqueTagList.DuplicateTagException;
  * Represents a Task in the taskBook. Guarantees: details are present and not
  * null, field values are validated.
  */
-public class Task implements ReadOnlyTask {
+public class Task implements ReadOnlyTask, Cloneable {
 
 	private Name name;
 	private DateTime startDate;
@@ -202,4 +202,15 @@ public class Task implements ReadOnlyTask {
 			this.tags.remove(tag);
 		}
 	}
+	
+	public Task clone() {
+        try {
+            return (Task) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+    }	
 }
+
+

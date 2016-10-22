@@ -100,6 +100,15 @@ public class ModelManager extends ComponentManager implements Model {
         return position;
     }
     
+    @Override
+    public synchronized int addTask(int index, Task task) throws UniqueTaskList.DuplicateTaskException, DateClashTaskException {
+        int position = taskBook.addTask(index, task);
+        updateFilteredListToShowAll();
+        sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
+        indicateTaskBookChanged();
+        return position;
+    }
+    
 	@Override
 	public synchronized void updateTask(int index, Task task) throws DateClashTaskException {
         taskBook.updateTask(index, task);

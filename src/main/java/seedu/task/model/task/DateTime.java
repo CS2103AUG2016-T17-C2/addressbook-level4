@@ -5,7 +5,7 @@ import java.util.Date;
 import seedu.task.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Task's phone number in the address book.
+ * Represents a Task's start date/end date in the task book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class DateTime {

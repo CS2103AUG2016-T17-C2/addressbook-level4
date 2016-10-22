@@ -11,7 +11,7 @@ public class UndoCommand extends Command {
 	public static final String COMMAND_WORD = "undo";
 	public static final String MESSAGE_USAGE = COMMAND_WORD + ": Undo the last command ";
 	public static final String MESSAGE_SUCCESS_UNDO_DELETE = "Successfully Added back last deleted task!";
-	public static final String MESSAGE_SUCCESS_UNDO_ADD = "Successfully deleted task last added task!";
+	public static final String MESSAGE_SUCCESS_UNDO_ADD = "Successfully deleted last added task!";
 	public static final String MESSAGE_SUCCESS_UNDO_UPDATE = "Successfully updated task!";
 	public static final String MESSAGE_FAILURE_UNDO = "Nothing to Undo!";
 
@@ -29,12 +29,13 @@ public class UndoCommand extends Command {
 				undo.setCommand(Undo.UndoCommand.DEFAULT);
 				return new CommandResult(MESSAGE_SUCCESS_UNDO_ADD);
 			case DELETE:
-				model.addTask(undo.getTask());
+				model.addTask(undo.getTaskIndex(), undo.getTask());
 				undo.setCommand(Undo.UndoCommand.DEFAULT);
 				return new CommandResult(MESSAGE_SUCCESS_UNDO_DELETE);
 			case UPDATE:
 				LogsCenter.getLogger(ModelManager.class).info("Task : " + undo.getTask().toString());
-				model.updateTask(undo.getTaskIndex(), undo.getTask());
+				model.deleteTask(model.getTaskByIndex(undo.getTaskIndex()));
+				model.addTask(undo.getTaskIndex(), undo.getTask());
 				undo.setCommand(Undo.UndoCommand.DEFAULT);
 				return new CommandResult(MESSAGE_SUCCESS_UNDO_UPDATE);
 			case DEFAULT:

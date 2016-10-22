@@ -87,7 +87,7 @@ public class UniqueTaskList implements Iterable<Task> {
     }
     
     /**
-     * Adds a task to the list.
+     * Adds a task to the list in the specified index.
      *
      * @throws DuplicateTaskException if the task to add is a duplicate of an existing task in the list.
      * @throws DateClashTaskException if the task dates clashes with another existing task in the list
@@ -101,7 +101,7 @@ public class UniqueTaskList implements Iterable<Task> {
         if (dateClash != null)
         	throw new DateClashTaskException(dateClash.getName().toString());
         	
-        internalList.add(toAdd);
+        internalList.add(index, toAdd);
         return internalList.size() - 1;
     }
     

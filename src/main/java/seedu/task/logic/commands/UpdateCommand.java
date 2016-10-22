@@ -1,5 +1,6 @@
 package seedu.task.logic.commands;
 
+
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.UnmodifiableObservableList;
@@ -11,8 +12,6 @@ import seedu.task.model.Undo;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
-import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
-import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 public class UpdateCommand extends Command{
     public static final String COMMAND_WORD = "update";
@@ -51,11 +50,10 @@ public class UpdateCommand extends Command{
     	
         assert model != null;
         try {
-        	Task toUpdate = (Task)lastShownList.get(taskIndex - 1);
-        	LogsCenter.getLogger(ModelManager.class).info("toUpdate: " + toUpdate.toString());
-        	TaskParser updateTaskParser = new UpdateTaskParser(toUpdate, updateArgs);
+            Undo.getInstance().setUndo(taskIndex - 1, ((Task)lastShownList.get(taskIndex - 1)).clone(), Undo.UndoCommand.UPDATE);
+        	LogsCenter.getLogger(ModelManager.class).info("toUpdate: " + Undo.getInstance().getTask().toString() + " UndoCommand: " + Undo.getInstance().getCommand());
+            TaskParser updateTaskParser = new UpdateTaskParser((Task)lastShownList.get(taskIndex - 1), updateArgs);
         	model.updateTask(taskIndex - 1, updateTaskParser.parseInput());
-            Undo.getInstance().setUndo(taskIndex - 1, toUpdate, Undo.UndoCommand.UPDATE);
 
         } catch (UniqueTaskList.DateClashTaskException e) {
             return new CommandResult(e.getMessage());

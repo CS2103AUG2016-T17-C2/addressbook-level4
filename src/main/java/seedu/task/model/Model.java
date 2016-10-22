@@ -7,6 +7,7 @@ import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
 import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
+import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
 
 import java.util.Set;
 
@@ -28,6 +29,12 @@ public interface Model {
      * @throws DuplicateTaskException
      * @throws DateClashTaskException */
     int addTask(Task task) throws UniqueTaskList.DuplicateTaskException, DateClashTaskException;
+
+    /** Adds the given task in the specified index
+     * @return position of the newly added task in the collection
+     * @throws DuplicateTaskException
+     * @throws DateClashTaskException */
+	int addTask(int index, Task task) throws DuplicateTaskException, DateClashTaskException;
 
     /** Updates the given task 
      * @throws DateClashTaskException */
@@ -71,5 +78,5 @@ public interface Model {
     
     /** Updates the filter of the filtered task list to show tasks at a given venue*/
     void updateFilteredTaskListByTag(Tag tag);
-       
+    
 }

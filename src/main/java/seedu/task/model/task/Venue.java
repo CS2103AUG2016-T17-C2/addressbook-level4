@@ -1,7 +1,7 @@
 package seedu.task.model.task;
 
 
-import seedu.task.commons.exceptions.IllegalValueException;
+
 
 /**
  * Represents a Task's address in the address book.
