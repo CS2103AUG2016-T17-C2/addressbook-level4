@@ -230,11 +230,16 @@ public class ModelManager extends ComponentManager implements Model {
         
     //========== Inner classes/interfaces used for sorting ==================================================
     
+    // default comparator: arranges tasks by status level, then priority level
     static class TaskComparator implements Comparator<ReadOnlyTask>
     {
         public int compare(ReadOnlyTask task1, ReadOnlyTask task2)
         {
-            int value = task1.getPriority().compareTo(task2.getPriority());
+            int value = task1.getStatus().compareTo(task2.getStatus());
+            if(value == 0) {
+                value = task1.getPriority().compareTo(task2.getPriority());
+                return value;
+            }
             return value;
         }
     }
