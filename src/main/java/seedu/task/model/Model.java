@@ -64,7 +64,7 @@ public interface Model {
     void updateFilteredTaskListByDoneStatus();
     
     /** Updates the filter of the filtered task list to show IGNORED tasks*/
-    void updateFilteredTaskListByIgnoredStatus();
+    void updateFilteredTaskListByIgnoreStatus();
     
     /** Updates the filter of the filtered task list to show tasks at a given venue*/
     void updateFilteredTaskListByVenue(String venue);

@@ -14,6 +14,7 @@ import seedu.task.logic.commands.FindCommand;
 import seedu.task.logic.commands.IncorrectCommand;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Priority;
+import seedu.task.model.task.Status;
 
 /** Helper class to parse input when find is invoked, and to return the appropriate find command or other command based on input*/
 public class FindParser {
@@ -31,6 +32,10 @@ public class FindParser {
     private static final String HIGH = "high";
     private static final String MEDIUM = "medium";
     private static final String LOW = "low";
+    private static final String ACTIVE = "active";
+    private static final String EXPIRED = "expired";
+    private static final String DONE = "done";
+    private static final String IGNORE = "ignore";
     
 
     
@@ -52,6 +57,7 @@ public class FindParser {
                                             // tag, priority or status
             return returnFindCommandForHashtag(keywords);
         }
+        
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
@@ -69,6 +75,14 @@ public class FindParser {
             return new FindCommand(Priority.MEDIUM);
         } else if (keywords[0].substring(1).equalsIgnoreCase(LOW)) {
             return new FindCommand(Priority.LOW);
+        } else if (keywords[0].substring(1).equalsIgnoreCase(ACTIVE)) {
+            return new FindCommand(Status.ACTIVE);
+        } else if (keywords[0].substring(1).equalsIgnoreCase(DONE)) {
+            return new FindCommand(Status.DONE);
+        } else if (keywords[0].substring(1).equalsIgnoreCase(EXPIRED)) {
+            return new FindCommand(Status.EXPIRED);
+        } else if (keywords[0].substring(1).equalsIgnoreCase(IGNORE)) {
+            return new FindCommand(Status.IGNORE);
         } else {
             Tag tag = new Tag(keywords[0].substring(1));
             return new FindCommand(tag);

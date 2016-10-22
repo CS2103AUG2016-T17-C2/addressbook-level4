@@ -197,7 +197,7 @@ public class ModelManager extends ComponentManager implements Model {
         });
     }
     
-    public void updateFilteredTaskListByIgnoredStatus() {
+    public void updateFilteredTaskListByIgnoreStatus() {
         filteredTasks.setPredicate(task -> {
             if(task.getStatus().toString().equals("IGNORE")) {
                 return true;

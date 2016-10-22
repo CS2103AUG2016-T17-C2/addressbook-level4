@@ -308,7 +308,7 @@ public class Parser {
      */
     private Command prepareFind(String args) {
         try {
-            logger.info("find: " + args);
+            logger.info("attempting to find: " + args);
             return FindParser.parseInput(args);
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
