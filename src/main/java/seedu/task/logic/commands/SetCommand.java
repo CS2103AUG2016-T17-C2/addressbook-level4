@@ -39,7 +39,6 @@ public class SetCommand extends Command{
 
     @Override
     public CommandResult execute() {
-    	LogsCenter.getLogger(ModelManager.class).info("Task Index: " + taskIndex + " Args: " + setArg);
         UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getSortedTaskList();
 
         if (lastShownList.size() < taskIndex) {
@@ -49,7 +48,9 @@ public class SetCommand extends Command{
     	
         assert model != null;
         try {
-        	TaskParser updateTaskParser = new UpdateTaskParser((Task)lastShownList.get(taskIndex - 1), setArg);
+        	TaskParser updateTaskParser = new UpdateTaskParser(model.getTaskByIndex(taskIndex - 1), setArg);
+        	LogsCenter.getLogger(ModelManager.class).info("Task Index: " + (taskIndex - 1) + " task: " + model.getTaskByIndex(taskIndex - 1));
+
         	model.updateTask(taskIndex - 1, ((UpdateTaskParser) updateTaskParser).setTaskStatus());
 		} catch (IllegalValueException e) {
 	        indicateAttemptToExecuteIncorrectCommand();
