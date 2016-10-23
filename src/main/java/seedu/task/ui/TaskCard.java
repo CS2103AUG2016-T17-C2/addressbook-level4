@@ -3,11 +3,14 @@ package seedu.task.ui;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import seedu.task.model.task.ReadOnlyTask;
 
 public class TaskCard extends UiPart{
 
+    private static final String PIN_IMAGE_URL = "/images/pin.png";
     private static final String FXML = "TaskListCard.fxml";
 
     @FXML
@@ -26,7 +29,7 @@ public class TaskCard extends UiPart{
     private Label status;
     @FXML
     private Label tags;
-
+    
     private ReadOnlyTask task;
     private int displayedIndex;
 
@@ -50,6 +53,11 @@ public class TaskCard extends UiPart{
         priority.setText(task.getPriority().toString());
         status.setText(task.getStatus().toString());
         tags.setText(task.tagsString());
+        if(task.getPinTask().isPinned()) {
+            Image pin = new Image(PIN_IMAGE_URL);
+            final ImageView pinimage = new ImageView(pin);
+            cardPane.getChildren().add(pinimage);
+        }
     }
 
     private void setTextForDate() {

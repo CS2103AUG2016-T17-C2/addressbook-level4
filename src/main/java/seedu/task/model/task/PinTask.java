@@ -13,4 +13,11 @@ public enum PinTask {
 	public String toString() {
 		return text;
 	}
+	
+	public boolean isPinned() {
+	    if(text.equals("PIN")) {
+	        return true;
+	    }
+	    return false;
+	}
 }
