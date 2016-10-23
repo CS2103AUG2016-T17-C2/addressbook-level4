@@ -76,11 +76,11 @@ public class ConfigUtilTest {
 
     private Config getTypicalConfig() {
         Config config = new Config();
-        config.setAppTitle("Typical App Title");
+        config.setAppTitle("TaskBook App");
         config.setLogLevel(Level.INFO);
-        config.setUserPrefsFilePath("C:\\preferences.json");
-        config.setTaskBookFilePath("addressbook.xml");
-        config.setTaskBookName("TypicalAddressBookName");
+        config.setUserPrefsFilePath("data/preferences.json");
+        config.setTaskBookFilePath("data/taskbook.xml");
+        config.setTaskBookName("MyTaskBook");
         return config;
     }
 

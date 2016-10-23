@@ -2,13 +2,13 @@ package seedu.address;
 
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import seedu.address.testutil.TestUtil;
 import seedu.task.MainApp;
 import seedu.task.commons.core.Config;
 import seedu.task.commons.core.GuiSettings;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.UserPrefs;
 import seedu.task.storage.XmlSerializableTaskBook;
+import seedu.task.testutil.TestUtil;
 
 import java.util.function.Supplier;
 

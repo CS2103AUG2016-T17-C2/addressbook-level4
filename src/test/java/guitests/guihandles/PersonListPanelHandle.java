@@ -7,9 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import seedu.address.TestApp;
-import seedu.address.testutil.TestUtil;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
+import seedu.task.testutil.TestUtil;
 
 import java.util.List;
 import java.util.Optional;

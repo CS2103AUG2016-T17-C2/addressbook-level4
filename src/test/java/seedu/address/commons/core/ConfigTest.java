@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.task.commons.core.Config;
+import seedu.task.commons.core.LogsCenter;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -16,12 +17,13 @@ public class ConfigTest {
 
     @Test
     public void toString_defaultObject_stringReturned() {
-        String defaultConfigAsString = "App title : Address App\n" +
+        String defaultConfigAsString = "App title : TaskBook App\n" +
                 "Current log level : INFO\n" +
-                "Preference file Location : preferences.json\n" +
-                "Local data file location : data/addressbook.xml\n" +
-                "TaskBook name : MyAddressBook";
+                "Preference file Location : data/preferences.json\n" +
+                "Local data file location : data/taskbook.xml\n" +
+                "TaskBook name : MyTaskBook";
 
+        LogsCenter.getLogger(ConfigTest.class).warning("Config: " + new Config().toString());
         assertEquals(defaultConfigAsString, new Config().toString());
     }
 

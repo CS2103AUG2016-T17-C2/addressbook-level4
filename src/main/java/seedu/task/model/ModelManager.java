@@ -250,7 +250,7 @@ public class ModelManager extends ComponentManager implements Model {
     //========== Inner classes/interfaces used for sorting ==================================================
     
     // default comparator: arranges tasks by status level, then priority level
-    static class TaskComparator implements Comparator<ReadOnlyTask>
+    public static class TaskComparator implements Comparator<ReadOnlyTask>
     {
         public int compare(ReadOnlyTask task1, ReadOnlyTask task2)
         {

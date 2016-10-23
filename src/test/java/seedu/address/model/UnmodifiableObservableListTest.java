@@ -11,7 +11,7 @@ import org.junit.rules.ExpectedException;
 import java.util.*;
 
 import static org.junit.Assert.assertSame;
-import static seedu.address.testutil.TestUtil.assertThrows;
+import static seedu.task.testutil.TestUtil.assertThrows;
 
 public class UnmodifiableObservableListTest {
 
