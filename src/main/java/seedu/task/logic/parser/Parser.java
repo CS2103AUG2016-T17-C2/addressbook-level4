@@ -36,14 +36,6 @@ public class Parser {
     private static final Pattern TASK_INDEX_FORMAT = Pattern.compile("(?<targetIndex>.+)");
     private static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>\\S+)(?<arguments>.*)");
 
-    private static final Pattern KEYWORDS_ARGS_FORMAT = Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one
-                                                                                                           // or
-                                                                                                           // more
-                                                                                                           // keywords
-                                                                                                           // separated
-                                                                                                           // by
-                                                                                                           // whitespace
-
     
     public Parser() {
 

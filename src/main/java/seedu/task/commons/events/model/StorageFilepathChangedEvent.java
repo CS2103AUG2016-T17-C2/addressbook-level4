@@ -19,10 +19,14 @@ public class StorageFilepathChangedEvent extends BaseEvent{
    
     @Override
     public String toString() {
-        return "File Path changed to" + config.getTaskBookFilePath();
+        return "File Path changed to " + config.getTaskBookFilePath();
    
     }
-
+    
+    public String getTaskBookFilepath() {
+        return config.getTaskBookFilePath();
+   
+    }
 
 
 
