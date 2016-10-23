@@ -94,6 +94,8 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskBookChanged();
     }
 
+    //@@author A0139958H
+    
     @Override
     public synchronized int addTask(Task task) throws UniqueTaskList.DuplicateTaskException, DateClashTaskException {
         int position = taskBook.addTask(task);
@@ -126,6 +128,9 @@ public class ModelManager extends ComponentManager implements Model {
         sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
         indicateTaskBookChanged();	
 	}	
+	
+    //@@author
+	
 	
 	
     //=========== Filtered Task List Accessors ===============================================================

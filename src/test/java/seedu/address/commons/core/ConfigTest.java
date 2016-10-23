@@ -15,6 +15,8 @@ public class ConfigTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
+    //@@author A0139958H
+    
     @Test
     public void toString_defaultObject_stringReturned() {
         String defaultConfigAsString = "App title : TaskBook App\n" +
@@ -26,6 +28,8 @@ public class ConfigTest {
         LogsCenter.getLogger(ConfigTest.class).warning("Config: " + new Config().toString());
         assertEquals(defaultConfigAsString, new Config().toString());
     }
+    
+    //@@author
 
     @Test
     public void equalsMethod(){

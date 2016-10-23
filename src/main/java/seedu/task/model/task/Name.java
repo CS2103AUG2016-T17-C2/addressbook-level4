@@ -3,6 +3,8 @@ package seedu.task.model.task;
 
 import seedu.task.commons.exceptions.IllegalValueException;
 
+//@@author A0139958H
+
 /**
  * Represents a Task's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}

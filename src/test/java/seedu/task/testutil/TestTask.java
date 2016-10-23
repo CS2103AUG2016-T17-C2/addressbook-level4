@@ -7,8 +7,10 @@ import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.task.model.task.*;
 
+//@@author A0139958H
+
 /**
- * A mutable person object. For testing only.
+ * A mutable Task object. For testing only.
  */
 public class TestTask implements ReadOnlyTask {
 

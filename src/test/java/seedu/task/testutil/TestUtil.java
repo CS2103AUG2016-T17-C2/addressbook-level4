@@ -10,6 +10,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import junit.framework.AssertionFailedError;
+
+import org.apache.commons.lang3.time.DateUtils;
 import org.loadui.testfx.GuiTest;
 import org.testfx.api.FxToolkit;
 import seedu.address.TestApp;
@@ -29,6 +31,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
@@ -60,27 +63,51 @@ public class TestUtil {
      */
     public static String SANDBOX_FOLDER = FileUtil.getPath("./src/test/data/sandbox/");
 
-    public static final Task[] samplePersonData = getSamplePersonData();
+    //@@author A0139958H
+    
+    public static final Task[] sampleTaskData = getSampleTaskData();
 
-    private static Task[] getSamplePersonData() {
+    private static Task[] getSampleTaskData() {
         try {
-            /*return new Task[]{
-                    new Task(new Name("Ali Muster"), new DateTime("9482424"), new Venue("4th street"), Priority.LOW, Status.ACTIVE, new UniqueTagList()),
-                    new Task(new Name("Boris Mueller"), new DateTime("87249245"), new Venue("81th street"), Priority.LOW, Status.ACTIVE, new UniqueTagList()),
-                    new Task(new Name("Carl Kurz"), new DateTime("95352563"), new Venue("wall street"), Priority.LOW, Status.ACTIVE, new UniqueTagList()),
-                    new Task(new Name("Daniel Meier"), new DateTime("87652533"), new Venue("10th street"), Priority.LOW, Status.ACTIVE, new UniqueTagList()),
-                    new Task(new Name("Elle Meyer"), new DateTime("9482224"), new Venue("michegan ave"), Priority.LOW, Status.ACTIVE, new UniqueTagList()),
-                    new Task(new Name("Fiona Kunz"), new DateTime("9482427"), new Venue("little tokyo"), Priority.LOW, Status.ACTIVE, new UniqueTagList()),
-                    new Task(new Name("George Best"), new DateTime("9482442"), new Venue("4th street"), Priority.LOW, Status.ACTIVE, new UniqueTagList()),
-                    new Task(new Name("Hoon Meier"), new DateTime("8482424"), new Venue("little india"), Priority.LOW, Status.ACTIVE, new UniqueTagList()),
-                    new Task(new Name("Ida Mueller"), new DateTime("8482131"), new Venue("chicago ave"), Priority.LOW, Status.ACTIVE, new UniqueTagList())
-            
-            };
-            */
-        	return new Task[]{new Task(new Name("Ida Mueller"), new DateTime("8482131"), new DateTime("8482131"), new Venue("chicago ave"), Priority.LOW, Status.ACTIVE, PinTask.PIN, new UniqueTagList())};
+        	Task  task1 = new Task();
+        	Date date = DateUtils.addDays(new Date(), 1);
+        	date = DateUtils.setMinutes(date, 0);
+        	date = DateUtils.setSeconds(date, 0);
+
+        	task1.setName(new Name("Study for exam"));
+        	task1.setStartDate(new DateTime(DateUtils.setHours(date, 14)));
+        	task1.setEndDate(new DateTime(DateUtils.setHours(date, 17)));
+        	task1.setVenue(new Venue(" School"));
+        	task1.setPriority(Priority.HIGH);
+        	task1.setPinTask(PinTask.PIN);
+        	task1.setTags(new UniqueTagList(new Tag("Study"), new Tag("Exam")));   
+        	
+        	Task  task2 = new Task();
+        	date = DateUtils.addDays(date, 2);
+
+        	task2.setName(new Name("Play Football"));
+        	task2.setStartDate(new DateTime(DateUtils.setHours(date, 17)));
+        	task2.setEndDate(new DateTime(DateUtils.setHours(date, 19)));
+        	task2.setVenue(new Venue(" School"));
+        	task2.setPriority(Priority.MEDIUM);
+        	task2.setPinTask(PinTask.PIN);
+        	task2.setTags(new UniqueTagList(new Tag("Play"), new Tag("sports")));   
+        	
+        	Task  task3 = new Task();
+        	date = DateUtils.addDays(date, 3);
+
+        	task3.setName(new Name("Code cs2103"));
+        	task3.setStartDate(new DateTime(DateUtils.setHours(date, 19)));
+        	task3.setEndDate(new DateTime(DateUtils.setHours(date, 23)));
+        	task3.setVenue(new Venue(" School"));
+        	task3.setPriority(Priority.HIGH);
+        	task3.setPinTask(PinTask.UNPIN);
+        	task3.setTags(new UniqueTagList(new Tag("Study"), new Tag("Code")));   
+        	
+        	return new Task[] { task1, task2, task3 };
+        	
         } catch (IllegalValueException e) {
             assert false;
-            //not possible
             return null;
         }
     }
@@ -90,18 +117,19 @@ public class TestUtil {
     private static Tag[] getSampleTagData() {
         try {
             return new Tag[]{
-                    new Tag("relatives"),
+                    new Tag("bros"),
                     new Tag("friends")
             };
         } catch (IllegalValueException e) {
             assert false;
             return null;
-            //not possible
         }
     }
 
+    //@@author
+    
     public static List<Task> generateSamplePersonData() {
-        return Arrays.asList(samplePersonData);
+        return Arrays.asList(sampleTaskData);
     }
 
     /**

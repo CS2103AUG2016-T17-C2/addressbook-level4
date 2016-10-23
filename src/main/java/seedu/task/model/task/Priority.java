@@ -1,5 +1,7 @@
 package seedu.task.model.task;
 
+//@@author A0139958H
+
 public enum Priority {
 	HIGH("HIGH"), MEDIUM("MEDIUM"), LOW("LOW");
 

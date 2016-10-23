@@ -1,7 +1,6 @@
 package seedu.task.model.task;
 
-
-
+//@@author A0139958H
 
 /**
  * Represents a Task's address in the address book.

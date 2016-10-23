@@ -35,6 +35,8 @@ import seedu.task.model.task.Status;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.Venue;
 
+//@@author A0139958H
+
 public class TaskParser {
 
 	public static final String SPLIT_STRING_BY_WHITESPACE = "\\s+";

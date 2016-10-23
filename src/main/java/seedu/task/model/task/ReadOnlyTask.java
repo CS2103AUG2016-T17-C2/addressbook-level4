@@ -2,6 +2,8 @@ package seedu.task.model.task;
 
 import seedu.task.model.tag.UniqueTagList;
 
+//@@author A0139958H
+
 /**
  * A read-only immutable interface for a Task in the taskBook.
  * Implementations should guarantee: details are present and not null, field values are validated.

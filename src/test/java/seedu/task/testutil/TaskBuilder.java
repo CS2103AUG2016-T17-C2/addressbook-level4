@@ -6,8 +6,9 @@ import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.*;
 
-/**
- *
+//@@author A0139958H
+
+/** A utility class to build Task Objects easily
  */
 public class TaskBuilder {
 

@@ -83,6 +83,9 @@ public class TaskBook implements ReadOnlyTaskBook {
         return tasks.add(p);
     }
 
+    
+    //@@author A0139958H
+    
     /**
      * Adds a task to the task book at the specified index.
      * Also checks the new task's tags and updates {@link #tags} with any new tags found,
@@ -108,6 +111,12 @@ public class TaskBook implements ReadOnlyTaskBook {
         tasks.update(toReplace, toUpdate);
     }
 
+    public void updateTaskStatus() {
+    	tasks.updateTaskStatus();
+    }
+    
+    //@@author
+    
     /**
      * Ensures that every tag in this task:
      *  - exists in the master list {@link #tags}
@@ -139,9 +148,6 @@ public class TaskBook implements ReadOnlyTaskBook {
         }
     }
     
-    public void updateTaskStatus() {
-    	tasks.updateTaskStatus();
-    }
 
 //// tag-level operations
 

@@ -30,6 +30,8 @@ public class UniqueTaskList implements Iterable<Task> {
 		}
 	}
 
+    //@@author A0139958H
+	
 	/**
 	 * Signals that the task would clash with another task.
 	 */
@@ -39,6 +41,8 @@ public class UniqueTaskList implements Iterable<Task> {
 		}
 	}
 
+    //@@author
+	
 	/**
 	 * Signals that an operation targeting a specified task in the list would
 	 * fail because there is no such matching task in the list.
@@ -63,6 +67,8 @@ public class UniqueTaskList implements Iterable<Task> {
 		return internalList.contains(toCheck);
 	}
 
+    //@@author A0139958H
+	
 	/**
 	 * Returns the task if a clash in dates have been found
 	 */
@@ -153,6 +159,14 @@ public class UniqueTaskList implements Iterable<Task> {
 		internalList.set(index, toUpdate);
 		LogsCenter.getLogger(ModelManager.class).info("Update internalList: " + Arrays.toString(internalList.toArray()));
 	}
+	
+	public void updateTaskStatus() {
+		for (Task task : internalList) {
+			task.updateTaskStatus();
+		}
+	}
+	
+    //@@author
 
 	/**
 	 * Removes the equivalent task from the list.
@@ -168,13 +182,6 @@ public class UniqueTaskList implements Iterable<Task> {
 		}
 		return taskFoundAndDeleted;
 	}
-
-	public void updateTaskStatus() {
-		for (Task task : internalList) {
-			task.updateTaskStatus();
-		}
-	}
-	
 	
 	public ObservableList<Task> getInternalList() {
 		return internalList;
