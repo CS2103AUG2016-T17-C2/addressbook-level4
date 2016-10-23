@@ -205,6 +205,7 @@ public class Task implements ReadOnlyTask, Cloneable {
 	
 	public Task clone() {
         try {
+        	this.setTags(getTags().clone());
             return (Task) super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();

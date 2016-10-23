@@ -20,7 +20,9 @@ public class SetCommand extends Command{
             + "Example: " + COMMAND_WORD + " 1 done";
 
     public static final String MESSAGE_SUCCESS = "Updated the status of task %1$s";
-
+    public static final String MESSAGE_STATUS_CONSTRAINT = "Task status can only be updated to Done or Ignore";
+    public static final String MESSAGE_STATUS_DONE = "Task status has been already set to Done";
+    
     private final int taskIndex;
     private final String setArg;
 

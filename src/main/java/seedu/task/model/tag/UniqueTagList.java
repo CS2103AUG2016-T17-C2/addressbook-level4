@@ -16,7 +16,7 @@ import java.util.*;
  * @see Tag#equals(Object)
  * @see CollectionUtil#elementsAreUnique(Collection)
  */
-public class UniqueTagList implements Iterable<Tag> {
+public class UniqueTagList implements Iterable<Tag>, Cloneable {
 
     /**
      * Signals that an operation would have violated the 'no duplicates' property of the list.
@@ -149,5 +149,14 @@ public class UniqueTagList implements Iterable<Tag> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+    
+	public UniqueTagList clone() {
+        try {
+            return (UniqueTagList) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
     }
 }

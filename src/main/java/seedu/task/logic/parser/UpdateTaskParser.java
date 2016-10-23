@@ -5,8 +5,11 @@ import java.util.List;
 
 import org.apache.commons.lang3.EnumUtils;
 
+import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.Messages;
 import seedu.task.commons.exceptions.IllegalValueException;
+import seedu.task.logic.commands.SetCommand;
+import seedu.task.model.ModelManager;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.task.model.task.DateTime;
@@ -104,8 +107,16 @@ public class UpdateTaskParser extends TaskParser{
 	}
 	
 	public Task setTaskStatus() throws IllegalValueException {
-		if (EnumUtils.isValidEnum(Status.class, input.trim().toUpperCase()))
-			task.setStatus(Status.valueOf(input.trim().toUpperCase()));
+		
+		LogsCenter.getLogger(Task.class).info("input : " + input.trim().toUpperCase() + " Status: " + Status.DONE);
+
+		if (!task.getStatus().equals(Status.DONE)) {
+			if (input.trim().toUpperCase().equals(Status.DONE.toString()) || input.trim().toUpperCase().equals(Status.IGNORE.toString()))
+				task.setStatus(Status.valueOf(input.trim().toUpperCase()));
+			else
+				throw new IllegalValueException(SetCommand.MESSAGE_STATUS_CONSTRAINT);
+		} else if (task.getStatus().equals(Status.DONE))
+			throw new IllegalValueException(SetCommand.MESSAGE_STATUS_DONE);
 		else
 			throw new IllegalValueException(Messages.MESSAGE_FAILURE_SET_COMMAND);
 		return task;

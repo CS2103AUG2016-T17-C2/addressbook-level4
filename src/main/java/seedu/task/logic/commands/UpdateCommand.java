@@ -9,6 +9,7 @@ import seedu.task.logic.parser.TaskParser;
 import seedu.task.logic.parser.UpdateTaskParser;
 import seedu.task.model.ModelManager;
 import seedu.task.model.Undo;
+import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
@@ -50,10 +51,11 @@ public class UpdateCommand extends Command{
     	
         assert model != null;
         try {
-            Undo.getInstance().setUndo(taskIndex - 1, ((Task)lastShownList.get(taskIndex - 1)).clone(), Undo.UndoCommand.UPDATE);
-        	LogsCenter.getLogger(ModelManager.class).info("toUpdate: " + Undo.getInstance().getTask().toString() + " UndoCommand: " + Undo.getInstance().getCommand());
+            Task toUpdate = ((Task)lastShownList.get(taskIndex - 1)).clone();
             TaskParser updateTaskParser = new UpdateTaskParser((Task)lastShownList.get(taskIndex - 1), updateArgs);
         	model.updateTask(taskIndex - 1, updateTaskParser.parseInput());
+        	Undo.getInstance().setUndo(taskIndex - 1, toUpdate, Undo.UndoCommand.UPDATE);
+            LogsCenter.getLogger(ModelManager.class).info("toUpdate: " + Undo.getInstance().getTask().toString() + " UndoCommand: " + Undo.getInstance().getCommand());
 
         } catch (UniqueTaskList.DateClashTaskException e) {
             return new CommandResult(e.getMessage());
