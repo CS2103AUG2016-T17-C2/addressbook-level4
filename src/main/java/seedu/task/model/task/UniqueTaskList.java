@@ -168,6 +168,13 @@ public class UniqueTaskList implements Iterable<Task> {
 		return taskFoundAndDeleted;
 	}
 
+	public void updateTaskStatus() {
+		for (Task task : internalList) {
+			task.updateTaskStatus();
+		}
+	}
+	
+	
 	public ObservableList<Task> getInternalList() {
 		return internalList;
 	}

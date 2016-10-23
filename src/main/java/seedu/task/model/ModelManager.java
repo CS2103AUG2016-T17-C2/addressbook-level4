@@ -63,8 +63,8 @@ public class ModelManager extends ComponentManager implements Model {
     public ModelManager(ReadOnlyTaskBook initialData, UserPrefs userPrefs) {
         taskBook = new TaskBook(initialData);
         filteredTasks = new FilteredList<>(taskBook.getTasks());
-        LogsCenter.getLogger(ModelManager.class).info("FilteredTasks: " + Arrays.toString(filteredTasks.toArray()));
         registerAsAnEventHandler(this);
+        updateTaskStatus();
     }
     
     protected void registerAsAnEventHandler(Object handler) {
@@ -119,6 +119,13 @@ public class ModelManager extends ComponentManager implements Model {
         sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
         indicateTaskBookChanged();		
 	}
+	
+	public synchronized void updateTaskStatus() {
+		taskBook.updateTaskStatus();
+        updateFilteredListToShowAll();
+        sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
+        indicateTaskBookChanged();	
+	}	
 	
 	
     //=========== Filtered Task List Accessors ===============================================================

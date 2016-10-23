@@ -138,6 +138,10 @@ public class TaskBook implements ReadOnlyTaskBook {
             throw new UniqueTaskList.TaskNotFoundException();
         }
     }
+    
+    public void updateTaskStatus() {
+    	tasks.updateTaskStatus();
+    }
 
 //// tag-level operations
 

@@ -2,6 +2,7 @@ package seedu.task.model.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Objects;
 
 import seedu.task.commons.core.LogsCenter;
@@ -22,15 +23,15 @@ public class Task implements ReadOnlyTask, Cloneable {
 	private DateTime endDate;
 	private Venue venue;
 	private Status status = Status.ACTIVE;
-	private Priority priority = Priority.MEDIUM; //Default priority is medium
-	private PinTask pinTask = PinTask.UNPIN; //Default is unpin
+	private Priority priority = Priority.MEDIUM; // Default priority is medium
+	private PinTask pinTask = PinTask.UNPIN; // Default is unpin
 	private UniqueTagList tags;
 
 	/**
 	 * Only Name, Priority and Status Should not be null
 	 */
-	public Task(Name name, DateTime startDate, DateTime endDate, Venue venue, Priority priority, Status status, PinTask pinTask, 
-	        UniqueTagList tags) {
+	public Task(Name name, DateTime startDate, DateTime endDate, Venue venue, Priority priority, Status status,
+	        PinTask pinTask, UniqueTagList tags) {
 		assert !CollectionUtil.isAnyNull(name, priority, status);
 		this.name = name;
 		this.startDate = startDate;
@@ -69,14 +70,23 @@ public class Task implements ReadOnlyTask, Cloneable {
 			LocalDateTime taskStartDate = LocalDateTime.parse(task.startDate.value, formatter);
 			LocalDateTime taskEndDate = LocalDateTime.parse(task.endDate.value, formatter);
 
-	    	LogsCenter.getLogger(ModelManager.class).info("startDate: " + startDate +
-	    			", endDate: " + endDate + ", taskStartDate: " + taskStartDate + ", taskEndDate: " + taskEndDate);
+			LogsCenter.getLogger(ModelManager.class).info("startDate: " + startDate + ", endDate: " + endDate
+			        + ", taskStartDate: " + taskStartDate + ", taskEndDate: " + taskEndDate);
 
 			if (startDate.compareTo(taskStartDate) >= 0 && endDate.compareTo(taskEndDate) <= 0)
 				return true;
 		}
 
 		return false;
+	}
+
+	public void updateTaskStatus() {
+		if (!this.getEndDate().value.isEmpty()) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E MMM d HH:mm:ss zzz yyyy");
+			LocalDateTime endDate = LocalDateTime.parse(this.getEndDate().value, formatter);
+			if (endDate.isBefore(LocalDateTime.now()))
+				this.setStatus(Status.EXPIRED);
+		}
 	}
 
 	@Override
@@ -92,7 +102,7 @@ public class Task implements ReadOnlyTask, Cloneable {
 	public Venue getVenue() {
 		return venue;
 	}
-	
+
 	public void setVenue(Venue venue) {
 		this.venue = venue;
 	}
@@ -163,7 +173,7 @@ public class Task implements ReadOnlyTask, Cloneable {
 	public void setPriority(Priority priority) {
 		this.priority = priority;
 	}
-	
+
 	@Override
 	public PinTask getPinTask() {
 		return pinTask;
@@ -176,7 +186,7 @@ public class Task implements ReadOnlyTask, Cloneable {
 	public void addTag(Tag tag) throws DuplicateTagException {
 		this.tags.add(tag);
 	}
-	
+
 	public void updateTag(Tag tag) {
 		try {
 			this.tags.add(tag);
@@ -184,16 +194,14 @@ public class Task implements ReadOnlyTask, Cloneable {
 			this.tags.remove(tag);
 		}
 	}
-	
+
 	public Task clone() {
-        try {
-        	this.setTags(getTags().clone());
-            return (Task) super.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-            throw new RuntimeException();
-        }
-    }	
+		try {
+			this.setTags(getTags().clone());
+			return (Task) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
 }
-
-
