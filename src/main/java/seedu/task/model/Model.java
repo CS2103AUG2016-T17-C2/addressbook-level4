@@ -38,7 +38,7 @@ public interface Model {
 
     /** Updates the given task 
      * @throws DateClashTaskException */
-    void updateTask(int index, Task task) throws DateClashTaskException;
+    void updateTask(Task toReplace, Task toUpdate) throws DateClashTaskException;
     
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */    
     UnmodifiableObservableList<ReadOnlyTask> getSortedTaskList();

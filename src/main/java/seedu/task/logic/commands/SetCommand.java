@@ -51,7 +51,7 @@ public class SetCommand extends Command{
         	TaskParser updateTaskParser = new UpdateTaskParser(model.getTaskByIndex(taskIndex - 1), setArg);
         	LogsCenter.getLogger(ModelManager.class).info("Task Index: " + (taskIndex - 1) + " task: " + model.getTaskByIndex(taskIndex - 1));
 
-        	model.updateTask(taskIndex - 1, ((UpdateTaskParser) updateTaskParser).setTaskStatus());
+        	model.updateTask(model.getTaskByIndex(taskIndex - 1), ((UpdateTaskParser) updateTaskParser).setTaskStatus());
 		} catch (IllegalValueException e) {
 	        indicateAttemptToExecuteIncorrectCommand();
 			return new CommandResult(e.getMessage());
