@@ -113,8 +113,8 @@ public class ModelManager extends ComponentManager implements Model {
     }
     
 	@Override
-	public synchronized void updateTask(int index, Task task) throws DateClashTaskException {
-        taskBook.updateTask(index, task);
+	public synchronized void updateTask(Task toReplace, Task toUpdate) throws DateClashTaskException {
+        taskBook.updateTask(toReplace, toUpdate);
         updateFilteredListToShowAll();
         sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
         indicateTaskBookChanged();		

@@ -103,9 +103,9 @@ public class TaskBook implements ReadOnlyTaskBook {
      *
      * @throws DateClashTaskException 
      */
-    public void updateTask(int index, Task p) throws DateClashTaskException {
-        syncTagsWithMasterList(p);
-        tasks.update(index, p);
+    public void updateTask(Task toReplace, Task toUpdate) throws DateClashTaskException {
+        syncTagsWithMasterList(toUpdate);
+        tasks.update(toReplace, toUpdate);
     }
 
     /**

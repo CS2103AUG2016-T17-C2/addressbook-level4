@@ -53,7 +53,7 @@ public class UpdateCommand extends Command{
         try {
             Task toUpdate = ((Task)lastShownList.get(taskIndex - 1)).clone();
             TaskParser updateTaskParser = new UpdateTaskParser((Task)lastShownList.get(taskIndex - 1), updateArgs);
-        	model.updateTask(taskIndex - 1, updateTaskParser.parseInput());
+        	model.updateTask(model.getTaskByIndex(taskIndex - 1), updateTaskParser.parseInput());
         	Undo.getInstance().setUndo(taskIndex - 1, toUpdate, Undo.UndoCommand.UPDATE);
             LogsCenter.getLogger(ModelManager.class).info("toUpdate: " + Undo.getInstance().getTask().toString() + " UndoCommand: " + Undo.getInstance().getCommand());
 
