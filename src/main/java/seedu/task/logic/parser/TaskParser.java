@@ -47,7 +47,7 @@ public class TaskParser {
 	public static final String BY = "by ";
 	public static final String NULL = "NULL";
 
-	protected static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+	protected static final Logger logger = LogsCenter.getLogger(TaskParser.class);
 	private Task task;
 	private String input;
 
@@ -67,9 +67,7 @@ public class TaskParser {
 		validateStartDate();
 		processTaskName(input);
 
-		logger.info("parseInput name: " + task.getName() + ", startDate: " + task.getStartDate() + ", endDate: "
-		        + task.getEndDate() + " priority: " + task.getPriority());
-		task.getTags().forEach(tag -> logger.info("Tag: " + tag.toString()));
+		logger.info("parseInput: " + task.toString());
 
 		return task;
 	}

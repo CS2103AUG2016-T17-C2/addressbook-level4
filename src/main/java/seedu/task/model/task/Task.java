@@ -24,7 +24,6 @@ public class Task implements ReadOnlyTask, Cloneable {
 	private Status status = Status.ACTIVE;
 	private Priority priority = Priority.MEDIUM; //Default priority is medium
 	private PinTask pinTask = PinTask.UNPIN; //Default is unpin
-	// Repeating
 	private UniqueTagList tags;
 
 	/**
@@ -39,26 +38,9 @@ public class Task implements ReadOnlyTask, Cloneable {
 		this.setVenue(venue);
 		this.priority = priority;
 		this.status = status;
+		this.pinTask = pinTask;
 		this.tags = new UniqueTagList(tags);
 	}
-
-	/*
-	public Task(Name name, DateTime endDate, Venue venue, Priority priority, Status status, UniqueTagList tags) {
-		this(name, new DateTime(""), endDate, venue, priority, status, tags);
-	}
-
-	public Task(Name name, DateTime endDate, Priority priority, Status status, UniqueTagList tags) {
-		this(name, new DateTime(""), endDate, new Venue(null), priority, status, tags);
-	}
-
-	public Task(Name name, DateTime endDate, Priority priority, Status status) {
-		this(name, new DateTime(""), endDate, new Venue(""), priority, status, new UniqueTagList());
-	}
-
-	public Task(Name name, Priority priority, Status status) {
-		this(name, new DateTime(""), new DateTime(""), new Venue(""), priority, status, new UniqueTagList());
-	}
-	*/
 
 	/**
 	 * Copy constructor.
