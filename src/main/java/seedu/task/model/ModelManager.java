@@ -40,6 +40,7 @@ public class ModelManager extends ComponentManager implements Model {
     private final FilteredList<Task> filteredTasks;
     private SortedList<Task> sortedTasks;
 
+    //@@author A0138301U
     /**
      * Initializes a ModelManager with the given TaskBook
      * TaskBook and its variables should not be null
@@ -66,7 +67,8 @@ public class ModelManager extends ComponentManager implements Model {
         registerAsAnEventHandler(this);
         updateTaskStatus();
     }
-    
+
+    //@@author A0138301U
     protected void registerAsAnEventHandler(Object handler) {
         EventsCenter.getInstance().registerHandler(handler);
     }
@@ -131,7 +133,8 @@ public class ModelManager extends ComponentManager implements Model {
 	
     //@@author
 	
-	
+
+    //@@author A0138301U
 	
     //=========== Filtered Task List Accessors ===============================================================
 
@@ -253,8 +256,9 @@ public class ModelManager extends ComponentManager implements Model {
     
         
     //========== Inner classes/interfaces used for sorting ==================================================
-    
-    // default comparator: arranges tasks by status level, then priority level
+
+    //@@author A0138301U
+/*    default comparator: arranges tasks by status level, then priority level*/
     public static class TaskComparator implements Comparator<ReadOnlyTask>
     {
         public int compare(ReadOnlyTask task1, ReadOnlyTask task2)

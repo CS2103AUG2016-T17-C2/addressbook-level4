@@ -1,11 +1,17 @@
 package seedu.task.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import seedu.task.model.task.ReadOnlyTask;
 
 public class TaskCard extends UiPart{
@@ -15,6 +21,8 @@ public class TaskCard extends UiPart{
 
     @FXML
     private HBox cardPane;
+    @FXML
+    private GridPane gridPane;
     @FXML
     private Label name;
     @FXML
@@ -57,6 +65,8 @@ public class TaskCard extends UiPart{
             Image pin = new Image(PIN_IMAGE_URL);
             final ImageView pinimage = new ImageView(pin);
             cardPane.getChildren().add(pinimage);
+            cardPane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            gridPane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
