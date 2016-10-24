@@ -416,7 +416,7 @@ public class LogicManagerTest {
         	task.setStartDate(new DateTime(DateUtils.setHours(date, 14)));
         	task.setEndDate(new DateTime(DateUtils.setHours(date, 17)));
         	task.setVenue(new Venue(" School"));
-        	task.setPriority(Priority.HIGH);
+        	task.setPriority(TaskPriority.HIGH);
         	task.setPinTask(PinTask.PIN);
         	task.setTags(new UniqueTagList(new Tag("Study"), new Tag("Exam")));
         	return task;
@@ -428,7 +428,7 @@ public class LogicManagerTest {
         	task.setStartDate(new DateTime(DateUtils.addHours(new Date(), seed)));
         	task.setEndDate(new DateTime(DateUtils.addHours(new Date(), seed + 1)));
         	task.setVenue(new Venue("School " + seed));
-        	task.setPriority(Priority.HIGH);
+        	task.setPriority(TaskPriority.HIGH);
         	task.setPinTask(PinTask.PIN);
         	task.setTags(new UniqueTagList(new Tag("Study"), new Tag("Exam"), new Tag(String.valueOf(seed))));
         	return task;

@@ -13,7 +13,7 @@ import seedu.task.logic.commands.Command;
 import seedu.task.logic.commands.FindCommand;
 import seedu.task.logic.commands.IncorrectCommand;
 import seedu.task.model.tag.Tag;
-import seedu.task.model.task.Priority;
+import seedu.task.model.task.TaskPriority;
 import seedu.task.model.task.Status;
 
 //@@author A0138301U
@@ -71,11 +71,11 @@ public class FindParser {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         if (keywords[0].substring(1).equalsIgnoreCase(HIGH)) {
-            return new FindCommand(Priority.HIGH);
+            return new FindCommand(TaskPriority.HIGH);
         } else if (keywords[0].substring(1).equalsIgnoreCase(MEDIUM)) {
-            return new FindCommand(Priority.MEDIUM);
+            return new FindCommand(TaskPriority.MEDIUM);
         } else if (keywords[0].substring(1).equalsIgnoreCase(LOW)) {
-            return new FindCommand(Priority.LOW);
+            return new FindCommand(TaskPriority.LOW);
         } else if (keywords[0].substring(1).equalsIgnoreCase(ACTIVE)) {
             return new FindCommand(Status.ACTIVE);
         } else if (keywords[0].substring(1).equalsIgnoreCase(DONE)) {

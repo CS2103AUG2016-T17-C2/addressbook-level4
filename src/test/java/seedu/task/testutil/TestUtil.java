@@ -78,7 +78,7 @@ public class TestUtil {
         	task1.setStartDate(new DateTime(DateUtils.setHours(date, 14)));
         	task1.setEndDate(new DateTime(DateUtils.setHours(date, 17)));
         	task1.setVenue(new Venue(" School"));
-        	task1.setPriority(Priority.HIGH);
+        	task1.setPriority(TaskPriority.HIGH);
         	task1.setPinTask(PinTask.PIN);
         	task1.setTags(new UniqueTagList(new Tag("Study"), new Tag("Exam")));   
         	
@@ -89,7 +89,7 @@ public class TestUtil {
         	task2.setStartDate(new DateTime(DateUtils.setHours(date, 17)));
         	task2.setEndDate(new DateTime(DateUtils.setHours(date, 19)));
         	task2.setVenue(new Venue(" School"));
-        	task2.setPriority(Priority.MEDIUM);
+        	task2.setPriority(TaskPriority.MEDIUM);
         	task2.setPinTask(PinTask.PIN);
         	task2.setTags(new UniqueTagList(new Tag("Play"), new Tag("sports")));   
         	
@@ -100,7 +100,7 @@ public class TestUtil {
         	task3.setStartDate(new DateTime(DateUtils.setHours(date, 19)));
         	task3.setEndDate(new DateTime(DateUtils.setHours(date, 23)));
         	task3.setVenue(new Venue(" School"));
-        	task3.setPriority(Priority.HIGH);
+        	task3.setPriority(TaskPriority.HIGH);
         	task3.setPinTask(PinTask.UNPIN);
         	task3.setTags(new UniqueTagList(new Tag("Study"), new Tag("Code")));   
         	

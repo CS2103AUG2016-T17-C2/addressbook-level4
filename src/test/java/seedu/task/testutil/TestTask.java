@@ -19,7 +19,7 @@ public class TestTask implements ReadOnlyTask {
 	private DateTime endDate;
 	private Venue venue;
 	private Status status = Status.ACTIVE;
-	private Priority priority = Priority.MEDIUM; // Default priority is medium
+	private TaskPriority priority = TaskPriority.MEDIUM; // Default priority is medium
 	private PinTask pinTask = PinTask.UNPIN; // Default is unpin
 	private UniqueTagList tags;
 
@@ -98,11 +98,11 @@ public class TestTask implements ReadOnlyTask {
 	}
 
 	@Override
-	public Priority getPriority() {
+	public TaskPriority getPriority() {
 		return priority;
 	}
 
-	public void setPriority(Priority priority) {
+	public void setPriority(TaskPriority priority) {
 		this.priority = priority;
 	}
 

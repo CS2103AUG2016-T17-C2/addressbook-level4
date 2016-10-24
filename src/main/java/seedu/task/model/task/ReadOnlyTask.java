@@ -14,7 +14,7 @@ public interface ReadOnlyTask {
     DateTime getStartDate();
     DateTime getEndDate();
     Venue getVenue();
-    Priority getPriority();
+    TaskPriority getPriority();
     Status getStatus();
     PinTask getPinTask();
 

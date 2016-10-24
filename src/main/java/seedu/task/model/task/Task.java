@@ -25,14 +25,14 @@ public class Task implements ReadOnlyTask, Cloneable {
 	private DateTime endDate;
 	private Venue venue;
 	private Status status = Status.ACTIVE;
-	private Priority priority = Priority.MEDIUM; // Default priority is medium
+	private TaskPriority priority = TaskPriority.MEDIUM; // Default priority is medium
 	private PinTask pinTask = PinTask.UNPIN; // Default is unpin
 	private UniqueTagList tags;
 
 	/**
 	 * Only Name, Priority and Status Should not be null
 	 */
-	public Task(Name name, DateTime startDate, DateTime endDate, Venue venue, Priority priority, Status status,
+	public Task(Name name, DateTime startDate, DateTime endDate, Venue venue, TaskPriority priority, Status status,
 	        PinTask pinTask, UniqueTagList tags) {
 		assert !CollectionUtil.isAnyNull(name, priority, status);
 		this.name = name;
@@ -168,11 +168,11 @@ public class Task implements ReadOnlyTask, Cloneable {
 	}
 
 	@Override
-	public Priority getPriority() {
+	public TaskPriority getPriority() {
 		return priority;
 	}
 
-	public void setPriority(Priority priority) {
+	public void setPriority(TaskPriority priority) {
 		this.priority = priority;
 	}
 

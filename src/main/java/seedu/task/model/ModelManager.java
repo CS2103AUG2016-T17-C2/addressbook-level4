@@ -38,9 +38,9 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final TaskBook taskBook;
     private final FilteredList<Task> filteredTasks;
-    private SortedList<Task> sortedTasks;
-
     //@@author A0138301U
+    private SortedList<Task> sortedTasks;
+    //@@author
     /**
      * Initializes a ModelManager with the given TaskBook
      * TaskBook and its variables should not be null
@@ -64,15 +64,16 @@ public class ModelManager extends ComponentManager implements Model {
     public ModelManager(ReadOnlyTaskBook initialData, UserPrefs userPrefs) {
         taskBook = new TaskBook(initialData);
         filteredTasks = new FilteredList<>(taskBook.getTasks());
+        //@@author A0138301U
         registerAsAnEventHandler(this);
         updateTaskStatus();
     }
 
-    //@@author A0138301U
     protected void registerAsAnEventHandler(Object handler) {
         EventsCenter.getInstance().registerHandler(handler);
     }
-
+    //@@author
+    
     @Override
     public void resetData(ReadOnlyTaskBook newData) {
         taskBook.resetData(newData);
@@ -257,8 +258,7 @@ public class ModelManager extends ComponentManager implements Model {
         
     //========== Inner classes/interfaces used for sorting ==================================================
 
-    //@@author A0138301U
-/*    default comparator: arranges tasks by status level, then priority level*/
+/*    default comparator: arranges tasks by pin, (active, ignore, done) status level, then priority level*/
     public static class TaskComparator implements Comparator<ReadOnlyTask>
     {
         public int compare(ReadOnlyTask task1, ReadOnlyTask task2)
@@ -275,7 +275,8 @@ public class ModelManager extends ComponentManager implements Model {
             return value;
         }
     }
-
+    //@@author
+    
     //========== Inner classes/interfaces used for filtering ==================================================
 
     interface Expression {

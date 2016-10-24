@@ -74,7 +74,7 @@ public class XmlAdaptedTask {
         final DateTime startDate = new DateTime(this.startDate);
         final DateTime endDate = new DateTime(this.endDate);
         final Venue venue = new Venue(this.venue);
-        final Priority priority = Priority.valueOf(this.priority.toUpperCase());
+        final TaskPriority priority = TaskPriority.valueOf(this.priority.toUpperCase());
         final Status status = Status.valueOf(this.status.toUpperCase());
         final PinTask pinTask = PinTask.valueOf(this.pinTask.toUpperCase());
         final UniqueTagList tags = new UniqueTagList(taskTags);

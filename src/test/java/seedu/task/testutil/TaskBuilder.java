@@ -39,7 +39,7 @@ public class TaskBuilder {
     }
     
     public TaskBuilder withPriority(String priority) throws IllegalValueException {
-		task.setPriority(Priority.valueOf(priority.toUpperCase()));
+		task.setPriority(TaskPriority.valueOf(priority.toUpperCase()));
         return this;
     }
     

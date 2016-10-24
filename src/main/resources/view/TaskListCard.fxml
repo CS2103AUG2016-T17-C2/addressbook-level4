@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- @@author A0138301U -->
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -9,9 +10,9 @@
         <GridPane fx:id="gridPane" HBox.hgrow="ALWAYS" >
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <children>
+            <HBox fx:id="imageContainer" >
                 <VBox alignment="CENTER_LEFT" maxHeight="150.0" minHeight="105.0" prefHeight="115.0" GridPane.columnIndex="0">
                     <stylesheets>
                         <URL value="@TaskCardTheme.css" />
@@ -23,14 +24,13 @@
                     </padding>
 		
                     <children>
-                        <HBox spacing="5" alignment="CENTER_LEFT">
+                        <HBox fx:id='taskContainer' spacing="5" alignment="CENTER_LEFT">
                             <children>
                                 <HBox>
                                     <Label fx:id="id" styleClass="cell_big_label"></Label>
                                     <Label fx:id="name" text="\$name" styleClass="cell_big_label"/>
-
                                 </HBox>
-                                <Label fx:id="tags" styleClass="cell_small_label" text="\$tags" />
+                                <Label fx:id="tags" styleClass="cell_tag_label" text="\$tags" />
                             </children>
                         </HBox>
                         <Label fx:id="venue" text="\$venue" styleClass="cell_small_label"/>
@@ -39,6 +39,7 @@
                         <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
                     </children>
                 </VBox>
+                </HBox>
             </children>
         </GridPane>
     </children>

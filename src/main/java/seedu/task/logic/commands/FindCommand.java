@@ -5,7 +5,7 @@ import java.util.Set;
 import org.junit.Assert;
 
 import seedu.task.model.tag.Tag;
-import seedu.task.model.task.Priority;
+import seedu.task.model.task.TaskPriority;
 import seedu.task.model.task.Status;
 
 //@@author A0138301U
@@ -37,7 +37,7 @@ public class FindCommand extends Command {
     
     private final Tag tag;
     
-    private final Priority priority;
+    private final TaskPriority priority;
     
     private final Status status;
 
@@ -65,7 +65,7 @@ public class FindCommand extends Command {
         this.status = null;
     }
 
-    public FindCommand(Priority priority) {
+    public FindCommand(TaskPriority priority) {
         this.keywords = null;
         this.venue = null;
         this.tag = null;
@@ -115,11 +115,11 @@ public class FindCommand extends Command {
     }
 
     private void updateByPriorityLevel() {
-        if(this.priority == Priority.HIGH) {
+        if(this.priority == TaskPriority.HIGH) {
             model.updateFilteredTaskListByHighPriority();
-        } else if(this.priority == Priority.MEDIUM) {
+        } else if(this.priority == TaskPriority.MEDIUM) {
             model.updateFilteredTaskListByMediumPriority();
-        } else if(this.priority == Priority.LOW) {
+        } else if(this.priority == TaskPriority.LOW) {
             model.updateFilteredTaskListByLowPriority();
         } else {
             Assert.fail("unable to execute FindCommand due to incorrect Priority");

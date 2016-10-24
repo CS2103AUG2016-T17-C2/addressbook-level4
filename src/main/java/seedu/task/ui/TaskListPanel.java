@@ -47,12 +47,13 @@ public class TaskListPanel extends UiPart {
         this.placeHolderPane = pane;
     }
     
+    //@@author A0138301U
     public void updateTaskList(ObservableList<ReadOnlyTask> taskList) {
         taskListView.setItems(taskList);
-        taskListView.setCellFactory(listView -> new TaskListViewCell());
-        
+        taskListView.setCellFactory(listView -> new TaskListViewCell());       
     }
-
+    //@@author
+    
     public static TaskListPanel load(Stage primaryStage, AnchorPane taskListPlaceholder,
                                        ObservableList<ReadOnlyTask> taskList) {
         TaskListPanel taskListPanel =

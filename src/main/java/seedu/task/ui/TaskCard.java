@@ -1,5 +1,6 @@
 package seedu.task.ui;
 
+//@@author A0138301U
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -12,7 +13,11 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import seedu.task.model.task.TaskPriority;
+import seedu.task.model.task.PinTask;
 import seedu.task.model.task.ReadOnlyTask;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 
 public class TaskCard extends UiPart{
 
@@ -23,6 +28,10 @@ public class TaskCard extends UiPart{
     private HBox cardPane;
     @FXML
     private GridPane gridPane;
+    @FXML
+    private HBox taskContainer;
+    @FXML
+    private HBox imageContainer;
     @FXML
     private Label name;
     @FXML
@@ -37,11 +46,20 @@ public class TaskCard extends UiPart{
     private Label status;
     @FXML
     private Label tags;
+    @FXML
+    private ImageView pinimage;
     
     private ReadOnlyTask task;
     private int displayedIndex;
-
+    
+    private String high = "#0288D1";
+    private String medium = "#81D4FA";
+    private String low = "#E1F5FE";
+    
+    private final int radii = 10;
+    
     public TaskCard(){
+        pinimage = new ImageView(new Image(PIN_IMAGE_URL));
 
     }
 
@@ -61,12 +79,23 @@ public class TaskCard extends UiPart{
         priority.setText(task.getPriority().toString());
         status.setText(task.getStatus().toString());
         tags.setText(task.tagsString());
-        if(task.getPinTask().isPinned()) {
-            Image pin = new Image(PIN_IMAGE_URL);
-            final ImageView pinimage = new ImageView(pin);
-            cardPane.getChildren().add(pinimage);
-            cardPane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
-            gridPane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+        setBackgroundColor();
+        if(task.getPinTask().equals(PinTask.PIN)) {
+            HBox hbox = new HBox();
+            Region region = new Region();
+            HBox.setHgrow(region, Priority.ALWAYS);
+            hbox.getChildren().add(pinimage);
+            imageContainer.getChildren().addAll(region, pinimage);
+        }
+    }
+
+    private void setBackgroundColor() {
+        if(task.getPriority().equals(TaskPriority.HIGH)) {
+            gridPane.setBackground(new Background(new BackgroundFill(Color.valueOf(high), new CornerRadii(radii), new Insets(3,3,3,3))));
+        } else if(task.getPriority().equals(TaskPriority.MEDIUM)) {
+            gridPane.setBackground(new Background(new BackgroundFill(Color.valueOf(medium), new CornerRadii(radii), new Insets(3,3,3,3))));
+        } else {
+            gridPane.setBackground(new Background(new BackgroundFill(Color.valueOf(low), new CornerRadii(radii), new Insets(3,3,3,3))));
         }
     }
 
@@ -108,3 +137,4 @@ public class TaskCard extends UiPart{
         return FXML;
     }
 }
+//@@author A0138301U
