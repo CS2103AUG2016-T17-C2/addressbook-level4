@@ -1,5 +1,16 @@
 package seedu.task.ui;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import org.ocpsoft.prettytime.Duration;
+import org.ocpsoft.prettytime.PrettyTime;
+
 //@@author A0138301U
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -117,18 +128,56 @@ public class TaskCard extends UiPart{
     private void setTextForDate() {
         if(!task.getStartDate().value.isEmpty()){
             if(!task.getEndDate().value.isEmpty()) {
-                dateTime.setText(task.getStartDate().value + " till " + task.getEndDate().value);        
+                dateTime.setText(toPrettyDate(task.getStartDate().value) + " till " + toPrettyDate(task.getEndDate().value));        
             } else {
-                dateTime.setText("From: " + task.getStartDate().value);
+                dateTime.setText("From: " + toPrettyDate(task.getStartDate().value));
             }
         } else {
             if(task.getEndDate().value.isEmpty()){
                 dateTime.setManaged(false); //remove field from layout if empty
             } else {
-                dateTime.setText("Due by: " + task.getEndDate().value); 
+                dateTime.setText("Due by: " + toPrettyDate(task.getEndDate().value)); 
             }
         }
     }
+    /* 
+     * @@author: A0141064U
+     * Converts the dateTime to prettyTime format if the dateTime is less than 24hr from current time
+     */
+    public String toPrettyDate(String date){
+        
+        Date dateFromParsedDate = convertStringToDateObject(date);
+        Date tomorrow = getTommorrow();
+        
+        if (!dateFromParsedDate.after(tomorrow)){
+           PrettyTime p = new PrettyTime();
+           List<Duration> durations = p.calculatePreciseDuration(dateFromParsedDate);
+        return p.format(durations);
+        }else{
+            SimpleDateFormat sdf = new SimpleDateFormat ("E dd.MM.yyyy 'at' hh:mm a");
+            return sdf.format(date);
+        }
+
+    }
+
+    private Date getTommorrow() {
+        int tomorrowAsInt = 1;
+        Date today = new Date();
+        Calendar c = Calendar.getInstance(); 
+        c.setTime(today); 
+        c.add(Calendar.DATE, tomorrowAsInt);
+        Date tomorrow = c.getTime();
+        return tomorrow;
+    }
+
+    private Date convertStringToDateObject(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E MMM d HH:mm:ss zzz yyyy");
+        LocalDateTime parsedDate = LocalDateTime.parse(date, formatter);
+        Date dateFromParsedDate = Date.from(parsedDate.atZone(ZoneId.systemDefault()).toInstant());
+        return dateFromParsedDate;
+    }
+    
+
 
     private void setTextForVenue() {
         if(task.getVenue().value.isEmpty()){

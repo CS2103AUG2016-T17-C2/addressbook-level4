@@ -22,5 +22,6 @@
 	<classpathentry kind="lib" path="lib/slf4j-api-1.7.21.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-simple-1.7.21.jar"/>
 	<classpathentry kind="lib" path="lib/commons-lang3-3.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Documents/main/lib/prettytime-4.0.1.Final.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
