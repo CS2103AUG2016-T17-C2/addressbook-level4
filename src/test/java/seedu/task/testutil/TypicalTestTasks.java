@@ -27,11 +27,11 @@ public class TypicalTestTasks {
 
 			play = new TaskBuilder().withName("Play time").withVenue("Playground")
 			        .withStartDate(DateUtils.setHours(date, 12)).withEndDate(DateUtils.setHours(date, 14))
-			        .withPriority("High").withStatus("Active").withPinTask("pin").withTags("play", "healthy").build();
+			        .withPriority("Low").withStatus("Active").withPinTask("pin").withTags("play", "healthy").build();
 			
 			coding = new TaskBuilder().withName("code cs2103").withVenue("School")
 			        .withStartDate(DateUtils.setHours(date, 14)).withEndDate(DateUtils.setHours(date, 16))
-			        .withPriority("High").withStatus("Active").withPinTask("pin").withTags("study", "school").build();
+			        .withPriority("High").withStatus("Active").withPinTask("unpin").withTags("study", "school").build();
 			
 		} catch (IllegalValueException e) {
 			e.printStackTrace();

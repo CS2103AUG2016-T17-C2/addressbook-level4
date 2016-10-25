@@ -31,6 +31,8 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
@@ -322,8 +324,52 @@ public class TestUtil {
      * @param targetIndexInOneIndexedFormat e.g. if the first element to be removed, 1 should be given as index.
      */
     public static TestTask[] removePersonFromList(final TestTask[] list, int targetIndexInOneIndexedFormat) {
-        return removePersonsFromList(list, list[targetIndexInOneIndexedFormat-1]);
+        List<TestTask> listOfPersons = asList(list);
+        sortList(listOfPersons);
+        listOfPersons.remove(targetIndexInOneIndexedFormat-1);
+        return listOfPersons.toArray(new TestTask[listOfPersons.size()]);
     }
+
+    public static void sortList(List<TestTask> listOfPersons) {
+        Collections.sort(listOfPersons, new Comparator<TestTask>() {
+            @Override
+            public int compare(TestTask task1, TestTask task2) 
+            {
+                int value = task1.getPinTask().compareTo(task2.getPinTask());
+                if(value == 0) {
+                    value = task1.getStatus().compareTo(task2.getStatus());
+                    if(value == 0) {
+                        value = task1.getPriority().compareTo(task2.getPriority());
+                        return value;
+                    }
+                    return value;
+                }
+                return value;
+            }
+        });
+    }
+
+    public static void sortReadList(List<ReadOnlyTask> listOfPersons) {
+        Collections.sort(listOfPersons, new Comparator<ReadOnlyTask>() {
+            @Override
+            public int compare(ReadOnlyTask task1, ReadOnlyTask task2) 
+            {
+                int value = task1.getPinTask().compareTo(task2.getPinTask());
+                if(value == 0) {
+                    value = task1.getStatus().compareTo(task2.getStatus());
+                    if(value == 0) {
+                        value = task1.getPriority().compareTo(task2.getPriority());
+                        return value;
+                    }
+                    return value;
+                }
+                return value;
+            }
+        });
+    }
+        
+    
+    
 
     /**
      * Replaces persons[i] with a person.
