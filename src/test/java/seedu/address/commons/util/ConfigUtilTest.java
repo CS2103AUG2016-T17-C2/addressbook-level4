@@ -80,6 +80,7 @@ public class ConfigUtilTest {
         config.setLogLevel(Level.INFO);
         config.setUserPrefsFilePath("data/preferences.json");
         config.setTaskBookFilePath("data/taskbook.xml");
+        config.setShortcutFilePath("data/shortcut.json");
         config.setTaskBookName("MyTaskBook");
         return config;
     }

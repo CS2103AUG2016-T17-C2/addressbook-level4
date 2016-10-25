@@ -53,11 +53,11 @@ public class TypicalTestTasks {
 		}
 	}
 
-	public TestTask[] getTypicalPersons() {
+	public TestTask[] getTypicalTasks() {
 		return new TestTask[] { study, play, coding };
 	}
 
-	public TaskBook getTypicalAddressBook() {
+	public TaskBook getTypicalTaskBook() {
 		TaskBook ab = new TaskBook();
 		loadAddressBookWithSampleData(ab);
 		return ab;
