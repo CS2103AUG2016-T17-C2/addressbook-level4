@@ -11,8 +11,6 @@ import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.testutil.TestUtil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -63,15 +61,8 @@ public class PersonListPanelHandle extends GuiHandle {
      */
     public boolean containsInOrder(int startPosition, ReadOnlyTask... persons) {
         List<ReadOnlyTask> personsInList = getListView().getItems();
-        List<ReadOnlyTask> personsList = Arrays.asList(persons);
-        TestUtil.sortReadList(personsList);
-        List<ReadOnlyTask> temp = new ArrayList<>();
-        temp.addAll(personsInList);
-        TestUtil.sortReadList(temp);
-        if(!personsList.equals(temp)) {
-            return true;
-        }
-/*        // Return false if the list in panel is too short to contain the given list
+
+        // Return false if the list in panel is too short to contain the given list
         if (startPosition + persons.length > personsInList.size()){
             return false;
         }
@@ -81,7 +72,7 @@ public class PersonListPanelHandle extends GuiHandle {
             if (!personsInList.get(startPosition + i).getName().fullName.equals(persons[i].getName().fullName)){
                 return false;
             }
-        }*/
+        }
 
         return true;
     }
