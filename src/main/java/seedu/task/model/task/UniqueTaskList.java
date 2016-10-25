@@ -149,9 +149,11 @@ public class UniqueTaskList implements Iterable<Task> {
 	 *             if the task dates clashes with another existing task in the
 	 *             list
 	 */
+	//@@author A0138301U
 	public void update(Task toReplace, Task toUpdate) throws DateClashTaskException {
 		assert toUpdate != null;
 		int index = internalList.indexOf(toReplace);
+	//@@author A0139958H
 		LogsCenter.getLogger(ModelManager.class).info("Update index: " + index + " toUpdate: " + toUpdate.toString());
 		Task dateClash = isDateClash(index, toUpdate);
 		//if (dateClash != null)

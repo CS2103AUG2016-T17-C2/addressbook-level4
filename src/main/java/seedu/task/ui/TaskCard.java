@@ -87,7 +87,7 @@ public class TaskCard extends UiPart{
     private void addIconsForStatusAndPin() {
         Region region = new Region();
         HBox.setHgrow(region, Priority.ALWAYS);
-        imageContainer.getChildren().add(region); //to push either 1 or 2 icons to the right
+        imageContainer.getChildren().add(region); //to right align all added icons
         if(task.getStatus().equals(Status.DONE)) {
             ImageView done = new ImageView(new Image(DONE_IMAGE));
             imageContainer.getChildren().add(done);

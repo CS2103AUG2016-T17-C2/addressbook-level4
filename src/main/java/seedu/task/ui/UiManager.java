@@ -26,8 +26,10 @@ import java.util.logging.Logger;
  */
 public class UiManager extends ComponentManager implements Ui {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
+    
+    //@@author A0138301U
     private static final String ICON_APPLICATION = "/images/TaskBook.png";
-
+    //@@author
     private Logic logic;
     private Config config;
     private UserPrefs prefs;

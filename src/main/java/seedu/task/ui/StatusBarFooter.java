@@ -98,10 +98,12 @@ public class StatusBarFooter extends UiPart {
         setSyncStatus("Last Updated: " + lastUpdated);
     }
     
+    //@@author A0138301U
     @Subscribe
     public void handleStorageFilepathChangedEvent(StorageFilepathChangedEvent sfce) {
         String lastUpdated = sfce.getTaskBookFilepath();
         logger.info(LogsCenter.getEventHandlingLogMessage(sfce, sfce.toString()));
         setSaveLocation(lastUpdated);
     }
+    //@@author
 }

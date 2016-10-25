@@ -11,7 +11,6 @@ import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
 
 import java.util.Set;
 
-//@@author A0138301U
 /**
  * The API of the Model component.
  */
@@ -40,7 +39,8 @@ public interface Model {
     /** Updates the given task 
      * @throws DateClashTaskException */
     void updateTask(Task toReplace, Task toUpdate) throws DateClashTaskException;
-    
+
+  //@@author A0138301U
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */    
     UnmodifiableObservableList<ReadOnlyTask> getSortedTaskList();
     

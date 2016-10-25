@@ -42,6 +42,6 @@
            </padding>
        </AnchorPane>
       
-      <AnchorPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" styleClass="menu-button" />
+      <AnchorPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" styleClass="root" />
    </children>
 </VBox>

@@ -1,13 +1,20 @@
+.background {
+    -fx-background-color: #E0E0E0;	
+}
+
 .root {
-	-fx-body-color : #F5F5F5;
-	-fx-outer-border : #cecece;
+	-fx-body-color : #FF9800;
+    -fx-background-color: #E0E0E0;	
+    -fx-inner-color: #E0E0E0;	
+	-fx-outer-border : #FF9800;
 }
 .status-bar {
-	-fx-body-color : #E0E0E0;
+	-fx-body-color : white;
 	-fx-outer-border : #E0E0E0;
 	-fx-alignment: left;
 }
 .button,.menu-button,.toggle-button,.split-menu-button {
+    -fx-alignment: center-left;
 	-fx-font-size: 14;
 	-fx-background-radius: 4;
 	-fx-border-radius: 4;
@@ -178,8 +185,8 @@ VBox > .split-menu-button.last > .arrow-button {
 .button:hover,.menu-button:hover,.toggle-button:hover,
 .font-menu-button:hover,
 .split-menu-button > .label:hover, .split-menu-button > .arrow-button:hover {
-	-fx-background-color: #e6e6e6;
-	-fx-border-color: #acacac;
+	-fx-background-color: #E0E0E0;
+	-fx-border-color: #E0E0E0;
 }
 	/*pressed selected*/
 .color-picker:pressed,.color-picker:selected,
@@ -193,7 +200,7 @@ VBox > .split-menu-button.last > .arrow-button {
 .button:pressed, .button:selected,.menu-button:pressed,.menu-button:selected
 ,.toggle-button:pressed,.toggle-button:selected,
 .split-menu-button:pressed > .label, .split-menu-button > .arrow-button:pressed {
-	-fx-background-color: #e6e6e6;
+	-fx-background-color: #E0E0E0;
 	-fx-border-color: #acacac;
 	-fx-effect: innershadow(gaussian, #adadad, 10, 0, 0, 3);
 }
@@ -207,22 +214,22 @@ VBox > .split-menu-button.last > .arrow-button {
 
 .button.primary,.menu-button.primary,.toggle-button.primary,
 .split-menu-button.primary > .label,.split-menu-button.primary > .arrow-button {
-	-fx-border-color: #2e6da4;
+	-fx-border-color: #E0E0E0;
 	-fx-text-fill: white;
 }
 /*hover state*/
 .button.primary:hover,.menu-button.primary:hover,.toggle-button.primary:hover,
 .split-menu-button.primary > .label:hover, .split-menu-button.primary > .arrow-button:hover {
-	-fx-border-color: #204d74;
-	-fx-background-color: #286090;
+	-fx-border-color: #E0E0E0;
+	-fx-background-color: #E0E0E0;
 }
 /*pressed selected*/
 .button.primary:pressed, .button.primary:selected,
 .menu-button.primary:pressed,.menu-button.primary:selected
 ,.toggle-button.primary:pressed,.toggle-button.primary:selected,
 .split-menu-button.primary:pressed > .label, .split-menu-button.primary > .arrow-button:pressed {
-	-fx-background-color: #286090;
-	-fx-border-color: #204d74;
+	-fx-background-color: #E0E0E0;
+	-fx-border-color: #E0E0E0;
 	-fx-effect: innershadow(gaussian, #204d74, 10, 0, 0, 3);
 }
 

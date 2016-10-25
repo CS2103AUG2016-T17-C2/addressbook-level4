@@ -101,7 +101,9 @@ public class MainWindow extends UiPart {
 
         setAccelerators();
         
+        //@@author A0138301U
         registerAsAnEventHandler(this);
+        //@@author
     }
 
     private void setAccelerators() {
@@ -190,9 +192,10 @@ public class MainWindow extends UiPart {
         return this.taskListPanel;
     }
     
+    //@@author A0138301U
     @Subscribe
     public void handleTaskBookChangedEvent(TaskBookChangedEvent tbce) {
         taskListPanel.updateTaskList(logic.getSortedTaskList());
     }
-
+    //@@author
 }
