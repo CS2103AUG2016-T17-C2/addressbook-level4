@@ -30,29 +30,91 @@ public interface ReadOnlyTask {
     default boolean isSameStateAs(ReadOnlyTask other) {
         return other == this; 
     }
-
+    
+    //@@author A0138301U
     /**
      * Formats the Task showing all details.
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" startDate: ")
-                .append(getStartDate())
-                .append(" endDate: ")
-                .append(getEndDate())
-                .append(" Venue: ")
-                .append(getVenue())
-                .append(" Priority: ")
-                .append(getPriority())
-                .append(" Status: ")
-                .append(getStatus())
-                .append(" Tags: ")
-        		.append(" Pin: ")
-        		.append(getPinTask());
+        constructBuilderString(builder);
+        
         getTags().forEach(builder::append);
         return builder.toString();
     }
+    default void constructBuilderString(final StringBuilder builder) {
+        if(!getStartDate().value.isEmpty()) {
+            if(!getEndDate().value.isEmpty()) {
+                constructWithStartAndEnd(builder);
+            } else {
+                constructWithStartOnly(builder);
+            }
+        } else {
+            if(!getEndDate().value.isEmpty()) {
+                constructWithEndOnly(builder);
+            } else {
+                constructWithoutDate(builder);
+            }
+        }
+    }
+    default void constructWithoutDate(final StringBuilder builder) {
+        builder.append(getName())
+        .append(" Venue: ")
+        .append(getVenue())
+        .append(" Priority: ")
+        .append(getPriority())
+        .append(" Status: ")
+        .append(getStatus())
+        .append(" Tags: ")
+        .append(" Pin: ")
+        .append(getPinTask());
+    }
+    default void constructWithEndOnly(final StringBuilder builder) {
+        builder.append(getName())
+        .append(" endDate: ")
+        .append(getEndDate())
+        .append(" Venue: ")
+        .append(getVenue())
+        .append(" Priority: ")
+        .append(getPriority())
+        .append(" Status: ")
+        .append(getStatus())
+        .append(" Tags: ")
+        .append(" Pin: ")
+        .append(getPinTask());
+    }
+    default void constructWithStartOnly(final StringBuilder builder) {
+        builder.append(getName())
+        .append(" startDate: ")
+        .append(getStartDate())
+        .append(" Venue: ")
+        .append(getVenue())
+        .append(" Priority: ")
+        .append(getPriority())
+        .append(" Status: ")
+        .append(getStatus())
+        .append(" Tags: ")
+        .append(" Pin: ")
+        .append(getPinTask());
+    }
+    default void constructWithStartAndEnd(final StringBuilder builder) {
+        builder.append(getName())
+        .append(" startDate: ")
+        .append(getStartDate())
+        .append(" endDate: ")
+        .append(getEndDate())
+        .append(" Venue: ")
+        .append(getVenue())
+        .append(" Priority: ")
+        .append(getPriority())
+        .append(" Status: ")
+        .append(getStatus())
+        .append(" Tags: ")
+        .append(" Pin: ")
+        .append(getPinTask());
+    }
+
+    //@@author A0139958H
 
     /**
      * Returns a string representation of this Task's tags
