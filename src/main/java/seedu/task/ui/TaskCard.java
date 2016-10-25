@@ -78,14 +78,16 @@ public class TaskCard extends UiPart{
         setTextForVenue();
         setTextForDate();
         id.setText(displayedIndex + ". ");
-        priority.setText(task.getPriority().toString());
-        status.setText(task.getStatus().toString());
         tags.setText(task.tagsString());
         setBackgroundColor();
         
+        addIconsForStatusAndPin();
+    }
+
+    private void addIconsForStatusAndPin() {
         Region region = new Region();
         HBox.setHgrow(region, Priority.ALWAYS);
-        imageContainer.getChildren().add(region);
+        imageContainer.getChildren().add(region); //to push either 1 or 2 icons to the right
         if(task.getStatus().equals(Status.DONE)) {
             ImageView done = new ImageView(new Image(DONE_IMAGE));
             imageContainer.getChildren().add(done);
@@ -150,4 +152,4 @@ public class TaskCard extends UiPart{
         return FXML;
     }
 }
-//@@author A0138301U
+//@@author

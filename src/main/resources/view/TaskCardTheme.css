@@ -98,19 +98,19 @@
 
 .cell_big_label {
 	-fx-font-family: "Calibri";
-    -fx-font-size: 18px;
+    -fx-font-size: 22px;
     -fx-text-fill: #010504;
 }
 
 .cell_tag_label {
 	-fx-font-family: "Calibri";
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
 	-fx-font-family: "Calibri";
-    -fx-font-size: 11px;
+    -fx-font-size: 17px;
     -fx-text-fill: #010504;
 }
 
