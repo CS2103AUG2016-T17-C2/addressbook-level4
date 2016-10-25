@@ -43,25 +43,20 @@ public interface ReadOnlyTask {
         return builder.toString();
     }
     default void constructBuilderString(final StringBuilder builder) {
+        builder.append(getName());
         if(!getStartDate().value.isEmpty()) {
-            if(!getEndDate().value.isEmpty()) {
-                constructWithStartAndEnd(builder);
-            } else {
-                constructWithStartOnly(builder);
-            }
-        } else {
-            if(!getEndDate().value.isEmpty()) {
-                constructWithEndOnly(builder);
-            } else {
-                constructWithoutDate(builder);
-            }
+            builder.append(" Start Date: ")
+            .append(getStartDate());
         }
-    }
-    default void constructWithoutDate(final StringBuilder builder) {
-        builder.append(getName())
-        .append(" Venue: ")
-        .append(getVenue())
-        .append(" Priority: ")
+        if(!getEndDate().value.isEmpty()) {
+            builder.append(" End Date: ")
+            .append(getEndDate());
+        }
+        if(!getVenue().value.isEmpty()) {
+            builder.append(" Venue: ")
+            .append(getVenue());
+        }
+        builder.append(" Priority: ")
         .append(getPriority())
         .append(" Status: ")
         .append(getStatus())
@@ -69,50 +64,7 @@ public interface ReadOnlyTask {
         .append(" Pin: ")
         .append(getPinTask());
     }
-    default void constructWithEndOnly(final StringBuilder builder) {
-        builder.append(getName())
-        .append(" endDate: ")
-        .append(getEndDate())
-        .append(" Venue: ")
-        .append(getVenue())
-        .append(" Priority: ")
-        .append(getPriority())
-        .append(" Status: ")
-        .append(getStatus())
-        .append(" Tags: ")
-        .append(" Pin: ")
-        .append(getPinTask());
-    }
-    default void constructWithStartOnly(final StringBuilder builder) {
-        builder.append(getName())
-        .append(" startDate: ")
-        .append(getStartDate())
-        .append(" Venue: ")
-        .append(getVenue())
-        .append(" Priority: ")
-        .append(getPriority())
-        .append(" Status: ")
-        .append(getStatus())
-        .append(" Tags: ")
-        .append(" Pin: ")
-        .append(getPinTask());
-    }
-    default void constructWithStartAndEnd(final StringBuilder builder) {
-        builder.append(getName())
-        .append(" startDate: ")
-        .append(getStartDate())
-        .append(" endDate: ")
-        .append(getEndDate())
-        .append(" Venue: ")
-        .append(getVenue())
-        .append(" Priority: ")
-        .append(getPriority())
-        .append(" Status: ")
-        .append(getStatus())
-        .append(" Tags: ")
-        .append(" Pin: ")
-        .append(getPinTask());
-    }
+
 
     //@@author A0139958H
 
