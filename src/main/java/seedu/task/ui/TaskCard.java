@@ -155,7 +155,7 @@ public class TaskCard extends UiPart{
         return p.format(durations);
         }else{
             SimpleDateFormat sdf = new SimpleDateFormat ("E dd.MM.yyyy 'at' hh:mm a");
-            return sdf.format(date);
+            return sdf.format(dateFromParsedDate);
         }
 
     }
