@@ -16,12 +16,16 @@ import javafx.scene.paint.Color;
 import seedu.task.model.task.TaskPriority;
 import seedu.task.model.task.PinTask;
 import seedu.task.model.task.ReadOnlyTask;
+import seedu.task.model.task.Status;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 
 public class TaskCard extends UiPart{
 
-    private static final String PIN_IMAGE_URL = "/images/pin.png";
+    private static final String PIN_IMAGE = "/images/pinicon.png";
+    private static final String DONE_IMAGE = "/images/done.png";
+    private static final String EXPIRED_IMAGE = "/images/expired.png";
+    private static final String IGNORE_IMAGE = "/images/ignore.png";
     private static final String FXML = "TaskListCard.fxml";
 
     @FXML
@@ -46,8 +50,6 @@ public class TaskCard extends UiPart{
     private Label status;
     @FXML
     private Label tags;
-    @FXML
-    private ImageView pinimage;
     
     private ReadOnlyTask task;
     private int displayedIndex;
@@ -59,7 +61,7 @@ public class TaskCard extends UiPart{
     private final int radii = 10;
     
     public TaskCard(){
-        pinimage = new ImageView(new Image(PIN_IMAGE_URL));
+
 
     }
 
@@ -80,12 +82,23 @@ public class TaskCard extends UiPart{
         status.setText(task.getStatus().toString());
         tags.setText(task.tagsString());
         setBackgroundColor();
+        
+        Region region = new Region();
+        HBox.setHgrow(region, Priority.ALWAYS);
+        imageContainer.getChildren().add(region);
+        if(task.getStatus().equals(Status.DONE)) {
+            ImageView done = new ImageView(new Image(DONE_IMAGE));
+            imageContainer.getChildren().add(done);
+        } else if(task.getStatus().equals(Status.EXPIRED)) {
+            ImageView expired = new ImageView(new Image(EXPIRED_IMAGE));
+            imageContainer.getChildren().add(expired);
+        } else if(task.getStatus().equals(Status.IGNORE)) {
+            ImageView ignore = new ImageView(new Image(IGNORE_IMAGE));
+            imageContainer.getChildren().add(ignore);
+        }
         if(task.getPinTask().equals(PinTask.PIN)) {
-            HBox hbox = new HBox();
-            Region region = new Region();
-            HBox.setHgrow(region, Priority.ALWAYS);
-            hbox.getChildren().add(pinimage);
-            imageContainer.getChildren().addAll(region, pinimage);
+            ImageView pinimage = new ImageView(new Image(PIN_IMAGE));
+            imageContainer.getChildren().add(pinimage);
         }
     }
 

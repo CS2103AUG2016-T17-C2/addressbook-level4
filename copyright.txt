@@ -9,3 +9,11 @@ Copyright by Jan Jan Kovařík - http://glyphicons.com/
 
 Copyright by Visual Pharm - http://www.myiconfinder.com/
 - TaskBook.png
+
+Copyright by Paomedia - http://www.myiconfinder.com/
+- pinicon.png
+
+Copyright by Google - https://design.google.com/icons/
+- done.png
+- expired.png
+- ignore.png
