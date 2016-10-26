@@ -51,7 +51,7 @@ public class Parser {
      */
     public Command parseCommand(String userInput) {
         
-        ShortcutSetting shortcutSetting;
+        
         
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         
@@ -59,13 +59,19 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
         
+        //@@author: A0141064U
+        /*
+         * Retrieving shortcut Settings from json file
+         */
+        ShortcutSetting shortcutSetting;
+        
         try {
             Optional<ShortcutSetting> shortcutOptional = ShortcutUtil.readShortcut(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
             shortcutSetting = shortcutOptional.orElse(new ShortcutSetting());
         } catch (DataConversionException e) {
             shortcutSetting = new ShortcutSetting();
         }
-       
+       //@@author
         String tempCommandWord = matcher.group("commandWord");
 
         final String commandWord = shortcutSetting.convertShortcut(tempCommandWord);
@@ -280,9 +286,9 @@ public class Parser {
             return new IncorrectCommand(ive.getMessage());
         }
     }
-    //@@author 
+    //
 
-    /*
+    /*@@author:A0141064U
      * Parses arguments in the context of the changefilepath command.
      *
      * @param args new filePath args string
@@ -303,13 +309,16 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareShortcut(String args) {
+        int firstElement =1;
+        int secondElement = 2;
         String elements[] = args.split("\\s+");
-        String field = elements[1].trim();
-        String keyword = elements[2].trim();
+        String field = elements[firstElement].trim();
+        String keyword = elements[secondElement].trim();
         try {
             return new ShortcutCommand(field, keyword);
         } catch (IllegalValueException e) {
             return new IncorrectCommand(e.getMessage());
         }
     }
+    //@@author: 
 }
