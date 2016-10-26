@@ -176,7 +176,7 @@ public class TaskCard extends UiPart{
         Date dateFromParsedDate = Date.from(parsedDate.atZone(ZoneId.systemDefault()).toInstant());
         return dateFromParsedDate;
     }
-    
+    //@@author A0138301U
 
 
     private void setTextForVenue() {
