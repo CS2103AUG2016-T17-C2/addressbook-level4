@@ -23,12 +23,12 @@ public class FindCommandTest extends AddressBookGuiTest {
     @Test
     public void find_emptyList(){
         commandBox.runCommand("clear");
-        assertFindResult("find Jean"); //no results
+        assertFindResult("find work"); //no results
     }
 
     @Test
     public void find_invalidCommand_fail() {
-        commandBox.runCommand("findgeorge");
+        commandBox.runCommand("findfood");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
