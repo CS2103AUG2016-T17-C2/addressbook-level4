@@ -50,7 +50,7 @@ public class ConfigUtilTest {
          * That means you should not have more than one exception test in one method
          */
     }
-
+    //@@A0141064U
     @Test
     public void read_fileInOrder_successfullyRead() throws DataConversionException {
 
@@ -59,13 +59,13 @@ public class ConfigUtilTest {
         Config actual = read("TypicalConfig.json").get();
         assertEquals(expected, actual);
     }
-
+    //@@author:
     @Test
     public void read_valuesMissingFromFile_defaultValuesUsed() throws DataConversionException {
         Config actual = read("EmptyConfig.json").get();
         assertEquals(new Config(), actual);
     }
-
+    
     @Test
     public void read_extraValuesInFile_extraValuesIgnored() throws DataConversionException {
         Config expected = getTypicalConfig();
@@ -74,16 +74,17 @@ public class ConfigUtilTest {
         assertEquals(expected, actual);
     }
 
-    private Config getTypicalConfig() {
+    public static Config getTypicalConfig() {
         Config config = new Config();
         config.setAppTitle("TaskBook App");
         config.setLogLevel(Level.INFO);
         config.setUserPrefsFilePath("data/preferences.json");
         config.setTaskBookFilePath("data/taskbook.xml");
+        config.setShortcutFilePath("data/shortcut.json");
         config.setTaskBookName("MyTaskBook");
         return config;
     }
-
+    
     private Optional<Config> read(String configFileInTestDataFolder) throws DataConversionException {
         String configFilePath = addToTestDataPathIfNotNull(configFileInTestDataFolder);
         return new ConfigUtil().readConfig(configFilePath);

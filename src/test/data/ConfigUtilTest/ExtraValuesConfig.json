@@ -1,8 +1,9 @@
 {
-  "appTitle" : "Typical App Title",
+  "appTitle" : "TaskBook App",
   "logLevel" : "INFO",
-  "userPrefsFilePath" : "C:\\preferences.json",
-  "addressBookFilePath" : "addressbook.xml",
-  "addressBookName" : "TypicalAddressBookName",
+  "userPrefsFilePath" : "data/preferences.json",
+  "addressBookFilePath" : "data/taskbook.xml",
+  "ShortcutFilePath" : "data/shortcut.json",
+  "addressBookName" : "MyTaskBook",
   "extra" : "extra value"
 }
