@@ -32,10 +32,10 @@ public class Parser {
     private static final Logger logger = LogsCenter.getLogger(Parser.class);
 
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-
     private static final Pattern TASK_INDEX_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+    private static final Pattern TASK_INDEXES_FORMAT = Pattern.compile("(?<targetIndexes>.*)");
     private static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>\\S+)(?<arguments>.*)");
-
+	public static final String SPLIT_STRING_BY_WHITESPACE = "\\s+";
     
     public Parser() {
 
@@ -178,6 +178,23 @@ public class Parser {
     }
     
     /**
+     * Parses arguments in the context of the delete task command.
+     *
+     * @param args
+     *            full command args string
+     * @return the prepared command
+     */
+    private Command prepareDelete(String args) {
+
+    	Optional<int[]> indexes = parseIndexes(args);
+    	if (!indexes.isPresent())
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    	
+    	return new DeleteCommand(indexes.get());
+    }
+    
+    
+    /**
      * Returns the specified index in the {@code command} IF a positive unsigned
      * integer is given as the index. Returns an {@code Optional.empty()}
      * otherwise.
@@ -194,6 +211,32 @@ public class Parser {
             return Optional.empty();
         }
         return Optional.of(Integer.parseInt(index));
+
+    }
+    
+    /**
+     * Returns all indexes in the {@code command} IF positive unsigned
+     * integers is given as the indexes. Returns an {@code Optional.empty()}
+     * otherwise.
+     */
+    private Optional<int[]> parseIndexes(String command) {
+        final Matcher matcher = TASK_INDEXES_FORMAT.matcher(command.trim());
+
+        if (!matcher.matches()) {
+            return Optional.empty();
+        }
+
+        String[] match = matcher.group("targetIndexes").split(SPLIT_STRING_BY_WHITESPACE);
+        int[] indexes = new int[match.length];
+        
+        for (int i = 0; i < indexes.length; i++) {
+            if (!StringUtil.isUnsignedInteger(match[i]))
+                return Optional.empty();
+            else
+            	indexes[i] = Integer.parseInt(match[i]);
+        }
+        logger.info("Delete Indexes: " + Arrays.toString(indexes));
+        return Optional.of(indexes);
 
     }
 
@@ -235,23 +278,6 @@ public class Parser {
         // replace first delimiter prefix, then split
         final Collection<String> tagStrings = Arrays.asList(tagArguments.replaceFirst(" t/", "").split(" t/"));
         return new HashSet<>(tagStrings);
-    }
-
-    /**
-     * Parses arguments in the context of the delete task command.
-     *
-     * @param args
-     *            full command args string
-     * @return the prepared command
-     */
-    private Command prepareDelete(String args) {
-
-        Optional<Integer> index = parseIndex(args);
-        if (!index.isPresent()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-        }
-
-        return new DeleteCommand(index.get());
     }
 
     /**
