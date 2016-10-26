@@ -36,6 +36,8 @@ public class AddCommand extends Command {
      * 
      */
     public AddCommand(Task task) {
+    	if (task == null)
+    		throw new NullPointerException();
     	this.toAdd = task;
     }
 
@@ -51,7 +53,6 @@ public class AddCommand extends Command {
             return new CommandResult(e.getMessage());
         } 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-
     }
 
 }
