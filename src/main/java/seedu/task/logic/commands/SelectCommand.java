@@ -1,5 +1,7 @@
 package seedu.task.logic.commands;
 
+import java.util.Arrays;
+
 import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.UnmodifiableObservableList;
@@ -33,7 +35,8 @@ public class SelectCommand extends Command {
 
         if (lastShownList.size() < targetIndex) {
             indicateAttemptToExecuteIncorrectCommand();
-            return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            return new CommandResult(String.format(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX,
+			        Arrays.toString(new int[]{targetIndex})));
         }
 
         EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex - 1));

@@ -278,7 +278,7 @@ public class LogicManagerTest {
             model.addTask(p);
         }
 
-        assertCommandBehavior(commandWord + " 3", expectedMessage, model.getTaskBook(), taskList);
+        assertCommandBehavior(commandWord + " 3", String.format(expectedMessage, Arrays.toString(new int[]{3}), model.getTaskBook(), taskList));
     }
 
     @Test
@@ -326,11 +326,12 @@ public class LogicManagerTest {
         List<Task> threetasks = helper.generatetaskList(3);
 
         TaskBook expectedAB = helper.generateAddressBook(threetasks);
-        expectedAB.removeTask(threetasks.get(0));
+        int[] toDelete = {1};
+        expectedAB.removeTask(threetasks.get(toDelete[0]-1));
         helper.addToModel(model, threetasks);
 
         assertCommandBehavior("delete 1",
-                String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, threetasks.get(0)),
+                String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, Arrays.toString(toDelete)),
                 expectedAB,
                 expectedAB.getTaskList());
     }
