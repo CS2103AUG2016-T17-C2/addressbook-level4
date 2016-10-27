@@ -45,7 +45,7 @@ public class Config {
     public void setUserPrefsFilePath(String userPrefsFilePath) {
          this.userPrefsFilePath = userPrefsFilePath;
     }
-
+    //@@author A0141064U
     public String getTaskBookFilePath() {
         return taskBookFilePath;
     }
@@ -53,7 +53,7 @@ public class Config {
     public void setTaskBookFilePath(String taskBookFilePath) {
         this.taskBookFilePath = taskBookFilePath;
     }
-
+    //@@author
     public String getTaskBookName() {
         return taskBookName;
     }
@@ -62,6 +62,7 @@ public class Config {
         this.taskBookName = addressBookName;
     }
     
+    //@@author A0141064U
     public String getShortcutFilePath() {
         return shortcutFilePath;
     }
@@ -69,7 +70,7 @@ public class Config {
     public void setShortcutFilePath(String shortcutFilePath) {
         this.shortcutFilePath = shortcutFilePath;
     }
-
+  //@@author
 
     @Override
     public boolean equals(Object other) {

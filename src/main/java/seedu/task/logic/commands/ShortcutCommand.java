@@ -1,15 +1,17 @@
 package seedu.task.logic.commands;
-//@@ author A0141064U
+
+//@@author A0141064U
+
 import static seedu.task.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.io.IOException;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import seedu.task.commons.core.Config;
 import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.ShortcutSetting;
-import seedu.task.commons.events.model.ShortcutChangedEvent;
 import seedu.task.commons.events.model.StorageFilepathChangedEvent;
 import seedu.task.commons.exceptions.DataConversionException;
 import seedu.task.commons.exceptions.IllegalValueException;
@@ -47,9 +49,16 @@ public class ShortcutCommand extends Command {
      * Changes the name of the command
      */
     public ShortcutCommand(String shortcutField, String shortkey) throws IllegalValueException {
-
+        assert shortcutField != null;
+        assert shortkey != null;
+        
         this.shortcutField = shortcutField;
         this.shortkey = shortkey;
+
+        Config config = new Config();
+        if (!config.getShortcutFilePath().equals(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH)){
+              config.setShortcutFilePath(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);    
+              }
         
         try {
             Optional<ShortcutSetting> shortcutOptional = ShortcutUtil.readShortcut(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
@@ -62,10 +71,16 @@ public class ShortcutCommand extends Command {
         if (shortkey.equals(shortcutSetting.getAdd())|shortkey.equals(shortcutSetting.getDelete())|shortkey.equals(shortcutSetting.getList())){
             throw new IllegalValueException(MESSAGE_DUPLICATE_SHORTKEY);
         }
+        
         run(); //matches and edits the shortkeys;
+        saveShortcutFile();
+    }
+
+    private void saveShortcutFile() {
         try {
             ShortcutUtil.saveShortcut(this.shortcutSetting, ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
         } catch (IOException e) {
+            new CommandResult(e.getMessage());
             logger.warning("Failed to save shortcut file");
             e.printStackTrace();
         }
@@ -97,7 +112,6 @@ public class ShortcutCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        EventsCenter.getInstance().post(new ShortcutChangedEvent(this.shortcutSetting));
         return new CommandResult(String.format(MESSAGE_SUCCESS + shortcutField + " changed to " + shortkey));
 
     }

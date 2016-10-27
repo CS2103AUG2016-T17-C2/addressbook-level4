@@ -1,5 +1,6 @@
 package seedu.task.commons.events.model;
-//@@ author A0141064U
+//@@author A0141064U
+
 import seedu.task.commons.core.Config;
 import seedu.task.commons.events.BaseEvent;
 

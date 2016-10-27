@@ -9,7 +9,6 @@ import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.ShortcutSetting;
 import seedu.task.commons.core.Version;
-import seedu.task.commons.events.model.ShortcutChangedEvent;
 import seedu.task.commons.events.model.StorageFilepathChangedEvent;
 import seedu.task.commons.events.ui.ExitAppRequestEvent;
 import seedu.task.commons.exceptions.DataConversionException;
@@ -180,12 +179,14 @@ public class MainApp extends Application {
         Platform.exit();
         System.exit(0);
     }
+    
     //@@author A0141064U
     @Subscribe
     public void handleChangeFilepathEvent(StorageFilepathChangedEvent event){
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         config = this.initConfig(event.newConfigFilepathString);
         storage = new StorageManager(config.getTaskBookFilePath(), config.getUserPrefsFilePath());
+        assert config.getTaskBookFilePath().equals(event.getTaskBookFilepath());
 
     }
     //@@author

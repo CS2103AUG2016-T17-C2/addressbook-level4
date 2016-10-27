@@ -1,5 +1,6 @@
 package seedu.task.commons.core;
 //@@author A0141064U
+
 import java.awt.Point;
 import java.util.Objects;
 import java.util.logging.Logger;
@@ -54,6 +55,8 @@ public class ShortcutSetting {
     }
 
     public String convertShortcut(String tempCommandWord) {
+        assert tempCommandWord!=null;
+        
         if (tempCommandWord.equals(add)) {
             tempCommandWord = "add";
         }

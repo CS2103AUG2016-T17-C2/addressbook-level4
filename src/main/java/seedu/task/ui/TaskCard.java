@@ -6,11 +6,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-
-import org.ocpsoft.prettytime.Duration;
 import org.ocpsoft.prettytime.PrettyTime;
-
 //@@author A0138301U
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -128,24 +124,37 @@ public class TaskCard extends UiPart {
         }
     }
 
+    //@@author A0141064U
     private void setTextForDate() {
         if (!task.getStartDate().value.isEmpty()) {
             if (!task.getEndDate().value.isEmpty()) {
-                dateTime.setText(
-                        toPrettyDate(task.getStartDate().value) + " till " + toPrettyDate(task.getEndDate().value));
+                if (toSimpleDateFormat(task.getStartDate().value)
+                        .compareTo(toSimpleDateFormat(task.getEndDate().value)) != 0) {
+                    dateTime.setText(toSimpleTimeFormat(task.getStartDate().value) + " - "
+                            + toSimpleTimeFormat(task.getEndDate().value) + System.lineSeparator()
+                            + toSimpleDateFormat(task.getStartDate().value) + " - "
+                            + toSimpleDateFormat(task.getEndDate().value) + System.lineSeparator()
+                            + toPrettyDate(task.getStartDate().value));
+                } else {
+                    dateTime.setText(toSimpleTimeFormat(task.getStartDate().value) + " - "
+                            + toSimpleTimeFormat(task.getEndDate().value) + System.lineSeparator()
+                            + toSimpleDateFormat(task.getStartDate().value));
+                }
             } else {
-                dateTime.setText("From: " + toPrettyDate(task.getStartDate().value));
+                dateTime.setText(toSimpleTimeFormat(task.getStartDate().value) + " "
+                        + toSimpleDateFormat(task.getStartDate().value) + System.lineSeparator()
+                        + toPrettyDate(task.getStartDate().value));
             }
         } else {
             if (task.getEndDate().value.isEmpty()) {
                 dateTime.setManaged(false); // remove field from layout if empty
             } else {
-                dateTime.setText("Due by: " + toPrettyDate(task.getEndDate().value));
+                dateTime.setText(toSimpleTimeFormat(task.getEndDate().value) + " "
+                        + toSimpleDateFormat(task.getEndDate().value));
             }
         }
     }
 
-    // @@author: A0141064U
     /*
      * Converts the dateTime to prettyTime format if the dateTime is less than
      * 24hr from current time
@@ -157,13 +166,24 @@ public class TaskCard extends UiPart {
 
         if (!dateFromParsedDate.after(tomorrow)) {
             PrettyTime p = new PrettyTime();
-            List<Duration> durations = p.calculatePreciseDuration(dateFromParsedDate);
-            return p.format(durations);
+            // List<Duration> durations =
+            // p.calculatePreciseDuration(dateFromParsedDate);
+            return p.format(dateFromParsedDate);
         } else {
-            SimpleDateFormat sdf = new SimpleDateFormat("E dd.MM.yyyy 'at' hh:mm a");
-            return sdf.format(dateFromParsedDate);
+            return null;
         }
+    }
 
+    public String toSimpleDateFormat(String date) {
+        Date dateFromParsedDate = convertStringToDateObject(date);
+        SimpleDateFormat sdf = new SimpleDateFormat("E dd.MM.yyyy");
+        return sdf.format(dateFromParsedDate);
+    }
+
+    public String toSimpleTimeFormat(String date) {
+        Date dateFromParsedDate = convertStringToDateObject(date);
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
+        return sdf.format(dateFromParsedDate);
     }
 
     private Date getTommorrow() {

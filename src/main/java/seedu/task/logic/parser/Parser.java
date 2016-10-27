@@ -59,8 +59,8 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
         
-        //@@author: A0141064U
-        /*
+        //@@author A0141064U
+        /**
          * Retrieving shortcut Settings from json file
          */
         ShortcutSetting shortcutSetting;
@@ -71,10 +71,10 @@ public class Parser {
         } catch (DataConversionException e) {
             shortcutSetting = new ShortcutSetting();
         }
-       //@@author
         String tempCommandWord = matcher.group("commandWord");
 
         final String commandWord = shortcutSetting.convertShortcut(tempCommandWord);
+        //@@author
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
@@ -312,9 +312,9 @@ public class Parser {
             return new IncorrectCommand(ive.getMessage());
         }
     }
-    //@@author:A0141064U
+    //@@author A0141064U
 
-    /*
+    /**
      * Parses arguments in the context of the changefilepath command.
      *
      * @param args new filePath args string
