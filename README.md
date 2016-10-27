@@ -2,7 +2,7 @@
 
 # Address Book (Level 4)
 
-<img src="docs/images/UI design.jpeg" width="600"><br>
+<img src="docs/images/UI.png" width="600"><br>
 
 We are bombarded with ‘things to do’ continuously. Some things need to be done during specific **times** (e.g., attend meeting), some have **deadlines** (e.g., submit report), and others are simply ‘to be done someday’ (e.g., read ‘Lord of the Rings’). The pile of **todo** items accumulates and weighs heavily on our mind at times. Sometimes things go out of control and we forget to do certain things on time.
 

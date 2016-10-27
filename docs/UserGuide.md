@@ -18,7 +18,7 @@ This step will be required only for the first time you use the application. It i
 
 To add a task, type `add` taskname date time task_priority tagging venue recurrence pin
 
-* Eg, user can type `add` play soccer, date 120516, time 1212, high priority, #sport, @town green, repeat weekly, pin
+* Eg, user can type `add` play soccer by 12/05/16 2pm high #sport @town green repeat weekly pin
 
 Only command and taskname are compulsory; other fields are optional and will take default or null values if not entered. The rules for adding to the other fields are as follows:
 
@@ -93,9 +93,6 @@ The tasks that are done, sorted from the most recent to the least recent
 `Pin` : all pinned tasks
 * Eg: Typing `list pin` return a list of pinned tasks
 
-`Free slots`: all free slots 
-* Eg: Typing `list slots 120316` returns a list of free slots on 12 March 2016
-
 **Step 2c:Sorting Tasks:**
  
 When the `list` that the user is looking at is not what he wants, he can use the `sort` function
@@ -104,16 +101,8 @@ When the `list` that the user is looking at is not what he wants, he can use the
 * `Time`: Type sort earliest to latest or sort latest to earliest
 * `Priority` : sort high to low or sort low to high
 
-**Step 2d: Searching for tasks**
 
-The `search` for tasks, type `search` `search_term` `search_field`
-
-Only the `search term` is required.
-* Eg: Typing `search meeting` returns a list of tasks that have the name ‘meeting’. Alternatively, 
-* Eg: Typing `search meeting @Utown` returns a list tasks that have the name ‘meeting’ situated at Utown
-* Eg: Typing `search lab date 120316` returns lab sessions on 12 March 2016
-
-**Step 2e: Deleting tasks**
+**Step 2d: Deleting tasks**
 
 To `delete` a task on the list that is on the screen, type `delete` [ index of task in the list] 
 * eg `delete 1 `
@@ -121,18 +110,12 @@ To `delete` a task on the list that is on the screen, type `delete` [ index of t
 Alternatively, you can type the name of the task  
 * eg `delete shopping`
 
-**Step 2f: Postpone**
 
-To `postpone` a task on the list that is on the screen, type `postpone` [index of task in the list or name of task] to [new deadline] 
-* eg `type postpone 3 to 120316` or eg `postpone shopping to 120316`
 
-Alternatively, to postpone the task to the next available free slot, by simply 
-* typing `postpone 3` or `postpone shopping`.
-
-**Step 2g: editing tasks**
+**Step 2e: editing tasks**
 
 To edit a task type `update` (index of task in the list or name of task) (field) (changes)
-* Eg: Typing `update 1 date 120316` will change the deadline of the first task to 12 March 2016
+* Eg: Typing `update 1 by 120316` will change the deadline of the first task to 12 March 2016
 * Eg: Typing `update soccer @Casa` will change the venue of the soccer task to Casa.
 
 **Undo:**
@@ -140,11 +123,11 @@ To undo the latest change to taskbook, type `undo`.
 
 
 **Creating shortcuts**
-To change a shortkey for the command, type `shortcut` + `{the field you are changeing}` + `{shortkey you want to initialise}` eg: ``shortcut add a` changes the short key for `add` to `a`. The next time you want to execute `add` to add 'running' to your tasklist, simply type `a running`.
+To change a shortkey for the command, type `shortcut` + `{the field you are changing}` + `{shortkey you want to initialise}` eg: ``shortcut add a` changes the short key for `add` to `a`. The next time you want to execute `add` to add 'running' to your tasklist, simply type `a running`.
 
 This feature is only available for Add, Delete and List. 
 
 **Moving taskbook to another storage location** 
-To move taskbook, type `move` + the `new storage location` that you want to move taskbook to. 
+To move taskbook, type `file` + the `new storage location` that you want to move taskbook to. 
 
 eg `move \dropbox\mytask` will keep taskbook in a folder called 'dropbox', which will be named 'mytask.xml'. 
