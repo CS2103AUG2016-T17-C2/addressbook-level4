@@ -31,7 +31,7 @@ import seedu.task.model.task.Status;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 
-public class TaskCard extends UiPart{
+public class TaskCard extends UiPart {
 
     private static final String PIN_IMAGE = "/images/pinicon.png";
     private static final String DONE_IMAGE = "/images/done.png";
@@ -61,22 +61,21 @@ public class TaskCard extends UiPart{
     private Label status;
     @FXML
     private Label tags;
-    
+
     private ReadOnlyTask task;
     private int displayedIndex;
-    
+
     private String high = "#0288D1";
     private String medium = "#81D4FA";
     private String low = "#E1F5FE";
-    
-    private final int radii = 10;
-    
-    public TaskCard(){
 
+    private final int radii = 10;
+
+    public TaskCard() {
 
     }
 
-    public static TaskCard load(ReadOnlyTask task, int displayedIndex){
+    public static TaskCard load(ReadOnlyTask task, int displayedIndex) {
         TaskCard card = new TaskCard();
         card.task = task;
         card.displayedIndex = displayedIndex;
@@ -91,70 +90,77 @@ public class TaskCard extends UiPart{
         id.setText(displayedIndex + ". ");
         tags.setText(task.tagsString());
         setBackgroundColor();
-        
+
         addIconsForStatusAndPin();
     }
 
     private void addIconsForStatusAndPin() {
         Region region = new Region();
         HBox.setHgrow(region, Priority.ALWAYS);
-        imageContainer.getChildren().add(region); //to right align all added icons
-        if(task.getStatus().equals(Status.DONE)) {
+        imageContainer.getChildren().add(region); // to right align all added
+                                                  // icons
+        if (task.getStatus().equals(Status.DONE)) {
             ImageView done = new ImageView(new Image(DONE_IMAGE));
             imageContainer.getChildren().add(done);
-        } else if(task.getStatus().equals(Status.EXPIRED)) {
+        } else if (task.getStatus().equals(Status.EXPIRED)) {
             ImageView expired = new ImageView(new Image(EXPIRED_IMAGE));
             imageContainer.getChildren().add(expired);
-        } else if(task.getStatus().equals(Status.IGNORE)) {
+        } else if (task.getStatus().equals(Status.IGNORE)) {
             ImageView ignore = new ImageView(new Image(IGNORE_IMAGE));
             imageContainer.getChildren().add(ignore);
         }
-        if(task.getPinTask().equals(PinTask.PIN)) {
+        if (task.getPinTask().equals(PinTask.PIN)) {
             ImageView pinimage = new ImageView(new Image(PIN_IMAGE));
             imageContainer.getChildren().add(pinimage);
         }
     }
 
     private void setBackgroundColor() {
-        if(task.getPriority().equals(TaskPriority.HIGH)) {
-            gridPane.setBackground(new Background(new BackgroundFill(Color.valueOf(high), new CornerRadii(radii), new Insets(3,3,3,3))));
-        } else if(task.getPriority().equals(TaskPriority.MEDIUM)) {
-            gridPane.setBackground(new Background(new BackgroundFill(Color.valueOf(medium), new CornerRadii(radii), new Insets(3,3,3,3))));
+        if (task.getPriority().equals(TaskPriority.HIGH)) {
+            gridPane.setBackground(new Background(
+                    new BackgroundFill(Color.valueOf(high), new CornerRadii(radii), new Insets(3, 3, 3, 3))));
+        } else if (task.getPriority().equals(TaskPriority.MEDIUM)) {
+            gridPane.setBackground(new Background(
+                    new BackgroundFill(Color.valueOf(medium), new CornerRadii(radii), new Insets(3, 3, 3, 3))));
         } else {
-            gridPane.setBackground(new Background(new BackgroundFill(Color.valueOf(low), new CornerRadii(radii), new Insets(3,3,3,3))));
+            gridPane.setBackground(new Background(
+                    new BackgroundFill(Color.valueOf(low), new CornerRadii(radii), new Insets(3, 3, 3, 3))));
         }
     }
 
     private void setTextForDate() {
-        if(!task.getStartDate().value.isEmpty()){
-            if(!task.getEndDate().value.isEmpty()) {
-                dateTime.setText(toPrettyDate(task.getStartDate().value) + " till " + toPrettyDate(task.getEndDate().value));        
+        if (!task.getStartDate().value.isEmpty()) {
+            if (!task.getEndDate().value.isEmpty()) {
+                dateTime.setText(
+                        toPrettyDate(task.getStartDate().value) + " till " + toPrettyDate(task.getEndDate().value));
             } else {
                 dateTime.setText("From: " + toPrettyDate(task.getStartDate().value));
             }
         } else {
-            if(task.getEndDate().value.isEmpty()){
-                dateTime.setManaged(false); //remove field from layout if empty
+            if (task.getEndDate().value.isEmpty()) {
+                dateTime.setManaged(false); // remove field from layout if empty
             } else {
-                dateTime.setText("Due by: " + toPrettyDate(task.getEndDate().value)); 
+                dateTime.setText("Due by: " + toPrettyDate(task.getEndDate().value));
             }
         }
     }
-    /* 
-     * @@author: A0141064U
-     * Converts the dateTime to prettyTime format if the dateTime is less than 24hr from current time
+
+    // @@author: A0141064U
+    /*
+     * Converts the dateTime to prettyTime format if the dateTime is less than
+     * 24hr from current time
      */
-    public String toPrettyDate(String date){
-        
+    public String toPrettyDate(String date) {
+
         Date dateFromParsedDate = convertStringToDateObject(date);
         Date tomorrow = getTommorrow();
-        
-        if (!dateFromParsedDate.after(tomorrow)){
-           PrettyTime p = new PrettyTime();
-           List<Duration> durations = p.calculatePreciseDuration(dateFromParsedDate);
-        return p.format(durations);
-        }else{
-            SimpleDateFormat sdf = new SimpleDateFormat ("E dd.MM.yyyy 'at' hh:mm a");
+
+        if (!dateFromParsedDate.after(tomorrow)) {
+            PrettyTime p = new PrettyTime();
+            List<Duration> durations = p.calculatePreciseDuration(dateFromParsedDate);
+            return p.format(durations);
+        } else {
+            SimpleDateFormat sdf = new SimpleDateFormat("E dd.MM.yyyy 'at' hh:mm a");
             return sdf.format(dateFromParsedDate);
         }
 
@@ -163,8 +169,8 @@ public class TaskCard extends UiPart{
     private Date getTommorrow() {
         int tomorrowAsInt = 1;
         Date today = new Date();
-        Calendar c = Calendar.getInstance(); 
-        c.setTime(today); 
+        Calendar c = Calendar.getInstance();
+        c.setTime(today);
         c.add(Calendar.DATE, tomorrowAsInt);
         Date tomorrow = c.getTime();
         return tomorrow;
@@ -176,12 +182,11 @@ public class TaskCard extends UiPart{
         Date dateFromParsedDate = Date.from(parsedDate.atZone(ZoneId.systemDefault()).toInstant());
         return dateFromParsedDate;
     }
-    //@@author A0138301U
-
+    // @@author A0138301U
 
     private void setTextForVenue() {
-        if(task.getVenue().value.isEmpty()){
-            venue.setManaged(false); //remove field from layout if empty
+        if (task.getVenue().value.isEmpty()) {
+            venue.setManaged(false); // remove field from layout if empty
         } else {
             venue.setText("Venue: " + task.getVenue().value);
         }
@@ -193,7 +198,7 @@ public class TaskCard extends UiPart{
 
     @Override
     public void setNode(Node node) {
-        cardPane = (HBox)node;
+        cardPane = (HBox) node;
     }
 
     @Override
@@ -201,4 +206,4 @@ public class TaskCard extends UiPart{
         return FXML;
     }
 }
-//@@author
+// @@author

@@ -180,7 +180,7 @@ public class MainApp extends Application {
         Platform.exit();
         System.exit(0);
     }
-    
+    //@@author A0141064U
     @Subscribe
     public void handleChangeFilepathEvent(StorageFilepathChangedEvent event){
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
@@ -188,7 +188,7 @@ public class MainApp extends Application {
         storage = new StorageManager(config.getTaskBookFilePath(), config.getUserPrefsFilePath());
 
     }
-
+    //@@author
     
      
 
