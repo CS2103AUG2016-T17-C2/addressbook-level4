@@ -290,12 +290,25 @@ Priority | As a ... | I want to ... | So that ...
 
 #### Use case: Delete task
 
+**MSS**
+
+1.	User requests to delete task(s). 
+2.	User enters the indexes of the task that are shown in the UI list 
+3.	taskBook performs delete operation for each task
+4.	taskBook removes the deleted tasks from the UI list and shows the success message
+Case Close
+
+**Extensions**
+
+2a. User enters incorrect index. 
+Â·	taskBook provides feedback that the index is invalid
+
 #### Use case: Add a task
 
 **MSS**
 
 1.	User requests to add a task. 
-2.	User enters the task description (name, tags, venue(optional), date, whether to pin task (optional), priority level (Optional - default: medium)) 
+2.	User enters the task description name (compulsory), tags, venue, date, whether to pin task, priority level (default: medium)
 3.	taskBook saves the task details
 4.	taskBook displays task on task board (that is sorted according to deadline) with some important details (name, tags)
 Case Close
@@ -303,10 +316,12 @@ Case Close
 **Extensions**
 
 2a. User wants to pin the task. 
-·	taskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
-2a. User chooses to prioritise task
-·	Task is colour coded ( high-red, low-blue, default-black)
-·	High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
+Â·	taskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
+2b. User chooses to prioritise task
+Â·	Task is colour coded ( high-red, low-blue, default-black)
+Â·	High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
+2c. The start date and end date of the task clashes with another task.
+    taskBook provides feedback to the user of the clashing of dates with the another task
 
 #### Use case: Searching for a task
 Precondition: taskBook is already showing a list of tasks on the screen ( either by default main page or when the user is looking through a folder ( done, ignore, active)
@@ -321,27 +336,27 @@ Case Close
 **Extensions**
 
 1a. User types in a string that cannot be found in the list of tasks
-·	taskBook returns 'string not found'
+Â·	taskBook returns 'string not found'
 1a. There is no tasks stored at all
-·	taskBook returns 'there are no tasks in taskBook'
+Â·	taskBook returns 'there are no tasks in taskBook'
 3. User does not find the task he/she is looking for
-·	User types in a different search command or returns to main page.
+Â·	User types in a different search command or returns to main page.
 
 #### Use case: Sorting the list of tasks to find a task
 Precondition: taskBook is already showing a list of tasks on the screen ( either by default main page or when the user is looking through a folder ( done, ignore, active) 
 
 **MSS**
 
-1.	User request to sort the list ( according to when it was entered into taskBook/ date it will expire/ time the event is etc…) 
+1.	User request to sort the list ( according to when it was entered into taskBook/ date it will expire/ time the event is etcÂ…) 
 2.	taskBook sorts the list and displays the sorted list
 3.	User selects the task by typing the index of the task it wants to view.
 
 **Extensions**
 
 1a. There are no items displayed on the screen (ie search and could not find results) 
-·	taskBook returns 'there are no items to sort'
+Â·	taskBook returns 'there are no items to sort'
 3. User selects the wrong task
-·	User types in a command to return taskBook to the previous page and re-picks the correct task
+Â·	User types in a command to return taskBook to the previous page and re-picks the correct task
 
 #### Use case: Editing a task
 Precondition: User has selected the task and is viewing the details of the task that he/she wants to edit either after:
@@ -359,7 +374,7 @@ Case close
 **Extensions**
 
 2. User did not enter a valid field that she wants to edit
-·	taskBook returns a 'field not valid' error, and says that edits were not done
+Â·	taskBook returns a 'field not valid' error, and says that edits were not done
 
 #### Use case: Creating a shortcut
 
@@ -371,7 +386,7 @@ Case close
 **Extension**
 
 1a. Command that user typed in does not exist
-·	taskBook returns a 'command does not exist' error and says that it is unable to save the shortcut.
+Â·	taskBook returns a 'command does not exist' error and says that it is unable to save the shortcut.
 1a. User did not want to 
 
 
