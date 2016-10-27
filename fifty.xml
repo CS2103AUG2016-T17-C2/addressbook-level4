@@ -5,9 +5,9 @@
         <startDate></startDate>
         <endDate></endDate>
         <venue></venue>
-        <priority>MEDIUM</priority>
-        <status>ACTIVE</status>
-        <pinTask>UNPIN</pinTask>
+        <priority>HIGH</priority>
+        <status>DONE</status>
+        <pinTask>PIN</pinTask>
     </tasks>
     <tasks>
         <name>play by the day after</name>
@@ -108,7 +108,7 @@
         <endDate>Fri Oct 28 08:00:00 SGT 2016</endDate>
         <venue> towngreen</venue>
         <priority>MEDIUM</priority>
-        <status>ACTIVE</status>
+        <status>IGNORE</status>
         <pinTask>PIN</pinTask>
     </tasks>
     <tasks>
@@ -135,7 +135,7 @@
         <endDate>Sat Oct 29 01:00:00 SGT 2016</endDate>
         <venue> TPdkuyvd hv</venue>
         <priority>MEDIUM</priority>
-        <status>ACTIVE</status>
+        <status>DONE</status>
         <pinTask>UNPIN</pinTask>
     </tasks>
     <tasks>
@@ -153,7 +153,7 @@
         <endDate>Sat Oct 29 02:00:00 SGT 2016</endDate>
         <venue> TPdkuy hv</venue>
         <priority>MEDIUM</priority>
-        <status>ACTIVE</status>
+        <status>DONE</status>
         <pinTask>UNPIN</pinTask>
     </tasks>
     <tasks>
@@ -162,7 +162,7 @@
         <endDate>Sat Oct 29 03:00:00 SGT 2016</endDate>
         <venue> kuyvd hv</venue>
         <priority>MEDIUM</priority>
-        <status>ACTIVE</status>
+        <status>IGNORE</status>
         <pinTask>UNPIN</pinTask>
     </tasks>
     <tasks>
@@ -180,7 +180,7 @@
         <endDate>Sat Oct 29 05:00:00 SGT 2016</endDate>
         <venue> TPdkuyvd hv</venue>
         <priority>MEDIUM</priority>
-        <status>ACTIVE</status>
+        <status>DONE</status>
         <pinTask>UNPIN</pinTask>
     </tasks>
     <tasks>
@@ -188,9 +188,9 @@
         <startDate></startDate>
         <endDate>Sat Oct 29 06:00:00 SGT 2016</endDate>
         <venue> TPdkuyvd hv</venue>
-        <priority>MEDIUM</priority>
-        <status>ACTIVE</status>
-        <pinTask>UNPIN</pinTask>
+        <priority>LOW</priority>
+        <status>DONE</status>
+        <pinTask>PIN</pinTask>
     </tasks>
     <tasks>
         <name>gcf</name>
