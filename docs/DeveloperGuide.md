@@ -288,6 +288,60 @@ Priority | As a ... | I want to ... | So that ...
 
 (For all use cases below, the **System** is the `Taskbook` and the **Actor** is the `user`, unless specified otherwise)
 
+#### Use case: Add a task
+
+**MSS**
+
+1.	User requests to add a task. 
+2.	User enters the task description name (compulsory), tags, venue, date, whether to pin task, priority level (default: medium)
+3.	taskBook saves the task details
+4.	taskBook displays task on task board (that is sorted according to deadline) with task details
+Case Close
+
+**Extensions**
+
+2a. User wants to pin the task. 
+    taskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
+2b. User chooses to prioritise task
+    Task is colour coded ( high-dark blue, low-light blue, default-blue)
+    High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
+2c. The start date and end date of the task clashes with another task.
+    taskBook provides feedback to the user of the clashing of dates with the another task
+2d. User enter invalid start/end date
+    taskBook performs a series of input validation for dates that checks whether the entered date is an upcoming date, start date is before the end date and there are no more than 2 dates in the user input. taskBook provides feedback to the user if the entered date is found to be an invalid date
+2e. User enters no task Name
+    taskBook provides feedback to the user that task Name is compulsory
+2f. User enters duplicate tags
+    taskBook provides feedback to the user of the duplicate tags
+    
+#### Use case: Update a task
+
+**MSS**
+
+1.	User requests to update a task. 
+2.	User enters the index of the task to be updated followed by the update parameters (task description name, tags, venue, date, whether to pin task, priority level)
+3.	taskBook updates the task details
+4.	taskBook displays task on task board (that is sorted according to deadline) with task details
+Case Close
+
+**Extensions**
+
+2a. User wants to pin the task. 
+    taskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
+2b. User chooses to prioritise task
+    Task is colour coded ( high-dark blue, low-light blue, default-blue)
+    High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
+2c. The start date and end date of the task clashes with another task.
+    taskBook provides feedback to the user of the clashing of dates with the another task
+2d. User enter invalid start/end date
+    taskBook performs a series of input validation for dates that checks whether the entered date is an upcoming date, start date is before the end date and there are no more than 2 dates in the user input. taskBook provides feedback to the user if the entered date is found to be an invalid date
+2e. User enters no task Name
+    taskBook provides feedback to the user that task Name is compulsory
+2f. User enters duplicate tags
+    taskBook provides feedback to the user of the duplicate tags
+2g. User enters incorrect index. 
+    taskBook provides feedback that the index is invalid
+
 #### Use case: Delete task
 
 **MSS**
@@ -301,27 +355,25 @@ Case Close
 **Extensions**
 
 2a. User enters incorrect index. 
-·	taskBook provides feedback that the index is invalid
+    taskBook provides feedback that the index is invalid
 
-#### Use case: Add a task
+
+#### Use case: Undo last operation
 
 **MSS**
 
-1.	User requests to add a task. 
-2.	User enters the task description name (compulsory), tags, venue, date, whether to pin task, priority level (default: medium)
-3.	taskBook saves the task details
-4.	taskBook displays task on task board (that is sorted according to deadline) with some important details (name, tags)
+1.	User requests to undo the last operation. 
+3.	taskBook reverts back to the last version
+4.	taskBook shows the success message
 Case Close
 
 **Extensions**
 
-2a. User wants to pin the task. 
-·	taskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
-2b. User chooses to prioritise task
-·	Task is colour coded ( high-red, low-blue, default-black)
-·	High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
-2c. The start date and end date of the task clashes with another task.
-    taskBook provides feedback to the user of the clashing of dates with the another task
+1a. User enters incorrect command. 
+    taskBook provides feedback that the command is invalid
+3a. There is no previous version to undo
+    taskBook provides feedback to the user that there is nothing to undo.
+
 
 #### Use case: Searching for a task
 Precondition: taskBook is already showing a list of tasks on the screen ( either by default main page or when the user is looking through a folder ( done, ignore, active)
@@ -354,27 +406,9 @@ Precondition: taskBook is already showing a list of tasks on the screen ( either
 **Extensions**
 
 1a. There are no items displayed on the screen (ie search and could not find results) 
-·	taskBook returns 'there are no items to sort'
+    taskBook returns 'there are no items to sort'
 3. User selects the wrong task
-·	User types in a command to return taskBook to the previous page and re-picks the correct task
-
-#### Use case: Editing a task
-Precondition: User has selected the task and is viewing the details of the task that he/she wants to edit either after:
-1.	Sorting the list of tasks to find a task
-2.	Searching for a task
-3.	Selecting a task that is already on the main page
-Case close
-
-**MSS**
-
-1.	User requests to edit the task
-2.	User states the field he/she wants to edit and the edits he/she wants to make
-3.	taskBook edits the details of the task and displays the edited task on the screen.
-
-**Extensions**
-
-2. User did not enter a valid field that she wants to edit
-·	taskBook returns a 'field not valid' error, and says that edits were not done
+    User types in a command to return taskBook to the previous page and re-picks the correct task
 
 #### Use case: Creating a shortcut
 
