@@ -23,8 +23,9 @@ import seedu.task.model.task.ReadOnlyTask;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart {
-
+    //@@author A0138301U
     private static final String ICON = "/images/TaskBook.png";
+    //@@author
     private static final String FXML = "MainWindow.fxml";
     public static final int MIN_HEIGHT = 600;
     public static final int MIN_WIDTH = 450;

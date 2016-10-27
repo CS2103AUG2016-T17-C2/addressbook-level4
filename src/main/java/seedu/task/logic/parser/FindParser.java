@@ -1,5 +1,6 @@
 package seedu.task.logic.parser;
 
+//@@author A0138301U
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
@@ -16,7 +17,6 @@ import seedu.task.model.tag.Tag;
 import seedu.task.model.task.TaskPriority;
 import seedu.task.model.task.Status;
 
-//@@author A0138301U
 /** Helper class to parse input when find is invoked, and to return the appropriate find command or other command based on input*/
 public class FindParser {
     

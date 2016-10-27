@@ -19,9 +19,11 @@ public class HelpWindow extends UiPart {
     private static final String ICON = "/images/help_icon.png";
     private static final String FXML = "HelpWindow.fxml";
     private static final String TITLE = "Help";
+    //@@author A0138301U
     private static final String USERGUIDE_URL =
             "https://github.com/CS2103AUG2016-T17-C2/main/blob/master/docs/UserGuide.md";
-
+    //@@author
+    
     private AnchorPane mainPane;
 
     private Stage dialogStage;

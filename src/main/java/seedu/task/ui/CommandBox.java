@@ -37,6 +37,7 @@ public class CommandBox extends UiPart {
         commandBox.addToPlaceholder();
         //@@author A0138301U
         commandBox.commandTextField.setPromptText("What would you like to do today?");
+        //@@author
         return commandBox;
     }
 

@@ -314,6 +314,25 @@ Case Close
 2f. User enters duplicate tags
     taskBook provides feedback to the user of the duplicate tags
     
+#### Use case: Find tasks
+
+**MSS**
+
+1.	User requests to find tasks. 
+2.	User enters keywords
+3.	taskBook filters all tasks with names containing selected keywords
+4.	taskBook displays all tasks on task board (that is sorted according to deadline) with keywords matching user input
+Case Close
+
+**Extensions**
+
+2a. User enters keyword with prefix '#'
+	taskBook filters all tasks with the associated priority, status, or tagging
+	taskBook displays all tasks on task board (that is sorted according to deadline) with keywords matching user input
+2b. User enters keyword with prefix '@'
+	taskBook filters all tasks with the associated venue
+	taskBook displays all tasks on task board (that is sorted according to deadline) with keywords matching user input
+    
 #### Use case: Update a task
 
 **MSS**
