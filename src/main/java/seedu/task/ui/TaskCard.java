@@ -61,11 +61,17 @@ public class TaskCard extends UiPart {
     private ReadOnlyTask task;
     private int displayedIndex;
 
-    private String high = "#0288D1";
-    private String medium = "#81D4FA";
-    private String low = "#E1F5FE";
+    private static final String HIGH = "#0D47A1";
+    private static final String MEDIUM = "#1976D2";
+    private static final String LOW = "#2196F3";
 
-    private final int radii = 10;
+    private static final String DONE = "#212121";
+    private static final String IGNORE = "#616161";
+    private static final String EXPIRED = "#D32F2F";
+    
+    private static final int RADII = 0;
+    
+    private static final Insets INSETS = new Insets(1,1,1,1);
 
     public TaskCard() {
 
@@ -112,15 +118,24 @@ public class TaskCard extends UiPart {
     }
 
     private void setBackgroundColor() {
-        if (task.getPriority().equals(TaskPriority.HIGH)) {
+        if(task.getStatus().equals(Status.DONE)) {
             gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(high), new CornerRadii(radii), new Insets(3, 3, 3, 3))));
-        } else if (task.getPriority().equals(TaskPriority.MEDIUM)) {
+                    new BackgroundFill(Color.valueOf(DONE), new CornerRadii(RADII), INSETS)));
+        } else if(task.getStatus().equals(Status.EXPIRED)) {
             gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(medium), new CornerRadii(radii), new Insets(3, 3, 3, 3))));
+                    new BackgroundFill(Color.valueOf(EXPIRED), new CornerRadii(RADII), INSETS)));
+        } else if(task.getStatus().equals(Status.IGNORE)) {
+            gridPane.setBackground(new Background(
+                    new BackgroundFill(Color.valueOf(IGNORE), new CornerRadii(RADII), INSETS)));
+        } else if(task.getPriority().equals(TaskPriority.HIGH)) {
+            gridPane.setBackground(new Background(
+                    new BackgroundFill(Color.valueOf(HIGH), new CornerRadii(RADII), new Insets(3, 3, 3, 3))));
+        } else if(task.getPriority().equals(TaskPriority.MEDIUM)) {
+            gridPane.setBackground(new Background(
+                    new BackgroundFill(Color.valueOf(MEDIUM), new CornerRadii(RADII), new Insets(3, 3, 3, 3))));
         } else {
             gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(low), new CornerRadii(radii), new Insets(3, 3, 3, 3))));
+                    new BackgroundFill(Color.valueOf(LOW), new CornerRadii(RADII), new Insets(3, 3, 3, 3))));
         }
     }
 
