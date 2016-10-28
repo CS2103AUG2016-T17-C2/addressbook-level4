@@ -83,7 +83,7 @@ public class TaskCard extends UiPart {
         name.setText(task.getName().fullName);
         setTextForVenue();
         setTextForDate();
-        id.setText(displayedIndex + ". ");
+        id.setText("   " + displayedIndex + " ");
         tags.setText(task.tagsString());
         setBackgroundColor();
 

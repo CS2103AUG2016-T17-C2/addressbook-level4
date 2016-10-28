@@ -95,24 +95,35 @@
 .list-cell .label {
     -fx-text-fill: #010504;
 }
+/* @@author A0138301U */
 
 .cell_big_label {
-	-fx-font-family: "Calibri";
+	-fx-font-family: "Momentum";
     -fx-font-size: 22px;
     -fx-text-fill: #010504;
 }
 
 .cell_tag_label {
-	-fx-font-family: "Calibri";
+	-fx-font-family: "Momentum";
     -fx-font-size: 15px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-	-fx-font-family: "Calibri";
+	-fx-font-family: "Momentum";
     -fx-font-size: 17px;
     -fx-text-fill: #010504;
 }
+
+.cell_index_label {
+	-fx-font-family: "Momentum";
+    -fx-font-size: 27px;
+    -fx-text-fill: #010504;
+    -fx-font-weight: bold;
+}
+
+
+/* @@author */
 
 .anchor-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
