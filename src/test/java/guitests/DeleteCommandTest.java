@@ -8,7 +8,7 @@ import seedu.task.testutil.TestUtil;
 import static org.junit.Assert.assertTrue;
 import static seedu.task.logic.commands.DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS;
 
-public class DeleteCommandTest extends AddressBookGuiTest {
+public class DeleteCommandTest extends TaskBookGuiTest {
 
     @Test
     public void delete() {
@@ -46,7 +46,7 @@ public class DeleteCommandTest extends AddressBookGuiTest {
         commandBox.runCommand("delete " + targetIndexOneIndexed);
 
         //confirm the list now contains all previous persons except the deleted person
-        assertTrue(personListPanel.isListMatching(expectedRemainder));
+        assertTrue(taskListPanel.isListMatching(expectedRemainder));
 
 /*        //confirm the result message is correct
         assertResultMessage(String.format(MESSAGE_DELETE_TASK_SUCCESS, personToDelete));*/

@@ -167,12 +167,12 @@ public class TestUtil {
         createDataFileWithSampleData(TestApp.SAVE_LOCATION_FOR_TESTING);
     }
 
-    public static TaskBook generateEmptyAddressBook() {
+    public static TaskBook generateEmptyTaskBook() {
         return new TaskBook(new UniqueTaskList(), new UniqueTagList());
     }
 
     public static XmlSerializableTaskBook generateSampleStorageAddressBook() {
-        return new XmlSerializableTaskBook(generateEmptyAddressBook());
+        return new XmlSerializableTaskBook(generateEmptyTaskBook());
     }
 
     /**

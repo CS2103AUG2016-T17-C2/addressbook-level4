@@ -39,7 +39,7 @@ public class TypicalTestTasks {
 		}
 	}
 
-	public static void loadAddressBookWithSampleData(TaskBook ab) {
+	public static void loadTaskBookWithSampleData(TaskBook ab) {
 
 		try {
 			ab.addTask(new Task(study));
@@ -59,7 +59,7 @@ public class TypicalTestTasks {
 
 	public TaskBook getTypicalTaskBook() {
 		TaskBook ab = new TaskBook();
-		loadAddressBookWithSampleData(ab);
+		loadTaskBookWithSampleData(ab);
 		return ab;
 	}
 }

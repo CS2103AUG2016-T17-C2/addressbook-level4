@@ -6,7 +6,7 @@ import seedu.task.testutil.TypicalTestTasks;
 
 import static org.junit.Assert.assertEquals;
 
-public class CommandBoxTest extends AddressBookGuiTest {
+public class CommandBoxTest extends TaskBookGuiTest {
 
     @Test
     public void commandBox_commandSucceeds_textCleared() {
