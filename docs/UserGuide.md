@@ -4,28 +4,22 @@
 
 ##Userguide: 
 
-**Step 1:**
+The general command structure is to type the `command key` + other details.
 
-Fill in your name and press `Enter`
+**Adding tasks**
 
-This step will be required only for the first time you use the application. It is just to initialise the user’s name to make it more personalised.
+To add a task, type `add` + `taskname` + `from start time` + ` by end time` + `#task_priority` + `#tags` + `@venue`  + `pin status`
 
-**Step 2:**
+* Eg, user can type `add` `play soccer` `from tomorrow` `by 12/12/16 2pm` `#high` `#sport` `@town green` ` #pin`
 
- Type in a command and press `Enter`
+Only the command key and taskname are compulsory; other fields are optional and will take default or null values if not entered. The rules for adding to the other fields are as follows:
 
-**Step 2a: Adding tasks**
-
-To add a task, type `add` taskname date time task_priority tagging venue recurrence pin
-
-* Eg, user can type `add` play soccer by 12/05/16 2pm high #sport @town green repeat weekly pin
-
-Only command and taskname are compulsory; other fields are optional and will take default or null values if not entered. The rules for adding to the other fields are as follows:
+`taskname`: Task names cannot include `@`, `#`,`by` and `from`
 
 `Date`: it can accept 
 * formal dates (02/28/1979), 
 * relaxed dates (oct 1st), 
-* relative dates (the day before next thursday), 
+* relative dates (tomorrow, the day before next thursday), 
 * and even date alternatives (next wed or thurs).
 
 `time`: The above date formats may be prefixed or suffixed with time information. 
@@ -33,21 +27,21 @@ Only command and taskname are compulsory; other fields are optional and will tak
 
 Read more about [Natty Date Parser](http://natty.joestelmach.com/)
 
-`priority`: Will be medium by default
+`priority`: Will be medium by default. The priority can be of `low`, `medium`, `high`.
 
-`#`: tagging
+`#`: tags. The tags cannot be `high`, `low`, `medium` `unpin` and `pin`. 
 
 `@`: venue
 
-`repeat`: recurrence of event. Can be daily, weekly or monthly.
-
-`Pin`: indicates task should be pinned
+`Pin`: indicates whether the task should be pinned.
 
 They do not need to be added in order
 
-**Step 2b: Listing tasks**
+** Listing tasks **
 
-To `list` tasks, type `list` [type of list] 
+Executing the command `list` will result in a complete list of tasks sorted by priority. The tasks that are pinned will be at the top of the list.
+
+** Finding tasks ** 
 taskBook contains the following lists: 
 
 `Active`: 
@@ -107,27 +101,42 @@ When the `list` that the user is looking at is not what he wants, he can use the
 To `delete` a task on the list that is on the screen, type `delete` [ index of task in the list] 
 * eg `delete 1 `
 
-Alternatively, you can type the name of the task  
-* eg `delete shopping`
 
 
+**Step 2e: updating tasks**
 
-**Step 2e: editing tasks**
+To update a task type `update` (index of task in the list or name of task) (field) (changes)
+* Eg: Typing `update 1 by 120316` will change the **deadline** of the first task to 12 March 2016
+* Eg: Typing `update soccer @Casa` will change the **venue** of the soccer task to Casa.
+* Eg: Typing `update 1 #high` will change the **task priority** to high
+* Eg: Typing `update 1 #unpin` will **unpin** the task
 
-To edit a task type `update` (index of task in the list or name of task) (field) (changes)
-* Eg: Typing `update 1 by 120316` will change the deadline of the first task to 12 March 2016
-* Eg: Typing `update soccer @Casa` will change the venue of the soccer task to Casa.
+Multiple fields can be updated in a single command
+* Eg: Typing `update 2 #high @home` changes the priority of task 2 to high and change the venue to home
+
+Fields can also be updated to be empty
+* Eg: Typing `update 3 @null` removes the venue of the third task in the list. 
 
 **Undo:**
 To undo the latest change to taskbook, type `undo`.
 
+Undo can be done only once
 
-**Creating shortcuts**
-To change a shortkey for the command, type `shortcut` + `{the field you are changing}` + `{shortkey you want to initialise}` eg: ``shortcut add a` changes the short key for `add` to `a`. The next time you want to execute `add` to add 'running' to your tasklist, simply type `a running`.
+Tasks that can be undone is **adding tasks**, **deleting tasks** and **updating tasks**. 
 
-This feature is only available for Add, Delete and List. 
+note that taskbook subsequently returns the list of all the task after each undo
+
+
+**Creating shortkeys**
+To change a shortkey for the command, type `shortcut` + `{the field you are changing}` + `{shortkey you want to initialise}` eg: ``shortcut` `add` `a` changes the shortkey for the command `add` to `a`. The next time you want to execute 'add' to add 'running' to your tasklist, simply type `a running`.
+
+Shortkeys can be set for `add`, `delete` and `list` commands. 
+
+This feature is only available for **Add**, **Delete** and **List**. 
 
 **Moving taskbook to another storage location** 
-To move taskbook, type `file` + the `new storage location` that you want to move taskbook to. 
+To save the taskbook in another file place, type `file` + `new storage location` that you want to move taskbook to. 
 
 eg `move \dropbox\mytask` will keep taskbook in a folder called 'dropbox', which will be named 'mytask.xml'. 
+
+
