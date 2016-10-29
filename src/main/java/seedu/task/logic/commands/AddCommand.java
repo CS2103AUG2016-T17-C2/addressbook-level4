@@ -46,7 +46,8 @@ public class AddCommand extends Command {
         assert model != null;
         try {
             int taskIndex = model.addTask(toAdd);
-            Undo.getInstance().setUndo(taskIndex, toAdd, Undo.UndoCommand.ADD);
+            Undo.getInstance().push(new UndoTask(Undo.getInstance().getIndex() + 1, taskIndex, toAdd, UndoTask.Command.ADD));
+            Undo.getInstance().resetVersionPosition();
         } catch (UniqueTaskList.DuplicateTaskException e) {
             return new CommandResult(MESSAGE_DUPLICATE_TASK);
         } catch (UniqueTaskList.DateClashTaskException e) {

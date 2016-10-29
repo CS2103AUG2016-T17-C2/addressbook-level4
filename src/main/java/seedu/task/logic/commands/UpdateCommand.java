@@ -13,6 +13,7 @@ import seedu.task.model.Undo;
 import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
+import seedu.task.model.task.UndoTask;
 import seedu.task.model.task.UniqueTaskList;
 
 public class UpdateCommand extends Command{
@@ -55,8 +56,8 @@ public class UpdateCommand extends Command{
             Task toUpdate = ((Task)lastShownList.get(taskIndex - 1)).clone();
             TaskParser updateTaskParser = new UpdateTaskParser((Task)lastShownList.get(taskIndex - 1), updateArgs);
         	model.updateTask(model.getTaskByIndex(taskIndex - 1), updateTaskParser.parseInput());
-        	Undo.getInstance().setUndo(taskIndex - 1, toUpdate, Undo.UndoCommand.UPDATE);
-            LogsCenter.getLogger(ModelManager.class).info("toUpdate: " + Undo.getInstance().getTask().toString() + " UndoCommand: " + Undo.getInstance().getCommand());
+            Undo.getInstance().push(new UndoTask(Undo.getInstance().getIndex() + 1, taskIndex - 1, toUpdate, UndoTask.Command.UPDATE));
+            Undo.getInstance().resetVersionPosition();
 
         } catch (UniqueTaskList.DateClashTaskException e) {
             return new CommandResult(e.getMessage());
