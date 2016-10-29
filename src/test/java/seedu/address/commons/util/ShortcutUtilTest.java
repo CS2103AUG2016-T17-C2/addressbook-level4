@@ -15,7 +15,7 @@ import seedu.task.commons.core.ShortcutSetting;
 import seedu.task.commons.exceptions.DataConversionException;
 import seedu.task.commons.util.FileUtil;
 import seedu.task.commons.util.ShortcutUtil;
-//A0141064U
+//@@author A0141064U
 public class ShortcutUtilTest {
     
 
@@ -48,7 +48,6 @@ public class ShortcutUtilTest {
          * That means you should not have more than one exception test in one method
          */
     }
-    //@@A0141064U
     @Test
     public void read_fileInOrder_successfullyRead() throws DataConversionException {
 

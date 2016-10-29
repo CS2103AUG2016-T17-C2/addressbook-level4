@@ -87,6 +87,7 @@ public class Config {
                 && Objects.equals(logLevel, o.logLevel)
                 && Objects.equals(userPrefsFilePath, o.userPrefsFilePath)
                 && Objects.equals(taskBookFilePath, o.taskBookFilePath)
+                && Objects.equals(shortcutFilePath, o.shortcutFilePath)
                 && Objects.equals(taskBookName, o.taskBookName);
     }
 
@@ -102,7 +103,8 @@ public class Config {
         sb.append("\nCurrent log level : " + logLevel);
         sb.append("\nPreference file Location : " + userPrefsFilePath);
         sb.append("\nLocal data file location : " + taskBookFilePath);
-        sb.append("\nTaskBook name : " + taskBookName);
+        sb.append("\nshortcutFilePath : " + shortcutFilePath);
+        sb.append("\nTaskBook Name : " + taskBookName);
         return sb.toString();
     }
 

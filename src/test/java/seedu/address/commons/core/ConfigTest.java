@@ -18,7 +18,6 @@ import java.util.Optional;
 public class ConfigTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-    private Config testConfig;
 
     //@@author A0139958H
     
@@ -28,48 +27,73 @@ public class ConfigTest {
                 "Current log level : INFO\n" +
                 "Preference file Location : data/preferences.json\n" +
                 "Local data file location : data/taskbook.xml\n" +
-                "TaskBook name : MyTaskBook";
+                "shortcutFilePath : data/shortcut.json\n" +
+                "TaskBook Name : MyTaskBook";
 
         LogsCenter.getLogger(ConfigTest.class).warning("Config: " + new Config().toString());
         assertEquals(defaultConfigAsString, new Config().toString());
     }
     //@@author A0141064U
+    @Test
     public void toString_defaultAppTitle_stringReturned() {
-        String defaultAppTitle = "TaskBookApp";
+        String defaultAppTitle = "TaskBook App";
         assertEquals(defaultAppTitle,new Config().getAppTitle());
     }
-
+    @Test
     public void toString_defaultUserPrefLocation_stringReturned() {
         String defaultUserPreferenceFileLocation = "data/preferences.json";
         assertEquals(defaultUserPreferenceFileLocation,new Config().getUserPrefsFilePath());
     }
+    @Test
     public void toString_defaultShortcutLocation_stringReturned() {
         String defaultShortcutFileLocation = "data/shortcut.json";
         assertEquals(defaultShortcutFileLocation,new Config().getShortcutFilePath());
     }
+    @Test
     public void toString_defaultFileLocation_stringReturned() {
         String taskBookFilePath = "data/taskbook.xml";
-        assertEquals(taskBookFilePath,new Config().getUserPrefsFilePath());
+        assertEquals(taskBookFilePath,new Config().getTaskBookFilePath());
     }
     
     @Test
     public void toString_testConfigFileObject_stringReturned() {
-        String testConfigAsString = "AppTitle : My friend App\n" +
-        "logLevel : INFO\n" +
-        "userPrefsFilePath : pref.json\n" +
-        "taskBookFilePath : tb.xml\n" +
-     //   "shortcutFilePath : shortcut.json\n" +
-        "taskBookName : MyTaskBook";
+        Config testConfig = testConfigFile("src/test/data/ConfigUtilTest/configStub.json");
+        String testConfigAsString = "App title : My friend App\n" +
+        "Current log level : INFO\n" +
+        "Preference file Location : pref.json\n" +
+        "Local data file location : tb.xml\n" +
+        "shortcutFilePath : shortcut.json\n" +
+        "TaskBook Name : MyTaskBook";
         assertEquals(testConfigAsString, testConfig.toString());
     }
     
-    public void testConfigFile () {
+    @Test
+    public void toString_testSetConfigFileObject_stringReturned() {
+        Config testConfig = testConfigFile("src/test/data/ConfigUtilTest/tempConfig.json");
+        testConfig.setShortcutFilePath("Shortcut");
+        testConfig.setTaskBookFilePath("TBP");
+        testConfig.setAppTitle("APP");
+        testConfig.setUserPrefsFilePath("user");
+        String testConfigAsString = "App title : APP\n" +
+                "Current log level : INFO\n" +
+                "Preference file Location : user\n" +
+                "Local data file location : TBP\n" +
+                "shortcutFilePath : Shortcut\n" +
+                "TaskBook Name : MyTaskBook";
+                
+        assertEquals(testConfigAsString, testConfig.toString());
+    }
+    
+    public Config testConfigFile (String filePath) {
+        Config testConfig = new Config();
         try {
-            Optional<Config> config = ConfigUtil.readConfig("src/test/data/ConfigUtilTest/configStub.json");
-            this.testConfig = config.orElse(new Config());
+            Optional<Config> config = ConfigUtil.readConfig(filePath);
+            testConfig = config.orElse(new Config());
         } catch (DataConversionException e) {
             e.printStackTrace();
+          
         }
+        return testConfig;
         
     }
     //@@author
