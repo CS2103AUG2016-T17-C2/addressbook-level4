@@ -1,7 +1,5 @@
 package seedu.task.logic.commands;
 
-//@@author A0139958H
-
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.model.ModelManager;
 import seedu.task.model.VersionControl;
@@ -10,6 +8,8 @@ import seedu.task.model.task.TaskVersion;
 import seedu.task.model.task.UniqueTaskList;
 import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
+
+//@@author A0139958H
 
 public class RedoCommand extends Command {
 	public static final String COMMAND_WORD = "redo";
