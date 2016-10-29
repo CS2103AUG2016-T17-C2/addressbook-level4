@@ -1,5 +1,5 @@
 # Developer Guide 
-
+//@@author
 * [Setting Up](#setting-up)
 * [Design](#design)
 * [Implementation](#implementation)
