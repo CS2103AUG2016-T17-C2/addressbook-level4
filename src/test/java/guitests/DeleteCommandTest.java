@@ -23,12 +23,12 @@ public class DeleteCommandTest extends TaskBookGuiTest {
         assertDeleteSuccess(targetIndex, currentList);
 
         //delete the last in the list
-        currentList = TestUtil.removePersonFromList(currentList, targetIndex);
+        currentList = TestUtil.removeTaskFromList(currentList, targetIndex);
         targetIndex = currentList.length;
         assertDeleteSuccess(targetIndex, currentList);
 
         //delete only task in the list
-        currentList = TestUtil.removePersonFromList(currentList, targetIndex);
+        currentList = TestUtil.removeTaskFromList(currentList, targetIndex);
         targetIndex = currentList.length;
         assertDeleteSuccess(targetIndex, currentList);
 
@@ -45,16 +45,16 @@ public class DeleteCommandTest extends TaskBookGuiTest {
      * @param currentList A copy of the current list of persons (before deletion).
      */
     private void assertDeleteSuccess(int targetIndexOneIndexed, final TestTask[] currentList) {
-        TestTask personToDelete = currentList[targetIndexOneIndexed-1]; //-1 because array uses zero indexing
-        TestTask[] expectedRemainder = TestUtil.removePersonFromList(currentList, targetIndexOneIndexed);
+        TestTask[] expectedRemainder = TestUtil.removeTaskFromList(currentList, targetIndexOneIndexed);
 
         commandBox.runCommand("delete " + targetIndexOneIndexed);
 
-        //confirm the list now contains all previous persons except the deleted person
+        //confirm the list now contains all previous tasks except the deleted task
         assertTrue(taskListPanel.isListMatching(expectedRemainder));
 
-/*        //confirm the result message is correct
-        assertResultMessage(String.format(MESSAGE_DELETE_TASK_SUCCESS, personToDelete));*/
+        //@@author A0138301U
+        //confirm the result message is correct
+        assertResultMessage(String.format(MESSAGE_DELETE_TASK_SUCCESS, Arrays.toString(new int[]{targetIndexOneIndexed})));
     }
 
 }

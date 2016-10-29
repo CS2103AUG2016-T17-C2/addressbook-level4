@@ -61,8 +61,8 @@ public class TaskCardHandle extends GuiHandle {
 
 
     public boolean isSameTask(ReadOnlyTask task){
-        String dateTime;
-/*        if(!task.getStartDate().value.isEmpty()){
+/*        String dateTime;
+        if(!task.getStartDate().value.isEmpty()){
             if(!task.getEndDate().value.isEmpty()) {
                 dateTime = toPrettyDate(task.getStartDate().value) + " till " + toPrettyDate(task.getEndDate().value);        
             } else {
