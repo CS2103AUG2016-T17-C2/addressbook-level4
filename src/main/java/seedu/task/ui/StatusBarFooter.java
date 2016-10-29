@@ -48,8 +48,10 @@ public class StatusBarFooter extends UiPart {
         setSyncStatus("Not updated yet in this session");
         addSaveLocation();
         setSaveLocation("./" + saveLocation);
+        //@@author A0138301U
         registerAsAnEventHandler(this);
     }
+    //@@author
 
     private void addMainPane() {
         FxViewUtil.applyAnchorBoundaryParameters(mainPane, 0.0, 0.0, 0.0, 0.0);

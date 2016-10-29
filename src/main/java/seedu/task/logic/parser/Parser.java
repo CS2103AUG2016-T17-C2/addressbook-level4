@@ -296,7 +296,7 @@ public class Parser {
         return new SelectCommand(index.get());
     }
 
-    //@@author A0138301U
+
     /**
      * Parses arguments in the context of the find task command.
      *
@@ -304,6 +304,7 @@ public class Parser {
      *            full command args string
      * @return the prepared command
      */
+    //@@author A0138301U
     private Command prepareFind(String args) {
         try {
             logger.info("attempting to find: " + args);
