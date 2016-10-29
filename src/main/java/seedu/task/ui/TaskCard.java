@@ -1,5 +1,6 @@
 package seedu.task.ui;
 
+//@@author A0141064U
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -69,7 +70,7 @@ public class TaskCard extends UiPart {
     private static final String IGNORE = "#616161";
     private static final String EXPIRED = "#D32F2F";
     
-    private static final int RADII = 0;
+    private static final CornerRadii CORNERRADII = new CornerRadii(0);
     
     private static final Insets INSETS = new Insets(1,1,1,1);
 
@@ -91,6 +92,7 @@ public class TaskCard extends UiPart {
         setTextForDate();
         id.setText("   " + displayedIndex + " ");
         tags.setText(task.tagsString());
+        
         setBackgroundColor();
 
         addIconsForStatusAndPin();
@@ -120,22 +122,22 @@ public class TaskCard extends UiPart {
     private void setBackgroundColor() {
         if(task.getStatus().equals(Status.DONE)) {
             gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(DONE), new CornerRadii(RADII), INSETS)));
+                    new BackgroundFill(Color.valueOf(DONE), CORNERRADII, INSETS)));
         } else if(task.getStatus().equals(Status.EXPIRED)) {
             gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(EXPIRED), new CornerRadii(RADII), INSETS)));
+                    new BackgroundFill(Color.valueOf(EXPIRED), CORNERRADII, INSETS)));
         } else if(task.getStatus().equals(Status.IGNORE)) {
             gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(IGNORE), new CornerRadii(RADII), INSETS)));
+                    new BackgroundFill(Color.valueOf(IGNORE), CORNERRADII, INSETS)));
         } else if(task.getPriority().equals(TaskPriority.HIGH)) {
             gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(HIGH), new CornerRadii(RADII), new Insets(3, 3, 3, 3))));
+                    new BackgroundFill(Color.valueOf(HIGH), CORNERRADII, INSETS)));
         } else if(task.getPriority().equals(TaskPriority.MEDIUM)) {
             gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(MEDIUM), new CornerRadii(RADII), new Insets(3, 3, 3, 3))));
+                    new BackgroundFill(Color.valueOf(MEDIUM), CORNERRADII, INSETS)));
         } else {
             gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(LOW), new CornerRadii(RADII), new Insets(3, 3, 3, 3))));
+                    new BackgroundFill(Color.valueOf(LOW), CORNERRADII, INSETS)));
         }
     }
 

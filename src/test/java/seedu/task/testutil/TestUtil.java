@@ -329,9 +329,11 @@ public class TestUtil {
         listOfPersons.remove(targetIndexInOneIndexedFormat-1);
         return listOfPersons.toArray(new TestTask[listOfPersons.size()]);
     }
-
-    public static void sortList(List<TestTask> listOfPersons) {
-        Collections.sort(listOfPersons, new Comparator<TestTask>() {
+    
+    //@@author A0138301U
+    /* methods to sort lists before comparison */
+    public static void sortList(List<TestTask> listOfTasks) {
+        Collections.sort(listOfTasks, new Comparator<TestTask>() {
             @Override
             public int compare(TestTask task1, TestTask task2) 
             {
@@ -340,6 +342,9 @@ public class TestUtil {
                     value = task1.getStatus().compareTo(task2.getStatus());
                     if(value == 0) {
                         value = task1.getPriority().compareTo(task2.getPriority());
+                        if(value == 0) {
+                            return task1.getName().fullName.compareTo(task2.getName().fullName);
+                        }
                         return value;
                     }
                     return value;
@@ -349,8 +354,8 @@ public class TestUtil {
         });
     }
 
-    public static void sortReadList(List<ReadOnlyTask> listOfPersons) {
-        Collections.sort(listOfPersons, new Comparator<ReadOnlyTask>() {
+    public static void sortReadList(List<ReadOnlyTask> listOfTasks) {
+        Collections.sort(listOfTasks, new Comparator<ReadOnlyTask>() {
             @Override
             public int compare(ReadOnlyTask task1, ReadOnlyTask task2) 
             {
@@ -359,6 +364,9 @@ public class TestUtil {
                     value = task1.getStatus().compareTo(task2.getStatus());
                     if(value == 0) {
                         value = task1.getPriority().compareTo(task2.getPriority());
+                        if(value == 0) {
+                            return task1.getName().fullName.compareTo(task2.getName().fullName);
+                        }
                         return value;
                     }
                     return value;
@@ -368,7 +376,7 @@ public class TestUtil {
         });
     }
         
-    
+    //@@author
     
 
     /**
@@ -392,6 +400,7 @@ public class TestUtil {
     public static TestTask[] addPersonsToList(final TestTask[] persons, TestTask... personsToAdd) {
         List<TestTask> listOfPersons = asList(persons);
         listOfPersons.addAll(asList(personsToAdd));
+        TestUtil.sortList(listOfPersons);
         return listOfPersons.toArray(new TestTask[listOfPersons.size()]);
     }
 
@@ -403,8 +412,8 @@ public class TestUtil {
         return list;
     }
 
-    public static boolean compareCardAndPerson(TaskCardHandle card, ReadOnlyTask person) {
-        return card.isSameTask(person);
+    public static boolean compareCardAndPerson(TaskCardHandle card, ReadOnlyTask task) {
+        return card.isSameTask(task);
     }
 
     public static Tag[] getTagList(String tags) {

@@ -16,12 +16,12 @@ public class AddCommandTest extends TaskBookGuiTest {
     @Test
     public void add() {
         //add one task
-/*        TestTask[] currentList = td.getTypicalTasks();
+        TestTask[] currentList = td.getTypicalTasks();
         TestTask taskToAdd = TypicalTestTasks.study;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addPersonsToList(currentList, taskToAdd);
 
-        //add another task
+/*        //add another task
         taskToAdd = TypicalTestTasks.play;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addPersonsToList(currentList, taskToAdd);*/
@@ -33,11 +33,11 @@ public class AddCommandTest extends TaskBookGuiTest {
 
 /*        //add to empty list
         commandBox.runCommand("clear");
-        assertAddSuccess(td.play);
+        assertAddSuccess(td.play); */
 
         //invalid command
         commandBox.runCommand("adds Johnny");
-        assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);*/
+        assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
     private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {

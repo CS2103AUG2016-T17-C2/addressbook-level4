@@ -11,6 +11,7 @@ import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.testutil.TestUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -60,8 +61,8 @@ public class TaskListPanelHandle extends GuiHandle {
      * Returns true if the {@code persons} appear as the sub list (in that order) at position {@code startPosition}.
      */
     public boolean containsInOrder(int startPosition, ReadOnlyTask... tasks) {
-        List<ReadOnlyTask> tasksInList = getListView().getItems();
-
+        List<ReadOnlyTask> tasksInList = new ArrayList<>(getListView().getItems());
+        TestUtil.sortReadList(tasksInList);
         // Return false if the list in panel is too short to contain the given list
         if (startPosition + tasks.length > tasksInList.size()){
             return false;
@@ -102,12 +103,12 @@ public class TaskListPanelHandle extends GuiHandle {
 
     public TaskCardHandle navigateToPerson(String name) {
         guiRobot.sleep(500); //Allow a bit of time for the list to be updated
-        final Optional<ReadOnlyTask> person = getListView().getItems().stream().filter(p -> p.getName().fullName.equals(name)).findAny();
-        if (!person.isPresent()) {
+        final Optional<ReadOnlyTask> task = getListView().getItems().stream().filter(p -> p.getName().fullName.equals(name)).findAny();
+        if (!task.isPresent()) {
             throw new IllegalStateException("Name not found: " + name);
         }
 
-        return navigateToPerson(person.get());
+        return navigateToPerson(task.get());
     }
 
     /**

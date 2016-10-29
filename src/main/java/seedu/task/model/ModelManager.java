@@ -131,9 +131,6 @@ public class ModelManager extends ComponentManager implements Model {
         sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
         indicateTaskBookChanged();	
 	}	
-	
-    //@@author
-	
 
     //@@author A0138301U
 	
@@ -258,7 +255,7 @@ public class ModelManager extends ComponentManager implements Model {
         
     //========== Inner classes/interfaces used for sorting ==================================================
 
-/*    default comparator: arranges tasks by pin, (active, ignore, done) status level, then priority level*/
+/*    default comparator: arranges tasks by pin, (active, ignore, done) status level, then priority level, then by alphabetical order*/
     public static class TaskComparator implements Comparator<ReadOnlyTask>
     {
         public int compare(ReadOnlyTask task1, ReadOnlyTask task2)
@@ -268,6 +265,9 @@ public class ModelManager extends ComponentManager implements Model {
                 value = task1.getStatus().compareTo(task2.getStatus());
                 if(value == 0) {
                     value = task1.getPriority().compareTo(task2.getPriority());
+                    if(value == 0) {
+                        return task1.getName().fullName.compareTo(task2.getName().fullName);
+                    }
                     return value;
                 }
                 return value;
@@ -280,7 +280,7 @@ public class ModelManager extends ComponentManager implements Model {
     //========== Inner classes/interfaces used for filtering ==================================================
 
     interface Expression {
-        boolean satisfies(ReadOnlyTask person);
+        boolean satisfies(ReadOnlyTask task);
         String toString();
     }
 
@@ -330,7 +330,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Subscribe
-    public void handleTaskBookChangedEvent(TaskBookChangedEvent abce) {
+    public void handleTaskBookChangedEvent(TaskBookChangedEvent tbce) {
         sortedTasks = new SortedList<>(filteredTasks, new TaskComparator());
         
     }

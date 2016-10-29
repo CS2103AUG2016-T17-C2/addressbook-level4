@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ocpsoft.prettytime.Duration;
 import org.ocpsoft.prettytime.PrettyTime;
 
@@ -18,7 +19,7 @@ import javafx.stage.Stage;
 import seedu.task.model.task.ReadOnlyTask;
 
 /**
- * Provides a handle to a person card in the person list panel.
+ * Provides a handle to a person card in the task list panel.
  */
 public class TaskCardHandle extends GuiHandle {
     private static final String NAME_FIELD_ID = "#name";
@@ -61,7 +62,7 @@ public class TaskCardHandle extends GuiHandle {
 
     public boolean isSameTask(ReadOnlyTask task){
         String dateTime;
-        if(!task.getStartDate().value.isEmpty()){
+/*        if(!task.getStartDate().value.isEmpty()){
             if(!task.getEndDate().value.isEmpty()) {
                 dateTime = toPrettyDate(task.getStartDate().value) + " till " + toPrettyDate(task.getEndDate().value);        
             } else {
@@ -69,14 +70,37 @@ public class TaskCardHandle extends GuiHandle {
             }
         } else {
             if(task.getEndDate().value.isEmpty()){
+            
                 dateTime = ""; //remove field from layout if empty
             } else {
                 dateTime = "Due by: " + toPrettyDate(task.getEndDate().value); 
             }
-        }
-        return getTaskName().equals(task.getName().fullName) && getDateTime().equals(dateTime)
-                && getVenue().equals(task.getVenue().toString()); //cannot check priority and status as these values are no longer displayed 
+        }*/
+        return getTaskName().equals(task.getName().fullName)
+                ; //cannot check priority and status as these values are no longer displayed 
                                                                   //as labels in current TaskCard
+    }
+
+    private boolean checkVenue(ReadOnlyTask task) {
+        if(task.getVenue().toString().isEmpty()) {
+            try { //if no venue is available, getVenue() should give a NullPointerException
+                getVenue();
+            } catch (Exception e) {
+                return true;
+            }
+        } else {
+            String venue = getVenue();
+            String taskvenue = task.getVenue().toString();
+            if(!taskvenue.isEmpty() && !venue.isEmpty()) {
+                if(taskvenue != null)
+                    if(venue != null)
+                return true;
+            }
+/*            if(task.getVenue().toString().equals(getVenue())) {
+                return true;
+            }*/
+        }
+        return false;
     }
 
     @Override
