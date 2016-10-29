@@ -78,6 +78,16 @@ public class TestTask implements ReadOnlyTask {
 	public void setStartDate(DateTime startDate) {
 		this.startDate = startDate;
 	}
+	
+	//@@author A0138301U
+    public void setNullStartDate() {
+        this.startDate = null;
+    }
+
+    public void setNullEndDate() {
+        this.endDate = null;
+    }
+    //@@author
 
 	@Override
 	public DateTime getEndDate() {
