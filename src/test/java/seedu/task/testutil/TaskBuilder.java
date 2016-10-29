@@ -63,5 +63,16 @@ public class TaskBuilder {
     public TestTask build() {
         return this.task;
     }
+    
+    //@@author A0138301U
+    public TaskBuilder withNullStartDate() throws IllegalValueException {
+        this.task.setNullStartDate();
+        return this;
+    }
+
+    public TaskBuilder withNullEndDate() throws IllegalValueException {
+        this.task.setNullEndDate();
+        return this;
+    }
 
 }

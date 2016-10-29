@@ -13,7 +13,7 @@ import seedu.task.model.task.*;
  */
 public class TypicalTestTasks {
 
-	public static TestTask study, play, coding;
+	public static TestTask study, play, coding, watchMovie;
 
 	public TypicalTestTasks() {
 		try {
@@ -32,6 +32,12 @@ public class TypicalTestTasks {
 			coding = new TaskBuilder().withName("code cs2103").withVenue("School")
 			        .withStartDate(DateUtils.setHours(date, 14)).withEndDate(DateUtils.setHours(date, 16))
 			        .withPriority("High").withStatus("Active").withPinTask("unpin").withTags("study", "school").build();
+			
+			//@@author A0138301U
+			watchMovie = new TaskBuilder().withName("watch Source Code").withVenue("Home") //floating task
+			            .withNullStartDate().withNullEndDate()
+			            .withPriority("Medium").withStatus("Active").withPinTask("pin").build();
+			//@@author
 			
 		} catch (IllegalValueException e) {
 			e.printStackTrace();
