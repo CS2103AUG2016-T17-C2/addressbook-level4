@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import seedu.task.model.task.ReadOnlyTask;
 
 /**
- * Provides a handle to a person card in the task list panel.
+ * Provides a handle to a task card in the task list panel.
  */
 public class TaskCardHandle extends GuiHandle {
     private static final String NAME_FIELD_ID = "#name";
@@ -30,7 +30,7 @@ public class TaskCardHandle extends GuiHandle {
 
     private Node node;
 
-    public TaskCardHandle(GuiRobot guiRobot, Stage primaryStage, Node node){
+    public TaskCardHandle(GuiRobot guiRobot, Stage primaryStage, Node node) {
         super(guiRobot, primaryStage, null);
         this.node = node;
     }
@@ -59,56 +59,30 @@ public class TaskCardHandle extends GuiHandle {
         return getTextFromLabel(STATUS_FIELD_ID);
     }
 
-
-    public boolean isSameTask(ReadOnlyTask task){
-/*        String dateTime;
-        if(!task.getStartDate().value.isEmpty()){
-            if(!task.getEndDate().value.isEmpty()) {
-                dateTime = toPrettyDate(task.getStartDate().value) + " till " + toPrettyDate(task.getEndDate().value);        
-            } else {
-                dateTime = "From: " + toPrettyDate(task.getStartDate().value);
-            }
-        } else {
-            if(task.getEndDate().value.isEmpty()){
-            
-                dateTime = ""; //remove field from layout if empty
-            } else {
-                dateTime = "Due by: " + toPrettyDate(task.getEndDate().value); 
-            }
-        }*/
-        return getTaskName().equals(task.getName().fullName)
-                ; //cannot check priority and status as these values are no longer displayed 
-                                                                  //as labels in current TaskCard
+    public boolean isSameTask(ReadOnlyTask task) {
+        /*
+         * String dateTime; if(!task.getStartDate().value.isEmpty()){
+         * if(!task.getEndDate().value.isEmpty()) { dateTime =
+         * toPrettyDate(task.getStartDate().value) + " till " +
+         * toPrettyDate(task.getEndDate().value); } else { dateTime = "From: " +
+         * toPrettyDate(task.getStartDate().value); } } else {
+         * if(task.getEndDate().value.isEmpty()){
+         * 
+         * dateTime = ""; //remove field from layout if empty } else { dateTime
+         * = "Due by: " + toPrettyDate(task.getEndDate().value); } }
+         */
+        return getTaskName().equals(task.getName().fullName);
+        // cannot check priority and status as these values are no longer
+        // displayed as labels in taskcard. also cannot check venue as the
+        // setManaged(false) in taskcard makes checking venue return an error as
+        // well
     }
-
-    private boolean checkVenue(ReadOnlyTask task) {
-        if(task.getVenue().toString().isEmpty()) {
-            try { //if no venue is available, getVenue() should give a NullPointerException
-                getVenue();
-            } catch (Exception e) {
-                return true;
-            }
-        } else {
-            String venue = getVenue();
-            String taskvenue = task.getVenue().toString();
-            if(!taskvenue.isEmpty() && !venue.isEmpty()) {
-                if(taskvenue != null)
-                    if(venue != null)
-                return true;
-            }
-/*            if(task.getVenue().toString().equals(getVenue())) {
-                return true;
-            }*/
-        }
-        return false;
-    }
-
+    //@@author
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof TaskCardHandle) {
+        if (obj instanceof TaskCardHandle) {
             TaskCardHandle handle = (TaskCardHandle) obj;
-            return getTaskName().equals(handle.getTaskName())
-                    && getVenue().equals(handle.getVenue()); //TODO: compare the rest
+            return getTaskName().equals(handle.getTaskName()) && getVenue().equals(handle.getVenue()); 
         }
         return super.equals(obj);
     }
@@ -118,19 +92,20 @@ public class TaskCardHandle extends GuiHandle {
         return getTaskName() + " " + getVenue();
     }
 
-    //========== Functions for PrettyTime conversion of date ==================================================
-    
-    public String toPrettyDate(String date){
-        
+    // ========== Functions for PrettyTime conversion of date
+    // ==================================================
+
+    public String toPrettyDate(String date) {
+
         Date dateFromParsedDate = convertStringToDateObject(date);
         Date tomorrow = getTommorrow();
-        
-        if (!dateFromParsedDate.after(tomorrow)){
-           PrettyTime p = new PrettyTime();
-           List<Duration> durations = p.calculatePreciseDuration(dateFromParsedDate);
-        return p.format(durations);
-        }else{
-            SimpleDateFormat sdf = new SimpleDateFormat ("E dd.MM.yyyy 'at' hh:mm a");
+
+        if (!dateFromParsedDate.after(tomorrow)) {
+            PrettyTime p = new PrettyTime();
+            List<Duration> durations = p.calculatePreciseDuration(dateFromParsedDate);
+            return p.format(durations);
+        } else {
+            SimpleDateFormat sdf = new SimpleDateFormat("E dd.MM.yyyy 'at' hh:mm a");
             return sdf.format(dateFromParsedDate);
         }
 
@@ -139,8 +114,8 @@ public class TaskCardHandle extends GuiHandle {
     private Date getTommorrow() {
         int tomorrowAsInt = 1;
         Date today = new Date();
-        Calendar c = Calendar.getInstance(); 
-        c.setTime(today); 
+        Calendar c = Calendar.getInstance();
+        c.setTime(today);
         c.add(Calendar.DATE, tomorrowAsInt);
         Date tomorrow = c.getTime();
         return tomorrow;
