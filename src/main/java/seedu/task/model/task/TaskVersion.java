@@ -4,18 +4,18 @@ import java.util.StringJoiner;
 
 //@@author A0139958H
 
-public class UndoTask implements Comparable<UndoTask> {
+public class TaskVersion implements Comparable<TaskVersion> {
 	public enum Command { ADD, UPDATE, DELETE, DEFAULT };
-	private Integer undoIndex;
+	private Integer versionIndex;
 	private Integer taskIndex;
 	private Task task;
 	private Command command;
 	
 	
-	public UndoTask() {}
+	public TaskVersion() {}
 	
-	public UndoTask(int undoIndex, int taskIndex, Task task, Command command) {
-		this.undoIndex = undoIndex;
+	public TaskVersion(int versionIndex, int taskIndex, Task task, Command command) {
+		this.versionIndex = versionIndex;
 		this.taskIndex = taskIndex;
 		this.task = task;
 		this.command = command;
@@ -45,18 +45,18 @@ public class UndoTask implements Comparable<UndoTask> {
 		this.command = command;
 	}
 
-	public Integer getUndoIndex() {
-		return undoIndex;
+	public Integer getVersionIndex() {
+		return versionIndex;
 	}
 
-	public void setUndoIndex(int undoIndex) {
-		this.undoIndex = undoIndex;
+	public void setVersionIndex(int versionIndex) {
+		this.versionIndex = versionIndex;
 	}
 
 	@Override
-	public int compareTo(UndoTask u) {
-		if (!this.getUndoIndex().equals(u.getUndoIndex()))
-			return this.getUndoIndex() - u.getUndoIndex();
+	public int compareTo(TaskVersion u) {
+		if (!this.getVersionIndex().equals(u.getVersionIndex()))
+			return this.getVersionIndex() - u.getVersionIndex();
 		else
 			return this.getTaskIndex() - u.getTaskIndex();
 	}
@@ -64,6 +64,6 @@ public class UndoTask implements Comparable<UndoTask> {
 	@Override
 	public String toString() {
 		StringJoiner str = new StringJoiner(" ");
-		return str.add(undoIndex.toString()).add(taskIndex.toString()).add(task.toString()).add(command.name()).toString();
+		return str.add(versionIndex.toString()).add(taskIndex.toString()).add(task.toString()).add(command.name()).toString();
 	}
 }

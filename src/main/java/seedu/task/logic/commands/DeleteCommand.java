@@ -8,10 +8,10 @@ import java.util.List;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.UnmodifiableObservableList;
-import seedu.task.model.Undo;
+import seedu.task.model.VersionControl;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
-import seedu.task.model.task.UndoTask;
+import seedu.task.model.task.TaskVersion;
 import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 //@@author A0139958H
@@ -53,19 +53,19 @@ public class DeleteCommand extends Command {
 		}
 
 		try {
-			int undoIndex = Undo.getInstance().getIndex() + 1;
-			List<UndoTask> undoTasks = new ArrayList<UndoTask>();
+			int undoIndex = VersionControl.getInstance().getIndex() + 1;
+			List<TaskVersion> taskVersions = new ArrayList<TaskVersion>();
 					
 			for (int i = 0; i < targetIndexes.length; i++) {
 				LogsCenter.getLogger(DeleteCommand.class).info("Delete Task: " + (targetIndexes[i] - i - 1));
 				ReadOnlyTask taskToDelete = model.getTaskByIndex(targetIndexes[i] - i - 1);
 				model.deleteTask(taskToDelete);
-				undoTasks.add(new UndoTask(undoIndex, targetIndexes[i] - i - 1, (Task) taskToDelete, UndoTask.Command.DELETE));
+				taskVersions.add(new TaskVersion(undoIndex, targetIndexes[i] - i - 1, (Task) taskToDelete, TaskVersion.Command.DELETE));
 			}
 			
-			Collections.sort(undoTasks);
-			Undo.getInstance().pushAll(undoTasks);
-			Undo.getInstance().resetVersionPosition();
+			Collections.sort(taskVersions);
+			VersionControl.getInstance().pushAll(taskVersions);
+			VersionControl.getInstance().resetVersionPosition();
 		} catch (TaskNotFoundException tnfe) {
 			assert false : "The target task cannot be missing";
 		}
