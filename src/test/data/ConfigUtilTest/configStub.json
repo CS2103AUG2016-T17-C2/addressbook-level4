@@ -1,0 +1,8 @@
+{
+  "appTitle" : "My friend App",
+  "logLevel" : "INFO",
+  "userPrefsFilePath" : "pref.json",
+  "taskBookFilePath" : "tb.xml",
+  "shortcutFilePath" : "shortcut.json",
+  "taskBookName" : "MyTaskBook"
+}
