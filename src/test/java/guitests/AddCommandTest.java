@@ -14,6 +14,7 @@ import static org.junit.Assert.assertTrue;
 
 public class AddCommandTest extends TaskBookGuiTest {
     //@@author A0138301U
+    
     @Test
     public void add() {
         //add one task
@@ -27,13 +28,6 @@ public class AddCommandTest extends TaskBookGuiTest {
         commandBox.runCommand(taskToAdd.getAddCommand());
         assertResultMessage(UniqueTaskList.DATE_CLASH_MESSAGE + "Study time'");
 
-/*        //add duplicate task
-        taskToAdd = TypicalTestTasks.watchMovie;
-        commandBox.runCommand(taskToAdd.getAddCommand());
-        currentList = TestUtil.addPersonsToList(currentList, taskToAdd);
-        commandBox.runCommand(taskToAdd.getAddCommand());
-        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);*/
-
         //add to empty list
         commandBox.runCommand("clear");
         assertAddSuccess(td.play); 
@@ -41,6 +35,7 @@ public class AddCommandTest extends TaskBookGuiTest {
         //invalid command
         commandBox.runCommand("adds get a massage");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
+        
     }
 
     private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {

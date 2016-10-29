@@ -2,36 +2,41 @@ package guitests;
 
 import org.junit.Test;
 
+import seedu.task.commons.core.Messages;
 import seedu.task.testutil.TestTask;
 import seedu.task.testutil.TestUtil;
 
 import static org.junit.Assert.assertTrue;
 import static seedu.task.logic.commands.DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS;
 
+import java.util.Arrays;
+
 public class DeleteCommandTest extends TaskBookGuiTest {
 
+    //@@author A0138301u
     @Test
     public void delete() {
 
         //delete the first in the list
         TestTask[] currentList = td.getTypicalTasks();
         int targetIndex = 1;
-//        assertDeleteSuccess(targetIndex, currentList);
+        assertDeleteSuccess(targetIndex, currentList);
 
-/*        //delete the last in the list
+        //delete the last in the list
         currentList = TestUtil.removePersonFromList(currentList, targetIndex);
         targetIndex = currentList.length;
         assertDeleteSuccess(targetIndex, currentList);
 
-        //delete from the middle of the list
+        //delete only task in the list
         currentList = TestUtil.removePersonFromList(currentList, targetIndex);
-        targetIndex = currentList.length/2;
+        targetIndex = currentList.length;
         assertDeleteSuccess(targetIndex, currentList);
 
         //invalid index
-        commandBox.runCommand("delete " + currentList.length + 1);
-        assertResultMessage("The person index provided is invalid");*/
-
+        targetIndex = 1;
+        commandBox.runCommand("delete " + targetIndex);
+        assertResultMessage(String.format(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, Arrays.toString(new int[]{targetIndex})));
+        //@@author
     }
 
     /**
