@@ -162,7 +162,8 @@ public class TaskCard extends UiPart {
                 } else {
                     dateTime.setText(toSimpleTimeFormat(task.getStartDate().value) + " - "
                             + toSimpleTimeFormat(task.getEndDate().value) + System.lineSeparator()
-                            + toSimpleDateFormat(task.getStartDate().value));
+                            + toSimpleDateFormat(task.getStartDate().value) + System.lineSeparator()
+                            + toPrettyDate(task.getStartDate().value));
                 }
             } else {
                 dateTime.setText(toSimpleTimeFormat(task.getStartDate().value) + " "
