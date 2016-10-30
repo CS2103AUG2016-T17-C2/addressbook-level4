@@ -170,7 +170,6 @@ public class LogicManagerTest {
     
     
     //@@author A0139958H
-    
     @Test
     public void execute_add_invalidArgsFormat() throws Exception {
         assertCommandBehavior("add", Name.MESSAGE_NAME_CONSTRAINTS); //Empty Name
@@ -180,6 +179,8 @@ public class LogicManagerTest {
         assertCommandBehavior("add play football from 6pm to 7pm tomorrow by 8pm tomorrow", DateTime.MESSAGE_MULTIPLE_END_DATE); //Multiple End Dates
         assertCommandBehavior("add play football from 8pm tomorrow by 6pm tomorrow", DateTime.MESSAGE_INVALID_START_DATE); //Start Date is After End Date
     }
+    
+
     
     @Test
     public void execute_update_successful() throws Exception {
@@ -216,6 +217,22 @@ public class LogicManagerTest {
                 expectedAB.getTaskList());
     }
     
+    @Test
+    public void execute_undo_and_redo_successful() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        Task toBeAdded = helper.sampleTask();
+        TaskBook expectedAB = new TaskBook();
+        expectedAB.addTask(toBeAdded);
+
+        assertCommandBehavior("undo", UndoCommand.MESSAGE_SUCCESS_UNDO_DELETE);
+        assertCommandBehavior("redo", RedoCommand.MESSAGE_SUCCESS_REDO_ADD);
+    }
+    
+    @Test
+    public void execute_redo_unsuccessful() throws Exception {
+        assertCommandBehavior("redo", RedoCommand.MESSAGE_FAILURE_REDO);
+    }
+    
    //@@author
 
     @Test
@@ -233,7 +250,6 @@ public class LogicManagerTest {
                 expectedAB.getTaskList());
 
     }
-
 
     @Test
     public void execute_list_showsAlltasks() throws Exception {
