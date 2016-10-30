@@ -98,25 +98,25 @@
 }
 
 .cell_big_label {
-	-fx-font-family: "Momentum";
+	-fx-font-family: "Helvetica";
     -fx-font-size: 21px;
     -fx-text-fill: #FFFFFF;
 }
 
 .cell_tag_label {
-	-fx-font-family: "Momentum";
+	-fx-font-family: "Helvetica";
     -fx-font-size: 15px;
     -fx-text-fill: #FFFFFF;
 }
 
 .cell_small_label {
-	-fx-font-family: "Momentum";
-    -fx-font-size: 14px;
+	-fx-font-family: "Helvetica";
+    -fx-font-size: 13px;
     -fx-text-fill: #FFFFFF;
 }
 
 .cell_index_label {
-	-fx-font-family: "Momentum";
+	-fx-font-family: "Helvetica";
     -fx-font-size: 27px;
     -fx-text-fill: #FFFFFF;
     -fx-font-weight: bold;
