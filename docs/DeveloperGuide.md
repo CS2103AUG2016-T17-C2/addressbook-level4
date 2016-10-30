@@ -247,6 +247,7 @@ can be automated using Gradle. For example, Gradle can download the dependencies
 is better than these alternatives.<br>
 a. Include those libraries in the repo (this bloats the repo size)<br>
 b. Require developers to download those libraries manually (this creates extra work for developers)<br>
+<!-- @@author A0138301U -->
 
 ## Appendix A : User Stories
 
@@ -283,6 +284,7 @@ Priority | As a ... | I want to ... | So that ...
 `*` | User | Have public holidays indicated in the calendar | I can be aware of them when planning my schedule
 `*` | User | Natural language processing (NLP)  | I can write my commands in a more intuitive manner
 
+<!-- @@author -->
 
 ## Appendix B : Use Cases
 
@@ -313,7 +315,7 @@ Case Close
     taskBook provides feedback to the user that task Name is compulsory
 2f. User enters duplicate tags
     taskBook provides feedback to the user of the duplicate tags
-    
+<!-- @@author A0138301U -->    
 #### Use case: Find tasks
 
 **MSS**
@@ -332,7 +334,7 @@ Case Close
 2b. User enters keyword with prefix '@'
 	taskBook filters all tasks with the associated venue
 	taskBook displays all tasks on task board (that is sorted according to deadline) with keywords matching user input
-    
+<!-- @@author -->    
 #### Use case: Update a task
 
 **MSS**

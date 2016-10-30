@@ -10,16 +10,18 @@ import static org.junit.Assert.assertTrue;
 
 public class FindCommandTest extends TaskBookGuiTest {
 
+    //@@author A0138301U
     @Test
     public void find_nonEmptyList() {
         assertFindResult("find life"); //no results
-/*        assertFindResult("find time", TypicalTestTasks.study, TypicalTestTasks.play); //multiple results
+        assertFindResult("find time", TypicalTestTasks.study, TypicalTestTasks.play); //multiple results
 
         //find after deleting one result
         commandBox.runCommand("delete 1");
-        assertFindResult("find time",TypicalTestTasks.study);*/
+        assertFindResult("find time",TypicalTestTasks.play);
     }
-
+    //@@author
+    
     @Test
     public void find_emptyList(){
         commandBox.runCommand("clear");

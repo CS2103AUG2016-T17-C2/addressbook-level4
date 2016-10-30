@@ -5,7 +5,7 @@ import java.util.Set;
 
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.logic.parser.TaskParser;
-import seedu.task.model.Undo;
+import seedu.task.model.VersionControl;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.*;
@@ -46,7 +46,8 @@ public class AddCommand extends Command {
         assert model != null;
         try {
             int taskIndex = model.addTask(toAdd);
-            Undo.getInstance().setUndo(taskIndex, toAdd, Undo.UndoCommand.ADD);
+            VersionControl.getInstance().push(new TaskVersion(VersionControl.getInstance().getIndex() + 1, taskIndex, toAdd, TaskVersion.Command.ADD));
+            VersionControl.getInstance().resetVersionPosition();
         } catch (UniqueTaskList.DuplicateTaskException e) {
             return new CommandResult(MESSAGE_DUPLICATE_TASK);
         } catch (UniqueTaskList.DateClashTaskException e) {

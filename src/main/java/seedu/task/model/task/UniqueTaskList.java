@@ -19,14 +19,19 @@ import java.util.*;
  * @see CollectionUtil#elementsAreUnique(Collection)
  */
 public class UniqueTaskList implements Iterable<Task> {
-
+    
+    //@@author A0138301U
+    public static final String DATE_CLASH_MESSAGE = "The Start Date and End date clashes with another task '";
+    public static final String DUPLICATE_TASK_MESSAGE = "Operation would result in duplicate tasks";
+    //@@author
+    
 	/**
 	 * Signals that an operation would have violated the 'no duplicates'
 	 * property of the list.
 	 */
 	public static class DuplicateTaskException extends DuplicateDataException {
 		protected DuplicateTaskException() {
-			super("Operation would result in duplicate tasks");
+			super(DUPLICATE_TASK_MESSAGE);
 		}
 	}
 
@@ -37,7 +42,7 @@ public class UniqueTaskList implements Iterable<Task> {
 	 */
 	public static class DateClashTaskException extends DuplicateDataException {
 		protected DateClashTaskException(String taskName) {
-			super("The Start Date and End date clashes with another task '" + taskName + "'");
+			super(DATE_CLASH_MESSAGE + taskName + "'");
 		}
 	}
 

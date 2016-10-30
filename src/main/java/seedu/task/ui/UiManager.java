@@ -20,7 +20,6 @@ import seedu.task.model.UserPrefs;
 
 import java.util.logging.Logger;
 
-//@@author A0138301U
 /**
  * The manager of the UI component.
  */
