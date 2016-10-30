@@ -1,6 +1,7 @@
 
 
-# Address Book (Level 4)
+# Task Book
+[![Build Status](https://travis-ci.org/CS2103AUG2016-T17-C2/main.svg?branch=master)](https://travis-ci.org/CS2103AUG2016-T17-C2/main)
 
 <img src="docs/images/Ui.jpg" width="600"><br>
 
