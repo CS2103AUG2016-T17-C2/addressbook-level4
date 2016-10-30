@@ -1,6 +1,9 @@
 
 
-# Address Book (Level 4)
+# Task Book
+[![Build Status](https://travis-ci.org/CS2103AUG2016-T17-C2/main.svg?branch=master)](https://travis-ci.org/CS2103AUG2016-T17-C2/main)
+[![Coverage Status](https://coveralls.io/repos/github/CS2103AUG2016-T17-C2/main/badge.svg?branch=master)](https://coveralls.io/github/CS2103AUG2016-T17-C2/main?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/298d0f260d494d7e9497ee60b8cc60a9)](https://www.codacy.com/app/arsh-abdulrahman/main?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CS2103AUG2016-T17-C2/main&amp;utm_campaign=Badge_Grade)
 
 <img src="docs/images/Ui.jpg" width="600"><br>
 
