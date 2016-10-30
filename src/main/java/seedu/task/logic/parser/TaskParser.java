@@ -6,32 +6,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.StringJoiner;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
 
 import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
 
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.exceptions.IllegalValueException;
-import seedu.task.model.ModelManager;
 import seedu.task.model.tag.Tag;
-import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.task.model.task.DateTime;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.PinTask;
 import seedu.task.model.task.TaskPriority;
-import seedu.task.model.task.Status;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.Venue;
 
@@ -53,27 +45,42 @@ public class TaskParser {
 	private Task task;
 	private String input;
 
+	/**
+	 * @param: input arguments from User
+	 */
 	public TaskParser(String input) {
 		this(new Task(), input);
 	};
-
+	
+	/**
+	 * @param: Task object and input arguments from User
+	 */
 	public TaskParser(Task task, String input) {
 		this.task = task;
 		this.input = input;
 	};
 
+	/**
+	 * Parses the user input with various input validations
+	 * @throws IllegalValueException if user input contains invalid arguments
+	 * @return: Task object
+	 */
 	public Task parseInput() throws IllegalValueException {
 		input = tagIdentification(input);
 		input = dateIdentification(input, FROM, FROM.trim().length());
 		input = dateIdentification(input, BY, BY.trim().length());
 		validateStartDate();
 		processTaskName(input);
-
-		logger.info("parseInput: " + task.toString());
-
 		return task;
 	}
 
+	/**
+	 * Parses the user input to identify tags and venues
+	 * @param input arguments from user
+	 * @throws IllegalValueException if user input contains invalid arguments
+	 * @throws DuplicateTagException if duplicate tag is found
+	 * @return: parsed argument
+	 */
 	protected String tagIdentification(String str) throws DuplicateTagException, IllegalValueException {
 		String[] parts = str.split(SPLIT_STRING_BY_WHITESPACE);
 		String strWithNoTags = "";
@@ -84,13 +91,20 @@ public class TaskParser {
 				if (part.substring(1).trim().equalsIgnoreCase(NULL))
 					task.setVenue(new Venue(""));
 				else
-					task.setVenue(new Venue(String.join(" ", task.getVenue().toString(), part.substring(1))));
+					task.setVenue(new Venue(String.join(WHITE_SPACE, task.getVenue().toString(), part.substring(1))));
 			} else
-				strWithNoTags = String.join(" ", strWithNoTags, part.trim());
+				strWithNoTags = String.join(WHITE_SPACE, strWithNoTags, part.trim());
 		}
 		return strWithNoTags;
 	}
 
+	/**
+	 * Parses the tags to priority/pin/date or tags
+	 * @param input arguments from user, potential tags
+	 * @throws IllegalValueException if user input contains invalid arguments
+	 * @throws DuplicateTagException if duplicate tag is found
+	 * @return: parsed argument
+	 */
 	protected String matchTag(String str, String tag) throws DuplicateTagException, IllegalValueException {	
 		if (tag.equalsIgnoreCase(NULL))
 			str = dateMatch(str);
@@ -103,9 +117,14 @@ public class TaskParser {
 		return str;
 	}
 
+	/**
+	 * extracts date type from user input based on matching keywords ('FROM' for start date, 'BY' for end date)
+	 * @param input arguments from user, date type (start/end), length of 'FROM' or 'BY' depending on date type
+	 * @throws IllegalValueException if start/end date is found to be invalid, multiple start/end dates are found in the user input
+	 * @return: parsed argument
+	 */
 	protected String dateIdentification(String str, String dateType, int strLength) throws IllegalValueException {
 		String[] parts = str.split("(?=" + REGEX_CASE_INSENSITIVE + dateType + ")");
-		logger.info("dateIdentification: " + Arrays.toString(parts));
 		StringJoiner processedString = new StringJoiner(WHITE_SPACE);
 
 		for (int i = 0; i < parts.length; i++) {
@@ -121,9 +140,14 @@ public class TaskParser {
 		return processedString.toString();
 	}
 
+	/**
+	 * For Update task, removes start/end date from the task
+	 * @param input arguments from user
+	 * @throws IllegalValueException if 'NULL' is entered to be inserted as a tag. Keyword 'NULL' is reserved and cannot be inserted as a tag
+	 * @return: parsed argument
+	 */
 	protected String dateMatch(String str) throws IllegalValueException {
-		logger.info("dateMatch Str:" + str);
-		String lastWord = StringUtils.stripEnd(str, " ").substring(str.lastIndexOf(" ") + 1);
+		String lastWord = StringUtils.stripEnd(str, WHITE_SPACE).substring(str.lastIndexOf(WHITE_SPACE) + 1);
 
 		if (StringUtils.containsIgnoreCase(lastWord, FROM.trim()))
 			task.setStartDate(new DateTime(""));
@@ -131,10 +155,17 @@ public class TaskParser {
 			task.setEndDate(new DateTime(""));
 		else
 			throw new IllegalValueException(Tag.MESSAGE_HASHTAG_NULL_CONSTRAINTS);
-		logger.info("dateMatch Str1:" + str);
+		logger.info("dateMatch Str:" + str);
 		return replaceLast(str, lastWord, "");
 	}
 
+	
+	/**
+	 * Uses Natty Date Natural Language Processing to identify potential start and end dates 
+	 * @param input arguments from user, date type (start/end)
+	 * @throws IllegalValueException if start date/end date is empty or both start date and end dates are same
+	 * @return: parsed argument
+	 */
 	protected String processDateNLP(String str, String dateType) throws IllegalValueException {
 		Parser parser = new Parser();
 		List<DateGroup> groups = parser.parse(str);
@@ -155,10 +186,15 @@ public class TaskParser {
 			else if (dateType.equalsIgnoreCase(BY))
 				setEndDate(dates);
 		}
-
 		return str;
 	}
 
+	
+	/**
+	 * Sets the start date to the task
+	 * @param list of dates
+	 * @throws IllegalValueException if start date is empty or both start date and end dates are same
+	 */
 	protected void setStartDate(List<Date> dates) throws IllegalValueException {
 		if (!task.getStartDate().value.isEmpty())
 			throw new IllegalValueException(DateTime.MESSAGE_MULTIPLE_START_DATE);
@@ -173,12 +209,21 @@ public class TaskParser {
 		}
 	}
 	
+	/**
+	 * Sets the end date to the task
+	 * @param list of dates
+	 * @throws IllegalValueException if end date is empty
+	 */
 	protected void setEndDate(List<Date> dates) throws IllegalValueException {
 		if (!task.getEndDate().value.isEmpty())
 			throw new IllegalValueException(DateTime.MESSAGE_MULTIPLE_END_DATE);
 		task.setEndDate(new DateTime(dates.get(dates.size()-1)));
 	}
 	
+	/**
+	 * checks if the entered start date is valid (falls before end date)
+	 * @throws IllegalValueException if start date is found to be invalid
+	 */
 	protected void validateStartDate() throws IllegalValueException {
 		if (!task.getStartDate().value.isEmpty() && !task.getEndDate().value.isEmpty()) {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E MMM d HH:mm:ss zzz yyyy");
@@ -190,14 +235,29 @@ public class TaskParser {
 		}
 	}
 
+	/**
+	 * Sets task name for the task
+	 * @param input arguments from user
+	 * @throws IllegalValueException if name is empty or invalid (contains anything other than alphanumeric values)
+	 */
 	protected void processTaskName(String str) throws IllegalValueException {
 		task.setName(new Name(str));
 	}
 
+	/**
+	 * checks if string starts with the specified prefix (case insensitive)
+	 * @param string to be checked and prefix
+	 * @return true if matches otherwise false
+	 */
 	protected boolean startsWithIgnoreCase(String str, String prefix) {
 		return startsWith(str, prefix, true);
 	}
 
+	/**
+	 * checks if string starts with the specified prefix (case insensitive)
+	 * @param string to be checked, prefix, to be case insensitive or not
+	 * @return true if matches otherwise false
+	 */
 	protected boolean startsWith(String str, String prefix, boolean ignoreCase) {
 		if (str == null || prefix == null) {
 			return (str == null && prefix == null);
@@ -208,6 +268,11 @@ public class TaskParser {
 		return str.regionMatches(ignoreCase, 0, prefix, 0, prefix.length());
 	}
 	
+	/**
+	 * replaces last matching word in a string with a replacement
+	 * @param original string, match string, replacement string
+	 * @return modified string
+	 */
 	protected String replaceLast(String string, String toReplace, String replacement) {
 	    int pos = string.lastIndexOf(toReplace);
 	    if (pos > -1) {

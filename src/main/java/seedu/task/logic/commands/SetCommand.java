@@ -10,6 +10,7 @@ import seedu.task.model.ModelManager;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
+import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
 
 //@@author A0139958H
 
@@ -30,15 +31,17 @@ public class SetCommand extends Command{
 
     
     /**
-     * Parameter: Task Index, Arguments to be updated
-     *
-     * 
+     *@param Task Index, Arguments to be updated
      */
     public SetCommand(int taskIndex, String setArg) {
     	this.taskIndex = taskIndex;
     	this.setArg = setArg;
     }
 
+    /**
+     * Sets the status of task to done or ignore
+     * @throws IllegalValueException if an invalid status is entered in the input. 
+     */
     @Override
     public CommandResult execute() {
         UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getSortedTaskList();

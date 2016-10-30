@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.Messages;
@@ -12,6 +13,8 @@ import seedu.task.model.VersionControl;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.TaskVersion;
+import seedu.task.model.task.UniqueTaskList;
+import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
 import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 //@@author A0139958H
@@ -35,21 +38,19 @@ public class DeleteCommand extends Command {
 		this.targetIndexes = targetIndexes;
 	}
 
+	
+    /**
+     * Deletes the specified task objects taskBook. Saves it in version control for possible undo/redo operations
+     * @throws TaskNotFoundException if task is not found in the internal list.
+     */
 	@Override
 	public CommandResult execute() {
 		Arrays.sort(targetIndexes);
-		UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getSortedTaskList();
-		List<Integer> invalidIndexes = new ArrayList<>();
-		
-		for (int i = 0; i < targetIndexes.length; i++) {
-			if (lastShownList.size() < targetIndexes[i])
-				invalidIndexes.add(targetIndexes[i]);
-		}
-
-		if (!invalidIndexes.isEmpty()) {
+		Optional<List<Integer>> inValidIndexes = isValidIndexes();
+		if (inValidIndexes.isPresent()) {
 			indicateAttemptToExecuteIncorrectCommand();
 			return new CommandResult(String.format(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX,
-			        Arrays.toString(invalidIndexes.toArray())));
+			        Arrays.toString(inValidIndexes.get().toArray())));
 		}
 
 		try {
@@ -71,6 +72,22 @@ public class DeleteCommand extends Command {
 		}
 
 		return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, Arrays.toString(targetIndexes)));
+	}
+	
+	
+    /**
+     * Checks if the indexes are valid indexes identified with a task
+     * @returns list of invalid indexes if present or empty.
+     */
+	public Optional<List<Integer>> isValidIndexes() {
+		UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getSortedTaskList();
+		List<Integer> invalidIndexes = new ArrayList<>();
+		
+		for (int i = 0; i < targetIndexes.length; i++) {
+			if (lastShownList.size() < targetIndexes[i])
+				invalidIndexes.add(targetIndexes[i]);
+		}
+		return (invalidIndexes.isEmpty()) ? Optional.empty() : Optional.of(invalidIndexes);
 	}
 
 }

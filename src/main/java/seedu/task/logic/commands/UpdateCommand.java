@@ -15,6 +15,7 @@ import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.TaskVersion;
 import seedu.task.model.task.UniqueTaskList;
+import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
 
 public class UpdateCommand extends Command{
     public static final String COMMAND_WORD = "update";
@@ -32,15 +33,18 @@ public class UpdateCommand extends Command{
 
     
     /**
-     * Parameter: Task Index, Arguments to be updated
-     *
-     * 
+     * @param: Task Index, Arguments to be updated
      */
     public UpdateCommand(int taskIndex, String updateArgs) {
     	this.taskIndex = taskIndex;
     	this.updateArgs = updateArgs;
     }
-
+    
+    /**
+     * Updates the specified task object in the taskBook. Saves it in version control for possible undo/redo operations
+     * @throws DateClashTaskException if task happens between another task's start and end dates
+     * @throws IllegalValueException if an invalid command is entered.
+     */
     @Override
     public CommandResult execute() {
     	LogsCenter.getLogger(ModelManager.class).info("Task Index: " + taskIndex + " Args: " + updateArgs);

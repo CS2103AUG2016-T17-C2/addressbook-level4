@@ -6,6 +6,7 @@ import seedu.task.model.VersionControl;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.TaskVersion;
 import seedu.task.model.task.UniqueTaskList;
+import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
 import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
@@ -21,10 +22,22 @@ public class RedoCommand extends Command {
 
 	VersionControl redo;
 	
+    /**
+     * gets the instance of VersionControl class (Singleton class - only one instance)
+     */
 	public RedoCommand() {
 		redo = VersionControl.getInstance();
 	}
 
+	
+    /**
+     * Redo the last task operation
+     * @throws UniqueTaskList.DuplicateTaskException if an equivalent task already exists.
+     * @throws DateClashTaskException if task happens between another task's start and end dates
+     * @throws TaskNotFoundException if task is not found in the internal list.
+     * @throws NullPointerException if task is not found in the version list
+     * 
+     */
 	@Override
 	public CommandResult execute() {
 		assert model != null;

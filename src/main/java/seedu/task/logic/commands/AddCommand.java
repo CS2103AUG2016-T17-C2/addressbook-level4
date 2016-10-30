@@ -1,14 +1,8 @@
 package seedu.task.logic.commands;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import seedu.task.commons.exceptions.IllegalValueException;
-import seedu.task.logic.parser.TaskParser;
 import seedu.task.model.VersionControl;
-import seedu.task.model.tag.Tag;
-import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.*;
+import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
 
 
 //@@author A0139958H
@@ -31,9 +25,7 @@ public class AddCommand extends Command {
     private final Task toAdd;
 
     /**
-     * Parameter: Task Object
-     *
-     * 
+     * @param: Task Object
      */
     public AddCommand(Task task) {
     	if (task == null)
@@ -41,6 +33,12 @@ public class AddCommand extends Command {
     	this.toAdd = task;
     }
 
+    /**
+     * Adds the task object to taskBook. Saves it in version control for possible undo/redo operations
+     * @throws UniqueTaskList.DuplicateTaskException if an equivalent task already exists.
+     * @throws DateClashTaskException if task happens between another task's start and end dates
+     * 
+     */
     @Override
     public CommandResult execute() {
         assert model != null;

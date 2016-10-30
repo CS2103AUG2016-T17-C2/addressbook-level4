@@ -129,10 +129,8 @@ public class Parser {
     //@@author A0139958H
     
     /**
-     * Parses arguments in the context of the add task command.
-     *
-     * @param args
-     *            full command args string
+     * Parses the arguments in the context of the add task command.
+     * @param input arguments from user
      * @return the prepared command
      */
     private Command prepareAdd(String args) {
@@ -145,11 +143,8 @@ public class Parser {
     }
 
     /**
-     * 
-     * Parses arguments in the context of the update task command.
-     *
-     * @param args
-     *            full command args string
+     * Parses the arguments in the context of the update task command.
+     * @param input arguments from user
      * @return the prepared command
      */
     private Command prepareUpdate(String args) {
@@ -162,11 +157,8 @@ public class Parser {
     }
 
     /**
-     * 
-     * Parses arguments in the context of the set task command.
-     *
-     * @param args
-     *            full command args string
+     * Parses the arguments in the context of the set task command.
+     * @param input arguments from user
      * @return the prepared command
      */
     private Command prepareSet(String args) {
@@ -181,10 +173,8 @@ public class Parser {
     }
     
     /**
-     * Parses arguments in the context of the delete task command.
-     *
-     * @param args
-     *            full command args string
+     * Parses the arguments in the context of the date task command.
+     * @param input arguments from user
      * @return the prepared command
      */
     private Command prepareDelete(String args) {
@@ -198,7 +188,8 @@ public class Parser {
     
     
     /**
-     * Returns the specified index in the {@code command} IF a positive unsigned
+     * @param input arguments from user
+     * @return the specified index in the {@code command} IF a positive unsigned
      * integer is given as the index. Returns an {@code Optional.empty()}
      * otherwise.
      */
@@ -218,16 +209,16 @@ public class Parser {
     }
     
     /**
-     * Returns all indexes in the {@code command} IF positive unsigned
+     * @param input arguments from user
+     * @return all indexes in the {@code command} IF positive unsigned
      * integers is given as the indexes. Returns an {@code Optional.empty()}
      * otherwise.
      */
     private Optional<int[]> parseIndexes(String command) {
         final Matcher matcher = TASK_INDEXES_FORMAT.matcher(command.trim());
 
-        if (!matcher.matches()) {
+        if (!matcher.matches())
             return Optional.empty();
-        }
 
         String[] match = matcher.group("targetIndexes").split(SPLIT_STRING_BY_WHITESPACE);
         int[] indexes = new int[match.length];
@@ -238,31 +229,28 @@ public class Parser {
             else
             	indexes[i] = Integer.parseInt(match[i]);
         }
-        logger.info("Delete Indexes: " + Arrays.toString(indexes));
         return Optional.of(indexes);
 
     }
 
     /**
      * Processes the command with an index followed by a series of arguments.
-     * Returns the specified index in the {@code command} and the arguments IF a
+     * @param input arguments from user
+     * @return the specified index in the {@code command} and the arguments IF a
      * positive unsigned integer is given as the index and if arguments are
      * present. Returns an {@code Optional.empty()} otherwise
      */
     private Pair<Optional<Integer>, Optional<String>> parseIndexWithArgs(String command) {
         final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(command.trim());
-        // logger.info("left: " + argsPair.getLeft() + " right: " +
-        // argsPair.getRight());
 
-        if (!matcher.matches()) {
+        if (!matcher.matches())
             return new ImmutablePair<Optional<Integer>, Optional<String>>(Optional.empty(), Optional.empty());
-        }
 
         String index = matcher.group("targetIndex");
         String args = matcher.group("arguments");
-        if (!StringUtil.isUnsignedInteger(index) || args.isEmpty()) {
+        if (!StringUtil.isUnsignedInteger(index) || args.isEmpty())
             return new ImmutablePair<Optional<Integer>, Optional<String>>(Optional.empty(), Optional.empty());
-        }
+        
         return new ImmutablePair<Optional<Integer>, Optional<String>>(Optional.of(Integer.parseInt(index)),
                 Optional.of(args));
     }
