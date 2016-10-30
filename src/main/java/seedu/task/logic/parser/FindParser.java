@@ -17,7 +17,9 @@ import seedu.task.model.tag.Tag;
 import seedu.task.model.task.TaskPriority;
 import seedu.task.model.task.Status;
 
-/** Helper class to parse input when find is invoked, and to return the appropriate find command or other command based on input*/
+/** 
+ * Helper class to parse input when find is invoked, and to return the appropriate find command or other command based on input
+ */
 public class FindParser {
     
     private static final Pattern KEYWORDS_ARGS_FORMAT = Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one
@@ -56,7 +58,7 @@ public class FindParser {
 
         if (keywords[0].charAt(0) == PREFIX_HASHTAG) { // prefix # used to denote find
                                             // tag, priority or status
-            return returnFindCommandForHashtag(keywords);
+            return returnFindCommandForHashtagPrefix(keywords);
         }
         
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
@@ -64,8 +66,10 @@ public class FindParser {
     }
 
 
-
-    private static Command returnFindCommandForHashtag(final String[] keywords) throws IllegalValueException {
+/** 
+ * Returns the find command for priority or status, or by tagging.
+ */
+    private static Command returnFindCommandForHashtagPrefix(final String[] keywords) throws IllegalValueException {
         if (keywords[0].substring(1).isEmpty()) {
             return new IncorrectCommand(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));

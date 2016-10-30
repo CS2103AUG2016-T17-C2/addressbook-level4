@@ -28,6 +28,11 @@ import seedu.task.model.task.Status;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 
+/**
+ * The TaskCard. Provides the details for the layout of details displayed for each Task,
+ * and the colour and icons on each TaskCard.
+ */
+
 public class TaskCard extends UiPart {
 
     private static final String PIN_IMAGE = "/images/pinicon.png";
@@ -98,11 +103,12 @@ public class TaskCard extends UiPart {
         addIconsForStatusAndPin();
     }
 
+/**    add icons depending on status of Task*/
     private void addIconsForStatusAndPin() {
         Region region = new Region();
         HBox.setHgrow(region, Priority.ALWAYS);
-        imageContainer.getChildren().add(region); // to right align all added
-                                                  // icons
+        imageContainer.getChildren().add(region); // to right align all added icons
+        
         if (task.getStatus().equals(Status.DONE)) {
             ImageView done = new ImageView(new Image(DONE_IMAGE));
             imageContainer.getChildren().add(done);
@@ -119,6 +125,7 @@ public class TaskCard extends UiPart {
         }
     }
 
+/**    Sets the background colour based on the status or priority of the Task*/
     private void setBackgroundColor() {
         if(task.getStatus().equals(Status.DONE)) {
             gridPane.setBackground(new Background(

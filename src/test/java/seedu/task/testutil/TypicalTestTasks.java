@@ -32,12 +32,7 @@ public class TypicalTestTasks {
 			coding = new TaskBuilder().withName("code cs2103").withVenue("School")
 			        .withStartDate(DateUtils.setHours(date, 14)).withEndDate(DateUtils.setHours(date, 16))
 			        .withPriority("High").withStatus("Active").withPinTask("unpin").withTags("study", "school").build();
-			
-			//@@author A0138301U
-			watchMovie = new TaskBuilder().withName("watch Source Code").withVenue("Home") //floating task
-			            .withNullStartDate().withNullEndDate()
-			            .withPriority("Medium").withStatus("Active").withPinTask("pin").build();
-			//@@author
+
 			
 		} catch (IllegalValueException e) {
 			e.printStackTrace();
@@ -45,12 +40,12 @@ public class TypicalTestTasks {
 		}
 	}
 
-	public static void loadTaskBookWithSampleData(TaskBook ab) {
+	public static void loadTaskBookWithSampleData(TaskBook tb) {
 
 		try {
-			ab.addTask(new Task(study));
-			ab.addTask(new Task(play));
-			ab.addTask(new Task(coding));
+			tb.addTask(new Task(study));
+			tb.addTask(new Task(play));
+			tb.addTask(new Task(coding));
 
 		} catch (UniqueTaskList.DuplicateTaskException e) {
 			assert false : "not possible";
@@ -64,8 +59,8 @@ public class TypicalTestTasks {
 	}
 
 	public TaskBook getTypicalTaskBook() {
-		TaskBook ab = new TaskBook();
-		loadTaskBookWithSampleData(ab);
-		return ab;
+		TaskBook tb = new TaskBook();
+		loadTaskBookWithSampleData(tb);
+		return tb;
 	}
 }

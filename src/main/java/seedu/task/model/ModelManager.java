@@ -14,7 +14,9 @@ import seedu.task.commons.util.StringUtil;
 import seedu.task.logic.parser.TaskParser;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.ReadOnlyTask;
+import seedu.task.model.task.Status;
 import seedu.task.model.task.Task;
+import seedu.task.model.task.TaskPriority;
 import seedu.task.model.task.UniqueTaskList;
 import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
 import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
@@ -164,7 +166,7 @@ public class ModelManager extends ComponentManager implements Model {
     
     public void updateFilteredTaskListByHighPriority() {
         filteredTasks.setPredicate(task -> {
-            if(task.getPriority().toString().equals("HIGH")) {
+            if(task.getPriority().equals(TaskPriority.HIGH)) {
                 return true;
             } else {
                 return false;
@@ -174,7 +176,7 @@ public class ModelManager extends ComponentManager implements Model {
     
     public void updateFilteredTaskListByMediumPriority() {
         filteredTasks.setPredicate(task -> {
-            if(task.getPriority().toString().equals("MEDIUM")) {
+            if(task.getPriority().equals(TaskPriority.MEDIUM)) {
                 return true;
             } else {
                 return false;
@@ -184,7 +186,7 @@ public class ModelManager extends ComponentManager implements Model {
     
     public void updateFilteredTaskListByLowPriority() {
         filteredTasks.setPredicate(task -> {
-            if(task.getPriority().toString().equals("LOW")) {
+            if(task.getPriority().equals(TaskPriority.LOW)) {
                 return true;
             } else {
                 return false;
@@ -194,7 +196,7 @@ public class ModelManager extends ComponentManager implements Model {
     
     public void updateFilteredTaskListByActiveStatus() {
         filteredTasks.setPredicate(task -> {
-            if(task.getStatus().toString().equals("ACTIVE")) {
+            if(task.getStatus().equals(Status.ACTIVE)) {
                 return true;
             } else {
                 return false;
@@ -204,7 +206,7 @@ public class ModelManager extends ComponentManager implements Model {
     
     public void updateFilteredTaskListByExpiredStatus() {
         filteredTasks.setPredicate(task -> {
-            if(task.getStatus().toString().equals("EXPIRED")) {
+            if(task.getStatus().equals(Status.EXPIRED)) {
                 return true;
             } else {
                 return false;
@@ -214,7 +216,7 @@ public class ModelManager extends ComponentManager implements Model {
     
     public void updateFilteredTaskListByDoneStatus() {
         filteredTasks.setPredicate(task -> {
-            if(task.getStatus().toString().equals("DONE")) {
+            if(task.getStatus().equals(Status.DONE)) {
                 return true;
             } else {
                 return false;
@@ -224,7 +226,7 @@ public class ModelManager extends ComponentManager implements Model {
     
     public void updateFilteredTaskListByIgnoreStatus() {
         filteredTasks.setPredicate(task -> {
-            if(task.getStatus().toString().equals("IGNORE")) {
+            if(task.getStatus().equals(Status.IGNORE)) {
                 return true;
             } else {
                 return false;
@@ -255,7 +257,9 @@ public class ModelManager extends ComponentManager implements Model {
         
     //========== Inner classes/interfaces used for sorting ==================================================
 
-/*    default comparator: arranges tasks by pin, (active, ignore, done) status level, then priority level, then by alphabetical order*/
+/**    
+ * default comparator: arranges tasks by pin, (active, expired, ignore, done) 
+ * status level, then priority level, then by alphabetical order*/
     public static class TaskComparator implements Comparator<ReadOnlyTask>
     {
         public int compare(ReadOnlyTask task1, ReadOnlyTask task2)
