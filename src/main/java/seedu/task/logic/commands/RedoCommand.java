@@ -29,36 +29,35 @@ public class RedoCommand extends Command {
 	public CommandResult execute() {
 		assert model != null;
 		try {
+			LogsCenter.getLogger(UndoCommand.class).info("size: " + redo.getSize() + " versionPosition: " + redo.getVersionPosition());
+			redo.logList();
+			
 			if (redo.getVersionPosition() <= 0)
 				return new CommandResult(MESSAGE_FAILURE_REDO);
 			
-			//LogsCenter.getLogger(UndoCommand.class).info("size: " + redo.getSize() + " versionPosition: " + redo.getVersionPosition());
-			//redo.logList();
-			redo.setCommandCount();
 			TaskVersion redoTask = redo.get(redo.getSize() - redo.getVersionPosition());
 			int redoIndex = redoTask.getVersionIndex();
-			redo.updateVersionPosition(-1);
 			LogsCenter.getLogger(UndoCommand.class).info("versionPosition: " + redo.getVersionPosition() + " undoTask " + redoTask.toString());
 			switch (redoTask.getCommand()) {
 			case DELETE:
-				for (int i = redo.getSize() - (redo.getVersionPosition() + 1); i < redo.getSize(); i++) {
+				for (int i = redo.getSize() - redo.getVersionPosition(); i < redo.getSize(); i++) {
 					redoTask = redo.get(i);
 					if (redoTask.getVersionIndex() == redoIndex) {
 						model.deleteTask(model.getTaskByIndex(redoTask.getTaskIndex()));
 						redo.updateVersionPosition(-1);
-					} else {
-						redo.updateVersionPosition(1);
+					} else
 						break;						
-					}
 				}				
 				return new CommandResult(MESSAGE_SUCCESS_REDO_ADD);
 			case ADD:
 				model.addTask(redoTask.getTaskIndex(), redoTask.getTask());
+				redo.updateVersionPosition(-1);
 				return new CommandResult(MESSAGE_SUCCESS_REDO_DELETE);
 			case UPDATE:
 				TaskVersion cloneTask = new TaskVersion(redoTask.getVersionIndex(), redoTask.getTaskIndex(), model.getTaskByIndex(redoTask.getTaskIndex()), redoTask.getCommand());
-				TaskVersion toUpdate = redo.swap(redoTask.getTaskIndex(), cloneTask);
+				TaskVersion toUpdate = redo.swap(redo.getSize() - redo.getVersionPosition(), cloneTask);
 				model.updateTask(model.getTaskByIndex(redoTask.getTaskIndex()), toUpdate.getTask());
+				redo.updateVersionPosition(-1);
 				return new CommandResult(MESSAGE_SUCCESS_REDO_UPDATE);
 			case DEFAULT:
 				return new CommandResult(MESSAGE_FAILURE_REDO);

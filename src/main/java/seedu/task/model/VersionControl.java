@@ -32,7 +32,6 @@ public class VersionControl {
 			return taskList.get(i);
 		else
 			throw new NullPointerException();
-		//return (i >= 0 && taskList.size() > i) ? taskList.get(i) : null;
 	}
 	
 	public TaskVersion pop() {
@@ -64,7 +63,7 @@ public class VersionControl {
 	}
 	
 	public void setCommandCount() {
-		if (getVersionPosition() == 1 && (getSize() != commandCount))
+		if (getVersionPosition() == 0 && (getSize() != commandCount))
 			commandCount = getSize() - commandCount;
 	}
 	

@@ -29,16 +29,17 @@ public class UndoCommand extends Command {
 	public CommandResult execute() {
 		assert model != null;
 		try {
-			undo.updateVersionPosition(1);
+			LogsCenter.getLogger(UndoCommand.class).info("size: " + undo.getSize() + " versionPosition: " + undo.getVersionPosition());
+			undo.logList();
+			
 			undo.setCommandCount();
 			LogsCenter.getLogger(UndoCommand.class).info("versionPosition: " + undo.getVersionPosition() 
 					+ " commandCount " + undo.getCommandCount() + " getSize " + undo.getSize());
 
-			if ((undo.getCommandCount() - undo.getVersionPosition()) < 0) {
-				undo.resetVersionPosition();
+			if ((undo.getCommandCount() - undo.getVersionPosition()) <= 0)
 				return new CommandResult(MESSAGE_FAILURE_UNDO);
-			}
 			
+			undo.updateVersionPosition(1);
 			TaskVersion undoTask = undo.get(undo.getSize() - undo.getVersionPosition());
 			int undoIndex = undoTask.getVersionIndex();
 			LogsCenter.getLogger(UndoCommand.class).info("versionPosition: " + undo.getVersionPosition() + " undoTask " + undoTask.toString());
@@ -49,12 +50,13 @@ public class UndoCommand extends Command {
 			case DELETE:
 				for (int i = undo.getSize() - undo.getVersionPosition(); i >= 0; i--) {
 					undoTask = undo.get(i);
+					LogsCenter.getLogger(UndoCommand.class).info("i: " + i + " versionIndex: " + undoTask.getVersionIndex() + " undoIndex: " + undoIndex);
 					if (undoTask.getVersionIndex() == undoIndex) {
 						model.addTask(undoTask.getTaskIndex(), undoTask.getTask());
 						undo.updateVersionPosition(1);
 					} else {
-						undo.updateVersionPosition(-1);
-						break;						
+						undo.updateVersionPosition(-1);						
+						break;		
 					}
 				}
 				return new CommandResult(MESSAGE_SUCCESS_UNDO_DELETE);
@@ -62,7 +64,7 @@ public class UndoCommand extends Command {
 				Task temp = model.getTaskByIndex(undoTask.getTaskIndex()).clone();
 				model.updateTask(model.getTaskByIndex(undoTask.getTaskIndex()), undoTask.getTask());
 				TaskVersion cloneTask = new TaskVersion(undoTask.getVersionIndex(), undoTask.getTaskIndex(), temp, undoTask.getCommand());
-				undo.swap(undoTask.getTaskIndex(), cloneTask);
+				undo.swap((undo.getSize() - undo.getVersionPosition()), cloneTask);
 				LogsCenter.getLogger(UndoCommand.class).info("cloneTask: " + cloneTask.toString() + " temp: " + temp.toString());
 
 				return new CommandResult(MESSAGE_SUCCESS_UNDO_UPDATE);
