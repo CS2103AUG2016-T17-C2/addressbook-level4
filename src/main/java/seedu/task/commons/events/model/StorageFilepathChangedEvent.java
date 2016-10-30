@@ -12,6 +12,7 @@ public class StorageFilepathChangedEvent extends BaseEvent{
     
     
     public StorageFilepathChangedEvent( Config initializedConfig){
+        assert initializedConfig != null;
         this.config = initializedConfig;
         this.newConfigFilepathString = Config.DEFAULT_CONFIG_FILE;
     }

@@ -5,11 +5,11 @@
 * [Implementation](#implementation)
 * [Testing](#testing)
 * [Dev Ops](#dev-ops)
-* [Appendix A: User Stories](#appendix-a-user-stories)
-* [Appendix B: Use Cases](#appendix-b-use-cases)
-* [Appendix C: Non Functional Requirements](#appendix-c-non-functional-requirements)
-* [Appendix D: Glossary](#appendix-d-glossary)
-* [Appendix E : Product Survey](#appendix-e-product-survey)
+* [Appendix A: User Stories](#appendix-a--user-stories)
+* [Appendix B: Use Cases](#appendix--b--use-cases)
+* [Appendix C: Non Functional Requirements](#appendix-c--non-functional-requirements)
+* [Appendix D: Glossary](#appendix-d--glossary)
+* [Appendix E : Product Survey](#appendix-e--product-survey)
 
 
 ## Setting up
@@ -378,7 +378,24 @@ Case Close
 2a. User enters incorrect index. 
     taskBook provides feedback that the index is invalid
 
+#### Use case: Changing or creating a Shortkey
 
+**MSS**
+
+1.	User requests to change shortkey
+2.	User inputs which command field and the new shortkey he wants to use
+3.  taskBook changes the settings for the shortkey
+4.	taskBook saves the shortkey so that the user can use the same shortkey in the next session
+Case Close
+
+**Extensions** 
+
+2a. User inputs a shortkey that already exists
+	taskBook provides feedback that the shortkey is already used
+2a. User inputs a shortkey that is made up of only spaces
+	taskBook rejects the shortkey and provides feedback
+	
+	
 #### Use case: Undo last operation
 
 **MSS**
@@ -431,18 +448,6 @@ Precondition: taskBook is already showing a list of tasks on the screen ( either
 3. User selects the wrong task
     User types in a command to return taskBook to the previous page and re-picks the correct task
 
-#### Use case: Creating a shortcut
-
-**MSS**
-
-1.	User requests to create a shortcut for the current commands that we have
-2.	taskBook saves the shortcut and displays the saved command
-
-**Extension**
-
-1a. Command that user typed in does not exist
-·	taskBook returns a 'command does not exist' error and says that it is unable to save the shortcut.
-1a. User did not want to 
 
 
 ## Appendix C : Non Functional Requirements
@@ -479,35 +484,35 @@ The abovementioned features appear to be popular and important to users of task 
 
 Details:
 
-Google Keep
-Pros	
-Available on all devices (Desktop, Web, Mobile) and also on all platforms (Android, iOS, macOS, Windows 10)	
-Minimalist interface	Need a Google account
-Able to collaborate, share with other people	
-Able to archive, add labels to each note	
-Cons
-No command line interface
+**Google Keep**
+**Pros**	
+* Available on all devices (Desktop, Web, Mobile) and also on all platforms (Android, iOS, macOS, Windows 10)	
+* Minimalist interface	Need a Google account
+* Able to collaborate, share with other people	
+* Able to archive, add labels to each note	
+**Cons**
+* No command line interface
 
-Apple Calendar
-Pros	
-Integrated with the Apple ecosystem	
-Syncing available with third-party platforms like Google Calendar	
-Minimalist interface	
-Able to view tasks in multiple formats (list, monthly, weekly, daily, hourly)	
-Able to collaborate, share with other people	
-Able to archive, add labels to each note	
-Intuitive and easy to use	
-Cons 
-Only available on the Apple ecosystem
-No command line interface
+**Apple Calendar**
+**Pros**	
+* Integrated with the Apple ecosystem	
+* Syncing available with third-party platforms like Google Calendar	
+* Minimalist interface	
+* Able to view tasks in multiple formats (list, monthly, weekly, daily, hourly)	
+* Able to collaborate, share with other people	
+* Able to archive, add labels to each note	
+* Intuitive and easy to use	
+**Cons**
+* Only available on the Apple ecosystem
+* No command line interface
 
-Evernote todo list
-Pros	
-Reminders can be added with specific days before
-Can add your own categories so that you can categories tasks according to your own preference	
-Can easily add a list of tasks quickly by just entering after each task has been created	
-Can create shortcuts	
-Cons 
-Pricey
-
-
+**Evernote todo list**
+**Pros**	
+* Reminders can be added with specific days before
+* Can add your own categories so that you can categories tasks according to your own preference	
+* Can easily add a list of tasks quickly by just entering after each task has been created	
+* Can create shortcuts	
+* The interface uses icons that are common, hence, intuitive for users
+* It syncs with Evernote software 
+**Cons** 
+* Pricey

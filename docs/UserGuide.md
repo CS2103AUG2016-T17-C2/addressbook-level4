@@ -1,4 +1,6 @@
-#Project name: taskBook
+<!-- @@author A0141064U -->
+
+##Project name: taskBook
 
 **Vision:** An intelligent and personalised task scheduler for Jim
 
