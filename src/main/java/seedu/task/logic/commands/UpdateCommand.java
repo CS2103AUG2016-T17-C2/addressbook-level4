@@ -52,7 +52,7 @@ public class UpdateCommand extends Command{
 
         if (lastShownList.size() < taskIndex) {
             indicateAttemptToExecuteIncorrectCommand();
-            return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            return new CommandResult(String.format(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, taskIndex));
         }
     	
         assert model != null;

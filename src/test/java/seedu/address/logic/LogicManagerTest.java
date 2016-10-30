@@ -130,10 +130,10 @@ public class LogicManagerTest {
 
         //Confirm the ui display elements should contain the right data
         assertEquals(expectedMessage, result.feedbackToUser);
-        //assertEquals(expectedShownList, model.getSortedTaskList());
+        //assertEquals(expectedTaskBook, model.getTaskBook());
 
-        //expectedTaskBook.getTaskList().forEach(t->logger.warning("expected: " + t.toString()));
-        //model.getTaskBook().getTaskList().forEach(t->logger.warning("actual: " + t.toString()));
+        expectedTaskBook.getTaskList().forEach(t->logger.warning("expected: " + t.toString()));
+        model.getTaskBook().getTaskList().forEach(t->logger.warning("actual: " + t.toString()));
     }
 
 
@@ -176,6 +176,41 @@ public class LogicManagerTest {
         assertCommandBehavior("add play football from 8pm tomorrow by 6pm tomorrow", DateTime.MESSAGE_INVALID_START_DATE); //Start Date is After End Date
     }
     
+    @Test
+    public void execute_update_successful() throws Exception {
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        helper.addToModel(model, 1);
+        
+        Task toBeAdded = helper.sampleTask(1);
+        TaskBook expectedAB = new TaskBook();
+        expectedAB.addTask(toBeAdded);
+
+        // execute command and verify result
+        assertCommandBehavior(helper.generateUpdateCommand(toBeAdded, 1),
+                String.format(UpdateCommand.MESSAGE_SUCCESS, 1),
+                expectedAB,
+                expectedAB.getTaskList());
+    }
+    
+    @Test
+    public void execute_set_successful() throws Exception {
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        helper.generateAddressBook(1);
+        helper.addToModel(model, 1);
+        
+        Task toBeAdded = helper.sampleTask();
+        TaskBook expectedAB = new TaskBook();
+        expectedAB.addTask(toBeAdded);
+
+        // execute command and verify result
+        assertCommandBehavior(helper.generateSetCommand(1),
+                String.format(SetCommand.MESSAGE_SUCCESS, 1),
+                expectedAB,
+                expectedAB.getTaskList());
+    }
+    
    //@@author
 
     @Test
@@ -193,27 +228,6 @@ public class LogicManagerTest {
                 expectedAB.getTaskList());
 
     }
-
-    /* Duplicate tasks are allowed
-     * @Test
-    public void execute_addDuplicate_notAllowed() throws Exception {
-        // setup expectations
-        TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.adam();
-        TaskBook expectedAB = new TaskBook();
-        expectedAB.addTask(toBeAdded);
-
-        // setup starting state
-        model.addTask(toBeAdded); // task already in internal address book
-
-        // execute command and verify result
-        assertCommandBehavior(
-                helper.generateAddCommand(toBeAdded),
-                AddCommand.MESSAGE_DUPLICATE_TASK,
-                expectedAB,
-                expectedAB.getTaskList());
-
-    }*/
 
 
     @Test
@@ -449,6 +463,35 @@ public class LogicManagerTest {
                 cmd.add("#" + tag.tagName);
             }
             logger.warning("generateAddCommand: " + cmd.toString());
+            return cmd.toString();
+        }
+        
+        /** Generates the correct update command based on the task given */
+        String generateUpdateCommand(Task t, int i) {
+        	StringJoiner cmd = new StringJoiner(" ");
+        	cmd.add("update")
+        	.add(Integer.toString(i))
+        	.add(t.getName().toString())
+        	.add("from #null")
+        	.add("by #null")
+        	.add("@" + t.getVenue().toString().trim())
+        	.add("#" + t.getPriority().name())
+        	.add("#" + t.getPinTask().name());
+        	
+            UniqueTagList tags = t.getTags();
+            for(Tag tag : tags){
+                cmd.add("#" + tag.tagName);
+            }
+            return cmd.toString();
+        }
+        
+        /** Generates the correct set command based on the task given */
+        String generateSetCommand(int i) {
+        	StringJoiner cmd = new StringJoiner(" ");
+        	cmd.add("set")
+        	.add(Integer.toString(i))
+        	.add("done");
+        	
             return cmd.toString();
         }
         
