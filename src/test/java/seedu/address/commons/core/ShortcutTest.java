@@ -69,6 +69,7 @@ public class ShortcutTest {
         assertEquals(testShortcutSettingAsString, testShortcutSetting.toString());
     }
     
+    
     public ShortcutSetting testShortcutSettingFile (String filePath) {
         ShortcutSetting testShortcutSetting = new ShortcutSetting();
         try {

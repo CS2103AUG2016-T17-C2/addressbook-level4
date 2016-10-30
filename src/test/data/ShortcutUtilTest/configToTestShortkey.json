@@ -1,0 +1,8 @@
+{
+  "appTitle" : "TaskBook App",
+  "logLevel" : "INFO",
+  "userPrefsFilePath" : "data/preferences.json",
+  "addressBookFilePath" : "data/taskbook.xml",
+  "ShortcutFilePath" : "src/test/data/ShortcutUtilTest/tempShortkey.json",
+  "addressBookName" : "MyTaskBook"
+}
