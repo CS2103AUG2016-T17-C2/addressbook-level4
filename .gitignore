@@ -1,10 +1,12 @@
 build/
 .gradle/
 .idea/
+lib/*
 *.iml
 *.log
 *.log.*
 *.csv
+.project
 config.json
 src/test/data/sandbox/
 preferences.json
