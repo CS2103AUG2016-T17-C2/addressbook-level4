@@ -1,6 +1,5 @@
 package seedu.task.ui;
 
-//@@author A0141064U
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -29,8 +28,8 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 
 /**
- * The TaskCard. Provides the details for the layout of details displayed for each Task,
- * and the colour and icons on each TaskCard.
+ * The TaskCard. Provides the details for the layout of details displayed for
+ * each Task, and the colour and icons on each TaskCard.
  */
 
 public class TaskCard extends UiPart {
@@ -74,10 +73,10 @@ public class TaskCard extends UiPart {
     private static final String DONE = "#212121";
     private static final String IGNORE = "#616161";
     private static final String EXPIRED = "#D32F2F";
-    
+
     private static final CornerRadii CORNERRADII = new CornerRadii(0);
-    
-    private static final Insets INSETS = new Insets(1,1,1,1);
+
+    private static final Insets INSETS = new Insets(1, 1, 1, 1);
 
     public TaskCard() {
 
@@ -97,18 +96,19 @@ public class TaskCard extends UiPart {
         setTextForDate();
         id.setText("   " + displayedIndex + " ");
         tags.setText(task.tagsString());
-        
+
         setBackgroundColor();
 
         addIconsForStatusAndPin();
     }
 
-/**    add icons depending on status of Task*/
+    /** add icons depending on status of Task */
     private void addIconsForStatusAndPin() {
         Region region = new Region();
         HBox.setHgrow(region, Priority.ALWAYS);
-        imageContainer.getChildren().add(region); // to right align all added icons
-        
+        imageContainer.getChildren().add(region); // to right align all added
+                                                  // icons
+
         if (task.getStatus().equals(Status.DONE)) {
             ImageView done = new ImageView(new Image(DONE_IMAGE));
             imageContainer.getChildren().add(done);
@@ -125,59 +125,61 @@ public class TaskCard extends UiPart {
         }
     }
 
-/**    Sets the background colour based on the status or priority of the Task*/
+    /**
+     * Sets the background colour based on the status or priority of the Task
+     */
     private void setBackgroundColor() {
-        if(task.getStatus().equals(Status.DONE)) {
-            gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(DONE), CORNERRADII, INSETS)));
-        } else if(task.getStatus().equals(Status.EXPIRED)) {
-            gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(EXPIRED), CORNERRADII, INSETS)));
-        } else if(task.getStatus().equals(Status.IGNORE)) {
-            gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(IGNORE), CORNERRADII, INSETS)));
-        } else if(task.getPriority().equals(TaskPriority.HIGH)) {
-            gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(HIGH), CORNERRADII, INSETS)));
-        } else if(task.getPriority().equals(TaskPriority.MEDIUM)) {
-            gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(MEDIUM), CORNERRADII, INSETS)));
+        if (task.getStatus().equals(Status.DONE)) {
+            gridPane.setBackground(new Background(new BackgroundFill(Color.valueOf(DONE), CORNERRADII, INSETS)));
+        } else if (task.getStatus().equals(Status.EXPIRED)) {
+            gridPane.setBackground(new Background(new BackgroundFill(Color.valueOf(EXPIRED), CORNERRADII, INSETS)));
+        } else if (task.getStatus().equals(Status.IGNORE)) {
+            gridPane.setBackground(new Background(new BackgroundFill(Color.valueOf(IGNORE), CORNERRADII, INSETS)));
+        } else if (task.getPriority().equals(TaskPriority.HIGH)) {
+            gridPane.setBackground(new Background(new BackgroundFill(Color.valueOf(HIGH), CORNERRADII, INSETS)));
+        } else if (task.getPriority().equals(TaskPriority.MEDIUM)) {
+            gridPane.setBackground(new Background(new BackgroundFill(Color.valueOf(MEDIUM), CORNERRADII, INSETS)));
         } else {
-            gridPane.setBackground(new Background(
-                    new BackgroundFill(Color.valueOf(LOW), CORNERRADII, INSETS)));
+            gridPane.setBackground(new Background(new BackgroundFill(Color.valueOf(LOW), CORNERRADII, INSETS)));
         }
     }
 
     //@@author A0141064U
     private void setTextForDate() {
-        if (!task.getStartDate().value.isEmpty()) {
-            if (!task.getEndDate().value.isEmpty()) {
-                if (toSimpleDateFormat(task.getStartDate().value)
-                        .compareTo(toSimpleDateFormat(task.getEndDate().value)) != 0) {
-                    dateTime.setText(toSimpleTimeFormat(task.getStartDate().value) + " - "
-                            + toSimpleTimeFormat(task.getEndDate().value) + System.lineSeparator()
-                            + toSimpleDateFormat(task.getStartDate().value) + " - "
+        if (hasStartDate() && hasEndDate() && differentEndStartDate()) {
+            dateTime.setText(
+                    toSimpleTimeFormat(task.getStartDate().value) + " - " + toSimpleTimeFormat(task.getEndDate().value)
+                            + System.lineSeparator() + toSimpleDateFormat(task.getStartDate().value) + " - "
                             + toSimpleDateFormat(task.getEndDate().value) + System.lineSeparator()
                             + toPrettyDate(task.getStartDate().value));
-                } else {
-                    dateTime.setText(toSimpleTimeFormat(task.getStartDate().value) + " - "
-                            + toSimpleTimeFormat(task.getEndDate().value) + System.lineSeparator()
-                            + toSimpleDateFormat(task.getStartDate().value) + System.lineSeparator()
-                            + toPrettyDate(task.getStartDate().value));
-                }
-            } else {
-                dateTime.setText(toSimpleTimeFormat(task.getStartDate().value) + " "
-                        + toSimpleDateFormat(task.getStartDate().value) + System.lineSeparator()
-                        + toPrettyDate(task.getStartDate().value));
-            }
-        } else {
-            if (task.getEndDate().value.isEmpty()) {
-                dateTime.setManaged(false); // remove field from layout if empty
-            } else {
-                dateTime.setText(toSimpleTimeFormat(task.getEndDate().value) + " "
-                        + toSimpleDateFormat(task.getEndDate().value));
-            }
+        } else if (hasStartDate() && hasEndDate() && !differentEndStartDate()) {
+            dateTime.setText(
+                    toSimpleTimeFormat(task.getStartDate().value) + " - " + toSimpleTimeFormat(task.getEndDate().value)
+                            + System.lineSeparator() + toSimpleDateFormat(task.getStartDate().value)
+                            + System.lineSeparator() + toPrettyDate(task.getStartDate().value));
+        } else if (hasStartDate() && !hasEndDate()) {
+            dateTime.setText(
+                    toSimpleTimeFormat(task.getStartDate().value) + " " + toSimpleDateFormat(task.getStartDate().value)
+                            + System.lineSeparator() + toPrettyDate(task.getStartDate().value));
+        } else if (!hasStartDate() && !hasEndDate()) {
+            dateTime.setManaged(false); // remove field from layout if empty
+        } else if (!hasStartDate() && hasEndDate()) {
+            dateTime.setText(
+                    toSimpleTimeFormat(task.getEndDate().value) + " " + toSimpleDateFormat(task.getEndDate().value));
         }
+    }
+
+    private boolean differentEndStartDate() {
+        return toSimpleDateFormat(task.getStartDate().value)
+                .compareTo(toSimpleDateFormat(task.getEndDate().value)) != 0;
+    }
+
+    private boolean hasEndDate() {
+        return !task.getEndDate().value.isEmpty();
+    }
+
+    private boolean hasStartDate() {
+        return !task.getStartDate().value.isEmpty();
     }
 
     /*
@@ -191,8 +193,6 @@ public class TaskCard extends UiPart {
 
         if (!dateFromParsedDate.after(tomorrow)) {
             PrettyTime p = new PrettyTime();
-            // List<Duration> durations =
-            // p.calculatePreciseDuration(dateFromParsedDate);
             return p.format(dateFromParsedDate);
         } else {
             return null;
