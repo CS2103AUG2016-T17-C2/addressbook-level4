@@ -14,7 +14,7 @@ The general command structure is to type the `command key` + other details.
 
 **Adding tasks**
 
-<img src="images/add.png" width="600"><br>
+<img src="images/add.png" width="400"><br>
 
 To add a task, type `add` + `taskname` + `from start time` + ` by end time` + `#task_priority` + `#tags` + `@venue`  + `pin status`
 
@@ -47,7 +47,7 @@ They do not need to be added in order
 
 new tasks that clash with the other tasks that are already in taskBook will not be added
 
-<img src="images/addFail.png" width="600"><br>
+<img src="images/addFail.png" width="400"><br>
 
 **Listing tasks**
 
@@ -142,6 +142,7 @@ note that taskbook subsequently returns the list of all the task after each undo
 
 
 **Creating shortkeys**
+
 To change a shortkey for the command, type `shortcut` + `{the field you are changing}` + `{shortkey you want to initialise}` eg: ``shortcut` `add` `a` changes the shortkey for the command `add` to `a`. The next time you want to execute 'add' to add 'running' to your tasklist, simply type `a running`.
 
 Shortkeys can be set for `add`, `delete` and `list` commands. 
