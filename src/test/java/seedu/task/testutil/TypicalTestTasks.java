@@ -22,11 +22,11 @@ public class TypicalTestTasks {
 			date = DateUtils.setSeconds(date, 0);
 
 			study = new TaskBuilder().withName("Study time").withVenue("School")
-			        .withStartDate(DateUtils.setHours(date, 10)).withEndDate(DateUtils.setHours(date, 12))
+			        .withStartDate(DateUtils.setHours(date, 10)).withEndDate(DateUtils.setHours(date, 11))
 			        .withPriority("High").withStatus("Active").withPinTask("pin").withTags("study", "exam").build();
 
 			play = new TaskBuilder().withName("Play time").withVenue("Playground")
-			        .withStartDate(DateUtils.setHours(date, 12)).withEndDate(DateUtils.setHours(date, 14))
+			        .withStartDate(DateUtils.setHours(date, 12)).withEndDate(DateUtils.setHours(date, 13))
 			        .withPriority("Low").withStatus("Active").withPinTask("pin").withTags("play", "healthy").build();
 			
 			coding = new TaskBuilder().withName("code cs2103").withVenue("School")
