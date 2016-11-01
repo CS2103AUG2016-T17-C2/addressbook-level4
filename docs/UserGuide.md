@@ -6,9 +6,15 @@
 
 ##Userguide: 
 
+<img src="images/blank.png" width="600"><br>
+
 The general command structure is to type the `command key` + other details.
 
+
+
 **Adding tasks**
+
+<img src="images/add.png" width="600"><br>
 
 To add a task, type `add` + `taskname` + `from start time` + ` by end time` + `#task_priority` + `#tags` + `@venue`  + `pin status`
 
@@ -39,12 +45,18 @@ Read more about [Natty Date Parser](http://natty.joestelmach.com/)
 
 They do not need to be added in order
 
-** Listing tasks **
+new tasks that clash with the other tasks that are already in taskBook will not be added
+
+<img src="images/addFail.png" width="600"><br>
+
+**Listing tasks**
 
 Executing the command `list` will result in a complete list of tasks sorted by priority. The tasks that are pinned will be at the top of the list.
 
-** Finding tasks ** 
+**Finding tasks** 
 taskBook contains the following lists: 
+
+<img src="images/find.png" width="800"><br>
 
 `Active`: 
 
@@ -89,7 +101,7 @@ The tasks that are done, sorted from the most recent to the least recent
 `Pin` : all pinned tasks
 * Eg: Typing `list pin` return a list of pinned tasks
 
-**Step 2c:Sorting Tasks:**
+**Sorting Tasks:**
  
 When the `list` that the user is looking at is not what he wants, he can use the `sort` function
 
@@ -98,14 +110,14 @@ When the `list` that the user is looking at is not what he wants, he can use the
 * `Priority` : sort high to low or sort low to high
 
 
-**Step 2d: Deleting tasks**
+**Deleting tasks**
 
 To `delete` a task on the list that is on the screen, type `delete` [ index of task in the list] 
 * eg `delete 1 `
 
 
 
-**Step 2e: updating tasks**
+**updating tasks**
 
 To update a task type `update` (index of task in the list or name of task) (field) (changes)
 * Eg: Typing `update 1 by 120316` will change the **deadline** of the first task to 12 March 2016
@@ -137,6 +149,9 @@ Shortkeys can be set for `add`, `delete` and `list` commands.
 This feature is only available for **Add**, **Delete** and **List**. 
 
 **Moving taskbook to another storage location** 
+
+<img src="images/move.png" width="800"><br>
+
 To save the taskbook in another file place, type `file` + `new storage location` that you want to move taskbook to. 
 
 eg `move \dropbox\mytask` will keep taskbook in a folder called 'dropbox', which will be named 'mytask.xml'. 
