@@ -47,7 +47,7 @@ They do not need to be added in order
 
 new tasks that clash with the other tasks that are already in taskBook will not be added
 
-<img src="images/addFail.png" width="400"><br>
+<img src="images/addFail.png" width="500"><br>
 
 **Listing tasks**
 
