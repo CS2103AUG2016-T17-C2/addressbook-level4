@@ -66,7 +66,7 @@ public class XmlTaskBookStorageTest {
          * That means you should not have more than one exception test in one method
          */
     }
-/*
+
     @Test
     public void readAndSaveTaskBook_allInOrder_success() throws Exception {
         String filePath = testFolder.getRoot().getPath() + "TempAddressBook.xml";
@@ -82,23 +82,24 @@ public class XmlTaskBookStorageTest {
         //ObservableList<Task> originalTasks = original.getTasks();
         //ObservableList<Task> readBackTasks = new TaskBook(readBack).getTasks();
         logger.info("+==============" + original.getTaskList() + "~~~~~~~~~~~" + new TaskBook(readBack).getTaskList());
-        assertEquals(original, new TaskBook(readBack));
+        assertEquals(original.toString(), new TaskBook(readBack).toString());
 
         //Modify data, overwrite exiting file, and read back
-        original.addTask(new Task(TypicalTestTasks.play));
-        original.removeTask(new Task(TypicalTestTasks.study));
+        
+        //original.addTask(new Task(TypicalTestTasks.play));
+        original.removeTask(TypicalTestTasks.study);
         xmlTaskBookStorage.saveTaskBook(original, filePath);
         readBack = xmlTaskBookStorage.readTaskBook(filePath).get();
-        assertEquals(original.getTagList(), new TaskBook(readBack).getTagList());
+        assertEquals(original.toString(), new TaskBook(readBack).toString());
 
         //Save and read without specifying file path
-        original.addTask(new Task(TypicalTestTasks.coding));
+        //original.addTask(new Task(TypicalTestTasks.coding));
         xmlTaskBookStorage.saveTaskBook(original); //file path not specified
         readBack = xmlTaskBookStorage.readTaskBook().get(); //file path not specified
-        assertEquals(original.getTasks(), new TaskBook(readBack).getTasks());
+        assertEquals(original.toString(), new TaskBook(readBack).toString());
 
     }
-*/
+    
     @Test
     public void saveTaskBook_nullTaskBook_assertionFailure() throws IOException {
         thrown.expect(AssertionError.class);
