@@ -79,7 +79,7 @@ command `delete 3`.
 
 <img src="images\SDforDeletePerson.png" width="800">
 
->Note how the `Model` simply raises a `TaskbookChangedEvent` when the Task Book data are changed,
+>Note how the `Model` simply raises a `TaskBookChangedEvent` when the Task Book data are changed,
  instead of asking the `Storage` to save the updates to the hard disk.
 
 The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates
@@ -260,13 +260,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (un
 
 Priority | As a ... | I want to ... | So that ...
 -------- | :-------- | :--------- | :-----------
+`* * *` | User | Add simple tasks | I can organize my tasks
 `* * *` | User | Add tasks with deadlines | I won't forget deadlines
+`* * *` | User | Add tags | I can organise my tasks 
+`* * *` | User | Postpone my tasks | I can do them later
+`* * *` | User | Add venue to the task | I know where it's going to be held
+`* * *` | User | prioritize the tasks | I know what is more important for me
 `* * *` | User | Pin tasks | I won't forget them
-`* * *` | User | Undo | I can undo my most recent mistakes
-`* * *` | User  | Ignore tasks | I can remove tasks from my to do list even when they are not done, but still save them in the ignore folder
+`* * *` | User | Undo actions | I can undo my recent activities
+`* * *` | User | redo actions | I can redo my recent activities
 `* * *` | User | Delete tasks | I can remove the task from the memory
+`* * *` | User  | Ignore tasks | I can remove tasks from my to do list even when they are not done, but still save them in the ignore folder
 `* * *` | User | Archive tasks as done | I can archive the task
 `* * *` | User | Edit tasks | I can correct the tasks that were entered wrongly
+`* * *` | User | type commands flexible order | I have more freedom and can whatever format I like
+`* * *` | User | know if my task clashes with other tasks | I don't have overlapping tasks
 `* * *` | User  | Search for tasks by task name | I can find tasks quickly
 `* * *` | User | Choose where to store the file | I can sync it with dropbox
 `* *` | User  | Search for tasks by priority level | I can focus on the most important tasks
@@ -275,8 +283,6 @@ Priority | As a ... | I want to ... | So that ...
 `* *` | User | Add shortcuts | I can do manage tasks productively
 `* *` | User | Sort the lists | I can find tasks quickly
 `* *` | User | See my upcoming tasks, expired tasks, high priority tasks easily  | I can manage my time effectively
-`* *` | User | Add tags | I can organise my tasks 
-`* *` | User | Postpone my tasks | I can do them later
 `* *` | User | See my free slots | I can do my tasks during the free time
 `* *` | User | Add repeating tasks | I don't have to add them every time
 `* *` | User | Have auto-complete text | I don't have to type in completely every time
@@ -292,7 +298,7 @@ Priority | As a ... | I want to ... | So that ...
 
 ## Appendix B : Use Cases
 
-(For all use cases below, the **System** is the `Taskbook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TaskBook` and the **Actor** is the `user`, unless specified otherwise)
 
 #### Use case: Add a task
 
@@ -300,25 +306,25 @@ Priority | As a ... | I want to ... | So that ...
 
 1.	User requests to add a task. 
 2.	User enters the task description name (compulsory), tags, venue, date, whether to pin task, priority level (default: medium)
-3.	taskBook saves the task details
-4.	taskBook displays task on task board (that is sorted according to deadline) with task details
+3.	TaskBook saves the task details
+4.	TaskBook displays task on task board (that is sorted according to deadline) with task details
 Case Close
 
 **Extensions**
 
 2a. User wants to pin the task. 
-    taskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
+    ⋅⋅⋅TaskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
 2b. User chooses to prioritise task
-    Task is colour coded ( high-dark blue, low-light blue, default-blue)
-    High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
+    ⋅⋅⋅Task is colour coded ( high-dark blue, low-light blue, default-blue)
+    ⋅⋅⋅High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
 2c. The start date and end date of the task clashes with another task.
-    taskBook provides feedback to the user of the clashing of dates with the another task
+    ⋅⋅⋅TaskBook provides feedback to the user of the clashing of dates with the another task
 2d. User enter invalid start/end date
-    taskBook performs a series of input validation for dates that checks whether the entered date is an upcoming date, start date is before the end date and there are no more than 2 dates in the user input. taskBook provides feedback to the user if the entered date is found to be an invalid date
+    ⋅⋅⋅TaskBook performs a series of input validation for dates that checks whether the entered date is an upcoming date, start date is before the end date and there are no more than 2 dates in the user input. TaskBook provides feedback to the user if the entered date is found to be an invalid date
 2e. User enters no task Name
-    taskBook provides feedback to the user that task Name is compulsory
+    ⋅⋅⋅TaskBook provides feedback to the user that task Name is compulsory
 2f. User enters duplicate tags
-    taskBook provides feedback to the user of the duplicate tags
+    ⋅⋅⋅TaskBook provides feedback to the user of the duplicate tags
 <!-- @@author A0138301U -->    
 #### Use case: Find tasks
 
@@ -326,18 +332,18 @@ Case Close
 
 1.	User requests to find tasks. 
 2.	User enters keywords
-3.	taskBook filters all tasks with names containing selected keywords
-4.	taskBook displays all tasks on task board (that is sorted according to deadline) with keywords matching user input
+3.	TaskBook filters all tasks with names containing selected keywords
+4.	TaskBook displays all tasks on task board (that is sorted according to deadline) with keywords matching user input
 Case Close
 
 **Extensions**
 
 2a. User enters keyword with prefix '#'
-	taskBook filters all tasks with the associated priority, status, or tagging
-	taskBook displays all tasks on task board (that is sorted according to deadline) with keywords matching user input
+	⋅⋅⋅TaskBook filters all tasks with the associated priority, status, or tagging
+	⋅⋅⋅TaskBook displays all tasks on task board (that is sorted according to deadline) with keywords matching user input
 2b. User enters keyword with prefix '@'
-	taskBook filters all tasks with the associated venue
-	taskBook displays all tasks on task board (that is sorted according to deadline) with keywords matching user input
+	⋅⋅⋅TaskBook filters all tasks with the associated venue
+	⋅⋅⋅TaskBook displays all tasks on task board (that is sorted according to deadline) with keywords matching user input
 <!-- @@author -->    
 #### Use case: Update a task
 
@@ -345,27 +351,27 @@ Case Close
 
 1.	User requests to update a task. 
 2.	User enters the index of the task to be updated followed by the update parameters (task description name, tags, venue, date, whether to pin task, priority level)
-3.	taskBook updates the task details
-4.	taskBook displays task on task board (that is sorted according to deadline) with task details
+3.	TaskBook updates the task details
+4.	TaskBook displays task on task board (that is sorted according to deadline) with task details
 Case Close
 
 **Extensions**
 
 2a. User wants to pin the task. 
-    taskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
+    ⋅⋅⋅TaskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
 2b. User chooses to prioritise task
-    Task is colour coded ( high-dark blue, low-light blue, default-blue)
-    High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
+    ⋅⋅⋅Task is colour coded ( high-dark blue, low-light blue, default-blue)
+    ⋅⋅⋅High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
 2c. The start date and end date of the task clashes with another task.
-    taskBook provides feedback to the user of the clashing of dates with the another task
+    ⋅⋅⋅TaskBook provides feedback to the user of the clashing of dates with the another task
 2d. User enter invalid start/end date
-    taskBook performs a series of input validation for dates that checks whether the entered date is an upcoming date, start date is before the end date and there are no more than 2 dates in the user input. taskBook provides feedback to the user if the entered date is found to be an invalid date
+    ⋅⋅⋅TaskBook performs a series of input validation for dates that checks whether the entered date is an upcoming date, start date is before the end date and there are no more than 2 dates in the user input. TaskBook provides feedback to the user if the entered date is found to be an invalid date
 2e. User enters no task Name
-    taskBook provides feedback to the user that task Name is compulsory
+    ⋅⋅⋅TaskBook provides feedback to the user that task Name is compulsory
 2f. User enters duplicate tags
-    taskBook provides feedback to the user of the duplicate tags
+    ⋅⋅⋅TaskBook provides feedback to the user of the duplicate tags
 2g. User enters incorrect index. 
-    taskBook provides feedback that the index is invalid
+    ⋅⋅⋅TaskBook provides feedback that the index is invalid
 
 #### Use case: Delete task
 
@@ -373,14 +379,14 @@ Case Close
 
 1.	User requests to delete task(s). 
 2.	User enters the indexes of the task that are shown in the UI list 
-3.	taskBook performs delete operation for each task
-4.	taskBook removes the deleted tasks from the UI list and shows the success message
+3.	TaskBook performs delete operation for each task
+4.	TaskBook removes the deleted tasks from the UI list and shows the success message
 Case Close
 
 **Extensions**
 
 2a. User enters incorrect index. 
-    taskBook provides feedback that the index is invalid
+    ⋅⋅⋅TaskBook provides feedback that the index is invalid
 
 #### Use case: Changing or creating a Shortkey
 
@@ -388,16 +394,16 @@ Case Close
 
 1.	User requests to change shortkey
 2.	User inputs which command field and the new shortkey he wants to use
-3.  taskBook changes the settings for the shortkey
-4.	taskBook saves the shortkey so that the user can use the same shortkey in the next session
+3.  TaskBook changes the settings for the shortkey
+4.	TaskBook saves the shortkey so that the user can use the same shortkey in the next session
 Case Close
 
 **Extensions** 
 
 2a. User inputs a shortkey that already exists
-	taskBook provides feedback that the shortkey is already used
+	  ⋅⋅⋅TaskBook provides feedback that the shortkey is already used
 2a. User inputs a shortkey that is made up of only spaces
-	taskBook rejects the shortkey and provides feedback
+	  ⋅⋅⋅TaskBook rejects the shortkey and provides feedback
 	
 	
 #### Use case: Undo last operation
@@ -405,52 +411,86 @@ Case Close
 **MSS**
 
 1.	User requests to undo the last operation. 
-3.	taskBook reverts back to the last version
-4.	taskBook shows the success message
+3.	TaskBook reverts back to the last version
+4.	TaskBook shows the success message
 Case Close
 
 **Extensions**
 
 1a. User enters incorrect command. 
-    taskBook provides feedback that the command is invalid
+    ⋅⋅⋅TaskBook provides feedback that the command is invalid
 3a. There is no previous version to undo
-    taskBook provides feedback to the user that there is nothing to undo.
+    ⋅⋅⋅TaskBook provides feedback to the user that there is nothing to undo.
 
+<!-- @@author A0139958H -->    
+#### Use case: Redo last operation
+
+**MSS**
+
+1.  User requests to redo the last operation. 
+3.  TaskBook redoes to the last version
+4.  TaskBook shows the success message
+Case Close
+
+**Extensions**
+
+1a. User enters incorrect command. 
+    ⋅⋅⋅TaskBook provides feedback that the command is invalid
+3a. There is no undo done before (redo can't be done before undo is being done)
+    ⋅⋅⋅TaskBook provides feedback to the user that there is nothing to redo.
+
+
+#### Use case: Set task status
+
+**MSS**
+
+1.  User requests set task status to be done or ignore. 
+3.  TaskBook updates task status
+4.  TaskBook shows the success message
+Case Close
+
+**Extensions**
+
+1a. User enters incorrect command. 
+    ⋅⋅⋅TaskBook provides feedback that the command is invalid
+3a. User enters incorrect task status (example: active, expired -> these are done by TaskBook itself and user's can't set a task to active or expired manually)
+    ⋅⋅⋅TaskBook provides feedback that the command is invalid.
+<!-- @@author -->    
 
 #### Use case: Searching for a task
-Precondition: taskBook is already showing a list of tasks on the screen ( either by default main page or when the user is looking through a folder ( done, ignore, active)
+Precondition: TaskBook is already showing a list of tasks on the screen ( either by default main page or when the user is looking through a folder ( done, ignore, active)
 
 **MSS**
 
 1.	User performs a search by the task details or the tag name(#...)
-2.	taskBook lists the tasks that contains the String/Tag entered by user
+2.	TaskBook lists the tasks that contains the String/Tag entered by user
 3.	User picks the task that he/she is looking for ( by typing in the index of the task) 
 Case Close
 
 **Extensions**
 
 1a. User types in a string that cannot be found in the list of tasks
-·	taskBook returns 'string not found'
+·	TaskBook returns 'string not found'
 1a. There is no tasks stored at all
-·	taskBook returns 'there are no tasks in taskBook'
+·	TaskBook returns 'there are no tasks in TaskBook'
 3. User does not find the task he/she is looking for
 ·	User types in a different search command or returns to main page.
 
 #### Use case: Sorting the list of tasks to find a task
-Precondition: taskBook is already showing a list of tasks on the screen ( either by default main page or when the user is looking through a folder ( done, ignore, active) 
+Precondition: TaskBook is already showing a list of tasks on the screen ( either by default main page or when the user is looking through a folder ( done, ignore, active) 
 
 **MSS**
 
-1.	User request to sort the list ( according to when it was entered into taskBook/ date it will expire/ time the event is etc) 
-2.	taskBook sorts the list and displays the sorted list
+1.	User request to sort the list ( according to when it was entered into TaskBook/ date it will expire/ time the event is etc) 
+2.	TaskBook sorts the list and displays the sorted list
 3.	User selects the task by typing the index of the task it wants to view.
 
 **Extensions**
 
 1a. There are no items displayed on the screen (ie search and could not find results) 
-    taskBook returns 'there are no items to sort'
+    TaskBook returns 'there are no items to sort'
 3. User selects the wrong task
-    User types in a command to return taskBook to the previous page and re-picks the correct task
+    User types in a command to return TaskBook to the previous page and re-picks the correct task
 
 
 
@@ -488,6 +528,7 @@ The abovementioned features appear to be popular and important to users of task 
 
 Details:
 
+<!-- @@author A0139958H --> 
 **Google Keep**
 **Pros**	
 * Available on all devices (Desktop, Web, Mobile) and also on all platforms (Android, iOS, macOS, Windows 10)	
@@ -509,6 +550,7 @@ Details:
 **Cons**
 * Only available on the Apple ecosystem
 * No command line interface
+<!-- @@author -->    
 
 **Evernote todo list**
 **Pros**	
