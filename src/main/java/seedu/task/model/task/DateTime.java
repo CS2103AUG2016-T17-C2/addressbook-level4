@@ -24,7 +24,6 @@ public class DateTime {
 
     /**
      * Validates given Date.
-     *
      * @throws IllegalValueException if given dateTime string is invalid.
      */
     public DateTime(Date date) throws IllegalValueException {

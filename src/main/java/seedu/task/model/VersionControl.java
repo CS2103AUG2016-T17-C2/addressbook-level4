@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.task.commons.core.LogsCenter;
+import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.task.TaskVersion;
 
 //@@author A0139958H
@@ -21,12 +22,21 @@ public class VersionControl {
 		this.taskList = new ArrayList<TaskVersion>();
 	};
 	
+	/**
+	 * VersionControl Singleton class. Creates only one instance of itself
+	 * @return: instance of VersionControl
+	 */
 	public static VersionControl getInstance() {
 		if (instance == null)
 			instance = new VersionControl();
 		return instance;
 	}
 	
+	/**
+	 * Get the TaskVersion object in the specified index
+	 * @throws NullPointerException if its an invalid index
+	 * @return: Task object
+	 */
 	public TaskVersion get(int i) {
 		if (i >= 0 && taskList.size() > i)
 			return taskList.get(i);
@@ -34,18 +44,32 @@ public class VersionControl {
 			throw new NullPointerException();
 	}
 	
+	/**
+	 * Get the TaskVersion Object from the last index of the list
+	 */
 	public TaskVersion pop() {
 		return (taskList.isEmpty()) ? null : taskList.get(taskList.size() - 1);
 	}
-	
+
+	/**
+	 * Add the TaskVersion Object to the last index of the list
+	 */
 	public boolean push(TaskVersion task) {
 		return taskList.add(task);
 	}
 	
+	/**
+	 * Add all TaskVersion Object to the list
+	 * @param List of TaskVersion Objects
+	 */
 	public boolean pushAll(List<TaskVersion> u) {
 		return taskList.addAll(u);
 	}
 	
+	/**
+	 * Replace the TaskVersion Object on the specified index with a new one
+	 * @param index, TaskVersion object
+	 */
 	public TaskVersion swap(int i, TaskVersion task) {
 		return taskList.set(i, task);
 	}

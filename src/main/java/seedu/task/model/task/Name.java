@@ -18,7 +18,6 @@ public class Name {
 
     /**
      * Validates given name.
-     *
      * @throws IllegalValueException if given name string is invalid.
      */
     public Name(String name) throws IllegalValueException {

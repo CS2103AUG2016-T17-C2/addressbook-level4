@@ -76,6 +76,7 @@ public class UniqueTaskList implements Iterable<Task> {
 	
 	/**
 	 * Returns the task if a clash in dates have been found
+	 * @param Task object
 	 */
 	public Task isDateClash(Task task) {
 		if (!task.getStartDate().value.isEmpty() && !task.getEndDate().value.isEmpty()) {
@@ -88,8 +89,8 @@ public class UniqueTaskList implements Iterable<Task> {
 	}
 
 	/**
-	 * Returns the task if a clash in dates have been found. It doesn't check
-	 * with the task in the specified index
+	 * Returns the task if a clash in dates have been found. It doesn't check with the task in the specified index
+	 * @param Task object
 	 */
 	public Task isDateClash(int index, Task task) {
 		if (!task.getStartDate().value.isEmpty() && !task.getEndDate().value.isEmpty()) {
@@ -102,14 +103,10 @@ public class UniqueTaskList implements Iterable<Task> {
 	}
 
 	/**
-	 * Adds a task to the list.
-	 *
-	 * @throws DuplicateTaskException
-	 *             if the task to add is a duplicate of an existing task in the
-	 *             list.
-	 * @throws DateClashTaskException
-	 *             if the task dates clashes with another existing task in the
-	 *             list
+	 * Adds a task to the list
+	 * @param Task object
+	 * @throws DuplicateTaskException if the task to add is a duplicate of an existing task in the list.
+	 * @throws DateClashTaskException if the task dates clashes with another existing task in the list
 	 */
 	public int add(Task toAdd) throws DuplicateTaskException, DateClashTaskException {
 		assert toAdd != null;
@@ -125,14 +122,10 @@ public class UniqueTaskList implements Iterable<Task> {
 	}
 
 	/**
-	 * Adds a task to the list in the specified index.
-	 *
-	 * @throws DuplicateTaskException
-	 *             if the task to add is a duplicate of an existing task in the
-	 *             list.
-	 * @throws DateClashTaskException
-	 *             if the task dates clashes with another existing task in the
-	 *             list
+	 * Adds a task to the list in the specied index
+	 * @param Task object
+	 * @throws DuplicateTaskException if the task to add is a duplicate of an existing task in the list.
+	 * @throws DateClashTaskException if the task dates clashes with another existing task in the list
 	 */
 	public int add(int index, Task toAdd) throws DuplicateTaskException, DateClashTaskException {
 		assert toAdd != null;
@@ -149,10 +142,7 @@ public class UniqueTaskList implements Iterable<Task> {
 
 	/**
 	 * Updates a task in the list.
-	 *
-	 * @throws DateClashTaskException
-	 *             if the task dates clashes with another existing task in the
-	 *             list
+	 * @throws DateClashTaskException if the task dates clashes with another existing task in the list
 	 */
 	//@@author A0138301U
 	public void update(Task toReplace, Task toUpdate) throws DateClashTaskException {

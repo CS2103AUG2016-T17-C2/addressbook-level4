@@ -64,10 +64,9 @@ public interface ReadOnlyTask {
         .append(" Pin: ")
         .append(getPinTask());
     }
-
-
-    //@@author A0139958H
-
+    
+    //@@author
+    
     /**
      * Returns a string representation of this Task's tags
      */

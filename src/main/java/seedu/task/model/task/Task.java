@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import seedu.task.commons.core.LogsCenter;
+import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.commons.util.CollectionUtil;
 import seedu.task.model.ModelManager;
 import seedu.task.model.tag.Tag;
@@ -63,6 +64,11 @@ public class Task implements ReadOnlyTask, Cloneable {
 		this.tags = new UniqueTagList();
 	}
 
+	/**
+	 * Checks if there's a date clash between this task and the given task
+	 * @param Task Object to be checked
+	 * @return: Boolean true or false
+	 */
 	public boolean checkDateClash(Task task) {
 		if (!task.getStartDate().value.isEmpty() && !task.getEndDate().value.isEmpty()) {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E MMM d HH:mm:ss zzz yyyy");
@@ -82,6 +88,9 @@ public class Task implements ReadOnlyTask, Cloneable {
 		return false;
 	}
 
+	/**
+	 * Updates the task status to expired if the current date is after the end date
+	 */
 	public void updateTaskStatus() {
 		if (!this.getEndDate().value.isEmpty()) {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E MMM d HH:mm:ss zzz yyyy");
@@ -130,8 +139,6 @@ public class Task implements ReadOnlyTask, Cloneable {
 
 	@Override
 	public int hashCode() {
-		// use this method for custom fields hashing instead of implementing
-		// your own
 		return Objects.hash(getName(), getStartDate(), getEndDate(), getVenue(), getPriority(), getStatus(), getTags());
 	}
 

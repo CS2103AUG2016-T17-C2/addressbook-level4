@@ -14,16 +14,14 @@ public class Venue {
     public final String value;
 
     /**
-     * Validates given venue.
-     *
-     * Venue can be null
+     * Validates given venue. Venue can be null
      */
     public Venue(String venue) {
         this.value = venue;
     }
 
     /**
-     * Returns true if a given string is a valid person email.
+     * Returns true if a given string is a valid venue.
      */
     public static boolean isValidVenue(String test) {
         return test.matches(VENUE_VALIDATION_REGEX);
