@@ -9,25 +9,31 @@ arsh.abdulrahman@hotmail.com
 
 <img src="images/rahman.jpeg" width="150"><br>
 
-**Components in charge of:** CRUDs, 
+**Components in charge of:** CRUD operations
 
-**Aspects/tools in charge of:** Testing, code quality
+**Aspects/tools in charge of:** Logic, Testing, Code quality
 
 **Features implemented:**
 
 Add task
 
-Delete task
+Delete task(s)
 
 Update task
 
+Set task status
+
 Undo task
+
+Redo task
+
+Input Validation
 
 **Code written:** [functional code][test code][docs]
 
 **Other major contributions:**
 
-Set up Travis
+Set up Travis, Codeacy, Coveralls
 
 
 #### Zhe Min (https://github.com/zhems)

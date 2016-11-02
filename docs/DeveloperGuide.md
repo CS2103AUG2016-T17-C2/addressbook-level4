@@ -296,7 +296,7 @@ Priority | As a ... | I want to ... | So that ...
 
 <!-- @@author -->
 
-## Appendix B : Use Cases
+## Appendix B: Use Cases
 
 (For all use cases below, the **System** is the `TaskBook` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -313,18 +313,29 @@ Case Close
 **Extensions**
 
 2a. User wants to pin the task. 
-  * TaskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
+	
+	TaskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side). 
+
 2b. User chooses to prioritise task
-  * Task is colour coded ( high-dark blue, low-light blue, default-blue)
-  * High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
+	
+	Task is colour coded ( high-dark blue, low-light blue, default-blue).
+	High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline.
+
 2c. The start date and end date of the task clashes with another task.
-  * TaskBook provides feedback to the user of the clashing of dates with the another task
+
+	TaskBook provides feedback to the user of the clashing of dates with the another task.
+
 2d. User enter invalid start/end date
-  * TaskBook performs a series of input validation for dates that checks whether the entered date is an upcoming date, start date is before the end date and there are no more than 2 dates in the user input. TaskBook provides feedback to the user if the entered date is found to be an invalid date
+
+	TaskBook performs a series of input validation for dates that checks whether the entered date is an upcoming date, start date is before the end date and there are no more than 2 dates in the user input. TaskBook provides feedback to the user if the entered date is found to be an invalid date.
+
 2e. User enters no task Name
-  * TaskBook provides feedback to the user that task Name is compulsory
+
+	TaskBook provides feedback to the user that task Name is compulsory.
+
 2f. User enters duplicate tags
-  * TaskBook provides feedback to the user of the duplicate tags
+
+	TaskBook provides feedback to the user of the duplicate tags.
 
 
 <!-- @@author A0138301U -->    
@@ -341,11 +352,15 @@ Case Close
 **Extensions**
 
 2a. User enters keyword with prefix '#'
-	* TaskBook filters all tasks with the associated priority, status, or tagging
-	⋅⋅⋅TaskBook displays all tasks on task board (that is sorted according to deadline) with keywords matching user input
+
+	TaskBook filters all tasks with the associated priority, status, or tagging
+	TaskBook displays all tasks on task board (that is sorted according to deadline) with keywords matching user input
+
 2b. User enters keyword with prefix '@'
-	* TaskBook filters all tasks with the associated venue
-	* TaskBook displays all tasks on task board (that is sorted according to deadline) with keywords matching user input
+
+	TaskBook filters all tasks with the associated venue
+	TaskBook displays all tasks on task board (that is sorted according to deadline) with keywords matching user input
+
 <!-- @@author -->    
 #### Use case: Update a task
 
@@ -360,20 +375,28 @@ Case Close
 **Extensions**
 
 2a. User wants to pin the task. 
-    * TaskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
+
+    TaskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
 2b. User chooses to prioritise task
-    * Task is colour coded ( high-dark blue, low-light blue, default-blue)
-    * High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
+
+    Task is colour coded ( high-dark blue, low-light blue, default-blue)
+    High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
+    
 2c. The start date and end date of the task clashes with another task.
-    * TaskBook provides feedback to the user of the clashing of dates with the another task
+
+    TaskBook provides feedback to the user of the clashing of dates with the another task
 2d. User enter invalid start/end date
-    * TaskBook performs a series of input validation for dates that checks whether the entered date is an upcoming date, start date is before the end date and there are no more than 2 dates in the user input. TaskBook provides feedback to the user if the entered date is found to be an invalid date
+
+    TaskBook performs a series of input validation for dates that checks whether the entered date is an upcoming date, start date is before the end date and there are no more than 2 dates in the user input. TaskBook provides feedback to the user if the entered date is found to be an invalid date
 2e. User enters no task Name
-    * TaskBook provides feedback to the user that task Name is compulsory
+
+    TaskBook provides feedback to the user that task Name is compulsory
 2f. User enters duplicate tags
-    * TaskBook provides feedback to the user of the duplicate tags
+
+    TaskBook provides feedback to the user of the duplicate tags
 2g. User enters incorrect index. 
-    * TaskBook provides feedback that the index is invalid
+
+    TaskBook provides feedback that the index is invalid
 
 #### Use case: Delete task
 
@@ -387,8 +410,9 @@ Case Close
 
 **Extensions**
 
-2a. User enters incorrect index. 
-    * TaskBook provides feedback that the index is invalid
+2a. User enters incorrect index.
+
+    TaskBook provides feedback that the index is invalid
 
 #### Use case: Changing or creating a Shortkey
 
@@ -403,9 +427,11 @@ Case Close
 **Extensions** 
 
 2a. User inputs a shortkey that already exists
-	  * TaskBook provides feedback that the shortkey is already used
+
+    TaskBook provides feedback that the shortkey is already used
 2a. User inputs a shortkey that is made up of only spaces
-	  * TaskBook rejects the shortkey and provides feedback
+
+    TaskBook rejects the shortkey and provides feedback
 	
 	
 #### Use case: Undo last operation
@@ -420,9 +446,11 @@ Case Close
 **Extensions**
 
 1a. User enters incorrect command. 
-    * TaskBook provides feedback that the command is invalid
+
+	TaskBook provides feedback that the command is invalid
 3a. There is no previous version to undo
-    * TaskBook provides feedback to the user that there is nothing to undo.
+    
+	TaskBook provides feedback to the user that there is nothing to undo.
 
 <!-- @@author A0139958H -->    
 #### Use case: Redo last operation
@@ -437,9 +465,11 @@ Case Close
 **Extensions**
 
 1a. User enters incorrect command. 
-    * TaskBook provides feedback that the command is invalid
+    
+	TaskBook provides feedback that the command is invalid
 3a. There is no undo done before (redo can't be done before undo is being done)
-    * TaskBook provides feedback to the user that there is nothing to redo.
+    
+	TaskBook provides feedback to the user that there is nothing to redo.
 
 
 #### Use case: Set task status
@@ -454,9 +484,11 @@ Case Close
 **Extensions**
 
 1a. User enters incorrect command. 
-    * TaskBook provides feedback that the command is invalid
+    
+	TaskBook provides feedback that the command is invalid
 3a. User enters incorrect task status (example: active, expired -> these are done by TaskBook itself and user's can't set a task to active or expired manually)
-    * askBook provides feedback that the command is invalid.
+	
+	TaskBook provides feedback that the command is invalid.
 <!-- @@author -->    
 
 #### Use case: Searching for a task
@@ -472,11 +504,14 @@ Case Close
 **Extensions**
 
 1a. User types in a string that cannot be found in the list of tasks
-* TaskBook returns 'string not found'
-1a. There is no tasks stored at all
-* TaskBook returns 'there are no tasks in TaskBook'
-3. User does not find the task he/she is looking for
-* User types in a different search command or returns to main page.
+
+	TaskBook returns 'string not found'
+1b. There is no tasks stored at all
+	
+	TaskBook returns 'there are no tasks in TaskBook'
+3a. User does not find the task he/she is looking for
+
+	User types in a different search command or returns to main page.
 
 #### Use case: Sorting the list of tasks to find a task
 Precondition: TaskBook is already showing a list of tasks on the screen ( either by default main page or when the user is looking through a folder ( done, ignore, active) 
@@ -490,9 +525,11 @@ Precondition: TaskBook is already showing a list of tasks on the screen ( either
 **Extensions**
 
 1a. There are no items displayed on the screen (ie search and could not find results) 
-    * TaskBook returns 'there are no items to sort'
-3. User selects the wrong task
-    * User types in a command to return TaskBook to the previous page and re-picks the correct task
+    
+	TaskBook returns 'there are no items to sort'
+3a.  User selects the wrong task
+    
+	User types in a command to return TaskBook to the previous page and re-picks the correct task
 
 
 
