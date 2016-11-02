@@ -313,18 +313,18 @@ Case Close
 **Extensions**
 
 2a. User wants to pin the task. 
-    ⋅⋅⋅TaskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
+  * TaskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
 2b. User chooses to prioritise task
-    ⋅⋅⋅Task is colour coded ( high-dark blue, low-light blue, default-blue)
-    ⋅⋅⋅High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
+  * Task is colour coded ( high-dark blue, low-light blue, default-blue)
+  * High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
 2c. The start date and end date of the task clashes with another task.
-    ⋅⋅⋅TaskBook provides feedback to the user of the clashing of dates with the another task
+  * TaskBook provides feedback to the user of the clashing of dates with the another task
 2d. User enter invalid start/end date
-    ⋅⋅⋅TaskBook performs a series of input validation for dates that checks whether the entered date is an upcoming date, start date is before the end date and there are no more than 2 dates in the user input. TaskBook provides feedback to the user if the entered date is found to be an invalid date
+  * TaskBook performs a series of input validation for dates that checks whether the entered date is an upcoming date, start date is before the end date and there are no more than 2 dates in the user input. TaskBook provides feedback to the user if the entered date is found to be an invalid date
 2e. User enters no task Name
-    ⋅⋅⋅TaskBook provides feedback to the user that task Name is compulsory
+  * TaskBook provides feedback to the user that task Name is compulsory
 2f. User enters duplicate tags
-    ⋅⋅⋅TaskBook provides feedback to the user of the duplicate tags
+  * TaskBook provides feedback to the user of the duplicate tags
 <!-- @@author A0138301U -->    
 #### Use case: Find tasks
 
