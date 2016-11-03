@@ -1,560 +1,331 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <taskbook>
     <tasks>
-        <name>running</name>
+        <name>study for CS2103 finals</name>
         <startDate></startDate>
-        <endDate></endDate>
+        <endDate>Fri Nov 25 16:11:13 GMT+08:00 2016</endDate>
         <venue></venue>
         <priority>HIGH</priority>
-        <status>DONE</status>
-        <pinTask>PIN</pinTask>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>coding</tagged>
+        <tagged>grades</tagged>
     </tasks>
     <tasks>
-        <name>a</name>
+        <name>study for IE3101 finals</name>
         <startDate></startDate>
-        <endDate></endDate>
+        <endDate>Sat Nov 19 16:12:19 GMT+08:00 2016</endDate>
         <venue></venue>
         <priority>MEDIUM</priority>
         <status>ACTIVE</status>
-        <pinTask>PIN</pinTask>
+        <pinTask>UNPIN</pinTask>
+        <tagged>stats</tagged>
+        <tagged>grades</tagged>
     </tasks>
     <tasks>
-        <name>by null</name>
-        <startDate>Thu Oct 27 22:26:03 SGT 2016</startDate>
+        <name>foolsball</name>
+        <startDate></startDate>
+        <endDate>Wed Nov 02 08:00:00 SGT 2016</endDate>
+        <venue></venue>
+        <priority>MEDIUM</priority>
+        <status>EXPIRED</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>project meeting for IE2110 term paper</name>
+        <startDate></startDate>
+        <endDate>Fri Nov 11 16:13:05 GMT+08:00 2016</endDate>
+        <venue></venue>
+        <priority>LOW</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>termpaper</tagged>
+        <tagged>grades</tagged>
+    </tasks>
+    <tasks>
+        <name>go wild wild wet</name>
+        <startDate>Tue Nov 01 08:00:00 SGT 2016</startDate>
+        <endDate>Tue Nov 01 12:00:00 SGT 2016</endDate>
+        <venue></venue>
+        <priority>MEDIUM</priority>
+        <status>EXPIRED</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>write CFG essay</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>LOW</priority>
+        <status>DONE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>work</tagged>
+        <tagged>grades</tagged>
+    </tasks>
+    <tasks>
+        <name>IE2101 presentation</name>
+        <startDate>Tue Nov 15 09:00:00 GMT+08:00 2016</startDate>
+        <endDate>Tue Nov 15 10:00:00 GMT+08:00 2016</endDate>
+        <venue> EA</venue>
+        <priority>HIGH</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>find internship for winter holidays</name>
+        <startDate></startDate>
         <endDate></endDate>
         <venue></venue>
         <priority>MEDIUM</priority>
         <status>ACTIVE</status>
         <pinTask>UNPIN</pinTask>
-        <tagged>sports</tagged>
-        <tagged>chickenwing</tagged>
+        <tagged>money</tagged>
+        <tagged>work</tagged>
+    </tasks>
+    <tasks>
+        <name>plan itinerary Krabi holiday</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>HIGH</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>holz</tagged>
+        <tagged>chill</tagged>
+    </tasks>
+    <tasks>
+        <name>Krabi Holiday</name>
+        <startDate>Tue Jan 03 16:16:45 GMT+08:00 2017</startDate>
+        <endDate>Fri Jan 06 16:16:45 GMT+08:00 2017</endDate>
+        <venue> Krabi</venue>
+        <priority>MEDIUM</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>holz</tagged>
+    </tasks>
+    <tasks>
+        <name>Cindy Birthday celebration</name>
+        <startDate>Mon Dec 05 18:00:00 GMT+08:00 2016</startDate>
+        <endDate>Mon Dec 05 22:00:00 GMT+08:00 2016</endDate>
+        <venue> bukit panjang</venue>
+        <priority>MEDIUM</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>brirthday</tagged>
         <tagged>friends</tagged>
     </tasks>
     <tasks>
-        <name>fun</name>
-        <startDate></startDate>
-        <endDate>Wed Oct 26 23:10:00 SGT 2016</endDate>
-        <venue> wngreen</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>joy</name>
+        <name>write reflections for ES2331</name>
         <startDate></startDate>
         <endDate></endDate>
-        <venue> tgreen</venue>
+        <venue></venue>
         <priority>MEDIUM</priority>
         <status>ACTIVE</status>
         <pinTask>UNPIN</pinTask>
+        <tagged>grades</tagged>
     </tasks>
     <tasks>
-        <name>fun</name>
-        <startDate></startDate>
-        <endDate>Fri Oct 28 00:00:00 SGT 2016</endDate>
-        <venue> </venue>
+        <name>IE3101 finals</name>
+        <startDate>Sat Nov 19 09:00:00 GMT+08:00 2016</startDate>
+        <endDate>Sat Nov 19 11:00:00 GMT+08:00 2016</endDate>
+        <venue> SRC</venue>
         <priority>HIGH</priority>
-        <status>EXPIRED</status>
+        <status>ACTIVE</status>
         <pinTask>UNPIN</pinTask>
+        <tagged>exam</tagged>
     </tasks>
     <tasks>
-        <name>todo</name>
-        <startDate>Fri Oct 28 01:00:00 SGT 2016</startDate>
+        <name>pass notes and tutorial worksheets to my juniors</name>
+        <startDate>Thu Dec 01 16:22:47 GMT+08:00 2016</startDate>
         <endDate></endDate>
-        <venue> green</venue>
+        <venue></venue>
         <priority>MEDIUM</priority>
         <status>ACTIVE</status>
         <pinTask>UNPIN</pinTask>
+        <tagged>friends</tagged>
     </tasks>
     <tasks>
-        <name>fun</name>
-        <startDate></startDate>
-        <endDate>Fri Oct 28 02:00:00 SGT 2016</endDate>
-        <venue> town</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>fun</name>
-        <startDate></startDate>
-        <endDate>Fri Oct 28 03:00:00 SGT 2016</endDate>
-        <venue> teen</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>marsh</name>
-        <startDate>Fri Oct 28 04:00:00 SGT 2016</startDate>
-        <endDate></endDate>
-        <venue> rty</venue>
+        <name>CS2103 finals</name>
+        <startDate>Sat Nov 26 09:00:00 GMT+08:00 2016</startDate>
+        <endDate>Sat Nov 26 11:00:00 GMT+08:00 2016</endDate>
+        <venue> SRC</venue>
         <priority>MEDIUM</priority>
         <status>ACTIVE</status>
         <pinTask>UNPIN</pinTask>
+        <tagged>exams</tagged>
     </tasks>
     <tasks>
-        <name>jump</name>
-        <startDate></startDate>
-        <endDate>Fri Oct 28 05:00:00 SGT 2016</endDate>
-        <venue> peepee</venue>
+        <name>ZoukOut</name>
+        <startDate>Fri Dec 09 16:24:57 GMT+08:00 2016</startDate>
+        <endDate>Sat Dec 10 16:24:57 GMT+08:00 2016</endDate>
+        <venue> sentosa</venue>
         <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
+        <status>ACTIVE</status>
         <pinTask>UNPIN</pinTask>
+        <tagged>party</tagged>
     </tasks>
     <tasks>
-        <name>fun</name>
-        <startDate>Fri Oct 28 06:00:00 SGT 2016</startDate>
-        <endDate>Fri Oct 28 07:00:00 SGT 2016</endDate>
-        <venue> engine</venue>
+        <name>buy new bag and clothes for next semester</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
         <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
+        <status>ACTIVE</status>
         <pinTask>UNPIN</pinTask>
+        <tagged>hipster</tagged>
+        <tagged>fashion</tagged>
     </tasks>
     <tasks>
-        <name>fun</name>
-        <startDate></startDate>
-        <endDate>Fri Oct 28 08:00:00 SGT 2016</endDate>
-        <venue> towngreen</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>PIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>skip</name>
-        <startDate></startDate>
-        <endDate>Fri Oct 28 08:00:00 SGT 2016</endDate>
-        <venue> towngreen</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>fun</name>
-        <startDate></startDate>
-        <endDate>Fri Oct 28 09:00:00 SGT 2016</endDate>
-        <venue> TP</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>dhgcf</name>
-        <startDate></startDate>
-        <endDate>Sat Oct 29 01:00:00 SGT 2016</endDate>
-        <venue> TPdkuyvd hv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>k</name>
-        <startDate></startDate>
-        <endDate>Sat Oct 29 01:30:00 SGT 2016</endDate>
-        <venue> TPyvd hv</venue>
+        <name>learn R programming during holidays</name>
+        <startDate>Thu Dec 01 16:26:18 GMT+08:00 2016</startDate>
+        <endDate></endDate>
+        <venue></venue>
         <priority>LOW</priority>
-        <status>EXPIRED</status>
+        <status>ACTIVE</status>
         <pinTask>UNPIN</pinTask>
+        <tagged>coding</tagged>
     </tasks>
     <tasks>
-        <name>dfgy</name>
+        <name>train for StanChart Marathon next year</name>
         <startDate></startDate>
-        <endDate>Sat Oct 29 02:00:00 SGT 2016</endDate>
-        <venue> TPdkuy hv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>dfgyuj</name>
-        <startDate></startDate>
-        <endDate>Sat Oct 29 03:00:00 SGT 2016</endDate>
-        <venue> kuyvd hv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>picnic</name>
-        <startDate>Fri Oct 28 01:00:00 SGT 2016</startDate>
         <endDate></endDate>
-        <venue> green</venue>
+        <venue></venue>
         <priority>MEDIUM</priority>
         <status>ACTIVE</status>
         <pinTask>UNPIN</pinTask>
+        <tagged>fitness</tagged>
     </tasks>
     <tasks>
-        <name>dgcf</name>
+        <name>arrange consultation for IEM</name>
         <startDate></startDate>
-        <endDate>Sat Oct 29 05:00:00 SGT 2016</endDate>
-        <venue> TPdkuyvd hv</venue>
+        <endDate></endDate>
+        <venue></venue>
         <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
+        <status>DONE</status>
         <pinTask>UNPIN</pinTask>
+        <tagged>writing</tagged>
     </tasks>
     <tasks>
-        <name>dfgyuj</name>
+        <name>buy tickets for Guns N Roses concert</name>
         <startDate></startDate>
-        <endDate>Sat Oct 29 06:00:00 SGT 2016</endDate>
-        <venue> TPdkuyvd hv</venue>
-        <priority>LOW</priority>
-        <status>EXPIRED</status>
+        <endDate></endDate>
+        <venue> indoor stadium</venue>
+        <priority>MEDIUM</priority>
+        <status>IGNORE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>concert</tagged>
+    </tasks>
+    <tasks>
+        <name>research on GUI design templates for CS2103</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>MEDIUM</priority>
+        <status>DONE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>coding</tagged>
+        <tagged>design</tagged>
+    </tasks>
+    <tasks>
+        <name>submit CS1010E teaching claims</name>
+        <startDate></startDate>
+        <endDate>Fri Nov 18 16:54:47 GMT+08:00 2016</endDate>
+        <venue></venue>
+        <priority>HIGH</priority>
+        <status>ACTIVE</status>
         <pinTask>PIN</pinTask>
+        <tagged>money</tagged>
     </tasks>
     <tasks>
-        <name>gcf</name>
-        <startDate></startDate>
-        <endDate>Sat Oct 29 07:00:00 SGT 2016</endDate>
-        <venue> TPdkuyvd hv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>dfjhgcf</name>
-        <startDate></startDate>
-        <endDate>Sat Oct 29 08:00:00 SGT 2016</endDate>
-        <venue> TPdkuyvd hv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>jhgcf</name>
-        <startDate></startDate>
-        <endDate>Sat Oct 29 09:00:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>jhgcf</name>
-        <startDate></startDate>
-        <endDate>Sat Oct 29 10:00:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>djhgcf</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 00:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>rjhgcf</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 01:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>dfgjhgcf</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 02:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>jhgcf</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 03:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>jccccccchgcf</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 04:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>jhfffffgcf</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 05:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>rrrrjhgcf</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 06:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>lllljhgcf</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 07:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>ppppjhgcf</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 08:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>jjjjjhgcf</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 09:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>fffjhgcf</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 10:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>aaajhgcf</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 11:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>jhgefvcf</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 12:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>jhefgif</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 13:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>unpin</name>
-        <startDate></startDate>
-        <endDate>Sun Oct 30 14:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>HIGH</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>ily</name>
-        <startDate></startDate>
-        <endDate>Wed Oct 26 22:55:00 SGT 2016</endDate>
-        <venue></venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>butt</name>
-        <startDate></startDate>
-        <endDate>Wed Oct 26 22:56:00 SGT 2016</endDate>
-        <venue></venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>tada</name>
-        <startDate></startDate>
-        <endDate>Wed Oct 26 22:56:00 SGT 2016</endDate>
-        <venue></venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>preety</name>
-        <startDate></startDate>
-        <endDate>Wed Oct 26 22:56:00 SGT 2016</endDate>
-        <venue> gg</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-        <tagged>pwreety</tagged>
-    </tasks>
-    <tasks>
-        <name>jh</name>
-        <startDate></startDate>
-        <endDate>Sat Oct 01 18:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>qqqqqfghjkm</name>
-        <startDate></startDate>
-        <endDate>Mon Aug 01 13:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>aaaaaaafghjkm</name>
-        <startDate></startDate>
-        <endDate>Mon Aug 01 14:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>fghdfvdfjkm</name>
-        <startDate></startDate>
-        <endDate>Mon Aug 01 18:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>fghm</name>
-        <startDate></startDate>
-        <endDate>Mon Aug 01 15:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>fghjkm</name>
-        <startDate></startDate>
-        <endDate>Mon Aug 01 16:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>fghjkm</name>
-        <startDate></startDate>
-        <endDate>Mon Aug 01 17:30:00 SGT 2016</endDate>
-        <venue> TPhv</venue>
-        <priority>MEDIUM</priority>
-        <status>EXPIRED</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>aa</name>
-        <startDate>Fri Oct 28 01:03:57 SGT 2016</startDate>
+        <name>initiate meetup with Secondary School friends</name>
+        <startDate>Thu Dec 01 16:55:57 GMT+08:00 2016</startDate>
         <endDate></endDate>
         <venue></venue>
         <priority>MEDIUM</priority>
         <status>ACTIVE</status>
         <pinTask>UNPIN</pinTask>
+        <tagged>friends</tagged>
     </tasks>
     <tasks>
-        <name>pp from 2min</name>
+        <name>buy travel insurance for Krabi trip</name>
         <startDate></startDate>
-        <endDate></endDate>
+        <endDate>Sat Dec 31 16:57:28 GMT+08:00 2016</endDate>
         <venue></venue>
         <priority>MEDIUM</priority>
         <status>ACTIVE</status>
         <pinTask>UNPIN</pinTask>
+        <tagged>safe</tagged>
     </tasks>
     <tasks>
-        <name>me</name>
-        <startDate></startDate>
-        <endDate></endDate>
-        <venue></venue>
-        <priority>HIGH</priority>
-        <status>ACTIVE</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>party high</name>
-        <startDate></startDate>
-        <endDate></endDate>
+        <name>play football</name>
+        <startDate>Fri Nov 04 16:00:00 GMT+08:00 2016</startDate>
+        <endDate>Fri Nov 04 21:00:00 GMT+08:00 2016</endDate>
         <venue></venue>
         <priority>MEDIUM</priority>
         <status>ACTIVE</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>a pin</name>
-        <startDate></startDate>
-        <endDate></endDate>
-        <venue></venue>
-        <priority>MEDIUM</priority>
-        <status>ACTIVE</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>free</name>
-        <startDate></startDate>
-        <endDate></endDate>
-        <venue></venue>
-        <priority>HIGH</priority>
-        <status>ACTIVE</status>
-        <pinTask>UNPIN</pinTask>
-    </tasks>
-    <tasks>
-        <name>jump</name>
-        <startDate></startDate>
-        <endDate></endDate>
-        <venue></venue>
-        <priority>MEDIUM</priority>
-        <status>ACTIVE</status>
-        <pinTask>UNPIN</pinTask>
-        <tagged>sports</tagged>
-    </tasks>
-    <tasks>
-        <name>b</name>
-        <startDate></startDate>
-        <endDate></endDate>
-        <venue></venue>
-        <priority>MEDIUM</priority>
-        <status>ACTIVE</status>
-        <pinTask>UNPIN</pinTask>
+        <pinTask>PIN</pinTask>
     </tasks>
     <tags>
-        <tagName>sports</tagName>
+        <tagName>coding</tagName>
+    </tags>
+    <tags>
+        <tagName>grades</tagName>
+    </tags>
+    <tags>
+        <tagName>stats</tagName>
+    </tags>
+    <tags>
+        <tagName>termpaper</tagName>
+    </tags>
+    <tags>
+        <tagName>money</tagName>
+    </tags>
+    <tags>
+        <tagName>work</tagName>
+    </tags>
+    <tags>
+        <tagName>chill</tagName>
+    </tags>
+    <tags>
+        <tagName>holz</tagName>
     </tags>
     <tags>
         <tagName>friends</tagName>
     </tags>
     <tags>
-        <tagName>chickenwing</tagName>
+        <tagName>brirthday</tagName>
     </tags>
     <tags>
-        <tagName>pwreety</tagName>
+        <tagName>exam</tagName>
+    </tags>
+    <tags>
+        <tagName>exams</tagName>
+    </tags>
+    <tags>
+        <tagName>party</tagName>
+    </tags>
+    <tags>
+        <tagName>fashion</tagName>
+    </tags>
+    <tags>
+        <tagName>hipster</tagName>
+    </tags>
+    <tags>
+        <tagName>fitness</tagName>
+    </tags>
+    <tags>
+        <tagName>writing</tagName>
+    </tags>
+    <tags>
+        <tagName>concert</tagName>
+    </tags>
+    <tags>
+        <tagName>design</tagName>
+    </tags>
+    <tags>
+        <tagName>safe</tagName>
+    </tags>
+    <tags>
+        <tagName>family</tagName>
     </tags>
 </taskbook>
