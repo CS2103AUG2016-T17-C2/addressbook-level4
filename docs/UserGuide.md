@@ -10,11 +10,26 @@
 
 The general command structure is to type the `command key` + other details.
 
+**status of the tasks displayed**
+
+<img src="images/showColours.png" width="400"><br>
+
+blue: active
+
+red: expired
+
+ignore: grey
+
+done: black
+
+The following icons are used in our display: 
+
+<img src="images/icons.png" width="300"><br>
 
 
 **Adding tasks**
 
-<img src="images/add.png" width="400"><br>
+<img src="images/add.png" width="500"><br>
 
 To add a task, type `add` + `taskname` + `from start time` + ` by end time` + `#task_priority` + `#tags` + `@venue`  + `pin status`
 
@@ -45,69 +60,52 @@ Read more about [Natty Date Parser](http://natty.joestelmach.com/)
 
 They do not need to be added in order
 
+
 new tasks that clash with the other tasks that are already in taskBook will not be added
 
-<img src="images/addFail.png" width="500"><br>
+<img src="images/addFail.png" width="600"><br>
+
+**Changing the setting of our tasks**
+Typing `set` `index` `new setting` updates the setting of the task
+
+the settings available are  
+<img src="images/set.png" width="800"><br>
+
+`ignore`: Eg type `set` + `2` + `ignore` causes task 2 to be ignored
+
+`done`: Eg type `set` + ` 1` + `done` will set the settings of task 1 to be done
 
 **Listing tasks**
 
 Executing the command `list` will result in a complete list of tasks sorted by priority. The tasks that are pinned will be at the top of the list.
 
 **Finding tasks** 
-taskBook contains the following lists: 
 
 <img src="images/find.png" width="800"><br>
 
-`Active`: 
+taskBook can filter the tasks according to the following fields: 
+*note that in each field, `keyword` does not need to be fully spelt out:
 
-The tasks that are still active, sorted from the earliest to the latest
-*Eg: Typing `list active`
-*Eg: Typing `list active 120316` returns a list of active tasks with deadlines on 12 March 2016.
+eg `find` + `play` will return all tasks names that contains `play`
+*ie `playground`, `playstation`, `play piano`, `role play`
 
-`Expired`: 
+the keyword of task names 
+*by typing `find` + `keyword`
 
-The tasks that have passed the deadline, sorted from the latest deadline to the earliest
-*Eg: Typing `list expired`
-*Eg: Typing `list expired 120316` returns a list of expired tasks with deadlines on 12 March 2016.
+the venue
+*by typing `find`+ `@` + `keyword`
+*keyword is a venue
 
-`Done`: 
+the tags
+*by typing `find` + `#` + `keyword`
+*keyword is a tag that exists
 
-The tasks that are done, sorted from the most recent to the least recent
+the priority
+*by typing `find` + `#` + `keyword`
+*the keyword can either be `high`, `medium`, `low`
 
-* Eg: Typing `list done`
-* Eg: Typing `list done 120316` returns a list of tasks done on 12 March 2016.
-
-`Ignore`: The tasks that have been ignored, sorted from the most recent to the least recent
-* Eg: Typing `list ignored`
-* Eg: Typing `list ignored 120316` returns a list of tasks with deadlines on 12 March 2016 that are ignored.
-
-`Date`: The tasks all on the day stated
-* Eg: Typing `list date 120316` returns a list of tasks on that 12 March 2016
-
-`task priority`: all tasks that are of `high`/ `medium`/ `low priority`
-* Eg: Typing `list high priority` return a list of tasks that are of high priority 
-
-`Tags` : List of Tags you have used
-* Eg: Typing `#` returns a list of a Tags created
-* Eg: Typing `#sport` where sport is the name of a Tag, will return a list of tasks that are tagged with sports 
-
-`Venue` : all tasks with the same venue
-* Eg: Typing `list @Town Green` returns a list of events that are located at Town Green
-
-`Repeat` : all tasks that are set to recurring
-* Eg: Typing `list repeat` returns a list of tasks that are repeated
-* Eg: Typing `list repeat weekly` returns a list of tasks that are repeated weekly
-
-`Pin` : all pinned tasks
-* Eg: Typing `list pin` return a list of pinned tasks
-
-**Sorting Tasks:**
- 
-When the `list` that the user is looking at is not what he wants, he can use the `sort` function
-
-`Lists` can be sorted by date from
-* `Time`: Type sort earliest to latest or sort latest to earliest
-* `Priority` : sort high to low or sort low to high
+the status
+*by typing `find` + `#` + `keyword`
 
 
 **Deleting tasks**
@@ -116,8 +114,11 @@ To `delete` a task on the list that is on the screen, type `delete` [ index of t
 * eg `delete 1 `
 
 
-
 **updating tasks**
+
+
+<img src="images/update1.png" width="800"><br>
+
 
 To update a task type `update` (index of task in the list or name of task) (field) (changes)
 * Eg: Typing `update 1 by 120316` will change the **deadline** of the first task to 12 March 2016
@@ -134,14 +135,15 @@ Fields can also be updated to be empty
 **Undo:**
 To undo the latest change to taskbook, type `undo`.
 
-Undo can be done only once
-
 Tasks that can be undone is **adding tasks**, **deleting tasks** and **updating tasks**. 
 
+note that undo cannot be done for `set`.
 note that taskbook subsequently returns the list of all the task after each undo
 
 
 **Creating shortkeys**
+
+<img src="images/shortcut.png" width="400"><br>
 
 To change a shortkey for the command, type `shortcut` + `{the field you are changing}` + `{shortkey you want to initialise}` eg: ``shortcut` `add` `a` changes the shortkey for the command `add` to `a`. The next time you want to execute 'add' to add 'running' to your tasklist, simply type `a running`.
 
