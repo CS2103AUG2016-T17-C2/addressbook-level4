@@ -29,6 +29,8 @@ Redo task
 
 Input Validation
 
+NLP Date parsing with Natty
+
 **Code written:** [functional code][test code][docs]
 
 **Other major contributions:**
