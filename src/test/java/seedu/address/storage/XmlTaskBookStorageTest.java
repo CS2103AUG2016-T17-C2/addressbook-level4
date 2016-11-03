@@ -11,6 +11,7 @@ import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.exceptions.DataConversionException;
 import seedu.task.commons.util.FileUtil;
 import seedu.task.model.TaskBook;
+import seedu.task.model.task.Task;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.storage.XmlTaskBookStorage;
 import seedu.task.testutil.TypicalTestTasks;
