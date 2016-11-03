@@ -165,7 +165,8 @@ public class TaskCard extends UiPart {
             dateTime.setManaged(false); // remove field from layout if empty
         } else if (!hasStartDate() && hasEndDate()) {
             dateTime.setText(
-                    toSimpleTimeFormat(task.getEndDate().value) + " " + toSimpleDateFormat(task.getEndDate().value));
+                    toSimpleTimeFormat(task.getEndDate().value) + " " + toSimpleDateFormat(task.getEndDate().value)
+                    + System.lineSeparator() + toPrettyDate(task.getEndDate().value));
         }
     }
 
