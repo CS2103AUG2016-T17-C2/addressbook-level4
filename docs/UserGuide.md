@@ -29,7 +29,7 @@ The following icons are used in our display:
 
 **Adding tasks**
 
-<img src="images/add.png" width="400"><br>
+<img src="images/add.png" width="500"><br>
 
 To add a task, type `add` + `taskname` + `from start time` + ` by end time` + `#task_priority` + `#tags` + `@venue`  + `pin status`
 
@@ -63,7 +63,7 @@ They do not need to be added in order
 
 new tasks that clash with the other tasks that are already in taskBook will not be added
 
-<img src="images/addFail.png" width="500"><br>
+<img src="images/addFail.png" width="600"><br>
 
 **Changing the setting of our tasks**
 Typing `set` `index` `new setting` updates the setting of the task
