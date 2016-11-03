@@ -55,7 +55,6 @@ public class FindCommandTest extends TaskBookGuiTest {
 
     @Test
     public void find_Venue() {
-        assertFindResult("find @life");
         commandBox.runCommand("find @");
         assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE)); 
         assertFindResult("find @Playground", TypicalTestTasks.play);        
