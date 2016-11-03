@@ -144,7 +144,7 @@ public class TaskCard extends UiPart {
         }
     }
 
-    //@@author A0141064U
+    // @@author A0141064U
     private void setTextForDate() {
         if (hasStartDate() && hasEndDate() && differentEndStartDate()) {
             dateTime.setText(
@@ -182,6 +182,7 @@ public class TaskCard extends UiPart {
         return !task.getStartDate().value.isEmpty();
     }
 
+
     /*
      * Converts the dateTime to prettyTime format if the dateTime is less than
      * 24hr from current time
@@ -189,14 +190,10 @@ public class TaskCard extends UiPart {
     public String toPrettyDate(String date) {
 
         Date dateFromParsedDate = convertStringToDateObject(date);
-        Date tomorrow = getTommorrow();
 
-        if (!dateFromParsedDate.after(tomorrow)) {
-            PrettyTime p = new PrettyTime();
-            return p.format(dateFromParsedDate);
-        } else {
-            return null;
-        }
+        PrettyTime p = new PrettyTime();
+        return p.format(dateFromParsedDate);
+
     }
 
     public String toSimpleDateFormat(String date) {
