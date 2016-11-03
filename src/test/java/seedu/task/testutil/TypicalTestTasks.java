@@ -13,7 +13,7 @@ import seedu.task.model.task.*;
  */
 public class TypicalTestTasks {
 
-	public static TestTask study, play, coding, watchMovie;
+	public static TestTask study, play, coding, watchMovie, sleep;
 
 	public TypicalTestTasks() {
 		try {
@@ -26,13 +26,17 @@ public class TypicalTestTasks {
 			        .withPriority("High").withStatus("Active").withPinTask("pin").withTags("study", "exam").build();
 
 			play = new TaskBuilder().withName("Play time").withVenue("Playground")
-			        .withStartDate(DateUtils.setHours(date, 12)).withEndDate(DateUtils.setHours(date, 13))
+			        .withStartDate(DateUtils.setHours(date, 11)).withEndDate(DateUtils.setHours(date, 13))
 			        .withPriority("Low").withStatus("Active").withPinTask("pin").withTags("play", "healthy").build();
 			
 			coding = new TaskBuilder().withName("code cs2103").withVenue("School")
-			        .withStartDate(DateUtils.setHours(date, 14)).withEndDate(DateUtils.setHours(date, 16))
+			        .withStartDate(DateUtils.setHours(date, 14)).withEndDate(DateUtils.setHours(date, 17))
 			        .withPriority("High").withStatus("Active").withPinTask("unpin").withTags("study", "school").build();
 
+			sleep = new TaskBuilder().withName("sleep").withVenue("home")
+			        .withStartDate(DateUtils.setHours(date, 6)).withEndDate(DateUtils.setHours(date, 9))
+			        .withPriority("High").withStatus("Active").withPinTask("unpin").withTags("sleep", "rest").build();
+			
 			
 		} catch (IllegalValueException e) {
 			e.printStackTrace();

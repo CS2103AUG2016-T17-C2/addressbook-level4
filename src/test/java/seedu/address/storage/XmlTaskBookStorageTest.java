@@ -86,8 +86,7 @@ public class XmlTaskBookStorageTest {
 
         //Modify data, overwrite exiting file, and read back
         
-        //original.addTask(new Task(TypicalTestTasks.play));
-        original.removeTask(TypicalTestTasks.study);
+        original.addTask(new Task(TypicalTestTasks.sleep));
         xmlTaskBookStorage.saveTaskBook(original, filePath);
         readBack = xmlTaskBookStorage.readTaskBook(filePath).get();
         assertEquals(original.toString(), new TaskBook(readBack).toString());
