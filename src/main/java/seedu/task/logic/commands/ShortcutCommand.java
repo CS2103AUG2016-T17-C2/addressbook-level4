@@ -51,29 +51,42 @@ public class ShortcutCommand extends Command {
     public ShortcutCommand(String shortcutField, String shortkey) throws IllegalValueException {
         assert shortcutField != null;
         assert shortkey != null;
-        
+
         this.shortcutField = shortcutField;
         this.shortkey = shortkey;
 
-        Config config = new Config();
-        if (!config.getShortcutFilePath().equals(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH)){
-              config.setShortcutFilePath(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);    
-              }
+    }
+
+    @Override
+    public CommandResult execute() {
         
+        Config config = new Config();
+        if (!config.getShortcutFilePath().equals(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH)) {
+            config.setShortcutFilePath(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
+        }
+
         try {
-            Optional<ShortcutSetting> shortcutOptional = ShortcutUtil.readShortcut(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
+            Optional<ShortcutSetting> shortcutOptional = ShortcutUtil
+                    .readShortcut(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
             shortcutSetting = shortcutOptional.orElse(new ShortcutSetting());
         } catch (DataConversionException e) {
             shortcutSetting = new ShortcutSetting();
         }
-        
-        
-        if (shortkey.equals(shortcutSetting.getAdd())|shortkey.equals(shortcutSetting.getDelete())|shortkey.equals(shortcutSetting.getList())){
-            throw new IllegalValueException(MESSAGE_DUPLICATE_SHORTKEY);
+
+        if (shortkey.equals(shortcutSetting.getAdd()) | shortkey.equals(shortcutSetting.getDelete())
+                | shortkey.equals(shortcutSetting.getList())) {
+            try {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_SHORTKEY);
+            } catch (IllegalValueException e) {
+                e.printStackTrace();
+                return new CommandResult(e.getMessage());
+            }
         }
-        
-        run(); //matches and edits the shortkeys;
+
+        run(); // matches and edits the shortkeys;
         saveShortcutFile();
+        return new CommandResult(String.format(MESSAGE_SUCCESS+shortcutField+" changed to "+shortkey));
+
     }
 
     private void saveShortcutFile() {
@@ -88,32 +101,25 @@ public class ShortcutCommand extends Command {
 
     private void run() {
 
-        
-            switch (this.shortcutField) {
+        switch (this.shortcutField) {
 
-            case AddCommand.COMMAND_WORD:
-                shortcutSetting.setAdd(this.shortkey);
-                return;
+        case AddCommand.COMMAND_WORD:
+            shortcutSetting.setAdd(this.shortkey);
+            return;
 
-            case DeleteCommand.COMMAND_WORD:
-                shortcutSetting.setDelete(this.shortkey);
-                return;
+        case DeleteCommand.COMMAND_WORD:
+            shortcutSetting.setDelete(this.shortkey);
+            return;
 
-            case ListCommand.COMMAND_WORD:
-                shortcutSetting.setList(this.shortkey);
-                return;
+        case ListCommand.COMMAND_WORD:
+            shortcutSetting.setList(this.shortkey);
+            return;
 
-            default:
-                new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
-                return;
-            }
-
+        default:
+            new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
+            return;
+        }
     }
 
-    @Override
-    public CommandResult execute() {
-        return new CommandResult(String.format(MESSAGE_SUCCESS + shortcutField + " changed to " + shortkey));
-
-    }
-
+    
 }

@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
 
 import seedu.task.commons.core.Config;
@@ -21,6 +22,7 @@ import seedu.task.commons.events.model.TaskBookChangedEvent;
 import seedu.task.commons.events.ui.JumpToListRequestEvent;
 import seedu.task.commons.events.ui.ShowHelpRequestEvent;
 import seedu.task.commons.exceptions.IllegalValueException;
+import seedu.task.commons.util.ShortcutUtil;
 import seedu.task.logic.Logic;
 import seedu.task.logic.LogicManager;
 import seedu.task.logic.commands.*;
@@ -41,6 +43,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.logging.Logger;
 
@@ -54,10 +57,14 @@ public class LogicManagerTest {
      * See https://github.com/junit-team/junit4/wiki/rules#temporaryfolder-rule
      */
     @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Rule
     public TemporaryFolder saveFolder = new TemporaryFolder();
 
     private Model model;
     private Logic logic;
+    
 
     //These are for checking the correctness of the events raised
     private ReadOnlyTaskBook latestSavedTaskBook;
@@ -87,7 +94,6 @@ public class LogicManagerTest {
         String tempTaskBookFile = saveFolder.getRoot().getPath() + "TempTaskBook.xml";
         String tempPreferencesFile = saveFolder.getRoot().getPath() + "TempPreferences.json";
 
-        String tempShortcutsFile = saveFolder.getRoot().getPath() + "TempShortcuts.json";
         logic = new LogicManager(model, new StorageManager(tempTaskBookFile, tempPreferencesFile));
         EventsCenter.getInstance().registerHandler(this);
 
@@ -165,6 +171,57 @@ public class LogicManagerTest {
         model.addTask(helper.generateTask(3));
 
         assertCommandBehavior("clear", ClearCommand.MESSAGE_SUCCESS, new TaskBook(), Collections.emptyList());
+    }
+    //@@author A0141064U
+    @Test
+    public void execute_shortcut_add() throws Exception {
+        
+        ShortcutSetting shortcutSetting = ShortcutUtil.readShortcut(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH).orElse(new ShortcutSetting());
+        
+        resetShortcut(shortcutSetting);
+        ShortcutUtil.saveShortcut(shortcutSetting, ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
+        new ShortcutCommand("add","addable");
+        assertCommandBehavior("shortcut add addable", ShortcutCommand.MESSAGE_SUCCESS + "add"+" changed to "+"addable");
+        resetShortcut(shortcutSetting);
+        ShortcutUtil.saveShortcut(shortcutSetting, ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
+    }
+    @Test
+    public void execute_shortcut_delete() throws Exception {
+        
+        ShortcutSetting shortcutSetting = ShortcutUtil.readShortcut(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH).orElse(new ShortcutSetting());
+        
+        resetShortcut(shortcutSetting);
+        ShortcutUtil.saveShortcut(shortcutSetting, ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
+        assertCommandBehavior("shortcut delete deletable", ShortcutCommand.MESSAGE_SUCCESS + "delete"+" changed to "+"deletable");
+        resetShortcut(shortcutSetting);
+        ShortcutUtil.saveShortcut(shortcutSetting, ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
+    }
+    @Test
+    public void execute_shortcut_list() throws Exception {
+        
+        ShortcutSetting shortcutSetting = ShortcutUtil.readShortcut(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH).orElse(new ShortcutSetting());
+        
+        resetShortcut(shortcutSetting);
+        ShortcutUtil.saveShortcut(shortcutSetting, ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
+        assertCommandBehavior("shortcut list listable", ShortcutCommand.MESSAGE_SUCCESS + "list"+" changed to "+"listable");
+        resetShortcut(shortcutSetting);
+        ShortcutUtil.saveShortcut(shortcutSetting, ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
+    }
+
+    @Test
+    public void execute_shortcut_error() throws Exception {
+        
+        ShortcutSetting shortcutSetting = ShortcutUtil.readShortcut(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH).orElse(new ShortcutSetting());
+        resetShortcut(shortcutSetting);
+        ShortcutUtil.saveShortcut(shortcutSetting, ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
+         assertCommandBehavior("shortcut list list", ShortcutCommand.MESSAGE_DUPLICATE_SHORTKEY);
+        
+    }
+    
+    public void resetShortcut(ShortcutSetting shortcutSetting) {
+        shortcutSetting.setAdd("add");
+        shortcutSetting.setDelete("delete");
+        shortcutSetting.setList("list");
     }
     
     
@@ -334,7 +391,7 @@ public class LogicManagerTest {
     @Test
     public void execute_deleteInvalidArgsFormat_errorMessageShown() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
-        assertIncorrectIndexFormatBehaviorForCommand("delete", expectedMessage);
+         assertIncorrectIndexFormatBehaviorForCommand("delete", expectedMessage);
     }
 
     @Test
@@ -517,6 +574,7 @@ public class LogicManagerTest {
         	
             return cmd.toString();
         }
+        
         
         //@@author
 
