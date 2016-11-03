@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskbook>
+    <tasks>
+        <name>go jogging</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>MEDIUM</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>go coding</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>MEDIUM</priority>
+        <status>IGNORE</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>eat breakfast</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>MEDIUM</priority>
+        <status>DONE</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
+</taskbook>

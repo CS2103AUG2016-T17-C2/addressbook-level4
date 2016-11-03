@@ -7,13 +7,10 @@ import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
 
 
-import javafx.collections.ObservableList;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.exceptions.DataConversionException;
 import seedu.task.commons.util.FileUtil;
-import seedu.task.commons.util.ShortcutUtil;
 import seedu.task.model.TaskBook;
-import seedu.task.model.task.Task;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.storage.XmlTaskBookStorage;
 import seedu.task.testutil.TypicalTestTasks;
@@ -81,8 +78,9 @@ public class XmlTaskBookStorageTest {
         ReadOnlyTaskBook readBack = xmlTaskBookStorage.readTaskBook(filePath).get();
         //ObservableList<Task> originalTasks = original.getTasks();
         //ObservableList<Task> readBackTasks = new TaskBook(readBack).getTasks();
-        logger.info("+==============" + original.getTaskList() + "~~~~~~~~~~~" + new TaskBook(readBack).getTaskList());
-        assertEquals(original.toString(), new TaskBook(readBack).toString());
+        logger.info("+==============" + original);
+        logger.info("~~~~~~~~~~~" + new TaskBook(readBack));
+        assert(original.equals(new TaskBook(readBack)));
 
         //Modify data, overwrite exiting file, and read back
         
@@ -90,13 +88,13 @@ public class XmlTaskBookStorageTest {
         original.removeTask(TypicalTestTasks.study);
         xmlTaskBookStorage.saveTaskBook(original, filePath);
         readBack = xmlTaskBookStorage.readTaskBook(filePath).get();
-        assertEquals(original.toString(), new TaskBook(readBack).toString());
+        assert(original.equals(new TaskBook(readBack)));
 
         //Save and read without specifying file path
         //original.addTask(new Task(TypicalTestTasks.coding));
         xmlTaskBookStorage.saveTaskBook(original); //file path not specified
         readBack = xmlTaskBookStorage.readTaskBook().get(); //file path not specified
-        assertEquals(original.toString(), new TaskBook(readBack).toString());
+        assert(original.equals( new TaskBook(readBack)));
 
     }
     
