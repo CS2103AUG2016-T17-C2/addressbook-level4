@@ -44,13 +44,13 @@ chiazhemin@gamil.com
 
 **Components in charge of:** Model, UI
 
-**Aspects/tools in charge of:** GUI Testing, Find command, Sorting/Filtering
+**Aspects/tools in charge of:** GUI, GUI Testing, Find command, Sorting/Filtering
 
 **Features implemented:**
 
 Modern UI design
 
-Find tasks
+"Power search" for tasks
 
 Automated sorting of tasks
 
