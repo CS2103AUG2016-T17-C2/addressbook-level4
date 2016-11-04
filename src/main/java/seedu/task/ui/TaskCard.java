@@ -66,9 +66,9 @@ public class TaskCard extends UiPart {
     private ReadOnlyTask task;
     private int displayedIndex;
 
-    private static final String HIGH = "#0D47A1";
-    private static final String MEDIUM = "#1976D2";
-    private static final String LOW = "#2196F3";
+    private static final String HIGH = "#1976D2";
+    private static final String MEDIUM = "#388E3C";
+    private static final String LOW = "#EC407A";
 
     private static final String DONE = "#212121";
     private static final String IGNORE = "#616161";
@@ -235,6 +235,7 @@ public class TaskCard extends UiPart {
         }
     }
 
+    // @@author
     public HBox getLayout() {
         return cardPane;
     }
@@ -249,4 +250,3 @@ public class TaskCard extends UiPart {
         return FXML;
     }
 }
-// @@author
