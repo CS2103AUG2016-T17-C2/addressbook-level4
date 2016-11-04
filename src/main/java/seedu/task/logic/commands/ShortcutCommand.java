@@ -21,7 +21,8 @@ import seedu.task.logic.parser.Parser;
 import seedu.task.model.task.DateTime;
 
 /**
- * Changes the Command names of taskBook.
+ * Changes the keywords to invoke the commands.
+ * Can only be used for add, delete, list
  */
 
 public class ShortcutCommand extends Command {
