@@ -1,6 +1,7 @@
 package seedu.task.logic.commands;
 
 import seedu.task.model.TaskBook;
+import seedu.task.model.VersionControl;
 
 /**
  * Clears the task book.
@@ -17,6 +18,7 @@ public class ClearCommand extends Command {
     public CommandResult execute() {
         assert model != null;
         model.resetData(TaskBook.getEmptyTaskBook());
+        VersionControl.getInstance().reset();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

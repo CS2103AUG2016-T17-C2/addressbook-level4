@@ -71,9 +71,7 @@ public class XmlTaskBookStorageTest {
         TypicalTestTasks td = new TypicalTestTasks();
         TaskBook original = td.getTypicalTaskBook(); 
         XmlTaskBookStorage xmlTaskBookStorage = new XmlTaskBookStorage(filePath);
-        logger.info("~~~~~~~~~~~~~~~~~~~~" + filePath);
-        logger.info("`````````````````````" + xmlTaskBookStorage.getTaskBookFilePath() );
-
+       
         //Save in new file and read back
         xmlTaskBookStorage.saveTaskBook(original, filePath);
         ReadOnlyTaskBook readBack = xmlTaskBookStorage.readTaskBook(filePath).get();
@@ -83,7 +81,6 @@ public class XmlTaskBookStorageTest {
         assertEquals(original.toString(), new TaskBook(readBack).toString());
 
         //Modify data, overwrite exiting file, and read back
-        
         original.addTask(new Task(TypicalTestTasks.sleep));
         xmlTaskBookStorage.saveTaskBook(original, filePath);
         readBack = xmlTaskBookStorage.readTaskBook(filePath).get();

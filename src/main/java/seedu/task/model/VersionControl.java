@@ -104,6 +104,10 @@ public class VersionControl {
 		this.versionPosition = 0;
 	}
 	
+	public void reset() {
+		instance = null;
+	}
+	
 	public void logList() {
 		LogsCenter.getLogger(VersionControl.class).info(Arrays.toString(taskList.toArray()));
 	}

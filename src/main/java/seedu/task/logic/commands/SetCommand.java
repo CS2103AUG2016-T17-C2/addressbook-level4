@@ -55,14 +55,13 @@ public class SetCommand extends Command{
     	
         assert model != null;
         try {
-            //Task toUpdate = model.getTaskByIndex(taskIndex - 1).clone();
-        	//TaskParser updateTaskParser = new UpdateTaskParser(model.getTaskByIndex(taskIndex - 1), setArg);
-            Task toUpdate = ((Task)lastShownList.get(taskIndex - 1)).clone();
-            TaskParser updateTaskParser = new UpdateTaskParser((Task)lastShownList.get(taskIndex - 1), setArg);
-        	model.updateTask(model.getTaskByIndex(taskIndex - 1), ((UpdateTaskParser) updateTaskParser).setTaskStatus());
-        	LogsCenter.getLogger(ModelManager.class).info("Task Index: " + (taskIndex - 1) + " task: " + model.getTaskByIndex(taskIndex - 1));
-        	VersionControl.getInstance().push(new TaskVersion(VersionControl.getInstance().getIndex() + 1, taskIndex - 1, toUpdate, TaskVersion.Command.UPDATE));
+            Task toUpdate = model.getTaskByIndex(taskIndex - 1).clone();
+        	TaskParser updateTaskParser = new UpdateTaskParser(model.getTaskByIndex(taskIndex - 1), setArg);
+            int updatedTaskIndex = model.updateTask(model.getTaskByIndex(taskIndex - 1), ((UpdateTaskParser) updateTaskParser).setTaskStatus());
+        	LogsCenter.getLogger(ModelManager.class).info("Task Index: " + (taskIndex - 1) + " index: " + model.getIndexOfTask(toUpdate) + " task: " + model.getTaskByIndex(taskIndex - 1));
+        	VersionControl.getInstance().push(new TaskVersion(VersionControl.getInstance().getIndex() + 1, updatedTaskIndex, toUpdate, TaskVersion.Command.UPDATE));
             VersionControl.getInstance().resetVersionPosition();
+            VersionControl.getInstance().logList();
 		} catch (IllegalValueException e) {
 	        indicateAttemptToExecuteIncorrectCommand();
 			return new CommandResult(e.getMessage());

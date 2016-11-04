@@ -33,7 +33,8 @@ public class ChangeFilePathCommand extends Command {
     public static final String COMMAND_WORD = "file";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Moves the file to a new location within the same directory. " + "Example:" + COMMAND_WORD + " newFolder ";
+            + ": Moves the file to a new location within the same directory. " + "Example:" + COMMAND_WORD
+            + " newFolder ";
     public static final String MESSAGE_RENAME_TO_OLD_FILE = "New file name cannot be the same name as the current file name";
     public static final String MESSAGE_SUCCESS = "File is moved/renamed to ";
     public static final String MESSAGE_DUPLICATE_FILENAME = "This file already exists in the taskBook,"
@@ -52,10 +53,7 @@ public class ChangeFilePathCommand extends Command {
      * @throws IOException
      *
      * 
-     */
-
-    /**
-     * Moves the file to a new location within the same directory
+     *Moves the file to a new location within the same directory
      */
     public ChangeFilePathCommand(String newFilepathString) {
         assert newFilepathString != null;
@@ -63,14 +61,6 @@ public class ChangeFilePathCommand extends Command {
         this.oldFilepathString = initializedConfig.getTaskBookFilePath();
         String trimmedNewFilepathString = newFilepathString.trim();
         this.newFilepathString = trimmedNewFilepathString.concat(".xml");
-
-        try {
-            run();
-        } catch (IllegalValueException e) {
-            new CommandResult(e.getMessage());
-            e.printStackTrace();
-        }
-        
     }
 
     private void setConfig() {
@@ -81,6 +71,21 @@ public class ChangeFilePathCommand extends Command {
             initializedConfig = new Config();
         }
 
+    }
+
+    @Override
+    public CommandResult execute() {
+
+        try {
+            run();
+        } catch (IllegalValueException e) {
+            new CommandResult(e.getMessage());
+            e.printStackTrace();
+        }
+
+        EventsCenter.getInstance().post(new StorageFilepathChangedEvent(this.initializedConfig));
+        
+        return new CommandResult(String.format(MESSAGE_SUCCESS + newFilepathString));
     }
 
     private void run() throws IllegalValueException {
@@ -113,7 +118,9 @@ public class ChangeFilePathCommand extends Command {
         }
 
     }
-
+/**
+ * updates the filepath value in the config file
+ */
     private void updateFilePath() {
 
         // Update config file in case it was missing to begin with or there are
@@ -123,7 +130,7 @@ public class ChangeFilePathCommand extends Command {
             ConfigUtil.saveConfig(this.initializedConfig, Config.DEFAULT_CONFIG_FILE);
         } catch (IOException e) {
             logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
-            
+
         }
 
     }
@@ -138,16 +145,6 @@ public class ChangeFilePathCommand extends Command {
         } catch (IOException x) {
             System.err.println("failed to delete old file");
         }
-    }
-
-    @Override
-    public CommandResult execute() {
-
-        EventsCenter.getInstance().post(new StorageFilepathChangedEvent(this.initializedConfig));
-        assert this.initializedConfig.getTaskBookFilePath().compareTo(newFilepathString)!=0 ;
-       
-        return new CommandResult(String.format(MESSAGE_SUCCESS + newFilepathString));
-
     }
 
 }

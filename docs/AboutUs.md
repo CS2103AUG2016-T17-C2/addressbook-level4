@@ -4,7 +4,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project Team
 
-#### Rahman (https://github.com/arshrahman)
+#### [Rahman](https://github.com/arshrahman)
 arsh.abdulrahman@hotmail.com
 
 <img src="images/rahman.jpeg" width="150"><br>
@@ -14,31 +14,25 @@ arsh.abdulrahman@hotmail.com
 **Aspects/tools in charge of:** Logic, Testing, Code quality
 
 **Features implemented:**
+* Add task
+* Delete task(s)
+* Update task
+* Set task status
+* Undo task
+* Redo task
+* Input Validation
+* NLP Date parsing with Natty
 
-Add task
-
-Delete task(s)
-
-Update task
-
-Set task status
-
-Undo task
-
-Redo task
-
-Input Validation
-
-NLP Date parsing with Natty
-
-**Code written:** [functional code][test code][docs]
+**Code written:** [[functional code]](collated/docs/A0139958H.md)	[[test code]](collated/main/A0139958H.md)	[[docs]](collated/test/A0139958H.md)
 
 **Other major contributions:**
 
 Set up Travis, Codeacy, Coveralls
 
 
-#### Zhe Min (https://github.com/zhems)
+
+
+#### [Zhe Min](https://github.com/zhems)
 
 chiazhemin@gamil.com
 
@@ -49,34 +43,33 @@ chiazhemin@gamil.com
 **Aspects/tools in charge of:** GUI, GUI Testing, Find command, Sorting/Filtering
 
 **Features implemented:**
+* Modern UI design
+* "Power search" for tasks
+* Automated sorting of tasks:
 
-Modern UI design
+**Code written:** [[functional code]](collated/docs/A0138301U.md)	[[test code]](collated/main/A0138301U.md)	[[docs]](collated/test/A0138301U.md)
 
-"Power search" for tasks
-
-Automated sorting of tasks
-
-Code written: [functional code][test code][docs]
 
 Other major contributions:
 
 
-#### Clara (https://github.com/hotchocolatemarshmallow)
+
+
+#### [Clara](https://github.com/hotchocolatemarshmallow)
 hotchocolatemarshmallow35211@gamil.com
 
 <img src="images/clara.jpeg" width="150"><br>
 
 **Components in charge of:** Storage
 
-**Aspects/tools in charge of:** Documentation
+**Aspects/tools in charge of:** Documentation, Storage
 
 **Features implemented:**
+* Move Storage filepath
+* Shortkey implementation
+* display time using pretty time
 
-Move Storage filepath
-
-Shortkey implementation
-
-**Code written:** [functional code][test code][docs]
+**Code written:** [[functional code]](collated/docs/A0141064U.md)	[[test code]](collated/main/A0141064U.md)	[[docs]](collated/test/A0141064U.md)
 
 **Other major contributions:**
 
@@ -85,12 +78,12 @@ Shortkey implementation
 
 #### [Damith C. Rajapakse](http://www.comp.nus.edu.sg/~damithch) <br>
 <img src="images/DamithRajapakse.jpg" width="150"><br>
-**Role**: Lecturer
+**Role** : Lecturer
 
 
-####[Joel](https://github.com/se-edu/addressbook-level4/pulls?q=is%3Apr+author%3Aokkhoy) <br>
-**Role**: tutor
------
+#### [Joel](https://github.com/se-edu/addressbook-level4/pulls?q=is%3Apr+author%3Aokkhoy) <br>
+**Role** : tutor
+
 
 # Contributors
 
