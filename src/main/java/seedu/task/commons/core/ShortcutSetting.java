@@ -5,6 +5,10 @@ import java.awt.Point;
 import java.util.Objects;
 import java.util.logging.Logger;
 
+/**
+ * Shortcut values used by the app
+ * Shortcut values are saved in the default shortcut file that cannot be changed by the user
+ */
 public class ShortcutSetting {
     public static final String DEFAULT_SHORTCUT_FILEPATH = "data/shortcut.json";
 
@@ -53,7 +57,9 @@ public class ShortcutSetting {
     public void setList(String list) {
         this.list = list;
     }
-
+    /**
+     * method is used in parser class to convert shortkey into command word
+     */
     public String convertShortcut(String tempCommandWord) {
         assert tempCommandWord!=null;
         

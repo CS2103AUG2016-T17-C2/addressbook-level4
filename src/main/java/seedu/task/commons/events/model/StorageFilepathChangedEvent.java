@@ -4,7 +4,7 @@ package seedu.task.commons.events.model;
 import seedu.task.commons.core.Config;
 import seedu.task.commons.events.BaseEvent;
 
-/** Indicates the Filepath in the Config has changed*/
+/** Indicates the xmlTaskBook Filepath in the Config has changed*/
 
 public class StorageFilepathChangedEvent extends BaseEvent{
     public final String newConfigFilepathString;

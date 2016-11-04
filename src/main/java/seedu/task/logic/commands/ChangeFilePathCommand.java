@@ -53,7 +53,7 @@ public class ChangeFilePathCommand extends Command {
      * @throws IOException
      *
      * 
-     *             Moves the file to a new location within the same directory
+     *Moves the file to a new location within the same directory
      */
     public ChangeFilePathCommand(String newFilepathString) {
         assert newFilepathString != null;
@@ -118,7 +118,9 @@ public class ChangeFilePathCommand extends Command {
         }
 
     }
-
+/**
+ * updates the filepath value in the config file
+ */
     private void updateFilePath() {
 
         // Update config file in case it was missing to begin with or there are

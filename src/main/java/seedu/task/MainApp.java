@@ -181,6 +181,10 @@ public class MainApp extends Application {
     }
     
     //@@author A0141064U
+    /**
+     * updates taskBook so that new taskbook filepath is used immediately
+     * @param event
+     */
     @Subscribe
     public void handleChangeFilepathEvent(StorageFilepathChangedEvent event){
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
