@@ -14,16 +14,17 @@ arsh.abdulrahman@hotmail.com
 **Aspects/tools in charge of:** Logic, Testing, Code quality
 
 **Features implemented:**
-*Add task
-*Delete task(s)
-*Update task
-*Set task status
-*Undo task
-*Redo task
-*Input Validation
-*NLP Date parsing with Natty
+* Add task
+* Delete task(s)
+* Update task
+* Set task status
+* Undo task
+* Redo task
+* Input Validation
+* NLP Date parsing with Natty
 
-**Code written:** [functional code](collated/docs/A0139958H.md) [test code](collated/main/A0139958H.md) [docs](collated/test/A0139958H.md)
+**Code written:** [[functional code]](collated/docs/A0139958H.md)	[[test code]](collated/main/A0139958H.md)	[[docs]](collated/test/A0139958H.md)
+
 **Other major contributions:**
 
 Set up Travis, Codeacy, Coveralls
@@ -40,11 +41,12 @@ chiazhemin@gamil.com
 **Aspects/tools in charge of:** GUI, GUI Testing, Find command, Sorting/Filtering
 
 **Features implemented:**
-*Modern UI design
-*"Power search" for tasks
-*Automated sorting of tasks:
+* Modern UI design
+* "Power search" for tasks
+* Automated sorting of tasks:
 
-**Code written:** [functional code](collated/docs/A0138301U.md)[test code](collated/main/A0138301U.md)[docs](collated/test/A0138301U.md)
+**Code written:** [[functional code]](collated/docs/A0138301U.md)	[[test code]](collated/main/A0138301U.md)	[[docs]](collated/test/A0138301U.md)
+
 
 Other major contributions:
 
@@ -59,11 +61,11 @@ hotchocolatemarshmallow35211@gamil.com
 **Aspects/tools in charge of:** Documentation, Storage
 
 **Features implemented:**
-*Move Storage filepath
-*Shortkey implementation
-*display time using pretty time
+* Move Storage filepath
+* Shortkey implementation
+* display time using pretty time
 
-**Code written:** [functional code](collated/docs/A0141064U.md)[test code](collated/main/A0141064U.md)[docs](collated/test/A0141064U.md)
+**Code written:** [[functional code]](collated/docs/A0141064U.md)	[[test code]](collated/main/A0141064U.md)	[[docs]](collated/test/A0141064U.md)
 
 **Other major contributions:**
 
@@ -72,12 +74,12 @@ hotchocolatemarshmallow35211@gamil.com
 
 #### [Damith C. Rajapakse](http://www.comp.nus.edu.sg/~damithch) <br>
 <img src="images/DamithRajapakse.jpg" width="150"><br>
-**Role**: Lecturer
+**Role** : Lecturer
 
 
 ####[Joel](https://github.com/se-edu/addressbook-level4/pulls?q=is%3Apr+author%3Aokkhoy) <br>
-**Role**: tutor
------
+**Role** : tutor
+
 
 # Contributors
 
