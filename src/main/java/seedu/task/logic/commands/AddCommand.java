@@ -1,5 +1,7 @@
 package seedu.task.logic.commands;
 
+import seedu.task.commons.core.EventsCenter;
+import seedu.task.commons.events.ui.JumpToListRequestEvent;
 import seedu.task.model.VersionControl;
 import seedu.task.model.task.*;
 import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
@@ -46,6 +48,10 @@ public class AddCommand extends Command {
             int taskIndex = model.addTask(toAdd);
             VersionControl.getInstance().push(new TaskVersion(VersionControl.getInstance().getIndex() + 1, taskIndex, toAdd, TaskVersion.Command.ADD));
             VersionControl.getInstance().resetVersionPosition();
+
+            //@@author A0138301U
+            EventsCenter.getInstance().post(new JumpToListRequestEvent(model.getIndexOfTask(toAdd)));
+            //@@author A0139958H
         } catch (UniqueTaskList.DuplicateTaskException e) {
             return new CommandResult(MESSAGE_DUPLICATE_TASK);
         } catch (UniqueTaskList.DateClashTaskException e) {

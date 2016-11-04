@@ -153,6 +153,11 @@ public class ModelManager extends ComponentManager implements Model {
         Task task = sortedTasks.get(index);
         return task;
     }
+    
+    
+    public int getIndexOfTask(Task task) {
+        return sortedTasks.indexOf(task);
+    }
 
     @Override
     public void updateFilteredListToShowAll() {

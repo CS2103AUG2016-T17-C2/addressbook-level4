@@ -47,6 +47,9 @@ public interface Model {
     /** Returns the task identified by index number */    
     Task getTaskByIndex(int index);
 
+    /** Returns the index number of the input task */    
+    int getIndexOfTask(Task task);
+    
     /** Updates the filter of the filtered task list to show all persons */
     void updateFilteredListToShowAll();
 
