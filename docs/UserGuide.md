@@ -26,6 +26,20 @@ The following icons are used in our display:
 
 <img src="images/icons.png" width="300"><br>
 
+The tasks are sorted as follows: 
+1) By status 
+* Active and Expired tasks are at the top,
+* Done and Ignored are at the bottom
+
+2) By pin
+* pinned tasks are at the top
+
+3) By priority
+* tasks with higher priority are at the top
+
+4) By time
+* tasks will be sorted with the earlier date at the top
+
 
 **Adding tasks**
 
@@ -113,6 +127,9 @@ the status
 To `delete` a task on the list that is on the screen, type `delete` [ index of task in the list] 
 * eg `delete 1 `
 
+`delete` can also be done for multiple tasks
+* eg `delete 1 2 3` deletes tasks 1,2 and 3.
+
 
 **updating tasks**
 
@@ -132,14 +149,14 @@ Multiple fields can be updated in a single command
 Fields can also be updated to be empty
 * Eg: Typing `update 3 @null` removes the venue of the third task in the list. 
 
-**Undo:**
+**Undo and redo:**
 To undo the latest change to taskbook, type `undo`.
 
-Tasks that can be undone is **adding tasks**, **deleting tasks** and **updating tasks**. 
+Actions that can be undone is **adding tasks**, **deleting tasks** and **updating tasks**. 
 
-note that undo cannot be done for `set`.
 note that taskbook subsequently returns the list of all the task after each undo
 
+Undo and redo can be done multiple times
 
 **Creating shortkeys**
 
