@@ -21,7 +21,9 @@ import seedu.task.commons.core.UnmodifiableObservableList;
 import seedu.task.commons.events.model.TaskBookChangedEvent;
 import seedu.task.commons.events.ui.JumpToListRequestEvent;
 import seedu.task.commons.events.ui.ShowHelpRequestEvent;
+import seedu.task.commons.exceptions.DataConversionException;
 import seedu.task.commons.exceptions.IllegalValueException;
+import seedu.task.commons.util.FileUtil;
 import seedu.task.commons.util.ShortcutUtil;
 import seedu.task.logic.Logic;
 import seedu.task.logic.LogicManager;
@@ -45,6 +47,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.StringJoiner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static org.junit.Assert.assertEquals;
@@ -180,7 +183,6 @@ public class LogicManagerTest {
         
         resetShortcut(shortcutSetting);
         ShortcutUtil.saveShortcut(shortcutSetting, ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
-        new ShortcutCommand("add","addable");
         assertCommandBehavior("shortcut add addable", ShortcutCommand.MESSAGE_SUCCESS + "add"+" changed to "+"addable");
         resetShortcut(shortcutSetting);
         ShortcutUtil.saveShortcut(shortcutSetting, ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
@@ -212,7 +214,7 @@ public class LogicManagerTest {
     public void execute_shortcut_error() throws Exception {
         
         ShortcutSetting shortcutSetting = ShortcutUtil.readShortcut(ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH).orElse(new ShortcutSetting());
-        resetShortcut(shortcutSetting);
+        resetShortcut(shortcutSetting); 
         ShortcutUtil.saveShortcut(shortcutSetting, ShortcutSetting.DEFAULT_SHORTCUT_FILEPATH);
          assertCommandBehavior("shortcut list list", ShortcutCommand.MESSAGE_DUPLICATE_SHORTKEY);
         
@@ -224,6 +226,10 @@ public class LogicManagerTest {
         shortcutSetting.setList("list");
     }
     
+    @Test
+    public void execute_changeFilepath_success() throws Exception {
+        assertCommandBehavior("file aa", ChangeFilePathCommand.MESSAGE_SUCCESS + "aa.xml");
+        }
     
     
     //@@author A0139958H
