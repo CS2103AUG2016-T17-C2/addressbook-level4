@@ -28,6 +28,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 import seedu.task.commons.events.model.TaskBookChangedEvent;
@@ -273,36 +274,24 @@ public class ModelManager extends ComponentManager implements Model {
                 if(value == 0) {
                     value = task1.getPriority().compareTo(task2.getPriority());//by priority
                     if(value == 0) {
-                        Date date1;
-                        Date date2;
+                        Optional <Date> date1;
+                        Optional <Date> date2;
                         
-                        //assign date if possible, if not sort by alphabetical order
-                        if(hasStartDate(task1)){
-                            date1 = convertStringToDateObject(task1.getStartDate().toString());
-                        } else if (hasEndDate(task1)){
-                            date1 = convertStringToDateObject(task1.getEndDate().toString());
+                        date1 = Optional.ofNullable(assignDate(task1));
+                        
+                        date2 = Optional.ofNullable(assignDate(task2));
+                        
+                        //compare by alphabetical order if same date, or neither date available
+                        if(!date1.isPresent() || !date2.isPresent() || date1.get().equals(date2.get())) {
+                            value = 0;
+                        } else if(date1.get().after(date2.get())) {
+                            value = 1;
                         } else {
-                            return task1.getName().fullName.compareTo(task2.getName().fullName);
-                        }
-
-                        //assign date if possible, if not sort by alphabetical order
-                        if(hasStartDate(task2)){
-                            date2 = convertStringToDateObject(task2.getStartDate().toString());
-                        } else if (hasEndDate(task2)){
-                            date2 = convertStringToDateObject(task2.getEndDate().toString());
-                        } else {
-                            return task1.getName().fullName.compareTo(task2.getName().fullName);
+                            value = -1;
                         }
                         
-                        //compare by alphabetical order if same date
-                        if(date1.equals(date2)) {
+                        if(value == 0) {
                             return task1.getName().fullName.compareTo(task2.getName().fullName);
-                        }
-                        
-                        if(date1.after(date2)) {
-                            return 1;
-                        } else {
-                            return 0;
                         }
                         
                     }
@@ -311,6 +300,16 @@ public class ModelManager extends ComponentManager implements Model {
                 return value;
             }
             return value;
+        }
+
+        private Date assignDate(ReadOnlyTask task1) {
+            Date date = null;
+            if(hasStartDate(task1)){
+                date = convertStringToDateObject(task1.getStartDate().toString());
+            } else if (hasEndDate(task1)){
+                date = convertStringToDateObject(task1.getEndDate().toString());
+            }
+            return date;
         }
 
         private int compareTaskByStatus(Status s1, Status s2) {
