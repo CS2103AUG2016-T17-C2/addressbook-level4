@@ -21,7 +21,6 @@ import java.util.*;
 public class UniqueTaskList implements Iterable<Task> {
     
     //@@author A0138301U
-    public static final String DATE_CLASH_MESSAGE = "The Start Date and End date clashes with another task '";
     public static final String DUPLICATE_TASK_MESSAGE = "Operation would result in duplicate tasks";
     //@@author
     
@@ -41,8 +40,8 @@ public class UniqueTaskList implements Iterable<Task> {
 	 * Signals that the task would clash with another task.
 	 */
 	public static class DateClashTaskException extends DuplicateDataException {
-		protected DateClashTaskException(String taskName) {
-			super(DATE_CLASH_MESSAGE + taskName + "'");
+		protected DateClashTaskException(String msg) {
+			super(msg);
 		}
 	}
 
@@ -115,7 +114,7 @@ public class UniqueTaskList implements Iterable<Task> {
 		}
 		Task dateClash = isDateClash(toAdd);
 		if (dateClash != null)
-			throw new DateClashTaskException(dateClash.getName().toString());
+			throw new DateClashTaskException(dateClash.dateClashMsg());
 
 		internalList.add(toAdd);
 		return internalList.size() - 1;

@@ -10,9 +10,9 @@ import org.junit.rules.TemporaryFolder;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.exceptions.DataConversionException;
 import seedu.task.commons.util.FileUtil;
-import seedu.task.model.TaskBook;
 import seedu.task.model.task.Task;
 import seedu.task.model.ReadOnlyTaskBook;
+import seedu.task.model.TaskBook;
 import seedu.task.storage.XmlTaskBookStorage;
 import seedu.task.testutil.TypicalTestTasks;
 
@@ -80,21 +80,20 @@ public class XmlTaskBookStorageTest {
         //ObservableList<Task> originalTasks = original.getTasks();
         //ObservableList<Task> readBackTasks = new TaskBook(readBack).getTasks();
         logger.info("+==============" + original);
-        logger.info("~~~~~~~~~~~" + new TaskBook(readBack));
-        assert(original.equals(new TaskBook(readBack)));
+        assertEquals(original.toString(), new TaskBook(readBack).toString());
 
         //Modify data, overwrite exiting file, and read back
         
         original.addTask(new Task(TypicalTestTasks.sleep));
         xmlTaskBookStorage.saveTaskBook(original, filePath);
         readBack = xmlTaskBookStorage.readTaskBook(filePath).get();
-        assert(original.equals(new TaskBook(readBack)));
+        assertEquals(original.toString(), new TaskBook(readBack).toString());
 
         //Save and read without specifying file path
         //original.addTask(new Task(TypicalTestTasks.coding));
         xmlTaskBookStorage.saveTaskBook(original); //file path not specified
         readBack = xmlTaskBookStorage.readTaskBook().get(); //file path not specified
-        assert(original.equals( new TaskBook(readBack)));
+        assertEquals(original.toString(), new TaskBook(readBack).toString());
 
     }
     

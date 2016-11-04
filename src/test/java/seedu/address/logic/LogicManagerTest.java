@@ -133,7 +133,6 @@ public class LogicManagerTest {
 
         //Confirm the ui display elements should contain the right data
         assertEquals(expectedMessage, result.feedbackToUser);
-        //assertEquals(expectedTaskBook, model.getTaskBook());
 
         expectedTaskBook.getTaskList().forEach(t->logger.warning("expected: " + t.toString()));
         model.getTaskBook().getTaskList().forEach(t->logger.warning("actual: " + t.toString()));

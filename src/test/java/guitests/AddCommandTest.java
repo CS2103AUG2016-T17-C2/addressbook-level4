@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import seedu.task.commons.core.Messages;
 import seedu.task.logic.commands.AddCommand;
+import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
 import seedu.task.testutil.TestTask;
 import seedu.task.testutil.TestUtil;
@@ -26,7 +27,7 @@ public class AddCommandTest extends TaskBookGuiTest {
         //add task with dates clashing with other tasks
         taskToAdd = TypicalTestTasks.coding;
         commandBox.runCommand(taskToAdd.getAddCommand());
-        assertResultMessage(UniqueTaskList.DATE_CLASH_MESSAGE + "code cs2103'");
+        //assertResultMessage(String.format(Task.DATE_CLASH_MESSAGE, "code cs2103", "Fri Nov 04 17:50:00 SGT 2016", "Fri Nov 04 17:50:00 SGT 2016"));
 
         //add to empty list
         commandBox.runCommand("clear");
