@@ -21,9 +21,13 @@ import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
 import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Set;
 import java.util.logging.Logger;
 import seedu.task.commons.events.model.TaskBookChangedEvent;
@@ -263,13 +267,44 @@ public class ModelManager extends ComponentManager implements Model {
     {
         public int compare(ReadOnlyTask task1, ReadOnlyTask task2)
         {
-            int value = compareTaskByStatus(task1.getStatus(), task2.getStatus());
+            int value = compareTaskByStatus(task1.getStatus(), task2.getStatus());//by status
             if(value == 0) {
-                value = task1.getPinTask().compareTo(task2.getPinTask());
+                value = task1.getPinTask().compareTo(task2.getPinTask());//by pin
                 if(value == 0) {
-                    value = task1.getPriority().compareTo(task2.getPriority());
+                    value = task1.getPriority().compareTo(task2.getPriority());//by priority
                     if(value == 0) {
-                        return task1.getName().fullName.compareTo(task2.getName().fullName);
+                        Date date1;
+                        Date date2;
+                        
+                        //assign date if possible, if not sort by alphabetical order
+                        if(hasStartDate(task1)){
+                            date1 = convertStringToDateObject(task1.getStartDate().toString());
+                        } else if (hasEndDate(task1)){
+                            date1 = convertStringToDateObject(task1.getEndDate().toString());
+                        } else {
+                            return task1.getName().fullName.compareTo(task2.getName().fullName);
+                        }
+
+                        //assign date if possible, if not sort by alphabetical order
+                        if(hasStartDate(task2)){
+                            date2 = convertStringToDateObject(task2.getStartDate().toString());
+                        } else if (hasEndDate(task2)){
+                            date2 = convertStringToDateObject(task2.getEndDate().toString());
+                        } else {
+                            return task1.getName().fullName.compareTo(task2.getName().fullName);
+                        }
+                        
+                        //compare by alphabetical order if same date
+                        if(date1.equals(date2)) {
+                            return task1.getName().fullName.compareTo(task2.getName().fullName);
+                        }
+                        
+                        if(date1.after(date2)) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                        
                     }
                     return value;
                 }
@@ -295,8 +330,23 @@ public class ModelManager extends ComponentManager implements Model {
             }
             return value;
         }
-
     }
+
+    private static boolean hasEndDate(ReadOnlyTask task) {
+        return !task.getEndDate().value.isEmpty();
+    }
+
+    private static boolean hasStartDate(ReadOnlyTask task) {
+        return !task.getStartDate().value.isEmpty();
+    }
+
+    private static Date convertStringToDateObject(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E MMM d HH:mm:ss zzz yyyy");
+        LocalDateTime parsedDate = LocalDateTime.parse(date, formatter);
+        Date dateFromParsedDate = Date.from(parsedDate.atZone(ZoneId.systemDefault()).toInstant());
+        return dateFromParsedDate;
+    }
+    
     private static boolean statusIsActiveOrExpired(Status status) {
         if(status.equals(Status.ACTIVE) || status.equals(Status.EXPIRED)) {
             return true;
