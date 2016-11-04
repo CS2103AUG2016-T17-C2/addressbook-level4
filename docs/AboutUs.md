@@ -4,7 +4,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project Team
 
-#### Rahman (https://github.com/arshrahman)
+#### [Rahman](https://github.com/arshrahman)
 arsh.abdulrahman@hotmail.com
 
 <img src="images/rahman.jpeg" width="150"><br>
@@ -30,7 +30,7 @@ arsh.abdulrahman@hotmail.com
 Set up Travis, Codeacy, Coveralls
 
 
-#### Zhe Min (https://github.com/zhems)
+#### [Zhe Min](https://github.com/zhems)
 
 chiazhemin@gamil.com
 
@@ -51,7 +51,7 @@ chiazhemin@gamil.com
 Other major contributions:
 
 
-#### Clara (https://github.com/hotchocolatemarshmallow)
+#### [Clara](https://github.com/hotchocolatemarshmallow)
 hotchocolatemarshmallow35211@gamil.com
 
 <img src="images/clara.jpeg" width="150"><br>
@@ -77,7 +77,7 @@ hotchocolatemarshmallow35211@gamil.com
 **Role** : Lecturer
 
 
-####[Joel](https://github.com/se-edu/addressbook-level4/pulls?q=is%3Apr+author%3Aokkhoy) <br>
+#### [Joel] https://github.com/se-edu/addressbook-level4/pulls?q=is%3Apr+author%3Aokkhoy) <br>
 **Role** : tutor
 
 
