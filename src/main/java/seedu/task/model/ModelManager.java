@@ -3,7 +3,6 @@ package seedu.task.model;
 import com.google.common.eventbus.Subscribe;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.collections.transformation.TransformationList;
 import seedu.task.commons.core.ComponentManager;
 import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.LogsCenter;
@@ -258,15 +257,15 @@ public class ModelManager extends ComponentManager implements Model {
     //========== Inner classes/interfaces used for sorting ==================================================
 
 /**    
- * default comparator: arranges tasks by pin, (active, expired, ignore, done) 
- * status level, then priority level, then by alphabetical order*/
+ * default comparator: arranges tasks by status (active and expired first, followed by done and ignore)
+ * then pin, then priority level, then by start date or end date where applicable, then by alphabetical order*/
     public static class TaskComparator implements Comparator<ReadOnlyTask>
     {
         public int compare(ReadOnlyTask task1, ReadOnlyTask task2)
         {
-            int value = task1.getPinTask().compareTo(task2.getPinTask());
+            int value = compareTaskByStatus(task1.getStatus(), task2.getStatus());
             if(value == 0) {
-                value = task1.getStatus().compareTo(task2.getStatus());
+                value = task1.getPinTask().compareTo(task2.getPinTask());
                 if(value == 0) {
                     value = task1.getPriority().compareTo(task2.getPriority());
                     if(value == 0) {
@@ -278,6 +277,31 @@ public class ModelManager extends ComponentManager implements Model {
             }
             return value;
         }
+
+        private int compareTaskByStatus(Status s1, Status s2) {
+            int value;
+            if(statusIsActiveOrExpired(s1)) {
+                if(statusIsActiveOrExpired(s2)) {
+                    value = 0;
+                } else {
+                    value = -1;
+                }
+            } else {
+                if(statusIsActiveOrExpired(s2)) {
+                    value = 1;
+                } else {
+                    value = 0;
+                }
+            }
+            return value;
+        }
+
+    }
+    private static boolean statusIsActiveOrExpired(Status status) {
+        if(status.equals(Status.ACTIVE) || status.equals(Status.EXPIRED)) {
+            return true;
+        }
+        return false;
     }
     //@@author
     

@@ -66,9 +66,9 @@ public class TaskCard extends UiPart {
     private ReadOnlyTask task;
     private int displayedIndex;
 
-    private static final String HIGH = "#1976D2";
-    private static final String MEDIUM = "#388E3C";
-    private static final String LOW = "#EC407A";
+    private static final String HIGH = "#7B1FA2";
+    private static final String MEDIUM = "#0089D0";
+    private static final String LOW = "#0DB14B";
 
     private static final String DONE = "#212121";
     private static final String IGNORE = "#616161";
@@ -108,7 +108,19 @@ public class TaskCard extends UiPart {
         HBox.setHgrow(region, Priority.ALWAYS);
         imageContainer.getChildren().add(region); // to right align all added
                                                   // icons
+        addIconForStatus();
+        
+        addIconForPin();
+    }
 
+    private void addIconForPin() {
+        if (task.getPinTask().equals(PinTask.PIN)) {
+            ImageView pinimage = new ImageView(new Image(PIN_IMAGE));
+            imageContainer.getChildren().add(pinimage);
+        }
+    }
+
+    private void addIconForStatus() {
         if (task.getStatus().equals(Status.DONE)) {
             ImageView done = new ImageView(new Image(DONE_IMAGE));
             imageContainer.getChildren().add(done);
@@ -118,10 +130,6 @@ public class TaskCard extends UiPart {
         } else if (task.getStatus().equals(Status.IGNORE)) {
             ImageView ignore = new ImageView(new Image(IGNORE_IMAGE));
             imageContainer.getChildren().add(ignore);
-        }
-        if (task.getPinTask().equals(PinTask.PIN)) {
-            ImageView pinimage = new ImageView(new Image(PIN_IMAGE));
-            imageContainer.getChildren().add(pinimage);
         }
     }
 
