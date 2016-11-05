@@ -50,31 +50,35 @@ Task Book supports highly flexible command format. The user can enter command in
 For example, 
 To add a task, type `add` + `taskname` + `from start time` + ` by end time` + `#task_priority` + `#tags` + `@venue`  + `pin status`
 
-* Eg, user can type `add` `play soccer` `from tomorrow 2pm` `to 6pm` `#high` `#sport` `@Utown` ` #pin`
+* Example: user can type `add` `play soccer` `from tomorrow 2pm` `to 6pm` `#high` `#sport` `@Utown` ` #pin`
 
+<!-- @@author A0139958H -->
 This same command can be written in any order. Other alternatives
 
-* Eg, user can type `add` `from tomorrow 2pm` `to 6pm` `play soccer` `@Utown` ` #pin` `#high` `#sport`  
-* Eg, user can type `add` `@Utown` `play soccer`  `from tomorrow 2pm` `to 6pm` `#sport` ` #pin` `#high` 
+* Example: user can type `add` `from tomorrow 2pm` `to 6pm` `play soccer` `@Utown` ` #pin` `#high` `#sport`  
+* Example: user can type `add` `@Utown` `play soccer`  `from tomorrow 2pm` `to 6pm` `#sport` ` #pin` `#high` 
 
 In addition to that, Task Book also supports parameter within parameter. For example,
 
-* Eg, user can type `add` success party from 6pm to 8pm for compeleting CS2103 project @soc #party #high #pin
+* Example: user can type `add` `success party from 6pm to 8pm for compeleting CS2103 project @soc #party #high #pin`
 
 Notice how the start and end dates are contained within the task name. Task Book is able to intelligently seperate task name from other parameters. So, for the above example
 
-* Task Name: success party for compeleting CS2103 
-* project start date: 6pm 
-* end date: 6pm
-* venue: soc
-* priority: high
-* status: active
-* pin: true
-* tags: party
+`* Task Name: success party for compeleting CS2103 
+* Start date: 6pm 
+* End date: 6pm
+* Venue: soc
+* Priority: high
+* Status: active
+* Pin: true
+* Tags: party`
 
-Only the command key and taskname are compulsory; other fields are optional and it would take default or null values if not entered. The rules for adding to the other fields are as follows:
+<!-- @@author A0141064U -->
+Only the command key and taskname are compulsory; other fields are optional and it would take default or null values if not entered.
 
-`taskname`: Task names should be AlphaNumeric.
+**Parameters**
+
+`Task Name`: Task names should be AlphaNumeric.
 
 `Date`: Start date has to be followed by the keyword `from`. End date has to be followed by the keyword `by`. If the command contains start date and end date, then alternatively, `from` and `to` can also be used to denote the dates respectively. All keywords are case insensitive.
 
@@ -93,7 +97,7 @@ Dates can be any of the following formats
 
 Read more about [Natty Date Parser](http://natty.joestelmach.com/)
 
-`priority`: Will be `medium` by default. The priority can be of `low`, `medium`, `high`.
+`priority`: Will be `medium` by default. The priority can be of `low`, `medium`, `high`. All keywords are case-insensitive.
 
 `#`: tags. The tags cannot be `high`, `low`, `medium`, `unpin`, `pin` and `null`. These are reserved keywords for other parameters.
 
@@ -101,17 +105,100 @@ Read more about [Natty Date Parser](http://natty.joestelmach.com/)
 
 `Pin`: indicates whether the task should be pinned.
 
+<!-- @@author A0139958H -->
 `Status`: This is set by Task Book itself when a new task is added. The default value is `Active`. If the task has and end date, then after the end date, Task Book will update the status of task to `Expired` automatically. The user can only set the task status to be `done` or `ignore`.
 
 
 **Input Validation**
 
+Task Book parses the user input and validates it before performing the requested operation. If it found to be an invalid command, it will feedback the user.
 
-new tasks that clash with the other tasks that are already in taskBook will not be added
+`Task Name:
+* Task name is a compulsory field
+* Task name should be AlphaNumeric and not null.
 
+Dates:
+* Dates should be an upcoming date.
+* Start date and End date should not be same.
+* There should not be multiple start dates in the input.
+* There should not be multiple end dates in the input.
+* Start Date should be before End Date.
+
+Tags:
+* tag names should be AlphaNumeric and not null.
+* #null is a reserved keyword for removing start date or end date from an exisiting task.
+* cannot have duplicate tags with the same name
+
+Status:
+* Task status can only be updated to Done or Ignore. It is not possible to set to Active or Expired. These are set by TaskBook itself.
+
+Venue:
+* venue can't be null`
+
+If any of the above conditions are voilated, Task Book will not perform the operation and will feedback the user to make the necessary changes.
+
+Furthermore, Task Book also checks for Date clashes with other dates. 
+
+For example, if there's an existing task `from 4pm to 7pm` and a new task to be added anywhere in between `4pm to 7pm`, then Task Book will not add the task and will feedback the user of the date clash.
+
+Task Book feedbacks the Task name, start date and end date, the new task clashed with. The format is as below.
+
+`The Start Date and End date clashes with another task 'task name' from 'start date' to 'end date'`
+
+However, Task Book allows overlapping of tasks. So, for exampe, a new task can be added `2pm to 5pm` or `from 6pm to 8pm`. This is to give the users some flexibility in their options. 
+
+<!-- @@author A0141064U -->
 <img src="images/addFail.png" width="600"><br>
 
-**Changing the setting of our tasks**
+**updating tasks**
+
+<img src="images/update1.png" width="800"><br>
+
+
+To update a task type `update` (index of task in the list or name of task) (field) (changes)
+* Eg: Typing `update 1 by 12 dec` will change the **deadline** of the first task to 12 December 2016
+* Eg: Typing `update 2 @Casa` will change the **venue** of the second task to Casa.
+* Eg: Typing `update 1 #high` will change the **task priority** to high
+* Eg: Typing `update 1 #unpin` will **unpin** the task
+
+Multiple fields can be updated in a single command
+* Eg: Typing `update 2 #high @home` changes the priority of task 2 to high and change the venue to home
+
+Fields can also be updated to be empty
+* Eg: Typing `update 3 @null` removes the venue of the third task in the list. 
+* Eg: Typing `update 3 from #null by #null @null` removes the start date, end date and venue of the third task in the list.
+
+<!-- @@author A0139958H -->
+Tags can be added/removed as well.
+* Eg: Typing `update 3 #sports #healthy` will remove the tags `#sports` and `#healthy` if found. If not, it will add the tags.
+
+Task Book validates all the user input before performing the update operation. 
+
+<!-- @@author A0141064U -->
+**Deleting tasks**
+
+To `delete` a task on the list that is on the screen, type `delete` [ index of task in the list] 
+* eg `delete 1 `
+
+`delete` can also be done for multiple tasks
+* Eg: `delete 1 2 3` deletes tasks 1,2 and 3.
+* Eg: `delete 29 1 7` deletes tasks 29, 1 and 7.
+
+The order of index doesn't matter. 
+All the index have to be valid index found in the list. Task Book will feedback the user if it founds to be an invalid index.
+
+**Undo and Redo:**
+To undo/redo the latest change to taskbook, simply type `undo`/`redo`.
+
+Actions that can be undone/redone are **adding tasks**, **deleting tasks**, **updating tasks** and **setting task status** 
+
+Undo and Redo also works for deleting multiple tasks.
+
+Undo and Redo can be done multiple times.
+
+note that taskbook subsequently returns the list of all the task after each undo
+
+**Updating the status of task**
 Typing `set` `index` `new setting` updates the setting of the task
 
 the settings available are  
@@ -120,6 +207,8 @@ the settings available are
 `ignore`: Eg type `set` + `2` + `ignore` causes task 2 to be ignored
 
 `done`: Eg type `set` + ` 1` + `done` will set the settings of task 1 to be done
+
+All the index number have to be valid index found in the list. Task Book will feedback the user if it founds to be an invalid index.
 
 **Listing tasks**
 
@@ -152,43 +241,6 @@ the priority
 
 the status
 *by typing `find` + `#` + `keyword`
-
-
-**Deleting tasks**
-
-To `delete` a task on the list that is on the screen, type `delete` [ index of task in the list] 
-* eg `delete 1 `
-
-`delete` can also be done for multiple tasks
-* eg `delete 1 2 3` deletes tasks 1,2 and 3.
-
-
-**updating tasks**
-
-
-<img src="images/update1.png" width="800"><br>
-
-
-To update a task type `update` (index of task in the list or name of task) (field) (changes)
-* Eg: Typing `update 1 by 120316` will change the **deadline** of the first task to 12 March 2016
-* Eg: Typing `update soccer @Casa` will change the **venue** of the soccer task to Casa.
-* Eg: Typing `update 1 #high` will change the **task priority** to high
-* Eg: Typing `update 1 #unpin` will **unpin** the task
-
-Multiple fields can be updated in a single command
-* Eg: Typing `update 2 #high @home` changes the priority of task 2 to high and change the venue to home
-
-Fields can also be updated to be empty
-* Eg: Typing `update 3 @null` removes the venue of the third task in the list. 
-
-**Undo and redo:**
-To undo the latest change to taskbook, type `undo`.
-
-Actions that can be undone is **adding tasks**, **deleting tasks** and **updating tasks**. 
-
-note that taskbook subsequently returns the list of all the task after each undo
-
-Undo and redo can be done multiple times
 
 **Creating shortkeys**
 
