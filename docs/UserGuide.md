@@ -45,15 +45,44 @@ The tasks are sorted as follows:
 
 <img src="images/add.png" width="500"><br>
 
+Task Book supports highly flexible command format. The user can enter command in any order and Task Book intelligently identifies the contents based on keywords and natural language processing.
+
+For example, 
 To add a task, type `add` + `taskname` + `from start time` + ` by end time` + `#task_priority` + `#tags` + `@venue`  + `pin status`
 
-* Eg, user can type `add` `play soccer` `from tomorrow` `by 12/12/16 2pm` `#high` `#sport` `@town green` ` #pin`
+* Eg, user can type `add` `play soccer` `from tomorrow 2pm` `to 6pm` `#high` `#sport` `@Utown` ` #pin`
 
-Only the command key and taskname are compulsory; other fields are optional and will take default or null values if not entered. The rules for adding to the other fields are as follows:
+This same command can be written in any order. Other alternatives
 
-`taskname`: Task names cannot include `@`, `#`,`by` and `from`
+* Eg, user can type `add` `from tomorrow 2pm` `to 6pm` `play soccer` `@Utown` ` #pin` `#high` `#sport`  
+* Eg, user can type `add` `@Utown` `play soccer`  `from tomorrow 2pm` `to 6pm` `#sport` ` #pin` `#high` 
 
-`Date`: it can accept 
+In addition to that, Task Book also supports parameter within parameter. For example,
+
+* Eg, user can type `add` success party from 6pm to 8pm for compeleting CS2103 project @soc #party #high #pin
+
+Notice how the start and end dates are contained within the task name. Task Book is able to intelligently seperate task name from other parameters. So, for the above example
+
+* Task Name: success party for compeleting CS2103 
+* project start date: 6pm 
+* end date: 6pm
+* venue: soc
+* priority: high
+* status: active
+* pin: true
+* tags: party
+
+Only the command key and taskname are compulsory; other fields are optional and it would take default or null values if not entered. The rules for adding to the other fields are as follows:
+
+`taskname`: Task names should be AlphaNumeric.
+
+`Date`: Start date has to be followed by the keyword `from`. End date has to be followed by the keyword `by`. If the command contains start date and end date, then alternatively, `from` and `to` can also be used to denote the dates respectively. All keywords are case insensitive.
+
+`Note:` Although `from`, `by`, `to` are keywords for the dates, they can be used in task name as well. Task Book is able to intelligently identify if they mean date or name.
+
+Task Book uses Natty Natural language processing Date parser to identify dates in the command.
+
+Dates can be any of the following formats 
 * formal dates (02/28/1979), 
 * relaxed dates (oct 1st), 
 * relative dates (tomorrow, the day before next thursday), 
@@ -64,15 +93,18 @@ Only the command key and taskname are compulsory; other fields are optional and 
 
 Read more about [Natty Date Parser](http://natty.joestelmach.com/)
 
-`priority`: Will be medium by default. The priority can be of `low`, `medium`, `high`.
+`priority`: Will be `medium` by default. The priority can be of `low`, `medium`, `high`.
 
-`#`: tags. The tags cannot be `high`, `low`, `medium` `unpin` and `pin`. 
+`#`: tags. The tags cannot be `high`, `low`, `medium`, `unpin`, `pin` and `null`. These are reserved keywords for other parameters.
 
-`@`: venue
+`@`: venue. It is also possible to concatenate venues by using `@` as a prefix for the venue names.
 
 `Pin`: indicates whether the task should be pinned.
 
-They do not need to be added in order
+`Status`: This is set by Task Book itself when a new task is added. The default value is `Active`. If the task has and end date, then after the end date, Task Book will update the status of task to `Expired` automatically. The user can only set the task status to be `done` or `ignore`.
+
+
+**Input Validation**
 
 
 new tasks that clash with the other tasks that are already in taskBook will not be added

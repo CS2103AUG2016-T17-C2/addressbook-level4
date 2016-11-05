@@ -7,8 +7,10 @@ import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.logic.parser.TaskParser;
 import seedu.task.logic.parser.UpdateTaskParser;
 import seedu.task.model.ModelManager;
+import seedu.task.model.VersionControl;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
+import seedu.task.model.task.TaskVersion;
 import seedu.task.model.task.UniqueTaskList;
 import seedu.task.model.task.UniqueTaskList.DateClashTaskException;
 
@@ -53,10 +55,11 @@ public class SetCommand extends Command{
     	
         assert model != null;
         try {
+            Task toUpdate = model.getTaskByIndex(taskIndex - 1).clone();
         	TaskParser updateTaskParser = new UpdateTaskParser(model.getTaskByIndex(taskIndex - 1), setArg);
-        	LogsCenter.getLogger(ModelManager.class).info("Task Index: " + (taskIndex - 1) + " task: " + model.getTaskByIndex(taskIndex - 1));
-
-        	model.updateTask(model.getTaskByIndex(taskIndex - 1), ((UpdateTaskParser) updateTaskParser).setTaskStatus());
+            int updatedTaskIndex = model.updateTask(model.getTaskByIndex(taskIndex - 1), ((UpdateTaskParser) updateTaskParser).setTaskStatus());
+        	VersionControl.getInstance().push(new TaskVersion(VersionControl.getInstance().getIndex() + 1, updatedTaskIndex, toUpdate, model.getTaskByIndex(updatedTaskIndex), TaskVersion.Command.UPDATE));
+            VersionControl.getInstance().resetVersionPosition();
 		} catch (IllegalValueException e) {
 	        indicateAttemptToExecuteIncorrectCommand();
 			return new CommandResult(e.getMessage());

@@ -30,6 +30,8 @@ public class Task implements ReadOnlyTask, Cloneable {
 	private PinTask pinTask = PinTask.UNPIN; // Default is unpin
 	private UniqueTagList tags;
 
+    public static final String DATE_CLASH_MESSAGE = "The Start Date and End date clashes with another task '%s' from %s to %s";
+	
 	/**
 	 * Only Name, Priority and Status Should not be null
 	 */
@@ -86,6 +88,10 @@ public class Task implements ReadOnlyTask, Cloneable {
 		}
 
 		return false;
+	}
+	
+	public String dateClashMsg() {
+		return String.format(DATE_CLASH_MESSAGE, this.getName(), this.getStartDate(), this.getEndDate());
 	}
 
 	/**
