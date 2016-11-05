@@ -70,27 +70,22 @@ public class ChangeFilePathCommand extends Command {
         } catch (DataConversionException e) {
             initializedConfig = new Config();
         }
-
     }
 
     @Override
     public CommandResult execute() {
-
         try {
             run();
         } catch (IllegalValueException e) {
-            new CommandResult(e.getMessage());
             e.printStackTrace();
+            return new CommandResult(e.getMessage());
+            
         }
-
         EventsCenter.getInstance().post(new StorageFilepathChangedEvent(this.initializedConfig));
-        
         return new CommandResult(String.format(MESSAGE_SUCCESS + newFilepathString));
     }
 
     private void run() throws IllegalValueException {
-
-        this.oldFilepathString = initializedConfig.getTaskBookFilePath();
 
         if (this.oldFilepathString.equals(this.newFilepathString)) {
             throw new IllegalValueException(MESSAGE_RENAME_TO_OLD_FILE);
@@ -99,7 +94,6 @@ public class ChangeFilePathCommand extends Command {
             updateFilePath();
             deleteOldFile();
         }
-
     }
 
     private void moveFileData() {
@@ -118,9 +112,10 @@ public class ChangeFilePathCommand extends Command {
         }
 
     }
-/**
- * updates the filepath value in the config file
- */
+
+    /**
+     * updates the filepath value in the config file
+     */
     private void updateFilePath() {
 
         // Update config file in case it was missing to begin with or there are
