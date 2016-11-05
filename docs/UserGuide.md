@@ -131,20 +131,28 @@ Dates:
 `Dates should be an upcoming date.`
 
 `Start date and End date should not be same.`
-* There should not be multiple start dates in the input.
-* There should not be multiple end dates in the input.
-* Start Date should be before End Date.
+
+` There should not be multiple start dates in the input.`
+
+` There should not be multiple end dates in the input.`
+
+` Start Date should be before End Date.`
 
 Tags:
-* tag names should be AlphaNumeric and not null.
-* #null is a reserved keyword for removing start date or end date from an exisiting task.
-* cannot have duplicate tags with the same name
+
+` tag names should be AlphaNumeric and not null.`
+
+` #null is a reserved keyword for removing start date or end date from an exisiting task.`
+
+` cannot have duplicate tags with the same name`
 
 Status:
-* Task status can only be updated to Done or Ignore. It is not possible to set to Active or Expired. These are set by TaskBook itself.
+
+` Task status can only be updated to Done or Ignore. It is not possible to set to Active or Expired. These are set by TaskBook itself.`
 
 Venue:
-* venue can't be null`
+
+` venue can't be null`
 
 If any of the above conditions are voilated, Task Book will not perform the operation and will feedback the user to make the necessary changes.
 
