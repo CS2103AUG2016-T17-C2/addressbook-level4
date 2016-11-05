@@ -47,10 +47,8 @@ public class AddCommand extends Command {
         assert model != null;
         try {
             model.addTask(toAdd);
-            LogsCenter.getLogger(AddCommand.class).info("taskIndex: " + model.getIndexOfTask(toAdd));
-            VersionControl.getInstance().push(new TaskVersion(VersionControl.getInstance().getIndex() + 1, model.getIndexOfTask(toAdd), toAdd.clone(), TaskVersion.Command.ADD));
+            VersionControl.getInstance().push(new TaskVersion(VersionControl.getInstance().getIndex() + 1, model.getIndexOfTask(toAdd), toAdd.clone(), toAdd, TaskVersion.Command.ADD));
             VersionControl.getInstance().resetVersionPosition();
-            VersionControl.getInstance().logList();
             //@@author A0138301U
             EventsCenter.getInstance().post(new JumpToListRequestEvent(model.getIndexOfTask(toAdd)));
             //@@author A0139958H

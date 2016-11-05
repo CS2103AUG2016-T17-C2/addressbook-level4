@@ -42,15 +42,11 @@ public class RedoCommand extends Command {
 	public CommandResult execute() {
 		assert model != null;
 		try {
-			LogsCenter.getLogger(UndoCommand.class).info("size: " + redo.getSize() + " versionPosition: " + redo.getVersionPosition());
-			redo.logList();
-			
 			if (redo.getVersionPosition() <= 0)
 				return new CommandResult(MESSAGE_FAILURE_REDO);
 			
 			TaskVersion redoTask = redo.get(redo.getSize() - redo.getVersionPosition());
 			int redoIndex = redoTask.getVersionIndex();
-			LogsCenter.getLogger(UndoCommand.class).info("versionPosition: " + redo.getVersionPosition() + " undoTask " + redoTask.toString());
 			switch (redoTask.getCommand()) {
 			case DELETE:
 				for (int i = redo.getSize() - redo.getVersionPosition(); i < redo.getSize(); i++) {
@@ -67,9 +63,9 @@ public class RedoCommand extends Command {
 				redo.updateVersionPosition(-1);
 				return new CommandResult(MESSAGE_SUCCESS_REDO_DELETE);
 			case UPDATE:
-				TaskVersion cloneTask = new TaskVersion(redoTask.getVersionIndex(), redoTask.getTaskIndex(), model.getTaskByIndex(redoTask.getTaskIndex()), redoTask.getCommand());
-				TaskVersion toUpdate = redo.swap(redo.getSize() - redo.getVersionPosition(), cloneTask);
-				model.updateTask(model.getTaskByIndex(redoTask.getTaskIndex()), toUpdate.getTask());
+				int taskIndex = model.updateTask(model.getTaskByIndex(redoTask.getTaskIndex()), redoTask.getTask());
+				TaskVersion cloneTask = new TaskVersion(redoTask.getVersionIndex(), model.getIndexOfTask(redoTask.getTask()), redoTask.getOriginalTask(), model.getTaskByIndex(taskIndex), redoTask.getCommand());
+				redo.swap((redo.getSize() - redo.getVersionPosition()), cloneTask);
 				redo.updateVersionPosition(-1);
 				return new CommandResult(MESSAGE_SUCCESS_REDO_UPDATE);
 			case DEFAULT:

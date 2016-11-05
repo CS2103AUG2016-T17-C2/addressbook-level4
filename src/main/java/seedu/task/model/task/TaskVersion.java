@@ -9,15 +9,17 @@ public class TaskVersion implements Comparable<TaskVersion> {
 	private Integer versionIndex;
 	private Integer taskIndex;
 	private Task task;
+	private Task originalTask;
 	private Command command;
 	
 	
 	public TaskVersion() {}
 	
-	public TaskVersion(int versionIndex, int taskIndex, Task task, Command command) {
+	public TaskVersion(int versionIndex, int taskIndex, Task task, Task originalTask, Command command) {
 		this.versionIndex = versionIndex;
 		this.taskIndex = taskIndex;
 		this.task = task;
+		this.setOriginalTask(originalTask);
 		this.command = command;
 	}
 	
@@ -35,6 +37,14 @@ public class TaskVersion implements Comparable<TaskVersion> {
 
 	public void setTask(Task undoTask) {
 		this.task = undoTask;
+	}
+
+	public Task getOriginalTask() {
+		return originalTask;
+	}
+
+	public void setOriginalTask(Task originalTask) {
+		this.originalTask = originalTask;
 	}
 
 	public Command getCommand() {

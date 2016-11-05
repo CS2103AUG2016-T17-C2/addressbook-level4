@@ -61,7 +61,7 @@ public class DeleteCommand extends Command {
 				LogsCenter.getLogger(DeleteCommand.class).info("Delete Task: " + (targetIndexes[i] - i - 1));
 				ReadOnlyTask taskToDelete = model.getTaskByIndex(targetIndexes[i] - i - 1);
 				model.deleteTask(taskToDelete);
-				taskVersions.add(new TaskVersion(undoIndex, targetIndexes[i] - i - 1, (Task) taskToDelete, TaskVersion.Command.DELETE));
+				taskVersions.add(new TaskVersion(undoIndex, targetIndexes[i] - i - 1, (Task) taskToDelete, (Task) taskToDelete, TaskVersion.Command.DELETE));
 			}
 			
 			Collections.sort(taskVersions);

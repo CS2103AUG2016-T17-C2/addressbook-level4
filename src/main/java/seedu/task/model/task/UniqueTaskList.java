@@ -148,12 +148,10 @@ public class UniqueTaskList implements Iterable<Task> {
 		assert toUpdate != null;
 		int index = internalList.indexOf(toReplace);
 	//@@author A0139958H
-		LogsCenter.getLogger(ModelManager.class).info("Update index: " + index + " toUpdate: " + toUpdate.toString());
 		Task dateClash = isDateClash(index, toUpdate);
 		if (dateClash != null)
 			throw new DateClashTaskException(dateClash.getName().toString());
 		internalList.set(index, toUpdate);
-		LogsCenter.getLogger(ModelManager.class).info("Update internalList: " + Arrays.toString(internalList.toArray()));
 	}
 	
 	public void updateTaskStatus() {

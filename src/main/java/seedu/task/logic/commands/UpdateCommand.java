@@ -47,7 +47,6 @@ public class UpdateCommand extends Command{
      */
     @Override
     public CommandResult execute() {
-    	LogsCenter.getLogger(ModelManager.class).info("Task Index: " + taskIndex + " Args: " + updateArgs);
         UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getSortedTaskList();
 
         if (lastShownList.size() < taskIndex) {
@@ -60,10 +59,8 @@ public class UpdateCommand extends Command{
         	Task toUpdate = model.getTaskByIndex(taskIndex - 1).clone();
             TaskParser updateTaskParser = new UpdateTaskParser(model.getTaskByIndex(taskIndex - 1), updateArgs);
         	int updatedTaskIndex = model.updateTask(model.getTaskByIndex(taskIndex - 1), updateTaskParser.parseInput());
-            VersionControl.getInstance().push(new TaskVersion(VersionControl.getInstance().getIndex() + 1, updatedTaskIndex, toUpdate, TaskVersion.Command.UPDATE));
+            VersionControl.getInstance().push(new TaskVersion(VersionControl.getInstance().getIndex() + 1, updatedTaskIndex, toUpdate, model.getTaskByIndex(updatedTaskIndex), TaskVersion.Command.UPDATE));
             VersionControl.getInstance().resetVersionPosition();
-            VersionControl.getInstance().logList();
-
         } catch (UniqueTaskList.DateClashTaskException e) {
             return new CommandResult(e.getMessage());
 		} catch (IllegalValueException e) {
