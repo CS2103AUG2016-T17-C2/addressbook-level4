@@ -4,7 +4,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project Team
 
-#### [Rahman](https://github.com/arshrahman)
+#### [Abdul Rahman](https://github.com/arshrahman)
 arsh.abdulrahman@hotmail.com
 
 <img src="images/rahman.jpeg" width="150"><br>
@@ -18,12 +18,12 @@ arsh.abdulrahman@hotmail.com
 * Delete task(s)
 * Update task
 * Set task status
-* Undo task
-* Redo task
+* Undo task(s)
+* Redo task(s)
 * Input Validation
 * NLP Date parsing with Natty
 
-**Code written:** [[functional code]](collated/docs/A0139958H.md)	[[test code]](collated/main/A0139958H.md)	[[docs]](collated/test/A0139958H.md)
+**Code written:** [[functional code](../collated/main/A0139958H.md)]	[[test code](../collated/test/A0139958H.md)]	[[docs](../collated/docs/A0139958H.md)]
 
 **Other major contributions:**
 
@@ -47,7 +47,7 @@ chiazhemin@gamil.com
 * "Power search" for tasks
 * Automated sorting of tasks:
 
-**Code written:** [[functional code]](collated/docs/A0138301U.md)	[[test code]](collated/main/A0138301U.md)	[[docs]](collated/test/A0138301U.md)
+**Code written:** [[functional code](../collated/main/A0138301U.md)]	[[test code](../collated/test/A0138301U.md)]	[[docs](../collated/docs/A0138301U.md)]
 
 
 Other major contributions:
@@ -69,7 +69,7 @@ hotchocolatemarshmallow35211@gamil.com
 * Shortkey implementation
 * display time using pretty time
 
-**Code written:** [[functional code]](collated/docs/A0141064U.md)	[[test code]](collated/main/A0141064U.md)	[[docs]](collated/test/A0141064U.md)
+**Code written:** [[functional code](../collated/main/A0141064U.md)]	[[test code](../collated/test/A0141064U.md)]	[[docs](../collated/docs/A0141064U.md)]
 
 **Other major contributions:**
 
