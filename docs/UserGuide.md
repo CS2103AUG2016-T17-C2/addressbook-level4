@@ -64,14 +64,21 @@ In addition to that, Task Book also supports parameter within parameter. For exa
 
 Notice how the start and end dates are contained within the task name. Task Book is able to intelligently seperate task name from other parameters. So, for the above example
 
-`* Task Name: success party for compeleting CS2103 
-* Start date: 6pm 
-* End date: 6pm
-* Venue: soc
-* Priority: high
-* Status: active
-* Pin: true
-* Tags: party`
+`Task Name: success party for compeleting CS2103`
+
+`Start date: 6pm`
+
+`End date: 6pm`
+
+`Venue: soc`
+
+`Priority: high`
+
+`Status: active`
+
+`Pin: true`
+
+`Tags: party`
 
 <!-- @@author A0141064U -->
 Only the command key and taskname are compulsory; other fields are optional and it would take default or null values if not entered.
@@ -113,13 +120,17 @@ Read more about [Natty Date Parser](http://natty.joestelmach.com/)
 
 Task Book parses the user input and validates it before performing the requested operation. If it found to be an invalid command, it will feedback the user.
 
-`Task Name:
-* Task name is a compulsory field
-* Task name should be AlphaNumeric and not null.
+Task Name:
+
+`Task name is a compulsory field`
+
+`Task name should be AlphaNumeric and not null.`
 
 Dates:
-* Dates should be an upcoming date.
-* Start date and End date should not be same.
+
+`Dates should be an upcoming date.`
+
+`Start date and End date should not be same.`
 * There should not be multiple start dates in the input.
 * There should not be multiple end dates in the input.
 * Start Date should be before End Date.
@@ -141,7 +152,7 @@ Furthermore, Task Book also checks for Date clashes with other dates.
 
 For example, if there's an existing task `from 4pm to 7pm` and a new task to be added anywhere in between `4pm to 7pm`, then Task Book will not add the task and will feedback the user of the date clash.
 
-Task Book feedbacks the Task name, start date and end date, the new task clashed with. The format is as below.
+Task Book feedback the Task name, start date and end date of the task that the new task clashes with. The format is as below.
 
 `The Start Date and End date clashes with another task 'task name' from 'start date' to 'end date'`
 
