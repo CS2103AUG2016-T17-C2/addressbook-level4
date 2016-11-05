@@ -63,8 +63,10 @@ public class RedoCommand extends Command {
 				redo.updateVersionPosition(-1);
 				return new CommandResult(MESSAGE_SUCCESS_REDO_DELETE);
 			case UPDATE:
-				int taskIndex = model.updateTask(model.getTaskByIndex(redoTask.getTaskIndex()), redoTask.getTask());
-				TaskVersion cloneTask = new TaskVersion(redoTask.getVersionIndex(), model.getIndexOfTask(redoTask.getTask()), redoTask.getOriginalTask(), model.getTaskByIndex(taskIndex), redoTask.getCommand());
+				model.deleteTask(model.getTaskByIndex(redoTask.getTaskIndex()));
+				model.addTask(redoTask.getTaskIndex(), redoTask.getTask());
+				//int taskIndex = model.updateTask(model.getTaskByIndex(redoTask.getTaskIndex()), redoTask.getTask());
+				TaskVersion cloneTask = new TaskVersion(redoTask.getVersionIndex(), model.getIndexOfTask(redoTask.getTask()), redoTask.getOriginalTask(), model.getTaskByIndex(redoTask.getTaskIndex()), redoTask.getCommand());
 				redo.swap((redo.getSize() - redo.getVersionPosition()), cloneTask);
 				redo.updateVersionPosition(-1);
 				return new CommandResult(MESSAGE_SUCCESS_REDO_UPDATE);

@@ -64,8 +64,10 @@ public class UndoCommand extends Command {
 				}
 				return new CommandResult(MESSAGE_SUCCESS_UNDO_DELETE);
 			case UPDATE:
-				int taskIndex = model.updateTask(model.getTaskByIndex(undoTask.getTaskIndex()), undoTask.getTask());
-				TaskVersion cloneTask = new TaskVersion(undoTask.getVersionIndex(), model.getIndexOfTask(undoTask.getTask()), undoTask.getOriginalTask(), model.getTaskByIndex(taskIndex), undoTask.getCommand());
+				model.deleteTask(model.getTaskByIndex(undoTask.getTaskIndex()));
+				model.addTask(undoTask.getTaskIndex(), undoTask.getTask());
+				//int taskIndex = model.updateTask(model.getTaskByIndex(undoTask.getTaskIndex()), undoTask.getTask());
+				TaskVersion cloneTask = new TaskVersion(undoTask.getVersionIndex(), model.getIndexOfTask(undoTask.getTask()), undoTask.getOriginalTask(), model.getTaskByIndex(undoTask.getTaskIndex()), undoTask.getCommand());
 				undo.swap((undo.getSize() - undo.getVersionPosition()), cloneTask);
 				return new CommandResult(MESSAGE_SUCCESS_UNDO_UPDATE);
 			case DEFAULT:
