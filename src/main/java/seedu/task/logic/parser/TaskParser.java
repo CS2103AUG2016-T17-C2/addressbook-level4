@@ -88,14 +88,28 @@ public class TaskParser {
 			if (part.startsWith(PREFIX_HASHTAG))
 				strWithNoTags = matchTag(strWithNoTags, part.substring(1).trim());
 			else if (part.startsWith(PREFIX_AT)) {
-				if (part.substring(1).trim().equalsIgnoreCase(NULL))
-					task.setVenue(new Venue(""));
-				else
+				if (parseVenue(part.substring(1).trim()))
 					task.setVenue(new Venue(String.join(WHITE_SPACE, task.getVenue().toString(), part.substring(1))));
 			} else
 				strWithNoTags = String.join(WHITE_SPACE, strWithNoTags, part.trim());
 		}
 		return strWithNoTags;
+	}
+	
+	/**
+	 * Parses the user input to check if its a valid venue
+	 * @param input arguments from user
+	 * @throws IllegalValueException if venue is empty
+	 * @return: true if valid venue or else false
+	 */
+	protected boolean parseVenue(String str) throws IllegalValueException {
+		if (str.isEmpty())
+			throw new IllegalValueException(Venue.MESSAGE_VENUE_CONSTRAINTS);
+		else if (str.equalsIgnoreCase(NULL)) {
+			task.setVenue(new Venue(""));
+			return false;
+		}
+		return true;
 	}
 
 	/**

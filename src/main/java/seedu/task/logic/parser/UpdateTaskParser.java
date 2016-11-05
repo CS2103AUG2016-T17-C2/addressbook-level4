@@ -68,9 +68,7 @@ public class UpdateTaskParser extends TaskParser{
 					isVenueUpdated = true;
 					task.setVenue(new Venue(""));
 				}
-				if (part.substring(1).trim().equalsIgnoreCase(NULL))
-					task.setVenue(new Venue(""));
-				else
+				if (parseVenue(part.substring(1).trim()))
 					task.setVenue(new Venue(String.join(WHITE_SPACE, task.getVenue().toString(), part.substring(1))));
 			} else
 				strWithNoTags = String.join(WHITE_SPACE, strWithNoTags, part.trim());

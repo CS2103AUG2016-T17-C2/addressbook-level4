@@ -4,11 +4,11 @@ package seedu.task.model.task;
 
 /**
  * Represents a Task's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidVenue(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isInValidVenue(String)}
  */
 public class Venue {
     
-    public static final String MESSAGE_VENUE_CONSTRAINTS = "Task venue can be in any format";
+    public static final String MESSAGE_VENUE_CONSTRAINTS = "Task venue cannot be empty!";
     public static final String VENUE_VALIDATION_REGEX = "";
 
     public final String value;
@@ -21,10 +21,10 @@ public class Venue {
     }
 
     /**
-     * Returns true if a given string is a valid venue.
+     * Returns true if a given string is empty.
      */
-    public static boolean isValidVenue(String test) {
-        return test.matches(VENUE_VALIDATION_REGEX);
+    public static boolean isInValidVenue(String venue) {
+        return venue.isEmpty();
     }
 
     @Override
