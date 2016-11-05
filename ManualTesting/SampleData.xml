@@ -265,6 +265,144 @@
         <status>ACTIVE</status>
         <pinTask>PIN</pinTask>
     </tasks>
+    <tasks>
+        <name>study physics</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>LOW</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>do CS2103 project documentation</name>
+        <startDate></startDate>
+        <endDate>Mon Nov 07 23:59:00 SGT 2016</endDate>
+        <venue></venue>
+        <priority>HIGH</priority>
+        <status>ACTIVE</status>
+        <pinTask>PIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>learn python programming during holidays</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>LOW</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>learn swift programming during holidays</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>LOW</priority>
+        <status>ACTIVE</status>
+        <pinTask>PIN</pinTask>
+        <tagged>iOS</tagged>
+    </tasks>
+    <tasks>
+        <name>do CS2010 PS6</name>
+        <startDate></startDate>
+        <endDate>Wed Nov 09 23:59:00 SGT 2016</endDate>
+        <venue></venue>
+        <priority>MEDIUM</priority>
+        <status>DONE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>CS2010</tagged>
+        <tagged>TSP</tagged>
+        <tagged>algorithm</tagged>
+    </tasks>
+    <tasks>
+        <name>upgrade macBook Pro</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>MEDIUM</priority>
+        <status>IGNORE</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>CS2103 presentation</name>
+        <startDate>Thu Nov 10 17:00:00 SGT 2016</startDate>
+        <endDate>Thu Nov 10 18:00:00 SGT 2016</endDate>
+        <venue> SOC</venue>
+        <priority>MEDIUM</priority>
+        <status>ACTIVE</status>
+        <pinTask>PIN</pinTask>
+        <tagged>allthebest</tagged>
+    </tasks>
+    <tasks>
+        <name>EE2024 demo</name>
+        <startDate>Fri Nov 11 09:00:00 SGT 2016</startDate>
+        <endDate>Fri Nov 11 09:45:00 SGT 2016</endDate>
+        <venue> Engine</venue>
+        <priority>MEDIUM</priority>
+        <status>ACTIVE</status>
+        <pinTask>PIN</pinTask>
+        <tagged>allthebest</tagged>
+    </tasks>
+    <tasks>
+        <name>enjoy holidays</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>MEDIUM</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>chill</tagged>
+    </tasks>
+    <tasks>
+        <name>plan holiday trip</name>
+        <startDate>Thu Dec 01 16:14:46 SGT 2016</startDate>
+        <endDate>Sat Dec 31 16:14:46 SGT 2016</endDate>
+        <venue></venue>
+        <priority>MEDIUM</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>relax</tagged>
+    </tasks>
+    <tasks>
+        <name>meet up with poly friends</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue> Temasek Polytechnic</venue>
+        <priority>MEDIUM</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>missmypolylife</tagged>
+        <tagged>buddies</tagged>
+    </tasks>
+    <tasks>
+        <name>go for a run often</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>LOW</priority>
+        <status>ACTIVE</status>
+        <pinTask>PIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>holidays nov 30</name>
+        <startDate>Thu Dec 01 16:16:56 SGT 2016</startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>MEDIUM</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>yay</tagged>
+    </tasks>
+    <tasks>
+        <name>final exams</name>
+        <startDate>Wed Nov 23 16:18:17 SGT 2016</startDate>
+        <endDate>Tue Nov 29 16:18:17 SGT 2016</endDate>
+        <venue> NUS</venue>
+        <priority>HIGH</priority>
+        <status>ACTIVE</status>
+        <pinTask>PIN</pinTask>
+        <tagged>dowell</tagged>
+    </tasks>
     <tags>
         <tagName>coding</tagName>
     </tags>
@@ -327,5 +465,35 @@
     </tags>
     <tags>
         <tagName>family</tagName>
+    </tags>
+    <tags>
+        <tagName>iOS</tagName>
+    </tags>
+    <tags>
+        <tagName>CS2010</tagName>
+    </tags>
+    <tags>
+        <tagName>TSP</tagName>
+    </tags>
+    <tags>
+        <tagName>algorithm</tagName>
+    </tags>
+    <tags>
+        <tagName>allthebest</tagName>
+    </tags>
+    <tags>
+        <tagName>relax</tagName>
+    </tags>
+    <tags>
+        <tagName>buddies</tagName>
+    </tags>
+    <tags>
+        <tagName>missmypolylife</tagName>
+    </tags>
+    <tags>
+        <tagName>yay</tagName>
+    </tags>
+    <tags>
+        <tagName>dowell</tagName>
     </tags>
 </taskbook>
