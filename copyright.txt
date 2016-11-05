@@ -12,6 +12,7 @@ Copyright by Visual Pharm - http://www.myiconfinder.com/
 
 Copyright by Paomedia - http://www.myiconfinder.com/
 - pinicon.png
+- map.png
 
 Copyright by Google - https://design.google.com/icons/
 - done.png

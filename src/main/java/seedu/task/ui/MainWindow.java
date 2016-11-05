@@ -177,6 +177,14 @@ public class MainWindow extends UiPart {
         helpWindow.show();
     }
 
+    //@@author A0138301U
+    @FXML
+    public void handleGoogleMapsWindow(String venue) {
+        GoogleMapsWindow googleMapsWindow = GoogleMapsWindow.load(primaryStage, venue);
+        googleMapsWindow.show();
+    }
+    //@@author
+    
     public void show() {
         primaryStage.show();
     }

@@ -105,9 +105,14 @@ public class Parser {
             
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
+            
+            //@@author A0138301U
         case FindCommand.COMMAND_WORD:
             return prepareFind(arguments);
+
+        case MapCommand.COMMAND_WORD:
+            return prepareMap(arguments);
+            //@@author
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -288,6 +293,23 @@ public class Parser {
     }
 
     //@@author A0138301U
+
+    /**
+     * Parses arguments in the context of the map task command.
+     *
+     * @param args
+     *            full command args string
+     * @return the prepared command
+     */
+    private Command prepareMap(String args) {
+        Optional<Integer> index = parseIndex(args);
+        if (!index.isPresent()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MapCommand.MESSAGE_USAGE));
+        }
+
+        return new MapCommand(index.get());
+    }
+    
     /**
      * Parses arguments in the context of the find task command.  
      * Can be used to find task name, venue, tagging or priority or status
