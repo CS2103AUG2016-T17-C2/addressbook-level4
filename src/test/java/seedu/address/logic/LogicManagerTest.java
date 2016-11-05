@@ -228,10 +228,16 @@ public class LogicManagerTest {
     
     @Test
     public void execute_changeFilepath_success() throws Exception {
-        assertCommandBehavior("file aa", ChangeFilePathCommand.MESSAGE_SUCCESS + "aa.xml");
-        }
+        ChangeFilePathCommand changeFilePathCommand = new ChangeFilePathCommand("xx");
+        changeFilePathCommand.execute(); //ensuring current file path is not "bb.xml"
+        assertCommandBehavior("file bb", ChangeFilePathCommand.MESSAGE_SUCCESS + "bb.xml");
+        assertCommandBehavior("file bb", ChangeFilePathCommand.MESSAGE_RENAME_TO_OLD_FILE); //file cannot be set to same file name     
+    }
+       
+        
+ 
     
-    
+ 
     //@@author A0139958H
     @Test
     public void execute_add_invalidArgsFormat() throws Exception {
