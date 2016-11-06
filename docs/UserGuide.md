@@ -22,8 +22,6 @@ green: low
 
 <img src="images/showStatus.png" width="400"><br>
 
-blue: active
-
 red: expired
 
 ignore: grey
@@ -218,6 +216,7 @@ The order of index doesn't matter.
 All the index have to be valid index found in the list. Task Book will feedback the user if it founds to be an invalid index.
 
 **Undo and Redo:**
+
 To undo/redo the latest change to taskbook, simply type `undo`/`redo`.
 
 Actions that can be undone/redone are **adding tasks**, **deleting tasks**, **updating tasks** and **setting task status** 
@@ -225,8 +224,6 @@ Actions that can be undone/redone are **adding tasks**, **deleting tasks**, **up
 Undo and Redo also works for deleting multiple tasks.
 
 Undo and Redo can be done multiple times.
-
-note that taskbook subsequently returns the list of all the task after each undo
 
 **Updating the status of task**
 
