@@ -287,6 +287,7 @@ Priority | As a ... | I want to ... | So that ...
 `* *` | User | Add repeating tasks | I don't have to add them every time
 `* *` | User | Have auto-complete text | I don't have to type in completely every time
 `* *` | User | View my tasks sorted by priority at startup | I can view my upcoming tasks based on importance
+`* *` | User | Find the location of my task on Google Maps | I will know where my event is taking place
 `*` | User | Add tasks with auto-generated tags | I can save time on creating obvious tags for tasks
 `*` | User | View my schedule in a monthly calendar format | Viewing tasks is more efficient
 `*` | User | Sync my tasks with Google Calendar | I can view my tasks on both platforms

@@ -266,6 +266,16 @@ the priority
 the status
 *by typing `find` + `#` + `keyword`
 
+<!-- @@author A0138301U -->    
+
+**Map**
+Typing `map` `index` opens a window showing a Google Maps search for the task's venue.
+
+Eg: type `map 1` to run search on Google Maps for the venue of task 1.
+
+<!-- @@author A0141064U -->    
+
+
 **Creating shortkeys**
 
 <img src="images/shortcut.png" width="400"><br>

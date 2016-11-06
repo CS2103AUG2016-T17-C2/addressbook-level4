@@ -40,12 +40,14 @@ chiazhemin@gamil.com
 
 **Components in charge of:** Model, UI
 
-**Aspects/tools in charge of:** GUI, GUI Testing, Find command, Sorting/Filtering
+**Aspects/tools in charge of:** GUI, GUI Testing, Find command, Map Command, Sorting/Filtering
 
 **Features implemented:**
-* Modern UI design
+* Elegant UI design
 * "Power search" for tasks
 * Automated sorting of tasks:
+* Change of viewport to recently added, set or updated task
+* Map Command to find the venue of a task on Google Maps
 
 **Code written:** [[functional code](../collated/main/A0138301U.md)]	[[test code](../collated/test/A0138301U.md)]	[[docs](../collated/docs/A0138301U.md)]
 
