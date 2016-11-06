@@ -133,7 +133,7 @@ Task Book feedback the Task name, start date and end date of the task that the n
 However, Task Book allows overlapping of tasks. So, for exampe, a new task can be added `2pm to 5pm` or `from 6pm to 8pm`. This is to give the users some flexibility in their options. 
 
 
-##updating task
+##Updating task
 
 To update a task type `update` (index of task in the list or name of task) (changes)
 * Eg: Typing `update 1 by 12 dec` will change the **deadline** of the first task to 12 December 2016
