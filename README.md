@@ -5,7 +5,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/CS2103AUG2016-T17-C2/main/badge.svg?branch=master)](https://coveralls.io/github/CS2103AUG2016-T17-C2/main?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/298d0f260d494d7e9497ee60b8cc60a9)](https://www.codacy.com/app/arsh-abdulrahman/main?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CS2103AUG2016-T17-C2/main&amp;utm_campaign=Badge_Grade)
 
-<img src="docs/images/Ui.jpg" width="600"><br>
+<img src="docs/images/showColours.png" width="600"><br>
+
 
 We are bombarded with ‘things to do’ continuously. Some things need to be done during specific **times** (e.g., attend meeting), some have **deadlines** (e.g., submit report), and others are simply ‘to be done someday’ (e.g., read ‘Lord of the Rings’). The pile of **todo** items accumulates and weighs heavily on our mind at times. Sometimes things go out of control and we forget to do certain things on time.
 
