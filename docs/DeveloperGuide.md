@@ -318,7 +318,7 @@ Case Close
 
 2b. User chooses to prioritise task
 	
-	Task is colour coded ( high-dark blue, low-light blue, default-blue).
+	Task is colour coded ( high - purple, medium - blue, low - green).
 	High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline.
 
 2c. The start date and end date of the task clashes with another task.
@@ -379,7 +379,7 @@ Case Close
     TaskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
 2b. User chooses to prioritise task
 
-    Task is colour coded ( high-dark blue, low-light blue, default-blue)
+    Task is colour coded ( high - purple, medium - blue, low - green).
     High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
     
 2c. The start date and end date of the task clashes with another task.
