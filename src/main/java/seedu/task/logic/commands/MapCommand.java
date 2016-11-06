@@ -1,8 +1,7 @@
 package seedu.task.logic.commands;
 
-import java.util.Arrays;
-
 //@@author A0138301U
+import java.util.Arrays;
 import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.UnmodifiableObservableList;

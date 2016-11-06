@@ -1,8 +1,10 @@
 package seedu.task.logic.commands;
 
+import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.UnmodifiableObservableList;
+import seedu.task.commons.events.ui.JumpToListRequestEvent;
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.logic.parser.TaskParser;
 import seedu.task.logic.parser.UpdateTaskParser;
@@ -60,6 +62,9 @@ public class SetCommand extends Command{
             int updatedTaskIndex = model.updateTask(model.getTaskByIndex(taskIndex - 1), ((UpdateTaskParser) updateTaskParser).setTaskStatus());
         	VersionControl.getInstance().push(new TaskVersion(VersionControl.getInstance().getIndex() + 1, updatedTaskIndex, toUpdate, model.getTaskByIndex(updatedTaskIndex), TaskVersion.Command.UPDATE));
             VersionControl.getInstance().resetVersionPosition();
+            //@@author A0138301U
+            EventsCenter.getInstance().post(new JumpToListRequestEvent(updatedTaskIndex));
+            //@@author A0139958H
 		} catch (IllegalValueException e) {
 	        indicateAttemptToExecuteIncorrectCommand();
 			return new CommandResult(e.getMessage());
