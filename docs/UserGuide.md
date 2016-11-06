@@ -94,13 +94,18 @@ Only the command key and taskname are compulsory; other fields are optional and 
 Task Book uses Natty Natural language processing Date parser to identify dates in the command.
 
 Dates can be any of the following formats 
-* formal dates (02/28/1979), 
-* relaxed dates (oct 1st), 
-* relative dates (tomorrow, the day before next thursday), 
-* and even date alternatives (next wed or thurs).
+
+`formal dates (02/28/1979)`
+
+`relaxed dates (oct 1st)`
+
+`relative dates (tomorrow, the day before next thursday)`
+
+`and even date alternatives (next wed or thurs)`
 
 `time`: The above date formats may be prefixed or suffixed with time information. 
-* Eg: 0600h,06:00 hours,6pm, 5:30 a.m., 5, 12:59, 23:59, noon, midnight
+
+`Eg: 0600h, 06:00 hours, 6pm, 5:30 a.m., 5, 12:59, 23:59, noon, midnight`
 
 Read more about [Natty Date Parser](http://natty.joestelmach.com/)
 
@@ -169,7 +174,7 @@ However, Task Book allows overlapping of tasks. So, for exampe, a new task can b
 <!-- @@author A0141064U -->
 <img src="images/addFail.png" width="600"><br>
 
-**updating tasks**
+**Updating tasks**
 
 <img src="images/update1.png" width="800"><br>
 
