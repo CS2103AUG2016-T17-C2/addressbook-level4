@@ -439,7 +439,7 @@ Case Close
 
 **MSS**
 
-1.	User requests to undo the last operation. 
+1.	User requests to undo the last operation. (Undo works for Add, Update, Delete, Set Commands)
 3.	TaskBook reverts back to the last version
 4.	TaskBook shows the success message
 Case Close
@@ -458,7 +458,7 @@ Case Close
 
 **MSS**
 
-1.  User requests to redo the last operation. 
+1.  User requests to redo the last operation. (Redo works for Add, Update, Delete, Set Commands)
 3.  TaskBook redoes to the last version
 4.  TaskBook shows the success message
 Case Close
