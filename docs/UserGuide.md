@@ -94,13 +94,18 @@ Only the command key and taskname are compulsory; other fields are optional and 
 Task Book uses Natty Natural language processing Date parser to identify dates in the command.
 
 Dates can be any of the following formats 
-* formal dates (02/28/1979), 
-* relaxed dates (oct 1st), 
-* relative dates (tomorrow, the day before next thursday), 
-* and even date alternatives (next wed or thurs).
+
+`formal dates (02/28/1979)`
+
+`relaxed dates (oct 1st)`
+
+`relative dates (tomorrow, the day before next thursday)`
+
+`and even date alternatives (next wed or thurs)`
 
 `time`: The above date formats may be prefixed or suffixed with time information. 
-* Eg: 0600h,06:00 hours,6pm, 5:30 a.m., 5, 12:59, 23:59, noon, midnight
+
+`Eg: 0600h, 06:00 hours, 6pm, 5:30 a.m., 5, 12:59, 23:59, noon, midnight`
 
 Read more about [Natty Date Parser](http://natty.joestelmach.com/)
 
@@ -169,12 +174,12 @@ However, Task Book allows overlapping of tasks. So, for exampe, a new task can b
 <!-- @@author A0141064U -->
 <img src="images/addFail.png" width="600"><br>
 
-**updating tasks**
+**Updating tasks**
 
 <img src="images/update1.png" width="800"><br>
 
 
-To update a task type `update` (index of task in the list or name of task) (field) (changes)
+To update a task type `update` (index of task in the list or name of task) (changes)
 * Eg: Typing `update 1 by 12 dec` will change the **deadline** of the first task to 12 December 2016
 * Eg: Typing `update 2 @Casa` will change the **venue** of the second task to Casa.
 * Eg: Typing `update 1 #high` will change the **task priority** to high
@@ -218,9 +223,9 @@ Undo and Redo can be done multiple times.
 note that taskbook subsequently returns the list of all the task after each undo
 
 **Updating the status of task**
-Typing `set` `index` `new setting` updates the setting of the task
+Typing `set` `index` `new setting` updates the status of the task
 
-the settings available are  
+User can change the task status to 
 <img src="images/set.png" width="800"><br>
 
 `ignore`: Eg type `set` + `2` + `ignore` causes task 2 to be ignored
@@ -237,7 +242,7 @@ Executing the command `list` will result in a complete list of tasks sorted by p
 
 <img src="images/find.png" width="800"><br>
 
-taskBook can filter the tasks according to the following fields: 
+Task Book can filter the tasks according to the following fields: 
 *note that in each field, `keyword` does not need to be fully spelt out:
 
 eg `find` + `play` will return all tasks names that contains `play`
@@ -277,6 +282,8 @@ This feature is only available for **Add**, **Delete** and **List**.
 
 To save the taskbook in another file place, type `file` + `new storage location` that you want to move taskbook to. 
 
-eg `move \dropbox\mytask` will keep taskbook in a folder called 'dropbox', which will be named 'mytask.xml'. 
+eg `move \dropbox\mytask` will keep taskbook in a folder called 'dropbox', which will be named 'mytask.xml'.``
 
 
+**Help**
+This command opens the user guide of TaskBook in the browser.

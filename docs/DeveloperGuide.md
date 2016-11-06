@@ -311,14 +311,14 @@ Priority | As a ... | I want to ... | So that ...
 Case Close
 
 **Extensions**
-
+<!-- @@author A0139958H -->    
 2a. User wants to pin the task. 
 	
 	TaskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side). 
 
 2b. User chooses to prioritise task
 	
-	Task is colour coded ( high-dark blue, low-light blue, default-blue).
+	Task is colour coded ( high - purple, medium - blue, low - green).
 	High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline.
 
 2c. The start date and end date of the task clashes with another task.
@@ -373,13 +373,13 @@ Case Close
 Case Close
 
 **Extensions**
-
+<!-- @@author A0139958H -->    
 2a. User wants to pin the task. 
 
     TaskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
 2b. User chooses to prioritise task
 
-    Task is colour coded ( high-dark blue, low-light blue, default-blue)
+    Task is colour coded ( high - purple, medium - blue, low - green).
     High priority task will be sorted to the top of the list according to deadlines, low priority task will be sorted to the bottom of the list, according to deadline
     
 2c. The start date and end date of the task clashes with another task.
@@ -398,6 +398,7 @@ Case Close
 
     TaskBook provides feedback that the index is invalid
 
+<!-- @@author -->    
 #### Use case: Delete task
 
 **MSS**
@@ -438,7 +439,7 @@ Case Close
 
 **MSS**
 
-1.	User requests to undo the last operation. 
+1.	User requests to undo the last operation. (Undo works for Add, Update, Delete, Set Commands)
 3.	TaskBook reverts back to the last version
 4.	TaskBook shows the success message
 Case Close
@@ -457,7 +458,7 @@ Case Close
 
 **MSS**
 
-1.  User requests to redo the last operation. 
+1.  User requests to redo the last operation. (Redo works for Add, Update, Delete, Set Commands)
 3.  TaskBook redoes to the last version
 4.  TaskBook shows the success message
 Case Close

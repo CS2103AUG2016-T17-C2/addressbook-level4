@@ -18,7 +18,8 @@ This is a desktop Task Book application. It has a GUI but most of the user inter
   
 #### Site Map
 * [User Guide](docs/UserGuide.md) 
-* [Developer Guide](docs/DeveloperGuide.md) 
+* [Developer Guide](docs/DeveloperGuide.md)
+* [Manual Testing User Guide](ManualTesting/TestScript.md)
 * [About Us](docs/AboutUs.md)
 * [Contact Us](docs/ContactUs.md)
 
