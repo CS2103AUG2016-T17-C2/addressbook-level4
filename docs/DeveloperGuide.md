@@ -311,7 +311,7 @@ Priority | As a ... | I want to ... | So that ...
 Case Close
 
 **Extensions**
-
+<!-- @@author A0139958H -->    
 2a. User wants to pin the task. 
 	
 	TaskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side). 
@@ -373,7 +373,7 @@ Case Close
 Case Close
 
 **Extensions**
-
+<!-- @@author A0139958H -->    
 2a. User wants to pin the task. 
 
     TaskBook displays task on pinned-task-board ( at the top of task list, with a logo at the side) 
@@ -398,6 +398,7 @@ Case Close
 
     TaskBook provides feedback that the index is invalid
 
+<!-- @@author -->    
 #### Use case: Delete task
 
 **MSS**
