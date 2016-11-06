@@ -191,7 +191,7 @@ User can change the task status to
 All the index number have to be valid index found in the list. Task Book will feedback the user if it founds to be an invalid index.
 
 
-**Listing tasks**
+##Listing tasks
 
 Executing the command `list` will result in a complete list of tasks sorted by priority. The tasks that are pinned will be at the top of the list.
 
