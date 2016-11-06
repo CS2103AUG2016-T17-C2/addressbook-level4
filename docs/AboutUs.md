@@ -34,7 +34,7 @@ Set up Travis, Codeacy, Coveralls
 
 #### [Zhe Min](https://github.com/zhems)
 
-chiazhemin@gamil.com
+chiazhemin@gmail.com
 
 <img src="images/zhemin.jpeg" width="150"><br>
 
@@ -58,7 +58,7 @@ Other major contributions:
 
 
 #### [Clara](https://github.com/hotchocolatemarshmallow)
-hotchocolatemarshmallow35211@gamil.com
+hotchocolatemarshmallow35211@gmail.com
 
 <img src="images/clara.jpeg" width="150"><br>
 
