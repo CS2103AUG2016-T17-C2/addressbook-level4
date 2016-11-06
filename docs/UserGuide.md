@@ -6,13 +6,21 @@
 
 ##Userguide: 
 
-<img src="images/blank.png" width="600"><br>
+<img src="images/showColours.png" width="600"><br>
 
 The general command structure is to type the `command key` + other details.
 
 **status of the tasks displayed**
 
-<img src="images/showColours.png" width="400"><br>
+<img src="images/showPriority.png" width="400"><br>
+
+purple: high
+
+blue: medium
+
+green: low
+
+<img src="images/showStatus.png" width="400"><br>
 
 blue: active
 
@@ -22,11 +30,9 @@ ignore: grey
 
 done: black
 
-The following icons are used in our display: 
-
-<img src="images/icons.png" width="300"><br>
 
 The tasks are sorted as follows: 
+
 1) By status 
 * Active and Expired tasks are at the top,
 * Done and Ignored are at the bottom
@@ -43,7 +49,7 @@ The tasks are sorted as follows:
 
 **Adding tasks**
 
-<img src="images/add.png" width="500"><br>
+<img src="images/add.png" width="600"><br>
 
 Task Book supports highly flexible command format. The user can enter command in any order and Task Book intelligently identifies the contents based on keywords and natural language processing.
 
@@ -176,7 +182,7 @@ However, Task Book allows overlapping of tasks. So, for exampe, a new task can b
 
 **Updating tasks**
 
-<img src="images/update1.png" width="800"><br>
+<img src="images/update.png" width="800"><br>
 
 
 To update a task type `update` (index of task in the list or name of task) (changes)
@@ -223,10 +229,13 @@ Undo and Redo can be done multiple times.
 note that taskbook subsequently returns the list of all the task after each undo
 
 **Updating the status of task**
+
+<img src="images/set.png" width="800"><br>
+
+
 Typing `set` `index` `new setting` updates the status of the task
 
 User can change the task status to 
-<img src="images/set.png" width="800"><br>
 
 `ignore`: Eg type `set` + `2` + `ignore` causes task 2 to be ignored
 
