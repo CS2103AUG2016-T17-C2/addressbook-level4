@@ -85,11 +85,11 @@ This same command can be written in any order. Other alternatives
 
 In addition to that, Task Book also supports parameter within parameter. For example,
 
-* Example: user can type `add` `success party from 6pm to 8pm for compeleting CS2103 project @soc #party #high #pin`
+* Example: user can type `add` `success party from 6pm to 8pm for completing CS2103 project @soc #party #high #pin`
 
-Notice how the start and end dates are contained within the task name. Task Book is able to intelligently seperate task name from other parameters. So, for the above example
+Notice how the start and end dates are contained within the task name. Task Book is able to intelligently separate task name from other parameters. So, for the above example
 
-`Task Name: success party for compeleting CS2103`
+`Task Name: success party for completing CS2103`
 
 `Start date: 6pm`
 
@@ -174,7 +174,7 @@ Tags:
 
 ` tag names should be AlphaNumeric and not null.`
 
-` #null is a reserved keyword for removing start date or end date from an exisiting task.`
+` #null is a reserved keyword for removing start date or end date from an existing task.`
 
 ` cannot have duplicate tags with the same name`
 
@@ -186,7 +186,7 @@ Venue:
 
 ` venue can't be null`
 
-If any of the above conditions are voilated, Task Book will not perform the operation and will feedback the user to make the necessary changes.
+If any of the above conditions are violated, Task Book will not perform the operation and will feedback the user to make the necessary changes.
 
 Furthermore, Task Book also checks for Date clashes with other dates. 
 
@@ -196,7 +196,7 @@ Task Book feedback the Task name, start date and end date of the task that the n
 
 `The Start Date and End date clashes with another task 'task name' from 'start date' to 'end date'`
 
-However, Task Book allows overlapping of tasks. So, for exampe, a new task can be added `2pm to 5pm` or `from 6pm to 8pm`. This is to give the users some flexibility in their options. 
+However, Task Book allows overlapping of tasks. So, for example, a new task can be added `2pm to 5pm` or `from 6pm to 8pm`. This is to give the users some flexibility in their options. 
 
 <!-- @@author A0141064U -->
 <img src="images/addFail.png" width="600"><br>
