@@ -23,6 +23,7 @@ import seedu.task.commons.events.ui.JumpToListRequestEvent;
 import seedu.task.commons.events.ui.ShowHelpRequestEvent;
 import seedu.task.commons.exceptions.DataConversionException;
 import seedu.task.commons.exceptions.IllegalValueException;
+import seedu.task.commons.util.ConfigUtil;
 import seedu.task.commons.util.FileUtil;
 import seedu.task.commons.util.ShortcutUtil;
 import seedu.task.logic.Logic;
@@ -227,10 +228,15 @@ public class LogicManagerTest {
     
     @Test
     public void execute_changeFilepath_success() throws Exception {
+        Config config = new Config();
+        String original = config.getTaskBookFilePath();
         ChangeFilePathCommand changeFilePathCommand = new ChangeFilePathCommand("xx");
         changeFilePathCommand.execute(); //ensuring current file path is not "bb.xml"
         assertCommandBehavior("file bb", ChangeFilePathCommand.MESSAGE_SUCCESS + "bb.xml");
         assertCommandBehavior("file bb", ChangeFilePathCommand.MESSAGE_RENAME_TO_OLD_FILE); //file cannot be set to same file name     
+        config.setTaskBookFilePath(original+".xml");//resetting config back to original 
+        ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
+        
     }
        
         

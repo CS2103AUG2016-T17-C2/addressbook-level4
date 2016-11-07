@@ -4,7 +4,9 @@ Please ensure that you are running Java 8 in your computer. Please run TaskBook 
 
 ##Importing
 In this same folder, there will be another file called 'SampleData.xml'. Import it into TaskBook. 
-Clara, elaborate on this..
+
+open the 'config.json' JSON file
+replace the taskBookFilePath with "ManualTesting/SampleData.xml".
 
 
 ##Adding Task
