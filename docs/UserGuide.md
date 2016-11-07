@@ -306,6 +306,8 @@ Typing `map` `index` opens a window showing a Google Maps search for the task's 
 
 Eg: type `map 1` to run search on Google Maps for the venue of task 1.
 
+Note: Map function is catered for usage in Singapore only. Hence, results shown are within Singapore.
+
 <!-- @@author A0141064U -->    
 
 
