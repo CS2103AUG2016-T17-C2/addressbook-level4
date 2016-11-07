@@ -40,6 +40,7 @@ import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.*;
 import seedu.task.storage.StorageManager;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -224,6 +225,19 @@ public class LogicManagerTest {
         shortcutSetting.setAdd("add");
         shortcutSetting.setDelete("delete");
         shortcutSetting.setList("list");
+    }
+    
+
+    @Test
+    public void execute_changeFilepathOnce_success() throws Exception {
+        Config config = new Config();
+        String original = config.getTaskBookFilePath();
+        ChangeFilePathCommand changeFilePathCommand = new ChangeFilePathCommand("xx");
+        changeFilePathCommand.execute(); //ensuring current file path is not "bb.xml"
+        assertCommandBehavior("file bb", ChangeFilePathCommand.MESSAGE_SUCCESS + "bb.xml");
+        config.setTaskBookFilePath(original);//resetting config back to original 
+        ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
+        
     }
     
     @Test
