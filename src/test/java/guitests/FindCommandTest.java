@@ -60,13 +60,6 @@ public class FindCommandTest extends TaskBookGuiTest {
         assertFindResult("find @Playground", TypicalTestTasks.play);        
     }
 
-/*    @Test
-    public void find_Tagging() {
-        assertFindResult("find #fitness"); 
-        assertFindResult("find #healthy", TypicalTestTasks.play);     
-        assertFindResult("find #study", TypicalTestTasks.study, TypicalTestTasks.coding);        
-    }*/
-
     private void assertFindResult(String command, TestTask... expectedHits ) {
         commandBox.runCommand(command);
         assertListSize(expectedHits.length);

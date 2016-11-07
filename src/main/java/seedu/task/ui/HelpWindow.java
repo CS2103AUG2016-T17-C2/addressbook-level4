@@ -52,9 +52,10 @@ public class HelpWindow extends UiPart {
         //Null passed as the parent stage to make it non-modal.
         dialogStage = createDialogStage(TITLE, null, scene);
         //@@author A0138301U
+        //aligns the window to the top right hand corner of screen
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        dialogStage.setX(primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth() - 1000);//align the window to the
-        dialogStage.setY(0);//top right of the screen
+        dialogStage.setX(primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth() - 1000);
+        dialogStage.setY(0);
         dialogStage.setHeight(1000);//set the dimensions at 1000 by 1000
         dialogStage.setWidth(1000);
         //@@author
@@ -66,7 +67,9 @@ public class HelpWindow extends UiPart {
         mainPane.getChildren().add(browser);
     }
 
+    //@@author A0138301U
+    //changed from showAndWait to show so that result message of command is shown earlier
     public void show() {
-        dialogStage.showAndWait();
+        dialogStage.show();
     }
 }

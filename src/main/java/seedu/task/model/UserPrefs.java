@@ -19,10 +19,12 @@ public class UserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public UserPrefs(){
-        this.setGuiSettings(500, 500, 0, 0);
+    //@@author A0138301U
+    public UserPrefs(){//default ideal size for window
+        this.setGuiSettings(700, 1000, 0, 0);
     }
-
+    //@@author
+    
     public void setGuiSettings(double width, double height, int x, int y) {
         guiSettings = new GuiSettings(width, height, x, y);
     }

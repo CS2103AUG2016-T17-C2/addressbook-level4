@@ -22,13 +22,11 @@ public class AddCommandTest extends TaskBookGuiTest {
         TestTask taskToAdd = TypicalTestTasks.play;
         TestTask[] currentList = td.getTypicalTasks();
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
-        //assertAddSuccess(taskToAdd, currentList); 
 
         //add task with dates clashing with other tasks
         taskToAdd = TypicalTestTasks.coding;
         commandBox.runCommand(taskToAdd.getAddCommand());
-        //assertResultMessage(String.format(Task.DATE_CLASH_MESSAGE, "code cs2103", "Fri Nov 04 17:50:00 SGT 2016", "Fri Nov 04 17:50:00 SGT 2016"));
-
+        
         //add to empty list
         commandBox.runCommand("clear");
         assertAddSuccess(td.play); 

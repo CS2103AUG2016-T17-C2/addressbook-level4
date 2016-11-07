@@ -36,4 +36,11 @@ public class CommandBoxHandle extends GuiHandle{
         pressEnter();
         return new HelpWindowHandle(guiRobot, primaryStage);
     }
+    
+    //@@author A0138301U
+    public GoogleMapsWindowHandle runGoogleMapCommand(int index) {
+        enterCommand("map " + index);
+        pressEnter();
+        return new GoogleMapsWindowHandle(guiRobot, primaryStage);
+    }
 }

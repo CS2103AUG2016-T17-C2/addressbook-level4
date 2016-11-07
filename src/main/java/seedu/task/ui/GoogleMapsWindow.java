@@ -68,7 +68,8 @@ public class GoogleMapsWindow extends UiPart {
         mainPane.getChildren().add(browser);
     }
 
+    //changed from showAndWait to show so that result message of command is shown earlier
     public void show() {
-        dialogStage.showAndWait();
+        dialogStage.show();
     }
 }
