@@ -192,6 +192,14 @@ User can change the task status to
 
 All the index number have to be valid index found in the list. Task Book will feedback the user if it founds to be an invalid index.
 
+##Viewing the google map view of the venue
+With a few tasks in your task book, find a task which has a venue specified. 
+
+Eg: if task 1 has a venue, type `map` + `1` will cause a window showing a map by google.
+
+##Clearing tasks
+
+Executing the command `clear` will result in all the tasks being cleared from the task book
 
 ##Listing tasks
 
@@ -233,11 +241,11 @@ Shortkeys can be set for `add`, `delete` and `list` commands.
 
 This feature is only available for **Add**, **Delete** and **List**. 
 
-**Moving taskbook to another storage location** 
+##Moving taskbook to another storage location 
 
 To save the taskbook in another file place, type `file` + `new storage location` that you want to move taskbook to. 
 
-eg `move \dropbox\mytask` will keep taskbook in a folder called 'dropbox', which will be named 'mytask.xml'. 
+eg `file \dropbox\mytask` will keep taskbook in a folder called 'dropbox', which will be named 'mytask.xml'. 
 
 
 ##Help
