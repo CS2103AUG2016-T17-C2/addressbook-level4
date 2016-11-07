@@ -1,9 +1,11 @@
 package seedu.task.ui;
+import javafx.geometry.Rectangle2D;
 //@@author A0138301U
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebView;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.util.FxViewUtil;
@@ -47,8 +49,14 @@ public class GoogleMapsWindow extends UiPart {
         Scene scene = new Scene(mainPane);
         //Null passed as the parent stage to make it non-modal.
         dialogStage = createDialogStage(TITLE, null, scene);
-        dialogStage.setHeight(1000);
-        dialogStage.setWidth(1000);
+        
+        //@@author A0138301U
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        dialogStage.setX(primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth() - 900);//align the window to the
+        dialogStage.setY(primaryScreenBounds.getMinY() + primaryScreenBounds.getHeight() - 900);//bottom right of the screen
+        dialogStage.setHeight(900);//set the dimensions at 900 by 900
+        dialogStage.setWidth(900);
+        //@@author
         setIcon(dialogStage, ICON);
 
         String venueQuery = venue.replace(' ', '+');
