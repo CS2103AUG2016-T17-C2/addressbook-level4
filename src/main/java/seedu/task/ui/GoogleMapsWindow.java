@@ -23,6 +23,7 @@ public class GoogleMapsWindow extends UiPart {
     private static final String TITLE = "Google Maps";
     private static final String USERGUIDE_URL =
             "http://maps.google.com/?q=";
+    private static final String SEARCH_SINGAPORE_SUFFIX = "+singapore";
     
     private AnchorPane mainPane;
 
@@ -50,16 +51,16 @@ public class GoogleMapsWindow extends UiPart {
         //Null passed as the parent stage to make it non-modal.
         dialogStage = createDialogStage(TITLE, null, scene);
         
-        //@@author A0138301U
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        dialogStage.setX(primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth() - 900);//align the window to the
-        dialogStage.setY(primaryScreenBounds.getMinY() + primaryScreenBounds.getHeight() - 900);//bottom right of the screen
-        dialogStage.setHeight(900);//set the dimensions at 900 by 900
-        dialogStage.setWidth(900);
-        //@@author
+        dialogStage.setX(primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth() - 1000);//align the window to the
+        dialogStage.setY(0);//top right of the screen
+        dialogStage.setHeight(1000);//set the dimensions at 1000 by 1000
+        dialogStage.setWidth(1000);
+
         setIcon(dialogStage, ICON);
 
-        String venueQuery = venue.replace(' ', '+');
+        //construct search query for venue in singapore
+        String venueQuery = venue.replace(' ', '+') + SEARCH_SINGAPORE_SUFFIX;
 
         WebView browser = new WebView();
         browser.getEngine().load(USERGUIDE_URL+venueQuery);

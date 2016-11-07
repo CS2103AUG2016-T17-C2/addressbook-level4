@@ -53,10 +53,10 @@ public class HelpWindow extends UiPart {
         dialogStage = createDialogStage(TITLE, null, scene);
         //@@author A0138301U
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        dialogStage.setX(primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth() - 900);
-        dialogStage.setY(primaryScreenBounds.getMinY() + primaryScreenBounds.getHeight() - 900);
-        dialogStage.setHeight(900);
-        dialogStage.setWidth(900);
+        dialogStage.setX(primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth() - 1000);//align the window to the
+        dialogStage.setY(0);//top right of the screen
+        dialogStage.setHeight(1000);//set the dimensions at 1000 by 1000
+        dialogStage.setWidth(1000);
         //@@author
         setIcon(dialogStage, ICON);
 
