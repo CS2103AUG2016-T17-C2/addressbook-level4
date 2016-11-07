@@ -234,7 +234,7 @@ public class LogicManagerTest {
         changeFilePathCommand.execute(); //ensuring current file path is not "bb.xml"
         assertCommandBehavior("file bb", ChangeFilePathCommand.MESSAGE_SUCCESS + "bb.xml");
         assertCommandBehavior("file bb", ChangeFilePathCommand.MESSAGE_RENAME_TO_OLD_FILE); //file cannot be set to same file name     
-        config.setTaskBookFilePath(original+".xml");//resetting config back to original 
+        config.setTaskBookFilePath(original);//resetting config back to original 
         ConfigUtil.saveConfig(config, Config.DEFAULT_CONFIG_FILE);
         
     }
