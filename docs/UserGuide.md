@@ -1,18 +1,38 @@
-<!-- @@author A0141064U -->
+# TaskBook User Guide
 
-##Project name: taskBook
+* [Quick Start](#quick-start)
+* [Features](#features)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
-**Vision:** An intelligent and personalised task scheduler for Jim
+## Quick Start
 
-##Userguide: 
+0. Ensure you have Java version `1.8.0_60` or later installed in your Computer.<br>
+   > Having any Java 8 version is not enough. <br>
+   This app will not work with earlier versions of Java 8.
+   
+1. Download the latest `happyjimtaskmanager.jar` from the [releases](../../../releases) tab.
+2. Copy the file to the folder you want to use as the home folder for your Address Book.
+3. Double-click the file to start the app. The GUI should appear in a few seconds. 
+   > <img src="images/showColours.png" width="600">
 
-<img src="images/showColours.png" width="600"><br>
+4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
+   e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
+5. Some example commands you can try:
+   * **`list`** : Lists all active tasks 
+   * **`add`**` Homework by 24 sep 6pm`: 
+     adds a task named `Homework` to the Task Master
+   * **`delete`**` 212` : deletes the task with ID 212 shown in the current list
+   * **`exit`** : exits the app
+6. Refer to the [Features](#features) section below for details of each command.<br>
+
+## Features
 
 The general command structure is to type the `command key` + other details.
 
-**status of the tasks displayed**
+**Colour Scheme**
 
-<img src="images/showPriority.png" width="400"><br>
+<img src="images/showPriority.png" width="600"><br>
 
 purple: high
 
@@ -20,7 +40,7 @@ blue: medium
 
 green: low
 
-<img src="images/showStatus.png" width="400"><br>
+<img src="images/showStatus.png" width="600"><br>
 
 red: expired
 
@@ -303,3 +323,48 @@ eg `move \dropbox\mytask` will keep taskbook in a folder called 'dropbox', which
 
 **Help**
 This command opens the user guide of TaskBook in the browser.
+
+#### Exiting the program : `exit`
+Exits the program.<br>
+Format: `exit`  
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with 
+       the file that contains the data of your previous Address Book folder.
+
+**Q**: How do i get started using TaskBook?<br>
+**A**: Type 'help' or any incorrect command will bring you to the help screen.
+
+<!-- @@author A0139958H-->       
+## Command Summary
+
+Command | Format  
+-------- | :-------- 
+Add | `add TASK_NAME ...`
+Add | `add TASK_NAME by DATETIME @VENUE #PRIORITY #PIN #TAG1 #TAG2...`
+Add | `add TASK_NAME from DATETIME to DATETIME @VENUE #PRIORITY #PIN #TAG1 #TAG2...`
+Add | `add from DATETIME to DATETIME TASK_NAME @VENUE #PRIORITY #PIN #TAG1 #TAG2...`
+Add | `add TASK_NAME from DATETIME to DATETIME TASK_NAME @VENUE @VENUE #PRIORITY #PIN #TAG1 #TAG2...`
+Add | `add TASK_NAME from DATETIME TASK_NAME @VENUE @VENUE #PRIORITY #PIN #TAG1 #TAG2...`
+Update | `update TASK_ID from DATETIME to DATETIME ...`
+Update | `update TASK_ID by DATETIME ...`
+Update | `update TASK_ID from #null to #null ...`
+Update | `update TASK_ID TASK_NAME from #null to #null @VENUE #TAG1 #PIN #PRIORITY...`
+Update | `update TASK_ID by #null TASK_NAME @null #TAG1 #PIN #PRIORITY...`
+Delete | `delete TASK_ID`
+Delete | `delete TASK_ID5 TASK_ID3 TASK_ID1 TASK_ID7 TASK_ID31 TASK_ID42 TASK_ID43`
+Set | `set TASK_ID done`
+Set | `set TASK_ID ignore`
+Undo | `undo`
+Redo | `redo`
+Find | `find KEY_WORD`
+Select | `select TASK_ID`
+Shortcut | `shortcut add KEY_WORD`
+Clear | `clear`
+Change directory | `file FILE_PATH`
+Help | `help`
+Exit | `exit`
+
+-----
