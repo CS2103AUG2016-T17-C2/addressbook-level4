@@ -369,13 +369,14 @@ Delete | `delete TASK_ID`
 Delete | `delete TASK_ID5 TASK_ID3 TASK_ID1 TASK_ID7 TASK_ID31 TASK_ID42 TASK_ID43`
 Set | `set TASK_ID done`
 Set | `set TASK_ID ignore`
+Map | `map TASK_ID`
 Undo | `undo`
 Redo | `redo`
 Find | `find KEY_WORDS`
-Find | `find @[venue]`
-Find | `find #[tag]`
-Find | `find #[status]`
-Find | `find #[priority]`
+Find | `find @VENUE`
+Find | `find #TAG`
+Find | `find #STATUS`
+Find | `find #PRIORITY`
 Select | `select TASK_ID`
 Shortcut | `shortcut add KEY_WORD`
 Clear | `clear`
