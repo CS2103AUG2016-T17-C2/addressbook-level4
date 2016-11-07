@@ -300,6 +300,8 @@ the status
 
 **Map**
 
+<img src="images/map.png" width="800"><br>
+
 Typing `map` `index` opens a window showing a Google Maps search for the task's venue.
 
 Eg: type `map 1` to run search on Google Maps for the venue of task 1.
@@ -328,6 +330,9 @@ eg `move \dropbox\mytask` will keep taskbook in a folder called 'dropbox', which
 <!--@@author-->
 
 **Help**
+
+<img src="images/help.png" width="800"><br>
+
 
 This command opens the user guide of TaskBook in the browser.
 
