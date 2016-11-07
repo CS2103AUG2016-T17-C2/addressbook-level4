@@ -14,13 +14,14 @@ arsh.abdulrahman@hotmail.com
 **Aspects/tools in charge of:** Logic, Testing, Code quality
 
 **Features implemented:**
-* Add task
+* Add task - floating, deadline, events
 * Delete task(s)
-* Update task
+* Update task - floating, deadline, events
 * Set task status
 * Undo task(s)
 * Redo task(s)
 * Input Validation
+* Highly flexible commands
 * NLP Date parsing with Natty
 
 **Code written:** [[functional code](../collated/main/A0139958H.md)]	[[test code](../collated/test/A0139958H.md)]	[[docs](../collated/docs/A0139958H.md)]
