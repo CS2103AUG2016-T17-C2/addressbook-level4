@@ -28,6 +28,7 @@
 
 ## Features
 
+<!-- @@author A0141064U -->
 The general command structure is to type the `command key` + other details.
 
 **Colour Scheme**
@@ -107,6 +108,7 @@ Notice how the start and end dates are contained within the task name. Task Book
 <!-- @@author A0141064U -->
 Only the command key and taskname are compulsory; other fields are optional and it would take default or null values if not entered.
 
+<!-- @@author A0139958H -->
 **Parameters**
 
 `Task Name`: Task names should be AlphaNumeric.
@@ -117,6 +119,7 @@ Only the command key and taskname are compulsory; other fields are optional and 
 
 Task Book uses Natty Natural language processing Date parser to identify dates in the command.
 
+<!-- @@author A0141064U -->
 Dates can be any of the following formats 
 
 `formal dates (02/28/1979)`
@@ -212,11 +215,12 @@ To update a task type `update` (index of task in the list or name of task) (chan
 Multiple fields can be updated in a single command
 * Eg: Typing `update 2 #high @home` changes the priority of task 2 to high and change the venue to home
 
+<!-- @@author A0139958H -->
+
 Fields can also be updated to be empty
 * Eg: Typing `update 3 @null` removes the venue of the third task in the list. 
 * Eg: Typing `update 3 from #null by #null @null` removes the start date, end date and venue of the third task in the list.
 
-<!-- @@author A0139958H -->
 Tags can be added/removed as well.
 * Eg: Typing `update 3 #sports #healthy` will remove the tags `#sports` and `#healthy` if found. If not, it will add the tags.
 
@@ -295,6 +299,7 @@ the status
 <!-- @@author A0138301U -->    
 
 **Map**
+
 Typing `map` `index` opens a window showing a Google Maps search for the task's venue.
 
 Eg: type `map 1` to run search on Google Maps for the venue of task 1.
@@ -320,8 +325,10 @@ To save the taskbook in another file place, type `file` + `new storage location`
 
 eg `move \dropbox\mytask` will keep taskbook in a folder called 'dropbox', which will be named 'mytask.xml'.``
 
+<!--@@author-->
 
 **Help**
+
 This command opens the user guide of TaskBook in the browser.
 
 #### Exiting the program : `exit`
