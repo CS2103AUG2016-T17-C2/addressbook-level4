@@ -245,7 +245,7 @@ This feature is only available for **Add**, **Delete** and **List**.
 
 To save the taskbook in another file place, type `file` + `new storage location` that you want to move taskbook to. 
 
-eg `file \dropbox\mytask` will keep taskbook in a folder called 'dropbox', which will be named 'mytask.xml'. 
+eg `file dropbox\mytask` will keep taskbook in a folder called 'dropbox', which will be named 'mytask.xml'. 
 
 
 ##Help
