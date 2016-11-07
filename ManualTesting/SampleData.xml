@@ -403,6 +403,100 @@
         <pinTask>PIN</pinTask>
         <tagged>dowell</tagged>
     </tasks>
+    <tasks>
+        <name>study physics</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>MEDIUM</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>midterm</tagged>
+    </tasks>
+    <tasks>
+        <name>take a break and have a kitkat</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>LOW</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>chill</tagged>
+    </tasks>
+    <tasks>
+        <name>buy bag</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>LOW</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>physics mid term</name>
+        <startDate>Tue Nov 08 12:00:00 SGT 2016</startDate>
+        <endDate>Tue Nov 08 14:00:00 SGT 2016</endDate>
+        <venue> S11</venue>
+        <priority>HIGH</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>youcandoit</tagged>
+    </tasks>
+    <tasks>
+        <name>ee2024 demo</name>
+        <startDate>Fri Nov 11 09:00:00 SGT 2016</startDate>
+        <endDate>Fri Nov 11 10:00:00 SGT 2016</endDate>
+        <venue></venue>
+        <priority>HIGH</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>do maths revision</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>MEDIUM</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>go for SEP briefing</name>
+        <startDate></startDate>
+        <endDate>Tue Nov 15 10:27:38 SGT 2016</endDate>
+        <venue> NUS</venue>
+        <priority>MEDIUM</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>watch webcasts</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>LOW</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
+    <tasks>
+        <name>do documentation</name>
+        <startDate></startDate>
+        <endDate></endDate>
+        <venue></venue>
+        <priority>HIGH</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+        <tagged>important</tagged>
+    </tasks>
+    <tasks>
+        <name>fix the bug in ee2024</name>
+        <startDate></startDate>
+        <endDate>Tue Nov 08 10:29:17 SGT 2016</endDate>
+        <venue></venue>
+        <priority>HIGH</priority>
+        <status>ACTIVE</status>
+        <pinTask>UNPIN</pinTask>
+    </tasks>
     <tags>
         <tagName>coding</tagName>
     </tags>
@@ -495,5 +589,14 @@
     </tags>
     <tags>
         <tagName>dowell</tagName>
+    </tags>
+    <tags>
+        <tagName>midterm</tagName>
+    </tags>
+    <tags>
+        <tagName>youcandoit</tagName>
+    </tags>
+    <tags>
+        <tagName>important</tagName>
     </tags>
 </taskbook>
