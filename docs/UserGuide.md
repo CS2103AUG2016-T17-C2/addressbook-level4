@@ -371,7 +371,11 @@ Set | `set TASK_ID done`
 Set | `set TASK_ID ignore`
 Undo | `undo`
 Redo | `redo`
-Find | `find KEY_WORD`
+Find | `find KEY_WORDS`
+Find | `find @[venue]`
+Find | `find #[tag]`
+Find | `find #[status]`
+Find | `find #[priority]`
 Select | `select TASK_ID`
 Shortcut | `shortcut add KEY_WORD`
 Clear | `clear`
