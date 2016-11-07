@@ -23,7 +23,7 @@
         <tagged>grades</tagged>
     </tasks>
     <tasks>
-        <name>foolsball</name>
+        <name>foosball</name>
         <startDate></startDate>
         <endDate>Wed Nov 02 08:00:00 SGT 2016</endDate>
         <venue></venue>
@@ -46,7 +46,7 @@
         <name>go wild wild wet</name>
         <startDate>Tue Nov 01 08:00:00 SGT 2016</startDate>
         <endDate>Tue Nov 01 12:00:00 SGT 2016</endDate>
-        <venue></venue>
+        <venue> wild wild wet</venue>
         <priority>MEDIUM</priority>
         <status>EXPIRED</status>
         <pinTask>UNPIN</pinTask>
@@ -105,11 +105,11 @@
     </tasks>
     <tasks>
         <name>Cindy Birthday celebration</name>
-        <startDate>Mon Dec 05 18:00:00 GMT+08:00 2016</startDate>
-        <endDate>Mon Dec 05 22:00:00 GMT+08:00 2016</endDate>
+        <startDate>Mon Oct 31 18:00:00 GMT+08:00 2016</startDate>
+        <endDate>Mon Oct 31 22:00:00 GMT+08:00 2016</endDate>
         <venue> bukit panjang</venue>
         <priority>MEDIUM</priority>
-        <status>ACTIVE</status>
+        <status>EXPIRED</status>
         <pinTask>UNPIN</pinTask>
         <tagged>brirthday</tagged>
         <tagged>friends</tagged>
@@ -600,3 +600,4 @@
         <tagName>important</tagName>
     </tags>
 </taskbook>
+
